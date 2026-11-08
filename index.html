@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>LuxStream IPTV Ultra - IBO Supercharged Edition</title>
+    <title>LuxStream IPTV Ultra - Supercharged Edition</title>
 
     <!-- Font Awesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -48,7 +48,6 @@
     </script>
 
     <style>
-        /* ABSOLUTE ZERO BORDER POLICY */
         *, *::before, *::after {
             box-sizing: border-box;
             user-select: none;
@@ -121,9 +120,7 @@
 </head>
 <body class="bg-darkbg text-gray-100 flex flex-col h-full w-full overflow-hidden select-none">
 
-    <!-- ============================================ -->
-    <!-- 1. LOGIN SCREEN WITH MULTI-SERVER SUPPORT    -->
-    <!-- ============================================ -->
+    <!-- =================LOGIN SCREEN================ -->
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cover bg-center" style="background-image: radial-gradient(circle at center, rgba(10, 14, 24, 0.88) 0%, rgba(4, 6, 9, 0.98) 100%), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920');">
         <div class="ibo-glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 shadow-gold-glow relative overflow-hidden flex flex-col justify-between">
             <div>
@@ -182,7 +179,6 @@
                 <div id="loginError" class="hidden mt-3 p-3 rounded-xl bg-red-950/80 text-red-300 text-xs text-center font-medium shadow-lg"></div>
             </div>
 
-            <!-- Copyright Footer -->
             <div class="mt-6 pt-3 text-center border-t border-gray-800/40">
                 <p class="text-[10px] text-gray-500 font-medium tracking-wider">
                     &copy; 2026 Eglicias ROKU. All rights reserved.
@@ -191,12 +187,8 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 2. MAIN IBO PRO DASHBOARD (FIXED VIEWPORT)   -->
-    <!-- ============================================ -->
+    <!-- =================MAIN DASHBOARD================ -->
     <div id="mainDashboard" class="flex flex-col h-full w-full hidden-screen relative overflow-hidden bg-darkbg">
-        
-        <!-- Header Bar -->
         <header class="h-16 shrink-0 ibo-glass-panel px-4 sm:px-8 flex items-center justify-between z-30">
             <div class="flex items-center space-x-4">
                 <div class="flex items-center space-x-2">
@@ -210,7 +202,6 @@
                 </div>
             </div>
 
-            <!-- Global Search & Nav -->
             <div class="flex items-center space-x-3">
                 <div id="dashboardSearchContainer" class="relative hidden sm:block w-64">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
@@ -230,14 +221,10 @@
             </div>
         </header>
 
-        <!-- Dynamic Body Container -->
         <main class="flex-1 flex flex-col min-h-0 overflow-hidden relative">
-            
-            <!-- A. IBO PLAYER MAIN TILES HOME SCREEN -->
+            <!-- HOME TILES -->
             <div id="iboHomeScreen" class="flex-1 overflow-y-auto p-4 sm:p-8 flex flex-col items-center justify-between">
                 <div class="max-w-6xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 my-auto">
-                    
-                    <!-- LIVE TV TILE -->
                     <div onclick="openDashboardCategory('live')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
@@ -251,7 +238,6 @@
                         </div>
                     </div>
 
-                    <!-- VOD MOVIES TILE -->
                     <div onclick="openDashboardCategory('vod')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
@@ -265,7 +251,6 @@
                         </div>
                     </div>
 
-                    <!-- SERIES TILE -->
                     <div onclick="openDashboardCategory('series')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
@@ -279,7 +264,6 @@
                         </div>
                     </div>
 
-                    <!-- FAVORITES TILE -->
                     <div onclick="openDashboardCategory('favorites')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-300 to-gold-500 text-black flex items-center justify-center text-2xl shadow-gold-glow">
@@ -293,7 +277,6 @@
                         </div>
                     </div>
 
-                    <!-- ACCOUNT TILE -->
                     <div onclick="showAccountModal()" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
@@ -307,7 +290,6 @@
                         </div>
                     </div>
 
-                    <!-- REFRESH DATA TILE -->
                     <div onclick="loadXtreamData()" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 text-white flex items-center justify-center text-2xl shadow-gold-glow">
@@ -322,18 +304,13 @@
                     </div>
                 </div>
 
-                <!-- Copyright Footer on Home Screen -->
                 <div class="py-2 text-center shrink-0">
-                    <p class="text-[10px] text-gray-500 font-medium tracking-wider">
-                        &copy; 2026 Eglicias ROKU. All rights reserved.
-                    </p>
+                    <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
                 </div>
             </div>
 
-            <!-- B. INNER CONTENT VIEW (SUB CATEGORIES & BATCHED GRID) -->
+            <!-- CONTENT VIEW -->
             <div id="iboContentView" class="flex-1 flex flex-col min-h-0 overflow-hidden hidden-screen">
-                
-                <!-- TOP CATEGORY TRACK -->
                 <div class="shrink-0 ibo-glass-panel px-4 sm:px-8 py-3 z-20">
                     <div class="flex items-center justify-between mb-2">
                         <div class="flex items-center space-x-2">
@@ -343,28 +320,20 @@
                         </div>
                         <span id="itemsCount" class="text-xs text-gray-400 font-medium">(0 items)</span>
                     </div>
-
                     <div id="categoriesTrack" class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1"></div>
                 </div>
 
-                <!-- FAST INFINITE SCROLL GRID -->
                 <div id="gridContainer" onscroll="handleScroll(this)" class="flex-1 overflow-y-auto p-4 sm:p-8 min-h-0 flex flex-col justify-between">
                     <div id="itemsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 pb-6"></div>
-
-                    <!-- Copyright Footer inside Content View -->
                     <div class="py-3 text-center shrink-0 border-t border-gray-800/40 mt-4">
-                        <p class="text-[10px] text-gray-500 font-medium tracking-wider">
-                            &copy; 2026 Eglicias ROKU. All rights reserved.
-                        </p>
+                        <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 3. DETAILS MODAL (NETFLIX / SHAHID STYLE)    -->
-    <!-- ============================================ -->
+    <!-- =================DETAILS MODAL================ -->
     <div id="detailsModal" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden-screen">
         <div class="ibo-glass-panel max-w-4xl w-full rounded-3xl overflow-hidden relative shadow-2xl flex flex-col max-h-[92vh]">
             <button onclick="closeDetailsModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/80 text-gray-300 hover:text-gold-400 flex items-center justify-center shadow-lg">
@@ -403,9 +372,7 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 4. ACCOUNT INFORMATION MODAL                -->
-    <!-- ============================================ -->
+    <!-- =================ACCOUNT MODAL================ -->
     <div id="accountModal" class="fixed inset-0 z-40 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden-screen">
         <div class="ibo-glass-panel max-w-md w-full rounded-3xl p-6 relative">
             <button onclick="closeAccountModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gold-400 text-lg">
@@ -423,13 +390,10 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 5. INSTANT LOW-LATENCY PLAYER OVERLAY        -->
-    <!-- ============================================ -->
+    <!-- =================PLAYER OVERLAY================ -->
     <div id="playerOverlay" class="fixed inset-0 z-50 bg-black flex flex-col justify-between hidden-screen">
-        <video id="videoElement" class="w-full h-full object-contain bg-black cursor-pointer" onclick="togglePlayPause()"></video>
+        <video id="videoElement" class="w-full h-full object-contain bg-black cursor-pointer" playsinline autoplay onclick="togglePlayPause()"></video>
 
-        <!-- Player Top Bar -->
         <div class="player-overlay-gradient absolute top-0 inset-x-0 p-4 sm:p-6 flex justify-between items-center z-10">
             <div class="flex items-center space-x-4">
                 <button onclick="closePlayer()" class="tv-focusable w-11 h-11 rounded-full bg-black/80 text-gray-200 hover:text-gold-400 flex items-center justify-center">
@@ -442,7 +406,6 @@
             </div>
         </div>
 
-        <!-- Buffer Spinner -->
         <div id="playerBuffer" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden-screen">
             <div class="flex flex-col items-center space-y-3 bg-black/85 p-6 rounded-3xl backdrop-blur-md shadow-gold-glow">
                 <i class="fa-solid fa-bolt fa-spin text-gold-500 text-4xl"></i>
@@ -450,7 +413,6 @@
             </div>
         </div>
 
-        <!-- Player Bottom Controls Bar -->
         <div class="player-overlay-gradient absolute bottom-0 inset-x-0 p-4 sm:p-6 flex flex-col gap-3 z-10">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
@@ -475,9 +437,7 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 6. ULTRA-FAST ENGINE & REAL FETCH ENGINE     -->
-    <!-- ============================================ -->
+    <!-- =================ENGINE SCRIPT================ -->
     <script>
         const state = {
             host: '',
@@ -503,15 +463,9 @@
 
         const demoData = {
             userInfo: { username: 'LuxStream VIP Demo', status: 'Active', exp_date: '1893456000' },
-            liveCategories: [
-                { category_id: '1', category_name: '⚽ beIN Sports 4K Channels' }
-            ],
-            vodCategories: [
-                { category_id: '2', category_name: '🔥 Latest 2026 Movies' }
-            ],
-            seriesCategories: [
-                { category_id: '3', category_name: '💎 Netflix & Shahid Series' }
-            ],
+            liveCategories: [{ category_id: '1', category_name: '⚽ beIN Sports 4K Channels' }],
+            vodCategories: [{ category_id: '2', category_name: '🔥 Latest 2026 Movies' }],
+            seriesCategories: [{ category_id: '3', category_name: '💎 Netflix & Shahid Series' }],
             live: [
                 { stream_id: '1', name: 'beIN SPORTS 1 Premium 4K', category_id: '1', stream_icon: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400' },
                 { stream_id: '2', name: 'SSC SPORTS 1 HD Live', category_id: '1', stream_icon: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400' }
@@ -536,10 +490,11 @@
             return host.replace(/\/+$/, '');
         }
 
+        /* نظام جلب البيانات المحسن مع CORS Fallback التسلسلي */
         async function fetchXtreamApi(actionUrl) {
             const useProxy = document.getElementById('useProxy')?.checked;
             
-            // 1. Direct fetch try
+            // 1. محاولة الطلب المباشر أولاً
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 6000);
@@ -551,7 +506,7 @@
                 }
             } catch (err) {}
 
-            // 2. Multi-Proxy Fallback
+            // 2. تفعيل Smart Proxy في حال فشل الطلب المباشر
             if (useProxy) {
                 const proxyEndpoints = [
                     `https://api.allorigins.win/raw?url=${encodeURIComponent(actionUrl)}`,
@@ -674,14 +629,10 @@
                 state.vodMovies = Array.isArray(vod) ? vod : [];
                 state.seriesList = Array.isArray(series) ? series : [];
 
-                // Fallback to demo items if server returns empty content
                 if (!state.liveChannels.length && !state.vodMovies.length) {
                     state.liveChannels = demoData.live;
                     state.vodMovies = demoData.vod;
                     state.seriesList = demoData.series;
-                    state.liveCategories = demoData.liveCategories;
-                    state.vodCategories = demoData.vodCategories;
-                    state.seriesCategories = demoData.seriesCategories;
                 }
 
                 updateHomeCounters();
@@ -786,7 +737,7 @@
             renderNextBatch();
         }
 
-        /* FAST CHUNKED / BATCHED RENDERING FOR ZERO LAG */
+        /* نظام تقسيم العرض لمنع تجمد المتصفح (Pagination & Chunking) */
         function renderNextBatch() {
             const container = document.getElementById('itemsGrid');
             const items = state.currentItems;
@@ -910,7 +861,7 @@
             container.innerHTML = html;
         }
 
-        /* LOW-LATENCY ULTRA-FAST VIDEO PLAYER ENGINE */
+        /* نظام المشغل الداخلي حصرياً وتجنب إعادة توجيه المتصفح */
         function playItem(index) {
             const item = state.currentItems[index];
             if (!item) return;
@@ -934,7 +885,6 @@
             document.getElementById('playerOverlay').classList.remove('hidden-screen');
             buffer.classList.remove('hidden-screen');
 
-            // Quick Cleanup Previous Player
             if (state.hlsInstance) {
                 state.hlsInstance.destroy();
                 state.hlsInstance = null;
@@ -948,9 +898,7 @@
                     enableWorker: true,
                     lowLatencyMode: true,
                     maxBufferLength: 10,
-                    maxMaxBufferLength: 20,
-                    liveSyncDurationCount: 2,
-                    liveMaxLatencyDurationCount: 4
+                    maxMaxBufferLength: 20
                 });
                 state.hlsInstance = hls;
                 hls.loadSource(streamUrl);
