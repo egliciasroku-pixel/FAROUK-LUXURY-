@@ -180,9 +180,7 @@
             </div>
 
             <div class="mt-6 pt-3 text-center border-t border-gray-800/40">
-                <p class="text-[10px] text-gray-500 font-medium tracking-wider">
-                    &copy; 2026 Eglicias ROKU. All rights reserved.
-                </p>
+                <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -494,7 +492,6 @@
         async function fetchXtreamApi(actionUrl) {
             const useProxy = document.getElementById('useProxy')?.checked;
             
-            // 1. محاولة الطلب المباشر أولاً
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 6000);
@@ -506,7 +503,6 @@
                 }
             } catch (err) {}
 
-            // 2. تفعيل Smart Proxy في حال فشل الطلب المباشر
             if (useProxy) {
                 const proxyEndpoints = [
                     `https://api.allorigins.win/raw?url=${encodeURIComponent(actionUrl)}`,
@@ -737,7 +733,6 @@
             renderNextBatch();
         }
 
-        /* نظام تقسيم العرض لمنع تجمد المتصفح (Pagination & Chunking) */
         function renderNextBatch() {
             const container = document.getElementById('itemsGrid');
             const items = state.currentItems;
@@ -861,7 +856,6 @@
             container.innerHTML = html;
         }
 
-        /* نظام المشغل الداخلي حصرياً وتجنب إعادة توجيه المتصفح */
         function playItem(index) {
             const item = state.currentItems[index];
             if (!item) return;
