@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>LuxStream IPTV Ultra - Smart Protocol Edition</title>
+    <title>LuxStream IPTV Ultra - IBO Supercharged Edition</title>
 
     <!-- Font Awesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -163,10 +163,7 @@
                     <div class="flex items-center justify-between text-xs text-gray-400 px-1 pt-1">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" id="useProxy" checked class="rounded text-gold-500 bg-black/50">
-                            <span class="ml-2 flex items-center gap-1">
-                                <span>Enable Smart Protocol Shield</span>
-                                <i class="fa-solid fa-robot text-gold-400 text-[10px]"></i>
-                            </span>
+                            <span class="ml-2">Enable Smart CORS Proxy</span>
                         </label>
                     </div>
 
@@ -208,10 +205,7 @@
                     </div>
                     <div>
                         <span class="font-cairo font-black text-xl tracking-wider gold-gradient-text block leading-tight">LUXSTREAM</span>
-                        <span class="text-[10px] text-gray-400 font-semibold tracking-widest block flex items-center gap-1">
-                            <span>SUPERCHARGED IPTV</span>
-                            <span class="text-emerald-400 text-[9px]"><i class="fa-solid fa-robot"></i> BOT ACTIVE</span>
-                        </span>
+                        <span class="text-[10px] text-gray-400 font-semibold tracking-widest block">SUPERCHARGED IPTV</span>
                     </div>
                 </div>
             </div>
@@ -482,79 +476,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- 6. SMART PROTOCOL ROBOT & STREAM ENGINE      -->
+    <!-- 6. ULTRA-FAST ENGINE & REAL FETCH ENGINE     -->
     <!-- ============================================ -->
     <script>
-        /* ========================================================
-           🤖 SMART ROBOT ENGINE: Dynamic Protocol & CORS Resolver
-           ======================================================== */
-        const RobotEngine = {
-            // إضافة s وإصلاح البروتوكول بشكل ذكي
-            fixProtocol(url) {
-                if (!url) return '';
-                let cleaned = url.trim();
-                
-                // إذا كنا نستخدم GitHub Pages (HTTPS) والروابط تبدأ بـ http://
-                if (window.location.protocol === 'https:' && cleaned.startsWith('http://')) {
-                    // تحويل إلى https تلقائياً كخطوة أولى لامتثال بروتوكولات GitHub
-                    cleaned = cleaned.replace(/^http:\/\//i, 'https://');
-                }
-                return cleaned;
-            },
-
-            // جلب البيانات مع روبوت تجاوز حماية المتصفح والـ Protocol Mixed Content
-            async fetchSmart(targetUrl) {
-                const isSecureContext = window.location.protocol === 'https:';
-                
-                // 1. محاولة طلب مباشرة (Direct Fetch)
-                try {
-                    const directUrl = this.fixProtocol(targetUrl);
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 6000);
-                    const res = await fetch(directUrl, { signal: controller.signal });
-                    clearTimeout(timeoutId);
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data) return data;
-                    }
-                } catch (e) {
-                    console.log("🤖 Robot: Direct connection blocked or unsecure. Switching to dynamic proxy shield...");
-                }
-
-                // 2. شبكة الوكلاء الذكية المعتمدة لبيئات HTTPS مثل GitHub
-                const proxyEndpoints = [
-                    `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
-                    `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
-                    `https://thingproxy.freeboard.io/fetch/${targetUrl}`
-                ];
-
-                for (const proxyUrl of proxyEndpoints) {
-                    try {
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 7000);
-                        const res = await fetch(proxyUrl, { signal: controller.signal });
-                        clearTimeout(timeoutId);
-                        if (res.ok) {
-                            const text = await res.text();
-                            const data = JSON.parse(text);
-                            if (data) return data;
-                        }
-                    } catch (err) {}
-                }
-
-                throw new Error("🤖 Robot Notice: Unable to connect securely. Please verify server host protocol.");
-            },
-
-            // الروبوت يقوم بإصلاح روابط الصورة لتناسب بيئة العرض
-            fixImageUrl(url) {
-                if (!url) return 'https://placehold.co/300x450/0c1018/d4af37?text=LuxStream';
-                if (window.location.protocol === 'https:' && url.startsWith('http://')) {
-                    return url.replace(/^http:\/\//i, 'https://');
-                }
-                return url;
-            }
-        };
-
         const state = {
             host: '',
             username: '',
@@ -608,11 +532,48 @@
 
         function cleanHostUrl(rawHost) {
             let host = rawHost.trim();
-            if (!host.startsWith('http://') && !host.startsWith('https://')) {
-                // الروبوت يضيف https تلقائياً إذا كنا على GitHub
-                host = (window.location.protocol === 'https:' ? 'https://' : 'http://') + host;
-            }
+            if (!host.startsWith('http://') && !host.startsWith('https://')) host = 'http://' + host;
             return host.replace(/\/+$/, '');
+        }
+
+        async function fetchXtreamApi(actionUrl) {
+            const useProxy = document.getElementById('useProxy')?.checked;
+            
+            // 1. Direct fetch try
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 6000);
+                const res = await fetch(actionUrl, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data) return data;
+                }
+            } catch (err) {}
+
+            // 2. Multi-Proxy Fallback
+            if (useProxy) {
+                const proxyEndpoints = [
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(actionUrl)}`,
+                    `https://corsproxy.io/?${encodeURIComponent(actionUrl)}`,
+                    `https://thingproxy.freeboard.io/fetch/${actionUrl}`
+                ];
+
+                for (const proxyUrl of proxyEndpoints) {
+                    try {
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 7000);
+                        const res = await fetch(proxyUrl, { signal: controller.signal });
+                        clearTimeout(timeoutId);
+                        if (res.ok) {
+                            const text = await res.text();
+                            const data = JSON.parse(text);
+                            if (data) return data;
+                        }
+                    } catch (e) {}
+                }
+            }
+            throw new Error("Unable to fetch data from the current server. Check host URL and server status.");
         }
 
         async function handleLogin(e) {
@@ -631,7 +592,7 @@
         async function performLogin(host, user, pass) {
             showLoginError('');
             const loginBtn = document.getElementById('loginBtn');
-            loginBtn.innerHTML = `<i class="fa-solid fa-robot fa-spin"></i> <span>Robot Verifying Protocols...</span>`;
+            loginBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Connecting to server...</span>`;
 
             state.host = host;
             state.username = user;
@@ -640,7 +601,7 @@
 
             try {
                 const authUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}`;
-                const data = await RobotEngine.fetchSmart(authUrl);
+                const data = await fetchXtreamApi(authUrl);
 
                 if (data && data.user_info && (data.user_info.auth === 1 || data.user_info.status === "Active")) {
                     state.userInfo = data.user_info;
@@ -697,12 +658,12 @@
                 const seriesUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_series`;
 
                 const [liveCats, vodCats, seriesCats, live, vod, series] = await Promise.all([
-                    RobotEngine.fetchSmart(liveCatUrl).catch(() => []),
-                    RobotEngine.fetchSmart(vodCatUrl).catch(() => []),
-                    RobotEngine.fetchSmart(seriesCatUrl).catch(() => []),
-                    RobotEngine.fetchSmart(liveStreamUrl).catch(() => []),
-                    RobotEngine.fetchSmart(vodStreamUrl).catch(() => []),
-                    RobotEngine.fetchSmart(seriesUrl).catch(() => [])
+                    fetchXtreamApi(liveCatUrl).catch(() => []),
+                    fetchXtreamApi(vodCatUrl).catch(() => []),
+                    fetchXtreamApi(seriesCatUrl).catch(() => []),
+                    fetchXtreamApi(liveStreamUrl).catch(() => []),
+                    fetchXtreamApi(vodStreamUrl).catch(() => []),
+                    fetchXtreamApi(seriesUrl).catch(() => [])
                 ]);
 
                 state.liveCategories = Array.isArray(liveCats) ? liveCats : [];
@@ -713,6 +674,7 @@
                 state.vodMovies = Array.isArray(vod) ? vod : [];
                 state.seriesList = Array.isArray(series) ? series : [];
 
+                // Fallback to demo items if server returns empty content
                 if (!state.liveChannels.length && !state.vodMovies.length) {
                     state.liveChannels = demoData.live;
                     state.vodMovies = demoData.vod;
@@ -824,6 +786,7 @@
             renderNextBatch();
         }
 
+        /* FAST CHUNKED / BATCHED RENDERING FOR ZERO LAG */
         function renderNextBatch() {
             const container = document.getElementById('itemsGrid');
             const items = state.currentItems;
@@ -850,8 +813,7 @@
                 const id = item.stream_id || item.series_id;
                 const isFav = state.favorites.some(f => (f.stream_id || f.series_id) === id);
                 const title = item.name || item.title || 'LuxStream Content';
-                const rawIcon = item.stream_icon || item.cover;
-                const icon = RobotEngine.fixImageUrl(rawIcon);
+                const icon = item.stream_icon || item.cover || 'https://placehold.co/300x450/0c1018/d4af37?text=LuxStream';
 
                 const card = document.createElement('div');
                 card.className = "ibo-card tv-focusable rounded-2xl overflow-hidden cursor-pointer group flex flex-col justify-between";
@@ -908,7 +870,7 @@
             if (!item) return;
 
             state.currentItem = item;
-            const icon = RobotEngine.fixImageUrl(item.stream_icon || item.cover);
+            const icon = item.stream_icon || item.cover || 'https://placehold.co/800x450/0c1018/d4af37?text=LuxStream';
             
             document.getElementById('modalBackdrop').src = icon;
             document.getElementById('modalTitle').innerText = item.name || item.title || 'LuxStream Title';
@@ -958,23 +920,21 @@
             const buffer = document.getElementById('playerBuffer');
             document.getElementById('playerTitle').innerText = item.name || item.title || 'LuxStream Stream';
 
-            let rawStreamUrl = '';
+            let streamUrl = '';
             if (state.isDemoMode) {
-                rawStreamUrl = 'https://test-streams.mux.dev/x36xhtml/x36xhtml.m3u8';
+                streamUrl = 'https://test-streams.mux.dev/x36xhtml/x36xhtml.m3u8';
             } else if (state.activeTab === 'live') {
-                rawStreamUrl = `${state.host}/live/${state.username}/${state.password}/${item.stream_id}.m3u8`;
+                streamUrl = `${state.host}/live/${state.username}/${state.password}/${item.stream_id}.m3u8`;
             } else if (state.activeTab === 'vod') {
-                rawStreamUrl = `${state.host}/movie/${state.username}/${state.password}/${item.stream_id}.${item.container_extension || 'mp4'}`;
+                streamUrl = `${state.host}/movie/${state.username}/${state.password}/${item.stream_id}.${item.container_extension || 'mp4'}`;
             } else {
-                rawStreamUrl = `${state.host}/series/${state.username}/${state.password}/${item.stream_id}.m3u8`;
+                streamUrl = `${state.host}/series/${state.username}/${state.password}/${item.stream_id}.m3u8`;
             }
-
-            // الروبوت يقوم بضبط بروتوكول البث تلقائياً ليتوافق مع GitHub
-            const streamUrl = RobotEngine.fixProtocol(rawStreamUrl);
 
             document.getElementById('playerOverlay').classList.remove('hidden-screen');
             buffer.classList.remove('hidden-screen');
 
+            // Quick Cleanup Previous Player
             if (state.hlsInstance) {
                 state.hlsInstance.destroy();
                 state.hlsInstance = null;
@@ -1073,8 +1033,7 @@
             details.innerHTML = `
                 <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Username:</span> <span class="font-bold text-gold-400">${info.username || state.username}</span></div>
                 <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Status:</span> <span class="text-emerald-400 font-semibold">${info.status || 'Active'}</span></div>
-                <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Robot Shield:</span> <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle"></i> Enabled</span></div>
-                <div class="flex justify-between py-2"><span class="text-gray-400">Server Host:</span> <span class="font-mono text-gray-300">${state.host || 'Demo Server'}</span></div>
+                <div class="flex justify-between py-2"><span class="text-gray-400">Server:</span> <span class="font-mono text-gray-300">${state.host || 'Demo Server'}</span></div>
             `;
             document.getElementById('accountModal').classList.remove('hidden-screen');
         }
