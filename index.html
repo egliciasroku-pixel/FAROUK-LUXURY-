@@ -1,1009 +1,1712 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="h-full overflow-hidden">
+<html lang="fr" dir="ltr" id="htmlRoot">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>LuxStream IPTV Ultra - Supercharged Edition</title>
-
-    <!-- Font Awesome 6 Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- HLS.js for Ultra Low-Latency Fast Streaming -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            100: '#fff8e1',
-                            300: '#f7d368',
-                            400: '#e6ba39',
-                            500: '#d4af37',
-                            600: '#b89025',
-                            700: '#8e6d19',
-                        },
-                        darkbg: '#040609',
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        tajawal: ['Tajawal', 'sans-serif']
-                    },
-                    boxShadow: {
-                        'gold-glow': '0 10px 35px -5px rgba(212, 175, 55, 0.35)',
-                        'gold-focus': '0 0 35px rgba(212, 175, 55, 0.9)',
-                    }
-                }
-            }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EGLICIAS ROKU | High-End Luxury Electronics & IPTV</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['"Plus Jakarta Sans"', 'Tajawal', 'sans-serif'] },
+        colors: {
+          darkBg: '#030709',
+          cardBg: '#071013',
+          luxGold: '#d4af37',
+          luxGoldHover: '#b3922f',
+          neonLime: '#a8ff00',
+          luxPurple: '#9333ea',
         }
-    </script>
+      }
+    }
+  }
+</script>
+<style>
+  * { border: none !important; box-sizing: border-box; }
+  body { 
+    font-family: 'Plus Jakarta Sans', 'Tajawal', sans-serif; 
+    background: radial-gradient(circle at 50% 0%, #081319 0%, #030709 100%); 
+    color: #f4f7f5; 
+    font-size: 11px; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-user-drag: none;
-            -webkit-tap-highlight-color: transparent;
-            border: none !important;
-            outline: none !important;
-        }
+  .glass-panel { 
+    background: linear-gradient(145deg, rgba(12, 24, 30, 0.85), rgba(4, 9, 12, 0.95)); 
+    backdrop-filter: blur(20px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(212, 175, 55, 0.25); 
+    border: 1px solid rgba(212, 175, 55, 0.1) !important;
+    border-radius: 18px;
+  }
+  .glass-input { 
+    background: rgba(3, 7, 9, 0.9) !important; 
+    color: #fff !important; 
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+    transition: all 0.3s ease;
+  }
+  .glass-input:focus { outline: none; border-color: #d4af37 !important; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 2px 4px rgba(0,0,0,0.8); }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #040609;
-            color: #f1f5f9;
-            font-family: 'Tajawal', 'Cairo', sans-serif;
-        }
+  .dashboard-lux-card {
+    background: linear-gradient(145deg, #09151b, #04090c);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(212, 175, 55, 0.25);
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dashboard-lux-card:hover {
+    border-color: rgba(212, 175, 55, 0.45) !important;
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.18), inset 0 1px 3px rgba(212, 175, 55, 0.4);
+  }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #ffffff 0%, #fff8e1 25%, #f7d368 55%, #d4af37 85%, #997819 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  .lux-catalog-btn {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 29, 35, 0.95), rgba(7, 16, 19, 0.98));
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    border-radius: 16px;
+    padding: 16px 20px;
+    color: #fff;
+    font-weight: 900;
+    font-size: 11.5px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.7), inset 0 1px 1px rgba(212,175,55,0.3);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+  .lux-catalog-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .lux-catalog-btn:hover::before { transform: translateX(100%); }
+  .lux-catalog-btn:hover {
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(212, 175, 55, 0.8) !important;
+    box-shadow: 0 14px 35px rgba(212, 175, 55, 0.3), inset 0 1px 2px rgba(212, 175, 55, 0.5);
+    color: #d4af37;
+  }
 
-        .tv-focusable:focus, .tv-focusable.active-focus {
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.95), inset 0 0 15px rgba(212, 175, 55, 0.3) !important;
-            transform: scale(1.04) translateY(-2px);
-            z-index: 40 !important;
-        }
+  @keyframes abonGlowPulse {
+    0% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.2), inset 0 1px 2px rgba(212, 175, 55, 0.3); }
+    50% { box-shadow: 0 0 28px rgba(212, 175, 55, 0.6), inset 0 1px 4px rgba(255, 223, 118, 0.8); }
+    100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.2), inset 0 1px 2px rgba(212, 175, 55, 0.3); }
+  }
+  .lux-abonnement-glow-btn {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(9, 21, 27, 0.98), rgba(212, 175, 55, 0.15));
+    border: 1px solid rgba(212, 175, 55, 0.5) !important;
+    animation: abonGlowPulse 2.8s infinite ease-in-out;
+    transition: all 0.3s ease;
+  }
+  .lux-abonnement-glow-btn:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(15, 30, 38, 0.98), rgba(212, 175, 55, 0.3));
+    transform: scale(1.02);
+    border-color: #d4af37 !important;
+  }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .activation-glow-btn {
+    background: linear-gradient(135deg, rgba(168, 255, 0, 0.15), rgba(7, 16, 19, 0.98), rgba(212, 175, 55, 0.15));
+    border: 1px solid rgba(168, 255, 0, 0.4) !important;
+    animation: activationGlowPulse 3s infinite ease-in-out;
+    transition: all 0.3s ease;
+  }
+  @keyframes activationGlowPulse {
+    0% { box-shadow: 0 0 10px rgba(168, 255, 0, 0.15), inset 0 1px 2px rgba(168, 255, 0, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(168, 255, 0, 0.45), inset 0 1px 4px rgba(168, 255, 0, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(168, 255, 0, 0.15), inset 0 1px 2px rgba(168, 255, 0, 0.2); }
+  }
+  .activation-glow-btn:hover {
+    background: linear-gradient(135deg, rgba(168, 255, 0, 0.3), rgba(12, 25, 32, 0.98), rgba(212, 175, 55, 0.3));
+    transform: scale(1.02);
+    border-color: #a8ff00 !important;
+  }
 
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: rgba(4, 6, 9, 0.95); }
-        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 9999px; }
+  /* تصميم زر الكريديات والجملة الجديد */
+  .credit-glow-btn {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(7, 16, 19, 0.98), rgba(212, 175, 55, 0.2));
+    border: 1px solid rgba(147, 51, 234, 0.5) !important;
+    animation: creditGlowPulse 3.2s infinite ease-in-out;
+    transition: all 0.3s ease;
+  }
+  @keyframes creditGlowPulse {
+    0% { box-shadow: 0 0 10px rgba(147, 51, 234, 0.2), inset 0 1px 2px rgba(147, 51, 234, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(147, 51, 234, 0.55), inset 0 1px 4px rgba(212, 175, 55, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(147, 51, 234, 0.2), inset 0 1px 2px rgba(147, 51, 234, 0.3); }
+  }
+  .credit-glow-btn:hover {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.35), rgba(15, 30, 38, 0.98), rgba(212, 175, 55, 0.35));
+    transform: scale(1.02);
+    border-color: #9333ea !important;
+  }
 
-        .ibo-glass-panel {
-            background: rgba(10, 14, 24, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-        }
+  .activation-app-card {
+    background: linear-gradient(145deg, rgba(10, 20, 24, 0.9), rgba(4, 8, 10, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+  .activation-app-card:hover {
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.25), rgba(12, 25, 32, 0.95));
+    border-color: rgba(212, 175, 55, 0.7) !important;
+    transform: translateX(4px) scale(1.015);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
+  }
 
-        .ibo-card {
-            background: linear-gradient(145deg, rgba(18, 24, 38, 0.85) 0%, rgba(8, 11, 18, 0.9) 100%);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            will-change: transform;
-        }
+  .luxury-select-box {
+    background: linear-gradient(145deg, #071013, #04090c);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+    border: 1px solid rgba(212, 175, 55, 0.15) !important;
+    position: relative;
+    cursor: pointer;
+  }
 
-        .ibo-card:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.3);
-            transform: translateY(-4px) scale(1.02);
-        }
+  .custom-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: linear-gradient(145deg, #0a1418, #04080a);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+    z-index: 100;
+    overflow: hidden;
+    display: none;
+  }
+  .custom-dropdown-item {
+    padding: 10px 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .custom-dropdown-item:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+  }
 
-        .hidden-screen { display: none !important; }
+  .slide-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .slide-menu-overlay.active { opacity: 1; visibility: visible; }
+  .slide-menu-panel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(145deg, #071013, #030709);
+    z-index: 1000;
+    box-shadow: 10px 0 35px rgba(0,0,0,0.9);
+    border-right: 1px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .slide-menu-panel.active { left: 0; }
 
-        .player-overlay-gradient {
-            background: linear-gradient(180deg, rgba(4,6,9,0.98) 0%, rgba(4,6,9,0.2) 50%, rgba(4,6,9,0.98) 100%);
-        }
+  .apps-marquee-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 6px 0;
+  }
+  .apps-marquee-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: appsMarqueeMove 22s linear infinite;
+  }
+  .apps-marquee-container:hover .apps-marquee-track { animation-play-state: paused; }
+  @keyframes appsMarqueeMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-        @keyframes pulse-live {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.85); }
-        }
-        .live-dot { animation: pulse-live 1.5s infinite ease-in-out; }
-    </style>
+  .app-badge-card {
+    background: linear-gradient(145deg, rgba(15, 29, 35, 0.95), rgba(7, 16, 19, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 14px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 145px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .app-badge-card:hover {
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    transform: translateY(-3px) scale(1.02);
+  }
+  .app-badge-img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 9px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    background: #030709;
+  }
+
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background: linear-gradient(90deg, rgba(7,16,19,0.95), rgba(212,175,55,0.15), rgba(7,16,19,0.95));
+    border-top: 1px solid rgba(212,175,55,0.3) !important;
+    border-bottom: 1px solid rgba(212,175,55,0.3) !important;
+    padding: 10px 0;
+    box-shadow: inset 0 0 20px rgba(212,175,55,0.1);
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marqueeAnimation 24s linear infinite;
+  }
+  @keyframes marqueeAnimation {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes whatsappPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.8); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(22, 163, 74, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+  }
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    animation: whatsappPulse 2.2s infinite;
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    box-shadow: 0 8px 25px rgba(22, 163, 74, 0.5);
+  }
+
+  .sofiane-invoice { background: #ffffff; color: #0f172a; padding: 16px; border-radius: 16px; font-family: Arial, sans-serif; box-shadow: 0 15px 40px rgba(0,0,0,0.8); width: 100%; max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; text-align: left; direction: ltr; }
+  .sofiane-header-box { background: #f8fafc; padding: 12px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; }
+  .sofiane-brand-area { display: flex; align-items: center; gap: 10px; }
+  .sofiane-brand-logo { width: 45px; height: 45px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  .sofiane-brand-title { font-size: 13px; font-weight: 900; color: #1e3a8a; }
+  .sofiane-brand-sub { font-size: 7px; color: #64748b; font-weight: bold; }
+  .sofiane-contact-pills { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; font-size: 7.5px; }
+  .contact-pill { background: #2563eb; color: #fff; padding: 2px 8px; border-radius: 15px; font-weight: bold; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 5px rgba(37,99,235,0.3); }
+  .contact-pill.wa { background: #16a34a; box-shadow: 0 2px 5px rgba(22,163,74,0.3); }
+  
+  .sofiane-title-bar { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; text-align: center; padding: 6px; font-size: 11px; font-weight: 900; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  
+  .sofiane-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: #f8fafc; padding: 8px; border-radius: 8px; font-size: 8.5px; border: 1px solid #e2e8f0; }
+  .sofiane-meta-item { display: flex; flex-direction: column; }
+  .sofiane-meta-label { color: #64748b; font-weight: bold; font-size: 7.5px; }
+  .sofiane-meta-val { color: #0f172a; font-weight: 900; }
+
+  .sofiane-m3u-box { 
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(10px);
+    border: 1px solid #cbd5e1; 
+    border-radius: 10px; 
+    padding: 10px; 
+    color: #0f172a; 
+    margin-top: 4px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+  }
+  .sofiane-m3u-title { 
+    font-size: 8.5px; 
+    font-weight: 900; 
+    color: #1e3a8a; 
+    margin-bottom: 6px; 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+    border-bottom: 1px solid #e2e8f0; 
+    padding-bottom: 4px; 
+    text-transform: uppercase; 
+  }
+  .sofiane-m3u-row { display: flex; justify-content: space-between; font-size: 8px; margin-bottom: 3px; }
+  .sofiane-m3u-label { color: #64748b; font-weight: bold; }
+  .sofiane-m3u-val { color: #0f172a; font-family: monospace; font-weight: bold; word-break: break-all; max-width: 250px; text-align: right; background: #f1f5f9; padding: 1px 5px; border-radius: 4px; }
+
+  .sofiane-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .sofiane-table th { background: #1e3a8a; color: #fff; font-size: 8px; padding: 6px 4px; text-align: center; text-transform: uppercase; }
+  .sofiane-table td { padding: 6px 4px; font-size: 8.5px; vertical-align: middle; border-bottom: 1px solid #e2e8f0; }
+  
+  .invoice-prod-cell { display: flex; align-items: center; gap: 6px; text-align: left; }
+  .invoice-prod-img { width: 32px; height: 32px; object-fit: contain; background: #f1f5f9; border-radius: 6px; padding: 2px; border: 1px solid #e2e8f0; }
+  
+  .sofiane-summary-box { background: #f8fafc; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 5px; font-size: 9px; color: #334155; border: 1px solid #e2e8f0; }
+  .sofiane-sum-row { display: flex; justify-content: space-between; align-items: center; color: #64748b; font-weight: 600; }
+  .sofiane-footer-note { text-align: center; font-size: 7.5px; color: #64748b; border-top: 1px dashed #cbd5e1; padding-top: 6px; margin-top: 4px; }
+
+  .custom-modal-select-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .custom-modal-select-btn {
+    background: rgba(3, 7, 9, 0.95) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 9.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+    transition: all 0.3s ease;
+  }
+  .custom-modal-select-btn:hover {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+  }
+  .custom-modal-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: linear-gradient(145deg, #09151b, #04090c);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.95);
+    z-index: 120;
+    max-height: 180px;
+    overflow-y: auto;
+    display: none;
+    padding: 4px;
+  }
+  .custom-modal-dropdown-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+    background: rgba(255,255,255,0.02);
+  }
+  .custom-modal-dropdown-item:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(12, 25, 32, 0.9));
+    color: #d4af37;
+  }
+</style>
 </head>
-<body class="bg-darkbg text-gray-100 flex flex-col h-full w-full overflow-hidden select-none">
+<body>
 
-    <!-- =================LOGIN SCREEN================ -->
-    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cover bg-center" style="background-image: radial-gradient(circle at center, rgba(10, 14, 24, 0.88) 0%, rgba(4, 6, 9, 0.98) 100%), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920');">
-        <div class="ibo-glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 shadow-gold-glow relative overflow-hidden flex flex-col justify-between">
+  <!-- إعلان علوي فاخر -->
+  <div class="bg-gradient-to-r from-darkBg via-cardBg to-darkBg text-luxGold text-[10.5px] py-2 px-3 text-center font-bold tracking-widest shadow-lg border-b border-luxGold/25">
+    ✨ EGLICIAS ROKU • High-End Luxury IPTV & Streaming Experience ✨
+  </div>
+
+  <!-- الهيدر الرئيسي -->
+  <header class="sticky top-0 z-50 glass-panel px-4 py-3 flex items-center justify-between border-b border-luxGold/20">
+    <div class="flex items-center gap-2.5">
+      <button onclick="toggleSlideMenu()" class="p-2.5 rounded-xl bg-cardBg text-luxGold shadow-md border border-white/5 transition hover:scale-105 active:scale-95" title="Menu Principal">
+        <i class="fa-solid fa-bars text-xs"></i>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-luxGold via-yellow-400 to-amber-600 flex items-center justify-center text-darkBg font-black text-xs shadow-lg ring-2 ring-luxGold/30">
+          ER
+        </div>
+        <div>
+          <h1 class="text-xs font-black tracking-wider text-white">EGLICIAS <span class="text-luxGold">ROKU</span></h1>
+          <p class="text-[7.5px] text-gray-400 font-semibold tracking-wider">IPTV POS & LUXURY STORE</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button onclick="switchView('store')" id="btnStoreView" class="px-3.5 py-2 rounded-xl text-[10px] font-bold bg-luxGold text-darkBg shadow-lg transition transform active:scale-95">
+        <i class="fa-solid fa-store ml-1"></i> <span>Boutique</span>
+      </button>
+      <button onclick="switchView('dashboard')" id="btnDashboardView" class="px-3.5 py-2 rounded-xl text-[10px] font-bold bg-cardBg text-gray-300 shadow-md border border-white/5 transition transform active:scale-95">
+        <i class="fa-solid fa-chart-pie ml-1"></i> <span>Dashboard</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- القائمة الجانبية المنزلقة -->
+  <div id="slideMenuOverlay" class="slide-menu-overlay" onclick="toggleSlideMenu()"></div>
+  <div id="slideMenuPanel" class="slide-menu-panel space-y-4">
+    <div class="flex items-center justify-between pb-3 border-b border-luxGold/20">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-luxGold to-amber-600 flex items-center justify-center text-darkBg font-black text-[10px]">
+          ER
+        </div>
+        <span class="text-xs font-black text-luxGold tracking-wider">EGLICIAS ROKU MENU</span>
+      </div>
+      <button onclick="toggleSlideMenu()" class="text-gray-400 hover:text-white p-1">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+    </div>
+
+    <div class="dashboard-lux-card space-y-2 bg-gradient-to-br from-[#071013] via-[#0b171c] to-[#04080a] border border-luxGold/30">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-gem text-luxGold text-xs"></i>
+        <h4 class="text-[10.5px] font-black text-white">L'Excellence Numérique</h4>
+      </div>
+      <p class="text-[8.5px] text-gray-300 leading-relaxed font-medium">
+        Découvrez notre univers exclusif de <span class="text-luxGold font-bold">produits électroniques haut de gamme</span>, d'<span class="text-luxGold font-bold">abonnements IPTV et activations d'applications premium</span>.
+      </p>
+    </div>
+
+    <div class="dashboard-lux-card space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-[9.5px] font-black text-luxGold uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-box-archive"></i> Catalogue Produits
+        </span>
+        <span class="text-[7.5px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">Actifs</span>
+      </div>
+      <div id="menuProductsList" class="space-y-2 max-h-44 overflow-y-auto pr-1"></div>
+    </div>
+
+    <div class="pt-2 mt-auto">
+      <button onclick="toggleSlideMenu(); openSettingsModal();" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cardBg via-darkBg to-cardBg text-luxGold font-bold text-[10.5px] shadow-lg flex items-center justify-between border border-luxGold/30 hover:bg-luxGold/10 transition">
+        <span class="flex items-center gap-2.5"><i class="fa-solid fa-gear text-luxGold"></i> Paramètres de la Langue</span>
+        <i class="fa-solid fa-chevron-right text-[9px] text-luxGold"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- زر الواتساب الثابت -->
+  <a href="https://wa.me/212630473498" target="_blank" class="floating-whatsapp w-12 h-12 rounded-full text-white flex items-center justify-center transition hover:scale-110" title="Contact WhatsApp: +212630473498">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+  </a>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="flex-1 p-3 w-full max-w-4xl mx-auto flex flex-col justify-between mb-4">
+
+    <!-- 1. واجهة المتجر -->
+    <section id="storeSection" class="space-y-4">
+      <div class="rounded-2xl glass-panel p-2 shadow-2xl relative overflow-hidden border border-luxGold/40 group">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-luxGold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative rounded-xl overflow-hidden shadow-inner cursor-pointer" onclick="scrollToGrid()">
+          <img src="https://i.ibb.co/217c4j4T/1794235213318.jpg" alt="EGLICIAS ROKU Luxury Banner" class="w-full h-auto object-cover rounded-xl filter drop-shadow-2xl hover:scale-[1.01] transition duration-500">
+        </div>
+      </div>
+
+      <!-- الشريط الفاخر للتطبيقات المتحركة -->
+      <div class="glass-panel p-3 rounded-2xl border border-luxGold/30 shadow-xl space-y-2">
+        <div class="flex items-center justify-between px-1">
+          <span class="text-[9.5px] font-black text-luxGold uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-bolt text-neonLime"></i> Applications & Produits Actifs
+          </span>
+          <span class="text-[7.5px] text-gray-400 font-bold">VIP Streaming</span>
+        </div>
+        
+        <div class="apps-marquee-container">
+          <div class="apps-marquee-track" id="dynamicMarqueeTrack"></div>
+        </div>
+      </div>
+
+      <!-- الشريط المتحرك الفاخر للإعلانات -->
+      <div class="marquee-container rounded-xl">
+        <div class="marquee-track">
+          <span class="inline-flex items-center gap-2 mx-8 text-luxGold font-black text-[10.5px] tracking-wider">
+            <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> EGLICIAS ROKU • WhatsApp: +212630473498
+          </span>
+          <span class="inline-flex items-center gap-2 mx-8 text-white font-bold text-[10.5px] tracking-wider">
+            📺 Abonnements IPTV & Applications Premium ⭐ High-End Quality
+          </span>
+        </div>
+      </div>
+
+      <div id="productsGrid" class="grid grid-cols-2 gap-3.5"></div>
+    </section>
+
+    <!-- 2. لوحة التحكم (Dashboard) -->
+    <section id="dashboardSection" class="space-y-4 hidden">
+      
+      <!-- قسم الإشتراكات وتطبيقات التفعيل المدمجة بفخامة -->
+      <div class="dashboard-lux-card space-y-3.5">
+        <div class="text-[10px] font-black text-luxGold uppercase tracking-wider flex items-center gap-2 px-1">
+          <i class="fa-solid fa-bolt text-neonLime"></i> <span>Centre de Gestion & Activations</span>
+        </div>
+
+        <!-- 1. زر Abonnement Xtream / M3U -->
+        <button onclick="openAbonnementModal()" class="lux-abonnement-glow-btn w-full text-left py-4 px-4 rounded-xl text-white font-black text-xs flex items-center justify-between shadow-lg">
+          <span class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-luxGold/20 border border-luxGold/50 flex items-center justify-center text-luxGold shadow-md">
+              <i class="fa-solid fa-box-open text-base animate-bounce"></i>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-white font-extrabold text-[12px]">Abonnement Xtream / M3U</span>
+              <span class="text-[8px] text-luxGold font-semibold">Générateur automatique & IPTV</span>
+            </div>
+          </span>
+          <span class="text-[8.5px] bg-luxGold/20 text-luxGold border border-luxGold/40 px-2.5 py-1 rounded-lg font-black tracking-wider">NOUVEAU</span>
+        </button>
+
+        <!-- 2. زر Applications d'Activation Directe -->
+        <div class="relative">
+          <button onclick="toggleActivationAppsMenu()" class="activation-glow-btn w-full text-left py-4 px-4 rounded-xl text-white font-black text-xs flex items-center justify-between shadow-lg">
+            <span class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-neonLime/20 border border-neonLime/50 flex items-center justify-center text-neonLime shadow-md">
+                <i class="fa-solid fa-bolt text-base animate-pulse"></i>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-white font-extrabold text-[12px]">Applications d'Activation Directe</span>
+                <span class="text-[8px] text-neonLime font-semibold">Bob, IBO, Smart, Roku & VIP</span>
+              </div>
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-[8.5px] bg-neonLime/20 text-neonLime border border-neonLime/40 px-2.5 py-1 rounded-lg font-black tracking-wider">DIRECT</span>
+              <i id="activationChevron" class="fa-solid fa-chevron-down text-[10px] text-neonLime transition transform"></i>
+            </div>
+          </button>
+
+          <!-- القائمة المنسدلة للتطبيقات بداخله -->
+          <div id="activationDropdownMenu" class="hidden mt-2.5 glass-panel rounded-2xl p-3 z-20 shadow-2xl space-y-2 border border-neonLime/40 backdrop-blur-2xl">
+            <span class="text-[9px] font-black text-luxGold uppercase tracking-widest block px-1 mb-1">⚡ Choisissez une application :</span>
+            <div id="dropdownActivationAppsList" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+
+        <!-- 3. [الزر الجديد أسفل زر الأكتيفيشن] Panel Credit & Wholesale IPTV -->
+        <div class="relative">
+          <button onclick="toggleCreditWholesaleMenu()" class="credit-glow-btn w-full text-left py-4 px-4 rounded-xl text-white font-black text-xs flex items-center justify-between shadow-lg">
+            <span class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-400/50 flex items-center justify-center text-purple-300 shadow-md">
+                <i class="fa-solid fa-coins text-base animate-spin" style="animation-duration: 8s;"></i>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-white font-extrabold text-[12px]">Credits Panel & Abonnements Gros</span>
+                <span class="text-[8px] text-purple-300 font-semibold">Vente au Détail & Gros avec Prix</span>
+              </div>
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-[8.5px] bg-purple-500/20 text-purple-300 border border-purple-400/40 px-2.5 py-1 rounded-lg font-black tracking-wider">GROS & RETAIL</span>
+              <i id="creditChevron" class="fa-solid fa-chevron-down text-[10px] text-purple-300 transition transform"></i>
+            </div>
+          </button>
+
+          <!-- القائمة المنسدلة الخصوصية بالكريديات والجملة -->
+          <div id="creditWholesaleDropdownMenu" class="hidden mt-2.5 glass-panel rounded-2xl p-3.5 z-20 shadow-2xl space-y-3 border border-purple-400/40 backdrop-blur-2xl">
+            
+            <!-- أ) قسم تفعيل اللوحات والكريديات -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between border-b border-purple-500/20 pb-1.5">
+                <span class="text-[9.5px] font-black text-purple-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group text-purple-400"></i> Activation Panel Credit (App VIP/IBO/Bob)
+                </span>
+                <span class="text-[7.5px] bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded-full font-bold">Crédits</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Panel Credit IBO/Bob (10 Credits)', 10, 45, 'retail')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">10 Credits Panel</span>
+                    <span class="text-[7.5px] text-gray-400">Détail (45 DH / crédit)</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-luxGold bg-luxGold/10 px-2 py-1 rounded-lg border border-luxGold/30">450 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Panel Credit IBO/Bob (25 Credits)', 25, 38, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">25 Credits Panel</span>
+                    <span class="text-[7.5px] text-neonLime">Gros (38 DH / crédit)</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-neonLime bg-neonLime/10 px-2 py-1 rounded-lg border border-neonLime/30">950 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Panel Credit IBO/Bob (50 Credits)', 50, 32, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">50 Credits Panel</span>
+                    <span class="text-[7.5px] text-neonLime">Gros VIP (32 DH / crédit)</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-neonLime bg-neonLime/10 px-2 py-1 rounded-lg border border-neonLime/30">1,600 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Panel Credit IBO/Bob (100 Credits)', 100, 28, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">100 Credits Panel</span>
+                    <span class="text-[7.5px] text-purple-300">Mega Gros (28 DH / crédit)</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-purple-300 bg-purple-500/20 px-2 py-1 rounded-lg border border-purple-400/40">2,800 DH</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ب) قسم الاشتراكات بالجملة Xtream/M3U -->
+            <div class="space-y-2 pt-1 border-t border-white/5">
+              <div class="flex items-center justify-between border-b border-luxGold/20 pb-1.5">
+                <span class="text-[9.5px] font-black text-luxGold uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-boxes-packing text-luxGold"></i> Abonnements IPTV Xtream (Gros 12 Mois)
+                </span>
+                <span class="text-[7.5px] bg-luxGold/20 text-luxGold px-2 py-0.5 rounded-full font-bold">Xtream Packs</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Pack 5 Abonnements IPTV 12M', 5, 180, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">Pack 5 Abonnements</span>
+                    <span class="text-[7.5px] text-gray-300">180 DH / Abonnement</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-luxGold bg-luxGold/10 px-2 py-1 rounded-lg border border-luxGold/30">900 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Pack 10 Abonnements IPTV 12M', 10, 150, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">Pack 10 Abonnements</span>
+                    <span class="text-[7.5px] text-neonLime">150 DH / Abonnement</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-neonLime bg-neonLime/10 px-2 py-1 rounded-lg border border-neonLime/30">1,500 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Pack 25 Abonnements IPTV 12M', 25, 120, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">Pack 25 Abonnements</span>
+                    <span class="text-[7.5px] text-neonLime">120 DH / Abonnement</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-neonLime bg-neonLime/10 px-2 py-1 rounded-lg border border-neonLime/30">3,000 DH</span>
+                </div>
+
+                <div class="activation-app-card" onclick="openWholesaleInvoice('Pack 50 Abonnements IPTV 12M', 50, 95, 'wholesale')">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-black text-white">Pack 50 Abonnements</span>
+                    <span class="text-[7.5px] text-purple-300">95 DH / Abonnement</span>
+                  </div>
+                  <span class="text-[9.5px] font-black text-purple-300 bg-purple-500/20 px-2 py-1 rounded-lg border border-purple-400/40">4,750 DH</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Catalogue Produit -->
+      <div class="dashboard-lux-card space-y-3.5">
+        <div class="relative">
+          <button onclick="toggleCatalogMenu()" class="lux-catalog-btn w-full">
+            <span class="flex items-center gap-3 text-xs">
+              <i class="fa-solid fa-box-archive text-luxGold text-base animate-pulse"></i> 
+              <span class="tracking-widest">📦 CATALOGUE PRODUIT</span>
+            </span>
+            <div class="w-7 h-7 rounded-full bg-luxGold/15 border border-luxGold/40 flex items-center justify-center text-luxGold transition transform group-hover:rotate-180">
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </div>
+          </button>
+          
+          <div id="catalogDropdown" class="hidden absolute top-full left-0 right-0 mt-2.5 glass-panel rounded-2xl p-2.5 z-20 shadow-2xl space-y-2 border border-luxGold/40 backdrop-blur-2xl">
+            <button onclick="openAddProductModal(); toggleCatalogMenu();" class="w-full text-left py-3 px-3.5 rounded-xl bg-cardBg hover:bg-luxGold/20 text-white font-bold text-[10.5px] flex items-center justify-between transition border border-white/5 group">
+              <span class="flex items-center gap-2.5"><i class="fa-solid fa-plus text-luxGold text-xs group-hover:scale-125 transition"></i> Ajouter un produit</span>
+              <span class="text-[8px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">Nouveau</span>
+            </button>
+            <button onclick="openEditCatalogModal(); toggleCatalogMenu();" class="w-full text-left py-3 px-3.5 rounded-xl bg-cardBg hover:bg-luxGold/20 text-white font-bold text-[10.5px] flex items-center justify-between transition border border-white/5 group">
+              <span class="flex items-center gap-2.5"><i class="fa-solid fa-pen-to-square text-luxGold text-xs group-hover:scale-125 transition"></i> Éditer le catalogue</span>
+              <span class="text-[8px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">Modifier / Supprimer</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <div class="luxury-select-box" onclick="toggleCustomDropdown('clientDropdown', event)">
+            <label class="text-[9px] text-luxGold font-bold block mb-1.5 flex items-center gap-1.5">
+              <i class="fa-solid fa-user-tag text-luxGold"></i> Client par défaut :
+            </label>
+            <div class="flex items-center justify-between glass-input p-2.5 rounded-xl text-[10px] font-bold text-white">
+              <span id="selectedClientText">Client Direct</span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-luxGold"></i>
+            </div>
+            <div id="clientDropdown" class="custom-dropdown-menu">
+              <div class="custom-dropdown-item" onclick="selectClient('Client Direct', event)"><span>Client Direct</span> <i class="fa-solid fa-check text-luxGold"></i></div>
+              <div class="custom-dropdown-item" onclick="selectClient('Farouk', event)"><span>Farouk (VIP IPTV)</span></div>
+              <div class="custom-dropdown-item" onclick="selectClient('Younes', event)"><span>Younes (Gold)</span></div>
+            </div>
+          </div>
+
+          <div class="luxury-select-box" onclick="toggleCustomDropdown('paymentDropdown', event)">
+            <label class="text-[9px] text-luxGold font-bold block mb-1.5 flex items-center gap-1.5">
+              <i class="fa-solid fa-credit-card text-luxGold"></i> Paiement :
+            </label>
+            <div class="flex items-center justify-between glass-input p-2.5 rounded-xl text-[10px] font-bold text-white">
+              <span id="selectedPaymentText">Espèces</span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-luxGold"></i>
+            </div>
+            <div id="paymentDropdown" class="custom-dropdown-menu">
+              <div class="custom-dropdown-item" onclick="selectPayment('Espèces', event)"><span>Espèces</span> <i class="fa-solid fa-check text-luxGold"></i></div>
+              <div class="custom-dropdown-item" onclick="selectPayment('Virement bancaire', event)"><span>Virement</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-white/5">
+          <div>
+            <span class="text-[8px] text-gray-400 block font-semibold">Total Total :</span>
+            <span id="unifiedTotalDisplay" class="text-lg font-black text-luxGold">0 DH</span>
+          </div>
+          <div>
+            <button onclick="emitUnifiedInvoice()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-luxGold to-yellow-500 text-darkBg font-black text-[10.5px] shadow-2xl flex items-center gap-1.5 hover:brightness-110 transition transform hover:scale-105 active:scale-95">
+              <i class="fa-solid fa-receipt"></i> <span>Générer Facture</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- حقوق الحفظ -->
+  <footer class="glass-panel py-3.5 px-4 text-center border-t border-luxGold/20 mt-auto">
+    <p class="text-[9.5px] text-gray-400 font-bold tracking-wider">
+      © 2026 <span class="text-luxGold">EGLICIAS ROKU</span> • All Rights Reserved.
+    </p>
+  </footer>
+
+  <!-- مودال Abonnement المحدث لدعم المنسدلة الفاخرة وخيار M3U Direct -->
+  <div id="abonnementModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="glass-panel w-full max-w-lg p-5 rounded-2xl space-y-3.5 shadow-2xl max-h-[92vh] overflow-y-auto border border-luxGold/40">
+      <div class="flex justify-between items-center pb-2.5 border-b border-white/10">
+        <div>
+          <h3 class="text-xs font-black text-white">Nouveau Abonnement</h3>
+          <p class="text-[7.5px] text-gray-400">Gestion des abonnements Xtream / M3U</p>
+        </div>
+        <button onclick="closeAbonnementModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-sm"></i></button>
+      </div>
+
+      <div class="space-y-3 text-[10px]">
+        <div class="text-[9px] font-black text-luxGold flex items-center gap-1">
+          <i class="fa-solid fa-bolt"></i> Informations Xtream & M3U
+        </div>
+
+        <div class="bg-black/50 p-3 rounded-xl border border-luxGold/30 space-y-1.5 shadow-inner">
+          <label class="text-[8px] text-luxGold font-bold">M3U → XTREAM AUTOMATIQUE</label>
+          <input type="text" id="autoM3UInput" oninput="parseM3UString(this.value)" class="glass-input w-full p-2.5 rounded-xl font-mono text-[9px] text-luxGold" placeholder="http://server.com/get.php?username=USER&password=PASS&type=m3u_plus">
+        </div>
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Client</label>
+          <select id="quickSelectAbonnementClient" onchange="fillAbonnementClientData(this.value)" class="glass-input w-full p-2.5 rounded-xl text-[10px]">
+            <option value="">Sélectionner un client</option>
+            <option value="Younes">Younes</option>
+            <option value="Farouk">Farouk</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Nom du client</label>
+            <input type="text" id="abonName" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="Nom du client">
+          </div>
+          
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-solid fa-tv text-luxGold"></i> Application / Type</label>
+            <div class="custom-modal-select-wrapper">
+              <div class="custom-modal-select-btn" onclick="toggleModalAppDropdown(event)">
+                <span id="selectedModalAppText" class="font-bold text-white line-clamp-1">M3U Playlist Directe</span>
+                <i class="fa-solid fa-chevron-down text-[9px] text-luxGold ml-2"></i>
+              </div>
+              <input type="hidden" id="abonApp" value="M3U Playlist Directe">
+              <div id="modalAppDropdownList" class="custom-modal-dropdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-solid fa-globe text-luxGold"></i> Xtream Server / URL</label>
+          <input type="text" id="abonServer" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="http://server.com:8080">
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-solid fa-user text-luxGold"></i> Username</label>
+            <input type="text" id="abonUser" class="glass-input w-full p-2.5 rounded-xl text-[9.5px] font-mono" placeholder="Username">
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-solid fa-key text-luxGold"></i> Password</label>
+            <input type="text" id="abonPass" class="glass-input w-full p-2.5 rounded-xl text-[9.5px] font-mono" placeholder="Password">
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-clock text-luxGold"></i> Durée</label>
+            <select id="abonDuration" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]">
+              <option value="1 mois">1 mois</option>
+              <option value="3 mois">3 mois</option>
+              <option value="6 mois">6 mois</option>
+              <option value="12 mois" selected>12 mois</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-calendar text-luxGold"></i> Date début</label>
+            <input type="date" id="abonStartDate" class="glass-input w-full p-2 rounded-xl text-[9.5px]">
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-solid fa-hourglass-half text-neonLime"></i> Expiration</label>
+            <input type="text" id="abonExpiry" class="glass-input w-full p-2 rounded-xl text-[9.5px] text-neonLime font-bold" value="06/11/2027" readonly>
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Prix (DH)</label>
+            <input type="number" id="abonPrice" class="glass-input w-full p-2 rounded-xl text-[9.5px] text-luxGold font-bold" value="300">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-pen-to-square"></i> Note / Remarque</label>
+          <input type="text" id="abonNote" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="Remarque / Server / Détails">
+        </div>
+
+        <div class="pt-2">
+          <button onclick="confirmAbonnement()" class="w-full py-3 rounded-xl bg-gradient-to-r from-luxGold via-yellow-500 to-amber-600 text-darkBg font-black text-[11px] shadow-xl flex items-center justify-center gap-2 hover:brightness-110 transition">
+            <i class="fa-solid fa-bolt text-darkBg"></i> <span>+ Créer l'abonnement & Facturer</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال Activation المخصص لكل تطبيق بمظهر زجاجي فاخر -->
+  <div id="activationModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="glass-panel w-full max-w-lg p-5 rounded-2xl space-y-3.5 shadow-2xl border border-luxGold/40 relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-48 h-48 bg-luxGold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex justify-between items-center pb-3 border-b border-white/10 relative z-10">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/10 to-black/60 p-2 border border-luxGold/40 shadow-xl flex items-center justify-center backdrop-blur-md">
+            <img id="modalAppImagePreview" src="https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp" class="w-full h-full object-contain filter drop-shadow-lg">
+          </div>
+          <div>
+            <span class="text-[7.5px] text-luxGold font-bold uppercase tracking-widest block">Activation exclusive</span>
+            <h3 id="modalAppTitlePreview" class="text-xs font-black text-white tracking-wider">Application</h3>
+          </div>
+        </div>
+        <button onclick="closeActivationModal()" class="text-gray-400 hover:text-white p-2 rounded-xl bg-cardBg border border-white/5 transition"><i class="fa-solid fa-xmark text-sm"></i></button>
+      </div>
+
+      <div class="space-y-3 text-[10px] relative z-10">
+        <input type="hidden" id="modalSelectedAppKey" value="">
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Client</label>
+          <select id="quickSelectClient" onchange="fillClientData(this.value)" class="glass-input w-full p-2.5 rounded-xl text-[10px]">
+            <option value="">Sélectionner un client</option>
+            <option value="Younes">Younes</option>
+            <option value="Farouk">Farouk</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Nom</label>
+            <input type="text" id="modalClientName" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="Nom du client">
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold">WhatsApp</label>
+            <input type="text" id="modalWhatsApp" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="+212 6XXXXXXXX">
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold">MAC Address</label>
+            <input type="text" id="modalMacAddress" class="glass-input w-full p-2.5 rounded-xl text-[9.5px] font-mono text-neonLime" placeholder="00:11:22:33:44:55">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-clock text-luxGold"></i> Durée</label>
+            <select id="modalDuration" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]">
+              <option value="1 mois">1 mois</option>
+              <option value="3 mois">3 mois</option>
+              <option value="6 mois">6 mois</option>
+              <option value="12 mois" selected>12 mois</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-calendar text-luxGold"></i> Début</label>
+            <input type="date" id="modalStartDate" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold">Prix (DH)</label>
+          <input type="number" id="modalPriceInput" class="glass-input w-full p-2.5 rounded-xl text-[9.5px] text-luxGold font-bold" value="150">
+        </div>
+
+        <div>
+          <label class="text-[8px] text-gray-400 block mb-1 font-semibold"><i class="fa-regular fa-pen-to-square"></i> Note / Remarque</label>
+          <input type="text" id="modalNote" class="glass-input w-full p-2.5 rounded-xl text-[9.5px]" placeholder="Note facultative">
+        </div>
+
+        <div class="pt-2">
+          <button onclick="confirmActivation()" class="w-full py-3 rounded-xl bg-gradient-to-r from-luxGold via-yellow-500 to-amber-600 text-darkBg font-black text-[11px] shadow-xl flex items-center justify-center gap-2 hover:brightness-110 transition">
+            <i class="fa-solid fa-bolt text-darkBg"></i> <span>Activer la playlist & Facturer</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال كتالوج التعديل -->
+  <div id="editCatalogModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="glass-panel w-full max-w-md p-4 rounded-2xl space-y-3.5 shadow-2xl max-h-[80vh] flex flex-col border border-luxGold/40">
+      <div class="flex justify-between items-center pb-2 border-b border-white/10">
+        <h3 class="text-xs font-black text-luxGold">Catalogue d'édition</h3>
+        <button onclick="closeEditCatalogModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="editCatalogGridModal" class="flex-1 overflow-y-auto grid grid-cols-1 gap-2.5 p-1"></div>
+      <div class="flex justify-end pt-2 border-t border-white/10">
+        <button onclick="closeEditCatalogModal()" class="px-4 py-2 rounded-xl bg-luxGold text-darkBg font-black text-xs shadow-md">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال إضافة منتج -->
+  <div id="addProductModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="glass-panel w-full max-w-xs p-4 rounded-2xl space-y-3 shadow-2xl border border-luxGold/40">
+      <div class="flex justify-between items-center pb-2 border-b border-white/10">
+        <h3 id="productModalTitle" class="text-xs font-black text-luxGold">Ajouter un produit</h3>
+        <button onclick="closeAddProductModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <input type="hidden" id="editingProductKey" value="">
+      <div class="space-y-2.5 text-[11px]">
+        <div>
+          <label class="text-gray-400 block mb-1 font-semibold">Nom de l'appareil ou IPTV</label>
+          <input type="text" id="newProdName" class="glass-input w-full p-2.5 rounded-xl" placeholder="Ex: Abonnement IPTV 12 Mois">
+        </div>
+        <div>
+          <label class="text-gray-400 block mb-1 font-semibold">Prix (DH)</label>
+          <input type="number" id="newProdPrice" class="glass-input w-full p-2.5 rounded-xl" placeholder="250">
+        </div>
+        <div>
+          <label class="text-gray-400 block mb-1 font-semibold">Catégorie</label>
+          <input type="text" id="newProdCategory" class="glass-input w-full p-2.5 rounded-xl" placeholder="Ex: IPTV & Apps">
+        </div>
+        <div>
+          <label class="text-gray-400 block mb-1 font-semibold">Image</label>
+          <input type="file" id="newProdImageFile" accept="image/*" class="glass-input w-full p-2 rounded-xl text-[10px]">
+        </div>
+      </div>
+      <div class="flex justify-between items-center pt-3 border-t border-white/10">
+        <button id="deleteProdBtn" onclick="deleteProductFromModal()" class="px-3 py-1.5 rounded-xl bg-red-500/20 text-red-400 text-[10px] hidden font-bold">Supprimer</button>
+        <div class="flex gap-2 ml-auto">
+          <button onclick="closeAddProductModal()" class="px-3 py-1.5 rounded-xl bg-gray-800 text-gray-300 text-[10px]">Annuler</button>
+          <button onclick="saveNewProduct()" class="px-3.5 py-1.5 rounded-xl bg-luxGold text-darkBg font-black text-[10px] shadow-md">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال الإعدادات -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="glass-panel w-full max-w-sm p-5 rounded-2xl space-y-4 shadow-2xl border border-luxGold/40">
+      <div class="flex justify-between items-center pb-2.5 border-b border-white/10">
+        <h3 class="text-xs font-black text-luxGold">Paramètres de la Langue</h3>
+        <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-2.5">
+        <button onclick="changeLanguage('fr')" class="w-full p-3 rounded-xl bg-cardBg text-white font-bold text-xs flex items-center justify-between border border-luxGold/30 shadow-inner">
+          <span>🇫🇷 Français</span>
+          <span class="text-luxGold text-[9px] font-extrabold">✓ Actif</span>
+        </button>
+      </div>
+      <div class="flex justify-end pt-2 border-t border-white/10">
+        <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl bg-luxGold text-darkBg font-black text-xs shadow-md">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال عرض الفاتورة -->
+  <div id="receiptModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+    <div class="bg-cardBg w-full max-w-sm p-4 rounded-2xl space-y-3.5 max-h-[90vh] overflow-y-auto shadow-2xl border border-luxGold/40">
+      <div class="flex justify-between items-center pb-2 border-b border-white/10">
+        <h3 class="text-xs font-black text-luxGold">Reçu / Facture IPTV</h3>
+        <button onclick="closeReceiptModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="receiptModalBody"></div>
+      <div class="flex justify-end gap-2.5 pt-2 border-t border-white/10">
+        <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-luxGold text-darkBg font-black text-[10px] shadow-lg"><i class="fa-solid fa-print ml-1"></i> Imprimer</button>
+        <button onclick="closeReceiptModal()" class="px-4 py-2 rounded-xl bg-gray-800 text-gray-300 text-[10px]">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- إشعار Toast -->
+  <div id="toast" class="fixed bottom-16 right-4 glass-panel text-luxGold px-4 py-2.5 rounded-xl text-[10.5px] shadow-2xl transform translate-y-20 opacity-0 transition duration-300 z-50 font-black border border-luxGold/40"></div>
+
+<script>
+  let catalogDevices = JSON.parse(localStorage.getItem('lumen_catalog_devices')) || {
+    "Abonnement IPTV Premium 12 Mois": { name: "Abonnement IPTV Premium 12 Mois", price: 300, img: "https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp", category: "IPTV Abonn." },
+    "Application IBO VIP / ROKU Player": { name: "Application IBO VIP / ROKU Player", price: 150, img: "https://i.ibb.co/zhqqWBWz/IMG-20261105-WA0005.webp", category: "IPTV App" },
+    "Recepteur ECHOLINK FENTO PRO 6": { name: "Recepteur ECHOLINK FENTO PRO 6", price: 200, img: "https://i.ibb.co/6cKNGRnD/IMG-20261105-175602.webp", category: "Récepteur" },
+    "Bob Player": { name: "Bob Player", price: 150, img: "https://i.ibb.co/tPYc0tFM/bob-player.webp", category: "Activation" },
+    "IBO Player": { name: "IBO Player", price: 150, img: "https://i.ibb.co/m5CRtrtV/939e65a3-917f-48a1-915e-3d77f2904537-1000x1000-BUu-BOu-M6s78-PKC3y7lv-RUrdb-TYB6r-Sb-Pj-Thw8f-Ah-1.webp", category: "Activation" },
+    "Smart Player": { name: "Smart Player", price: 150, img: "https://i.ibb.co/DfxxWqWr/logo-512.webp", category: "Activation" },
+    "Roku Player": { name: "Roku Player", price: 150, img: "https://i.ibb.co/r21yxFRS/IMG-20261101-201122.jpg", category: "Activation" },
+    "VIP Pro": { name: "VIP Pro", price: 150, img: "https://i.ibb.co/39h05bvs/IMG-20261101-200354.jpg", category: "Activation" },
+    "LuxStream": { name: "LuxStream", price: 150, img: "https://i.ibb.co/x8dMyqKd/IMG-20261101-200309.jpg", category: "Activation" }
+  };
+
+  let selectedQuantities = {};
+  let selectedPrices = {};
+  let currentClientValue = "Client Direct";
+  let currentPaymentValue = "Espèces";
+  let lastXtreamData = null;
+
+  function toggleSlideMenu() {
+    const overlay = document.getElementById('slideMenuOverlay');
+    const panel = document.getElementById('slideMenuPanel');
+    overlay.classList.toggle('active');
+    panel.classList.toggle('active');
+    if(panel.classList.contains('active')) {
+      renderMenuProductsList();
+    }
+  }
+
+  function renderMenuProductsList() {
+    const container = document.getElementById('menuProductsList');
+    if(!container) return;
+    let html = "";
+    for(let key in catalogDevices) {
+      let p = catalogDevices[key];
+      html += `
+        <div class="flex items-center justify-between bg-black/40 p-2 rounded-xl border border-white/5">
+          <div class="flex items-center gap-2">
+            <img src="${p.img}" class="w-8 h-8 object-contain bg-white/5 rounded-lg p-1">
             <div>
-                <div class="text-center mb-5">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/20 to-gold-700/10 mb-2 shadow-gold-glow">
-                        <i class="fa-solid fa-crown text-gold-500 text-3xl"></i>
-                    </div>
-                    <h1 class="text-2xl font-black tracking-widest font-cairo gold-gradient-text">LUXSTREAM IBO</h1>
-                    <p class="text-xs text-gold-400 mt-0.5 font-semibold">Supercharged VIP Golden Player</p>
-                </div>
-
-                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-3.5">
-                    <div>
-                        <label class="block text-xs font-semibold text-gold-400 mb-1">Host URL</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-server absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
-                            <input type="text" id="hostInput" required placeholder="http://my-iptv-host.com:8080" class="tv-focusable w-full bg-black/60 rounded-xl py-3 pl-10 pr-3 text-xs text-gray-100 focus:bg-black/80 font-mono dir-ltr text-left">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-gold-400 mb-1">Username</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-user absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
-                            <input type="text" id="userInput" required placeholder="Username" class="tv-focusable w-full bg-black/60 rounded-xl py-3 pl-10 pr-3 text-xs text-gray-100 focus:bg-black/80 font-mono dir-ltr text-left">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-gold-400 mb-1">Password</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-key absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
-                            <input type="password" id="passInput" required placeholder="Password" class="tv-focusable w-full bg-black/60 rounded-xl py-3 pl-10 pr-3 text-xs text-gray-100 focus:bg-black/80 font-mono dir-ltr text-left">
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-gray-400 px-1 pt-1">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" id="useProxy" checked class="rounded text-gold-500 bg-black/50">
-                            <span class="ml-2">Enable Smart CORS Proxy</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" id="loginBtn" class="tv-focusable w-full py-3.5 px-4 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-black font-extrabold rounded-xl shadow-gold-glow hover:scale-105 transition-all flex items-center justify-center space-x-2 text-sm">
-                        <span>Fast Account Login</span>
-                        <i class="fa-solid fa-bolt"></i>
-                    </button>
-                </form>
-
-                <div class="mt-4 pt-3 text-center border-t border-gray-800/60">
-                    <button onclick="startDemoMode()" class="tv-focusable text-xs text-gold-400 hover:text-gold-300 font-bold underline">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Quick Demo Mode (Full Sample Content)
-                    </button>
-                </div>
-
-                <div id="loginError" class="hidden mt-3 p-3 rounded-xl bg-red-950/80 text-red-300 text-xs text-center font-medium shadow-lg"></div>
+              <div class="text-[9.5px] font-bold text-white line-clamp-1">${p.name}</div>
+              <div class="text-[7.5px] text-luxGold font-black">${p.price.toLocaleString()} DH</div>
             </div>
-
-            <div class="mt-6 pt-3 text-center border-t border-gray-800/40">
-                <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
-            </div>
+          </div>
+          <span class="text-[7.5px] text-gray-400 bg-luxGold/10 px-1.5 py-0.5 rounded">${p.category}</span>
         </div>
-    </div>
+      `;
+    }
+    container.innerHTML = html;
+  }
 
-    <!-- =================MAIN DASHBOARD================ -->
-    <div id="mainDashboard" class="flex flex-col h-full w-full hidden-screen relative overflow-hidden bg-darkbg">
-        <header class="h-16 shrink-0 ibo-glass-panel px-4 sm:px-8 flex items-center justify-between z-30">
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 rounded-2xl bg-gold-500/15 flex items-center justify-center shadow-gold-glow">
-                        <i class="fa-solid fa-crown text-gold-500 text-lg"></i>
-                    </div>
-                    <div>
-                        <span class="font-cairo font-black text-xl tracking-wider gold-gradient-text block leading-tight">LUXSTREAM</span>
-                        <span class="text-[10px] text-gray-400 font-semibold tracking-widest block">SUPERCHARGED IPTV</span>
-                    </div>
-                </div>
+  function switchView(view) {
+    const storeSec = document.getElementById('storeSection');
+    const dashSec = document.getElementById('dashboardSection');
+    const btnStore = document.getElementById('btnStoreView');
+    const btnDash = document.getElementById('btnDashboardView');
+
+    if (view === 'store') {
+      storeSec.classList.remove('hidden');
+      dashSec.classList.add('hidden');
+      btnStore.className = "px-3.5 py-2 rounded-xl text-[10px] font-bold bg-luxGold text-darkBg shadow-lg transition transform active:scale-95";
+      btnDash.className = "px-3.5 py-2 rounded-xl text-[10px] font-bold bg-cardBg text-gray-300 shadow-md border border-white/5 transition transform active:scale-95";
+    } else {
+      storeSec.classList.add('hidden');
+      dashSec.classList.remove('hidden');
+      btnDash.className = "px-3.5 py-2 rounded-xl text-[10px] font-bold bg-luxGold text-darkBg shadow-lg transition transform active:scale-95";
+      btnStore.className = "px-3.5 py-2 rounded-xl text-[10px] font-bold bg-cardBg text-gray-300 shadow-md border border-white/5 transition transform active:scale-95";
+      recalcTotal();
+    }
+  }
+
+  function toggleActivationAppsMenu() {
+    const dropdown = document.getElementById('activationDropdownMenu');
+    const chevron = document.getElementById('activationChevron');
+    dropdown.classList.toggle('hidden');
+    document.getElementById('creditWholesaleDropdownMenu').classList.add('hidden');
+    document.getElementById('creditChevron').classList.remove('rotate-180');
+    document.getElementById('catalogDropdown').classList.add('hidden');
+    chevron.classList.toggle('rotate-180');
+    closeAllCustomDropdowns();
+  }
+
+  function toggleCreditWholesaleMenu() {
+    const dropdown = document.getElementById('creditWholesaleDropdownMenu');
+    const chevron = document.getElementById('creditChevron');
+    dropdown.classList.toggle('hidden');
+    document.getElementById('activationDropdownMenu').classList.add('hidden');
+    document.getElementById('activationChevron').classList.remove('rotate-180');
+    document.getElementById('catalogDropdown').classList.add('hidden');
+    chevron.classList.toggle('rotate-180');
+    closeAllCustomDropdowns();
+  }
+
+  function toggleCatalogMenu() {
+    const dropdown = document.getElementById('catalogDropdown');
+    dropdown.classList.toggle('hidden');
+    document.getElementById('activationDropdownMenu').classList.add('hidden');
+    document.getElementById('activationChevron').classList.remove('rotate-180');
+    document.getElementById('creditWholesaleDropdownMenu').classList.add('hidden');
+    document.getElementById('creditChevron').classList.remove('rotate-180');
+    closeAllCustomDropdowns();
+  }
+
+  function toggleCustomDropdown(id, event) {
+    event.stopPropagation();
+    const menu = document.getElementById(id);
+    const isOpen = menu.style.display === 'block';
+    closeAllCustomDropdowns();
+    document.getElementById('activationDropdownMenu').classList.add('hidden');
+    document.getElementById('activationChevron').classList.remove('rotate-180');
+    document.getElementById('creditWholesaleDropdownMenu').classList.add('hidden');
+    document.getElementById('creditChevron').classList.remove('rotate-180');
+    document.getElementById('catalogDropdown').classList.add('hidden');
+    if (!isOpen) {
+      menu.style.display = 'block';
+    }
+  }
+
+  function closeAllCustomDropdowns() {
+    document.querySelectorAll('.custom-dropdown-menu').forEach(m => m.style.display = 'none');
+    const modalDrop = document.getElementById('modalAppDropdownList');
+    if(modalDrop) modalDrop.style.display = 'none';
+  }
+
+  window.addEventListener('click', (e) => {
+    closeAllCustomDropdowns();
+  });
+
+  function selectClient(val, event) {
+    event.stopPropagation();
+    currentClientValue = val;
+    document.getElementById('selectedClientText').textContent = val;
+    closeAllCustomDropdowns();
+  }
+
+  function selectPayment(val, event) {
+    event.stopPropagation();
+    currentPaymentValue = val;
+    document.getElementById('selectedPaymentText').textContent = val;
+    closeAllCustomDropdowns();
+  }
+
+  function renderStoreProducts() {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    let html = "";
+    for (let key in catalogDevices) {
+      let p = catalogDevices[key];
+      html += `
+        <div class="glass-panel p-3.5 rounded-2xl flex flex-col justify-between shadow-xl relative group hover:border-luxGold/40 transition">
+          <div>
+            <div class="bg-white/5 rounded-xl p-2.5 mb-2.5 flex items-center justify-center h-32 border border-white/5">
+              <img src="${p.img}" alt="${p.name}" class="h-full object-contain filter drop-shadow-xl group-hover:scale-105 transition">
             </div>
-
-            <div class="flex items-center space-x-3">
-                <div id="dashboardSearchContainer" class="relative hidden sm:block w-64">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
-                    <input type="text" id="globalSearchInput" oninput="handleGlobalSearch(this.value)" placeholder="Instant search..." class="tv-focusable w-full bg-black/60 rounded-full py-1.5 pl-9 pr-4 text-xs text-gray-200 focus:bg-black/90">
-                </div>
-
-                <button id="backToHomeBtn" onclick="showHomeScreen()" class="hidden tv-focusable px-3.5 py-1.5 rounded-xl bg-gold-500/20 text-gold-400 text-xs font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Home</span>
-                </button>
-                <button onclick="showAccountModal()" class="tv-focusable p-2.5 rounded-xl bg-gray-800/50 hover:bg-gold-500/20 text-gold-400 text-xs">
-                    <i class="fa-solid fa-user-shield text-base"></i>
-                </button>
-                <button onclick="logout()" class="tv-focusable p-2.5 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-400 text-xs">
-                    <i class="fa-solid fa-power-off text-base"></i>
-                </button>
-            </div>
-        </header>
-
-        <main class="flex-1 flex flex-col min-h-0 overflow-hidden relative">
-            <!-- HOME TILES -->
-            <div id="iboHomeScreen" class="flex-1 overflow-y-auto p-4 sm:p-8 flex flex-col items-center justify-between">
-                <div class="max-w-6xl w-full grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 my-auto">
-                    <div onclick="openDashboardCategory('live')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-tv"></i>
-                            </div>
-                            <span class="text-xs bg-gold-500/20 text-gold-300 font-bold px-3 py-1 rounded-full" id="homeLiveCount">0 Channels</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">Live TV</h2>
-                            <p class="text-xs text-gray-400 mt-1">Sports & News 4K Channels</p>
-                        </div>
-                    </div>
-
-                    <div onclick="openDashboardCategory('vod')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-film"></i>
-                            </div>
-                            <span class="text-xs bg-amber-500/20 text-amber-300 font-bold px-3 py-1 rounded-full" id="homeVodCount">0 Movies</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">VOD Movies</h2>
-                            <p class="text-xs text-gray-400 mt-1">Massive library in highest definition</p>
-                        </div>
-                    </div>
-
-                    <div onclick="openDashboardCategory('series')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-clapperboard"></i>
-                            </div>
-                            <span class="text-xs bg-yellow-500/20 text-yellow-300 font-bold px-3 py-1 rounded-full" id="homeSeriesCount">0 Series</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">Series & Shows</h2>
-                            <p class="text-xs text-gray-400 mt-1">Full seasons & latest episodes</p>
-                        </div>
-                    </div>
-
-                    <div onclick="openDashboardCategory('favorites')" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-300 to-gold-500 text-black flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <span class="text-xs bg-amber-500/20 text-amber-300 font-bold px-3 py-1 rounded-full" id="homeFavCount">0</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">My Favorites</h2>
-                            <p class="text-xs text-gray-400 mt-1">Saved channels for fast access</p>
-                        </div>
-                    </div>
-
-                    <div onclick="showAccountModal()" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-black flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-user-shield"></i>
-                            </div>
-                            <span class="text-xs bg-emerald-500/20 text-emerald-300 font-bold px-3 py-1 rounded-full">VIP Speed</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">Subscription</h2>
-                            <p class="text-xs text-gray-400 mt-1">Server details & validity</p>
-                        </div>
-                    </div>
-
-                    <div onclick="loadXtreamData()" class="ibo-card tv-focusable rounded-3xl p-6 sm:p-8 cursor-pointer group relative overflow-hidden flex flex-col justify-between h-48 sm:h-56">
-                        <div class="flex items-center justify-between">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 text-white flex items-center justify-center text-2xl shadow-gold-glow">
-                                <i class="fa-solid fa-rotate"></i>
-                            </div>
-                            <span class="text-xs bg-blue-500/20 text-blue-300 font-bold px-3 py-1 rounded-full">Sync</span>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white gold-gradient-text">Reload Data</h2>
-                            <p class="text-xs text-gray-400 mt-1">Instant server synchronization</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="py-2 text-center shrink-0">
-                    <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
-                </div>
-            </div>
-
-            <!-- CONTENT VIEW -->
-            <div id="iboContentView" class="flex-1 flex flex-col min-h-0 overflow-hidden hidden-screen">
-                <div class="shrink-0 ibo-glass-panel px-4 sm:px-8 py-3 z-20">
-                    <div class="flex items-center justify-between mb-2">
-                        <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-layer-group text-gold-500 text-xs"></i>
-                            <span id="activeTabTitle" class="text-xs font-bold text-gray-300 uppercase tracking-wider">Categories</span>
-                            <span id="catCount" class="text-[10px] bg-gold-500/20 text-gold-400 px-2.5 py-0.5 rounded-full font-bold">0</span>
-                        </div>
-                        <span id="itemsCount" class="text-xs text-gray-400 font-medium">(0 items)</span>
-                    </div>
-                    <div id="categoriesTrack" class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1"></div>
-                </div>
-
-                <div id="gridContainer" onscroll="handleScroll(this)" class="flex-1 overflow-y-auto p-4 sm:p-8 min-h-0 flex flex-col justify-between">
-                    <div id="itemsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 pb-6"></div>
-                    <div class="py-3 text-center shrink-0 border-t border-gray-800/40 mt-4">
-                        <p class="text-[10px] text-gray-500 font-medium tracking-wider">&copy; 2026 Eglicias ROKU. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- =================DETAILS MODAL================ -->
-    <div id="detailsModal" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden-screen">
-        <div class="ibo-glass-panel max-w-4xl w-full rounded-3xl overflow-hidden relative shadow-2xl flex flex-col max-h-[92vh]">
-            <button onclick="closeDetailsModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/80 text-gray-300 hover:text-gold-400 flex items-center justify-center shadow-lg">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <div class="relative h-60 sm:h-80 w-full bg-black/80 shrink-0">
-                <img id="modalBackdrop" src="" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-darkbg/40 to-transparent"></div>
-                <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex items-end justify-between">
-                    <div>
-                        <span id="modalBadge" class="text-[10px] bg-gold-500 text-black font-black px-3 py-1 rounded-full mb-2 inline-block">LUX VIP</span>
-                        <h2 id="modalTitle" class="text-xl sm:text-3xl font-black text-white gold-gradient-text line-clamp-1">Title</h2>
-                        <div class="flex items-center space-x-3 text-xs text-gray-300 mt-2 font-semibold">
-                            <span id="modalYear" class="text-gold-400">2026</span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
-                            <span id="modalRating" class="bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-md"><i class="fa-solid fa-star text-xs mr-1"></i> 8.9</span>
-                        </div>
-                    </div>
-                    <button id="modalPlayBtn" onclick="" class="tv-focusable px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-black font-extrabold rounded-2xl shadow-gold-glow flex items-center gap-2 text-xs sm:text-sm shrink-0">
-                        <i class="fa-solid fa-play text-lg"></i>
-                        <span>Instant Play</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-6 overflow-y-auto space-y-4">
-                <p id="modalPlot" class="text-xs sm:text-sm text-gray-300 leading-relaxed">Description & plot...</p>
-                <div id="seriesEpisodesSection" class="hidden-screen space-y-3 pt-3">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xs sm:text-sm font-bold text-gold-400">Episodes & Seasons</h3>
-                    </div>
-                    <div id="episodesList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
-                </div>
-            </div>
+            <span class="text-[8px] text-luxGold bg-luxGold/10 px-2 py-0.5 rounded-md font-extrabold border border-luxGold/20">${p.category}</span>
+            <h3 class="text-[10.5px] font-extrabold text-white mt-2 line-clamp-1">${p.name}</h3>
+          </div>
+          <div class="mt-3.5 flex items-center justify-between">
+            <span class="text-[11px] font-black text-luxGold">${p.price.toLocaleString()} DH</span>
+            <a href="https://wa.me/212630473498?text=Bonjour,%20je%20suis%20intéressé%20par%20${encodeURIComponent(p.name)}" target="_blank" class="p-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-500 transition shadow-md">
+              <i class="fa-brands fa-whatsapp text-[11px]"></i>
+            </a>
+          </div>
         </div>
-    </div>
+      `;
+    }
+    grid.innerHTML = html;
+    renderDynamicMarquee();
+    renderDropdownActivationAppsList();
+    renderModalAppDropdownOptions();
+  }
 
-    <!-- =================ACCOUNT MODAL================ -->
-    <div id="accountModal" class="fixed inset-0 z-40 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden-screen">
-        <div class="ibo-glass-panel max-w-md w-full rounded-3xl p-6 relative">
-            <button onclick="closeAccountModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gold-400 text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="flex items-center space-x-3 mb-6">
-                <i class="fa-solid fa-user-shield text-gold-500 text-3xl"></i>
-                <div>
-                    <h3 class="text-base font-bold text-gray-100">Account Details</h3>
-                    <p class="text-xs text-gray-400">IBO Fast Engine Server</p>
-                </div>
-            </div>
-            <div id="accountInfoDetails" class="space-y-3 text-xs"></div>
-            <button onclick="closeAccountModal()" class="w-full mt-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-black font-extrabold rounded-xl shadow-gold-glow text-xs">Close</button>
+  function renderDynamicMarquee() {
+    const track = document.getElementById('dynamicMarqueeTrack');
+    if (!track) return;
+    let itemsHTML = "";
+    for (let key in catalogDevices) {
+      let p = catalogDevices[key];
+      itemsHTML += `
+        <div class="app-badge-card" onclick="toast('✨ ${p.name} • Actif')">
+          <img src="${p.img}" class="app-badge-img" alt="${p.name}">
+          <div>
+            <div class="text-[9.5px] font-black text-white line-clamp-1">${p.name}</div>
+            <div class="text-[7px] text-neonLime font-bold">${p.category}</div>
+          </div>
         </div>
-    </div>
+      `;
+    }
+    track.innerHTML = itemsHTML + itemsHTML;
+  }
 
-    <!-- =================PLAYER OVERLAY================ -->
-    <div id="playerOverlay" class="fixed inset-0 z-50 bg-black flex flex-col justify-between hidden-screen">
-        <video id="videoElement" class="w-full h-full object-contain bg-black cursor-pointer" playsinline autoplay onclick="togglePlayPause()"></video>
-
-        <div class="player-overlay-gradient absolute top-0 inset-x-0 p-4 sm:p-6 flex justify-between items-center z-10">
-            <div class="flex items-center space-x-4">
-                <button onclick="closePlayer()" class="tv-focusable w-11 h-11 rounded-full bg-black/80 text-gray-200 hover:text-gold-400 flex items-center justify-center">
-                    <i class="fa-solid fa-arrow-left text-lg"></i>
-                </button>
-                <div>
-                    <h3 id="playerTitle" class="text-sm sm:text-base font-bold text-gray-100 truncate max-w-xs sm:max-w-md">Stream Name</h3>
-                    <span id="playerCategory" class="text-xs text-gold-400">Instant Play - Zero Delay</span>
-                </div>
+  function renderDropdownActivationAppsList() {
+    const container = document.getElementById('dropdownActivationAppsList');
+    if (!container) return;
+    let html = "";
+    for (let key in catalogDevices) {
+      let p = catalogDevices[key];
+      html += `
+        <div onclick="openActivationForApp('${p.name.replace(/'/g, "\\'")}'); toggleActivationAppsMenu();" class="activation-app-card">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-black/60 border border-luxGold/30 p-1 flex items-center justify-center shadow-md">
+              <img src="${p.img}" class="w-full h-full object-contain">
             </div>
+            <div>
+              <div class="text-[10.5px] font-extrabold text-white line-clamp-1">${p.name}</div>
+              <div class="text-[7.5px] text-neonLime font-bold flex items-center gap-1"><i class="fa-solid fa-bolt text-[7px]"></i> ${p.category}</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[9.5px] font-black text-luxGold bg-luxGold/10 border border-luxGold/30 px-2 py-0.5 rounded-lg">${p.price} DH</span>
+            <i class="fa-solid fa-chevron-right text-[8px] text-luxGold/60"></i>
+          </div>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  }
+
+  function renderModalAppDropdownOptions() {
+    const container = document.getElementById('modalAppDropdownList');
+    if (!container) return;
+    let html = `
+      <div class="custom-modal-dropdown-item" onclick="selectModalAppOption('M3U Playlist Directe', event)">
+        <span class="font-extrabold text-neonLime flex items-center gap-1.5"><i class="fa-solid fa-link text-[9px]"></i> M3U Playlist Directe</span>
+        <span class="text-[7px] text-gray-400 bg-white/10 px-1.5 py-0.5 rounded">Xtream/M3U</span>
+      </div>
+    `;
+    for (let key in catalogDevices) {
+      let p = catalogDevices[key];
+      html += `
+        <div class="custom-modal-dropdown-item" onclick="selectModalAppOption('${p.name.replace(/'/g, "\\'")}', event)">
+          <div class="flex items-center gap-2">
+            <img src="${p.img}" class="w-5 h-5 object-contain bg-black/40 rounded p-0.5 border border-luxGold/20">
+            <span class="font-bold text-white text-[9px] line-clamp-1">${p.name}</span>
+          </div>
+          <span class="text-[7.5px] text-luxGold font-black ml-2">${p.price} DH</span>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  }
+
+  function toggleModalAppDropdown(e) {
+    e.stopPropagation();
+    const dropdown = document.getElementById('modalAppDropdownList');
+    const isVisible = dropdown.style.display === 'block';
+    closeAllCustomDropdowns();
+    if (!isVisible) dropdown.style.display = 'block';
+  }
+
+  function selectModalAppOption(appName, e) {
+    e.stopPropagation();
+    document.getElementById('abonApp').value = appName;
+    document.getElementById('selectedModalAppText').textContent = appName;
+    
+    if(catalogDevices[appName]) {
+      document.getElementById('abonPrice').value = catalogDevices[appName].price;
+    } else if(appName === 'M3U Playlist Directe') {
+      document.getElementById('abonPrice').value = 300;
+    }
+    closeAllCustomDropdowns();
+  }
+
+  /* إضافة عنصر الجملة أو الكريديات وتوليد فاتورة مباشرة */
+  function openWholesaleInvoice(packTitle, qty, unitPrice, type) {
+    toggleCreditWholesaleMenu();
+    let totalPrice = qty * unitPrice;
+    
+    if(!catalogDevices[packTitle]) {
+      catalogDevices[packTitle] = {
+        name: packTitle,
+        price: unitPrice,
+        img: "https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp",
+        category: type === 'wholesale' ? 'Vente au Gros' : 'Credit Panel'
+      };
+    }
+    
+    selectedQuantities[packTitle] = qty;
+    selectedPrices[packTitle] = unitPrice;
+
+    emitUnifiedInvoice();
+    toast(`💎 ${packTitle} sélectionné avec succès`);
+  }
+
+  function openEditCatalogModal() {
+    const grid = document.getElementById('editCatalogGridModal');
+    let html = "";
+    for (let key in catalogDevices) {
+      let dev = catalogDevices[key];
+      html += `
+        <div class="flex items-center justify-between glass-panel p-3 rounded-xl shadow-sm border border-white/5">
+          <div class="flex items-center gap-2.5">
+            <img src="${dev.img}" class="w-11 h-11 object-contain bg-white/5 rounded-xl p-1 border border-white/5">
+            <div>
+              <h4 class="text-[10px] font-bold text-white">${dev.name}</h4>
+              <span class="text-[9.5px] text-luxGold font-black">${dev.price.toLocaleString()} DH</span>
+            </div>
+          </div>
+          <button onclick="closeEditCatalogModal(); openEditProductModal('${key.replace(/'/g, "\\'")}');" class="px-3 py-1.5 rounded-xl bg-luxGold/15 text-luxGold text-[10px] font-bold border border-luxGold/30">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+        </div>
+      `;
+    }
+    grid.innerHTML = html;
+    document.getElementById('editCatalogModal').classList.remove('hidden');
+  }
+
+  function closeEditCatalogModal() { document.getElementById('editCatalogModal').classList.add('hidden'); }
+
+  function recalcTotal() {
+    let total = 0;
+    for (let key in selectedQuantities) {
+      let qty = selectedQuantities[key] || 0;
+      let pr = selectedPrices[key] !== undefined && selectedPrices[key] !== "" ? Number(selectedPrices[key]) : catalogDevices[key].price;
+      total += qty * pr;
+    }
+    document.getElementById('unifiedTotalDisplay').textContent = total.toLocaleString() + ' DH';
+  }
+
+  function openAddProductModal() {
+    document.getElementById('productModalTitle').innerHTML = `Ajouter un produit`;
+    document.getElementById('editingProductKey').value = "";
+    document.getElementById('newProdName').value = "";
+    document.getElementById('newProdPrice').value = "";
+    document.getElementById('newProdCategory').value = "";
+    document.getElementById('newProdImageFile').value = "";
+    document.getElementById('deleteProdBtn').classList.add('hidden');
+    document.getElementById('addProductModal').classList.remove('hidden');
+  }
+
+  function openEditProductModal(key) {
+    let dev = catalogDevices[key];
+    if (!dev) return;
+    document.getElementById('productModalTitle').innerHTML = `Modifier: ${dev.name}`;
+    document.getElementById('editingProductKey').value = key;
+    document.getElementById('newProdName').value = dev.name;
+    document.getElementById('newProdPrice').value = dev.price;
+    document.getElementById('newProdCategory').value = dev.category || '';
+    document.getElementById('newProdImageFile').value = "";
+    document.getElementById('deleteProdBtn').classList.remove('hidden');
+    document.getElementById('addProductModal').classList.remove('hidden');
+  }
+
+  function closeAddProductModal() { document.getElementById('addProductModal').classList.add('hidden'); }
+
+  function saveNewProduct() {
+    const oldKey = document.getElementById('editingProductKey').value;
+    const name = document.getElementById('newProdName').value.trim();
+    const price = Number(document.getElementById('newProdPrice').value);
+    const category = document.getElementById('newProdCategory').value.trim() || 'IPTV';
+    const fileInput = document.getElementById('newProdImageFile');
+
+    if (!name || !price) { toast('Remplissez le nom et le prix'); return; }
+    let defaultImg = oldKey && catalogDevices[oldKey] ? catalogDevices[oldKey].img : 'https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp';
+
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) { finishSavingProduct(oldKey, name, price, category, e.target.result); };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else { finishSavingProduct(oldKey, name, price, category, defaultImg); }
+  }
+
+  function finishSavingProduct(oldKey, name, price, category, img) {
+    if (oldKey && oldKey !== name) {
+      delete catalogDevices[oldKey];
+      if (selectedQuantities[oldKey]) { selectedQuantities[name] = selectedQuantities[oldKey]; delete selectedQuantities[oldKey]; }
+      if (selectedPrices[oldKey]) { selectedPrices[name] = selectedPrices[oldKey]; delete selectedPrices[oldKey]; }
+    }
+    catalogDevices[name] = { name, price, img, category };
+    localStorage.setItem('lumen_catalog_devices', JSON.stringify(catalogDevices));
+    closeAddProductModal();
+    renderStoreProducts();
+    recalcTotal();
+    toast(oldKey ? '✏️ Modifié avec succès' : '✨ Ajouté avec succès');
+  }
+
+  function deleteProductFromModal() {
+    const oldKey = document.getElementById('editingProductKey').value;
+    if (!oldKey || !catalogDevices[oldKey]) return;
+    if (confirm(`Supprimer ${oldKey}?`)) {
+      delete catalogDevices[oldKey]; delete selectedQuantities[oldKey]; delete selectedPrices[oldKey];
+      localStorage.setItem('lumen_catalog_devices', JSON.stringify(catalogDevices));
+      closeAddProductModal(); renderStoreProducts(); recalcTotal();
+      toast('🗑️ Supprimé avec succès');
+    }
+  }
+
+  function parseM3UString(url) {
+    try {
+      if (!url.includes('http')) return;
+      let urlObj = new URL(url);
+      let baseUrl = `${urlObj.protocol}//${urlObj.host}`;
+      document.getElementById('abonServer').value = baseUrl;
+      let params = new URLSearchParams(urlObj.search);
+      if (params.has('username')) document.getElementById('abonUser').value = params.get('username');
+      if (params.has('password')) document.getElementById('abonPass').value = params.get('password');
+    } catch(e) {}
+  }
+
+  function fillAbonnementClientData(clientName) {
+    if (clientName === "Younes") {
+      document.getElementById('abonName').value = "Younes";
+    } else if (clientName === "Farouk") {
+      document.getElementById('abonName').value = "Farouk";
+    } else {
+      document.getElementById('abonName').value = "";
+    }
+  }
+
+  function fillClientData(clientName) {
+    if (clientName === "Younes") {
+      document.getElementById('modalClientName').value = "Younes";
+      document.getElementById('modalWhatsApp').value = "+212 630473498";
+      document.getElementById('modalMacAddress').value = "12:45:ss:v1:12";
+    } else if (clientName === "Farouk") {
+      document.getElementById('modalClientName').value = "Farouk";
+      document.getElementById('modalWhatsApp').value = "+212 650443149";
+      document.getElementById('modalMacAddress').value = "+212 650443149";
+    } else {
+      document.getElementById('modalClientName').value = "";
+      document.getElementById('modalWhatsApp').value = "";
+      document.getElementById('modalMacAddress').value = "";
+    }
+  }
+
+  function openActivationForApp(appName) {
+    let dev = catalogDevices[appName];
+    if(!dev) return;
+
+    document.getElementById('modalSelectedAppKey').value = appName;
+    document.getElementById('modalAppTitlePreview').textContent = dev.name;
+    document.getElementById('modalAppImagePreview').src = dev.img;
+    document.getElementById('modalPriceInput').value = dev.price;
+    document.getElementById('modalStartDate').value = new Date().toISOString().split('T')[0];
+
+    document.getElementById('activationModal').classList.remove('hidden');
+    toast(`⚡ ${dev.name} • Prêt pour l'activation`);
+  }
+
+  function openAbonnementModal() {
+    document.getElementById('abonStartDate').value = new Date().toISOString().split('T')[0];
+    document.getElementById('abonnementModal').classList.remove('hidden');
+  }
+  function closeAbonnementModal() { document.getElementById('abonnementModal').classList.add('hidden'); }
+  
+  function confirmAbonnement() {
+    let clientName = document.getElementById('abonName').value.trim() || "Client Direct";
+    let appName = document.getElementById('abonApp').value;
+    let price = Number(document.getElementById('abonPrice').value) || 300;
+    
+    lastXtreamData = {
+      type: 'abonnement',
+      server: document.getElementById('abonServer').value || 'N/A',
+      username: document.getElementById('abonUser').value || 'N/A',
+      password: document.getElementById('abonPass').value || 'N/A',
+      expiry: document.getElementById('abonExpiry').value || '06/11/2027',
+      duration: document.getElementById('abonDuration').value || '12 mois'
+    };
+
+    if (!catalogDevices[appName]) {
+      catalogDevices[appName] = { name: appName, price: price, img: "https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp", category: "Abonnement" };
+    }
+    selectedQuantities[appName] = 1;
+    selectedPrices[appName] = price;
+    currentClientValue = clientName;
+
+    closeAbonnementModal();
+    emitUnifiedInvoice();
+    toast('✨ Abonnement Xtream créé avec succès');
+  }
+
+  function closeActivationModal() { document.getElementById('activationModal').classList.add('hidden'); }
+
+  function confirmActivation() {
+    let clientName = document.getElementById('modalClientName').value.trim() || "Client Direct";
+    let appName = document.getElementById('modalSelectedAppKey').value;
+    let price = Number(document.getElementById('modalPriceInput').value) || 150;
+    let macAddress = document.getElementById('modalMacAddress').value.trim() || '00:11:22:33:44:55';
+
+    lastXtreamData = {
+      type: 'activation',
+      mac: macAddress,
+      duration: document.getElementById('modalDuration').value || '12 mois'
+    };
+
+    if (appName && catalogDevices[appName]) {
+      selectedQuantities[appName] = 1;
+      selectedPrices[appName] = price;
+    }
+    currentClientValue = clientName;
+
+    closeActivationModal();
+    emitUnifiedInvoice();
+    toast('✅ Playlist activée avec succès');
+  }
+
+  function emitUnifiedInvoice() {
+    let keys = Object.keys(selectedQuantities);
+    if (keys.length === 0) {
+      toast('⚠️ Veuillez sélectionner au moins un produit');
+      return;
+    }
+
+    let totalPrice = 0;
+    let rowsHTML = "";
+    let nowStr = new Date().toLocaleString('fr-FR');
+
+    keys.forEach(k => {
+      let qty = selectedQuantities[k];
+      let devObj = catalogDevices[k] || { name: k, price: 0, img: "https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp", category: "IPTV" };
+      let pU = selectedPrices[k] !== undefined && selectedPrices[k] !== "" ? Number(selectedPrices[k]) : devObj.price;
+      let lineTotal = qty * pU;
+      totalPrice += lineTotal;
+
+      rowsHTML += `
+        <tr>
+          <td>
+            <div class="invoice-prod-cell">
+              <img src="${devObj.img}" class="invoice-prod-img">
+              <div>
+                <div style="font-weight:900; color:#1e3a8a;">${devObj.name}</div>
+                <div style="font-size:6.5px; color:#64748b;">Type: ${devObj.category || 'IPTV'}</div>
+              </div>
+            </div>
+          </td>
+          <td style="text-align:center; font-weight:bold;">${qty}</td>
+          <td style="text-align:center;">${pU.toLocaleString()} DH</td>
+          <td style="text-align:center; font-weight:900;">${lineTotal.toLocaleString()} DH</td>
+        </tr>
+      `;
+    });
+
+    let m3uSectionHTML = "";
+    if (lastXtreamData) {
+      if (lastXtreamData.type === 'abonnement') {
+        m3uSectionHTML = `
+          <div class="sofiane-m3u-box">
+            <div class="sofiane-m3u-title"><i class="fa-solid fa-server"></i> Informations Xtream / M3U</div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Server URL:</span><span class="sofiane-m3u-val">${lastXtreamData.server}</span></div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Username:</span><span class="sofiane-m3u-val">${lastXtreamData.username}</span></div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Password:</span><span class="sofiane-m3u-val">${lastXtreamData.password}</span></div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Durée:</span><span class="sofiane-m3u-val">${lastXtreamData.duration}</span></div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Expiration:</span><span class="sofiane-m3u-val" style="color:#16a34a;">${lastXtreamData.expiry}</span></div>
+          </div>
+        `;
+      } else if (lastXtreamData.type === 'activation') {
+        m3uSectionHTML = `
+          <div class="sofiane-m3u-box">
+            <div class="sofiane-m3u-title"><i class="fa-solid fa-bolt"></i> Informations d'Activation</div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">MAC Address:</span><span class="sofiane-m3u-val" style="color:#1e3a8a; font-size:9px;">${lastXtreamData.mac}</span></div>
+            <div class="sofiane-m3u-row"><span class="sofiane-m3u-label">Durée:</span><span class="sofiane-m3u-val">${lastXtreamData.duration}</span></div>
+          </div>
+        `;
+      }
+    }
+
+    let clientName = currentClientValue;
+    let paymentMethod = currentPaymentValue;
+    let invoiceId = "#ER-" + Math.floor(1000 + Math.random() * 9000);
+
+    let receiptHTML = `
+      <div class="sofiane-invoice">
+        <div class="sofiane-header-box">
+          <div class="sofiane-brand-area">
+            <img src="https://i.ibb.co/6cttJ4ZS/IMG-20261105-WA0007.webp" class="sofiane-brand-logo">
+            <div>
+              <div class="sofiane-brand-title">Eglicias ROKU</div>
+              <div class="sofiane-brand-sub">IPTV & Streaming Solutions</div>
+            </div>
+          </div>
+          <div class="sofiane-contact-pills">
+            <div class="contact-pill"><i class="fa-solid fa-phone"></i> 0644674567</div>
+            <div class="contact-pill"><i class="fa-solid fa-envelope"></i> egliciasroku@gmail.com</div>
+            <div class="contact-pill wa"><i class="fa-brands fa-whatsapp"></i> +212630473498</div>
+          </div>
         </div>
 
-        <div id="playerBuffer" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden-screen">
-            <div class="flex flex-col items-center space-y-3 bg-black/85 p-6 rounded-3xl backdrop-blur-md shadow-gold-glow">
-                <i class="fa-solid fa-bolt fa-spin text-gold-500 text-4xl"></i>
-                <span class="text-xs text-gold-300 font-bold">Buffering fast stream...</span>
-            </div>
+        <div class="sofiane-title-bar">FACTURE COMMANDE IPTV</div>
+
+        <div class="sofiane-meta-grid">
+          <div class="sofiane-meta-item">
+            <span class="sofiane-meta-label">N° facture :</span>
+            <span class="sofiane-meta-val">${invoiceId}</span>
+          </div>
+          <div class="sofiane-meta-item">
+            <span class="sofiane-meta-label">Client :</span>
+            <span class="sofiane-meta-val">${clientName}</span>
+          </div>
+          <div class="sofiane-meta-item">
+            <span class="sofiane-meta-label">Date :</span>
+            <span class="sofiane-meta-val" style="font-size:7px;">${nowStr}</span>
+          </div>
         </div>
 
-        <div class="player-overlay-gradient absolute bottom-0 inset-x-0 p-4 sm:p-6 flex flex-col gap-3 z-10">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <button onclick="togglePlayPause()" id="btnPlayPause" class="tv-focusable w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-xl shadow-gold-glow">
-                        <i class="fa-solid fa-pause"></i>
-                    </button>
-                    <div class="flex items-center space-x-2 bg-black/70 rounded-full px-4 py-2">
-                        <button onclick="toggleMute()" id="btnMute" class="text-gray-300 hover:text-gold-400 text-sm"><i class="fa-solid fa-volume-high"></i></button>
-                        <input type="range" id="volumeBar" min="0" max="1" step="0.1" value="1" oninput="setVolume(this.value)" class="w-16 sm:w-24 accent-gold-500 h-1">
-                    </div>
-                </div>
+        ${m3uSectionHTML}
 
-                <div class="flex items-center space-x-3">
-                    <button onclick="toggleAspect()" class="tv-focusable px-3.5 py-2 rounded-xl bg-black/70 text-xs text-gray-300 font-bold">
-                        <span id="aspectLabel">16:9</span>
-                    </button>
-                    <button onclick="toggleFullscreen()" class="tv-focusable w-10 h-10 rounded-full bg-black/70 text-gray-300 hover:text-gold-400 flex items-center justify-center text-sm">
-                        <i class="fa-solid fa-expand"></i>
-                    </button>
-                </div>
-            </div>
+        <table class="sofiane-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">PRODUIT / ABONNEMENT</th>
+              <th>QTÉ</th>
+              <th>P.U</th>
+              <th>TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>${rowsHTML}</tbody>
+        </table>
+
+        <div style="font-size:8.5px; font-weight:bold; color:#334155;">
+          💳 Paiement: <span style="color:#64748b; font-weight:normal;">${paymentMethod} (${totalPrice} DH)</span>
         </div>
-    </div>
 
-    <!-- =================ENGINE SCRIPT================ -->
-    <script>
-        const state = {
-            host: '',
-            username: '',
-            password: '',
-            isDemoMode: false,
-            userInfo: null,
-            activeTab: 'live',
-            liveCategories: [],
-            vodCategories: [],
-            seriesCategories: [],
-            activeCategory: 'all',
-            liveChannels: [],
-            vodMovies: [],
-            seriesList: [],
-            favorites: JSON.parse(localStorage.getItem('lux_favs_ibo') || '[]'),
-            currentItems: [],
-            renderedCount: 0,
-            batchSize: 40,
-            currentItem: null,
-            hlsInstance: null
-        };
-
-        const demoData = {
-            userInfo: { username: 'LuxStream VIP Demo', status: 'Active', exp_date: '1893456000' },
-            liveCategories: [{ category_id: '1', category_name: '⚽ beIN Sports 4K Channels' }],
-            vodCategories: [{ category_id: '2', category_name: '🔥 Latest 2026 Movies' }],
-            seriesCategories: [{ category_id: '3', category_name: '💎 Netflix & Shahid Series' }],
-            live: [
-                { stream_id: '1', name: 'beIN SPORTS 1 Premium 4K', category_id: '1', stream_icon: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400' },
-                { stream_id: '2', name: 'SSC SPORTS 1 HD Live', category_id: '1', stream_icon: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400' }
-            ],
-            vod: [
-                { stream_id: '101', name: 'Dune: Part Two (2026 4K)', category_id: '2', stream_icon: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400', rating: '8.8', container_extension: 'mp4' }
-            ],
-            series: [
-                { series_id: '201', name: 'House of the Dragon S2', category_id: '3', cover: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400', rating: '8.7' }
-            ]
-        };
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initAutoLogin();
-            initTVNavigation();
-            bindPlayerEvents();
-        });
-
-        function cleanHostUrl(rawHost) {
-            let host = rawHost.trim();
-            if (!host.startsWith('http://') && !host.startsWith('https://')) host = 'http://' + host;
-            return host.replace(/\/+$/, '');
-        }
-
-        /* نظام جلب البيانات المحسن مع CORS Fallback التسلسلي */
-        async function fetchXtreamApi(actionUrl) {
-            const useProxy = document.getElementById('useProxy')?.checked;
-            
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 6000);
-                const res = await fetch(actionUrl, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data) return data;
-                }
-            } catch (err) {}
-
-            if (useProxy) {
-                const proxyEndpoints = [
-                    `https://api.allorigins.win/raw?url=${encodeURIComponent(actionUrl)}`,
-                    `https://corsproxy.io/?${encodeURIComponent(actionUrl)}`,
-                    `https://thingproxy.freeboard.io/fetch/${actionUrl}`
-                ];
-
-                for (const proxyUrl of proxyEndpoints) {
-                    try {
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 7000);
-                        const res = await fetch(proxyUrl, { signal: controller.signal });
-                        clearTimeout(timeoutId);
-                        if (res.ok) {
-                            const text = await res.text();
-                            const data = JSON.parse(text);
-                            if (data) return data;
-                        }
-                    } catch (e) {}
-                }
-            }
-            throw new Error("Unable to fetch data from the current server. Check host URL and server status.");
-        }
-
-        async function handleLogin(e) {
-            e.preventDefault();
-            const host = cleanHostUrl(document.getElementById('hostInput').value);
-            const user = document.getElementById('userInput').value.trim();
-            const pass = document.getElementById('passInput').value.trim();
-
-            localStorage.setItem('lux_host', host);
-            localStorage.setItem('lux_user', user);
-            localStorage.setItem('lux_pass', pass);
-
-            await performLogin(host, user, pass);
-        }
-
-        async function performLogin(host, user, pass) {
-            showLoginError('');
-            const loginBtn = document.getElementById('loginBtn');
-            loginBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Connecting to server...</span>`;
-
-            state.host = host;
-            state.username = user;
-            state.password = pass;
-            state.isDemoMode = false;
-
-            try {
-                const authUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}`;
-                const data = await fetchXtreamApi(authUrl);
-
-                if (data && data.user_info && (data.user_info.auth === 1 || data.user_info.status === "Active")) {
-                    state.userInfo = data.user_info;
-                    document.getElementById('loginScreen').classList.add('hidden-screen');
-                    document.getElementById('mainDashboard').classList.remove('hidden-screen');
-                    await loadXtreamData();
-                } else {
-                    throw new Error('Invalid account details or subscription expired.');
-                }
-            } catch (err) {
-                showLoginError(err.message || 'Connection failed.');
-            } finally {
-                loginBtn.innerHTML = `<span>Fast Account Login</span> <i class="fa-solid fa-bolt"></i>`;
-            }
-        }
-
-        function startDemoMode() {
-            state.isDemoMode = true;
-            state.userInfo = demoData.userInfo;
-            state.liveChannels = demoData.live;
-            state.vodMovies = demoData.vod;
-            state.seriesList = demoData.series;
-            state.liveCategories = demoData.liveCategories;
-            state.vodCategories = demoData.vodCategories;
-            state.seriesCategories = demoData.seriesCategories;
-
-            document.getElementById('loginScreen').classList.add('hidden-screen');
-            document.getElementById('mainDashboard').classList.remove('hidden-screen');
-
-            updateHomeCounters();
-            showHomeScreen();
-        }
-
-        function initAutoLogin() {
-            const h = localStorage.getItem('lux_host');
-            const u = localStorage.getItem('lux_user');
-            const p = localStorage.getItem('lux_pass');
-            if (h) document.getElementById('hostInput').value = h;
-            if (u) document.getElementById('userInput').value = u;
-            if (p) document.getElementById('passInput').value = p;
-            if (h && u && p) performLogin(h, u, p);
-        }
-
-        async function loadXtreamData() {
-            if (state.isDemoMode) return;
-
-            try {
-                const liveCatUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_live_categories`;
-                const vodCatUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_vod_categories`;
-                const seriesCatUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_series_categories`;
-
-                const liveStreamUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_live_streams`;
-                const vodStreamUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_vod_streams`;
-                const seriesUrl = `${state.host}/player_api.php?username=${state.username}&password=${state.password}&action=get_series`;
-
-                const [liveCats, vodCats, seriesCats, live, vod, series] = await Promise.all([
-                    fetchXtreamApi(liveCatUrl).catch(() => []),
-                    fetchXtreamApi(vodCatUrl).catch(() => []),
-                    fetchXtreamApi(seriesCatUrl).catch(() => []),
-                    fetchXtreamApi(liveStreamUrl).catch(() => []),
-                    fetchXtreamApi(vodStreamUrl).catch(() => []),
-                    fetchXtreamApi(seriesUrl).catch(() => [])
-                ]);
-
-                state.liveCategories = Array.isArray(liveCats) ? liveCats : [];
-                state.vodCategories = Array.isArray(vodCats) ? vodCats : [];
-                state.seriesCategories = Array.isArray(seriesCats) ? seriesCats : [];
-
-                state.liveChannels = Array.isArray(live) ? live : [];
-                state.vodMovies = Array.isArray(vod) ? vod : [];
-                state.seriesList = Array.isArray(series) ? series : [];
-
-                if (!state.liveChannels.length && !state.vodMovies.length) {
-                    state.liveChannels = demoData.live;
-                    state.vodMovies = demoData.vod;
-                    state.seriesList = demoData.series;
-                }
-
-                updateHomeCounters();
-                showHomeScreen();
-            } catch (err) {
-                startDemoMode();
-            }
-        }
-
-        function updateHomeCounters() {
-            document.getElementById('homeLiveCount').innerText = `${state.liveChannels.length} Channels`;
-            document.getElementById('homeVodCount').innerText = `${state.vodMovies.length} Movies`;
-            document.getElementById('homeSeriesCount').innerText = `${state.seriesList.length} Series`;
-            document.getElementById('homeFavCount').innerText = `${state.favorites.length}`;
-        }
-
-        function showHomeScreen() {
-            document.getElementById('iboHomeScreen').classList.remove('hidden-screen');
-            document.getElementById('iboContentView').classList.add('hidden-screen');
-            document.getElementById('backToHomeBtn').classList.add('hidden');
-        }
-
-        function openDashboardCategory(tabName) {
-            state.activeTab = tabName;
-            state.activeCategory = 'all';
-
-            document.getElementById('iboHomeScreen').classList.add('hidden-screen');
-            document.getElementById('iboContentView').classList.remove('hidden-screen');
-            document.getElementById('backToHomeBtn').classList.remove('hidden');
-
-            const titleMap = { live: 'Live TV', vod: 'VOD Movies', series: 'Series', favorites: 'Favorites' };
-            document.getElementById('activeTabTitle').innerText = titleMap[tabName] || 'Categories';
-
-            renderSubCategories();
-            filterAndRenderItems();
-        }
-
-        function getCurrentTabCategories() {
-            if (state.activeTab === 'live') return state.liveCategories;
-            if (state.activeTab === 'vod') return state.vodCategories;
-            if (state.activeTab === 'series') return state.seriesCategories;
-            return [];
-        }
-
-        function renderSubCategories() {
-            const track = document.getElementById('categoriesTrack');
-            const categories = getCurrentTabCategories();
-            document.getElementById('catCount').innerText = categories.length || 0;
-
-            let html = `
-                <button onclick="selectCategory('all')" class="cat-btn tv-focusable shrink-0 px-4 py-2 rounded-xl text-xs font-bold ${state.activeCategory === 'all' ? 'bg-gradient-to-r from-gold-500 to-gold-600 text-black shadow-gold-glow' : 'bg-black/60 text-gray-300'}">
-                    All (${getCurrentTabItems().length})
-                </button>
-            `;
-
-            categories.forEach(cat => {
-                const catId = cat.category_id;
-                const isSelected = state.activeCategory == catId;
-                html += `
-                    <button onclick="selectCategory('${catId}')" class="cat-btn tv-focusable shrink-0 px-4 py-2 rounded-xl text-xs font-bold ${isSelected ? 'bg-gradient-to-r from-gold-500 to-gold-600 text-black shadow-gold-glow' : 'bg-black/60 text-gray-400'}">
-                        ${cat.category_name}
-                    </button>
-                `;
-            });
-
-            track.innerHTML = html;
-        }
-
-        function selectCategory(catId) {
-            state.activeCategory = catId;
-            renderSubCategories();
-            filterAndRenderItems();
-        }
-
-        function getCurrentTabItems() {
-            if (state.activeTab === 'live') return state.liveChannels;
-            if (state.activeTab === 'vod') return state.vodMovies;
-            if (state.activeTab === 'series') return state.seriesList;
-            if (state.activeTab === 'favorites') return state.favorites;
-            return [];
-        }
-
-        function filterAndRenderItems(query = '') {
-            let items = getCurrentTabItems();
-
-            if (state.activeCategory !== 'all' && state.activeTab !== 'favorites') {
-                items = items.filter(item => item.category_id == state.activeCategory);
-            }
-
-            if (query.trim() !== '') {
-                const q = query.toLowerCase();
-                items = items.filter(item => (item.name || item.title || '').toLowerCase().includes(q));
-            }
-
-            state.currentItems = items;
-            state.renderedCount = 0;
-            document.getElementById('itemsCount').innerText = `(${items.length} items)`;
-            
-            document.getElementById('itemsGrid').innerHTML = '';
-            document.getElementById('gridContainer').scrollTop = 0;
-
-            renderNextBatch();
-        }
-
-        function renderNextBatch() {
-            const container = document.getElementById('itemsGrid');
-            const items = state.currentItems;
-            
-            if (!items || items.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-20 text-center text-gray-500">
-                        <i class="fa-solid fa-film text-5xl mb-3 text-gold-500/20"></i>
-                        <p class="text-xs font-semibold">No content available in this section</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const start = state.renderedCount;
-            const end = Math.min(start + state.batchSize, items.length);
-            if (start >= items.length) return;
-
-            const isLive = state.activeTab === 'live';
-            const fragment = document.createDocumentFragment();
-
-            for (let i = start; i < end; i++) {
-                const item = items[i];
-                const id = item.stream_id || item.series_id;
-                const isFav = state.favorites.some(f => (f.stream_id || f.series_id) === id);
-                const title = item.name || item.title || 'LuxStream Content';
-                const icon = item.stream_icon || item.cover || 'https://placehold.co/300x450/0c1018/d4af37?text=LuxStream';
-
-                const card = document.createElement('div');
-                card.className = "ibo-card tv-focusable rounded-2xl overflow-hidden cursor-pointer group flex flex-col justify-between";
-
-                if (isLive) {
-                    card.onclick = () => playItem(i);
-                    card.innerHTML = `
-                        <div class="aspect-video w-full overflow-hidden bg-black/80 relative p-2 flex items-center justify-center">
-                            <img src="${icon}" onerror="this.src='https://placehold.co/300x200/0c1018/d4af37?text=LIVE+TV'" alt="${title}" class="max-h-full max-w-full object-contain" loading="lazy">
-                            <span class="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-white live-dot"></span> LIVE
-                            </span>
-                            <button onclick="event.stopPropagation(); toggleFavorite('${id}')" class="absolute top-2 right-2 p-1.5 rounded-full bg-black/70 text-xs ${isFav ? 'text-amber-400' : 'text-gray-400'}">
-                                <i class="fa-solid fa-star"></i>
-                            </button>
-                        </div>
-                        <div class="p-3 bg-black/60">
-                            <h4 class="text-xs font-bold text-gray-200 truncate group-hover:text-gold-400">${title}</h4>
-                        </div>
-                    `;
-                } else {
-                    card.onclick = () => openDetailsModal(i);
-                    card.innerHTML = `
-                        <div class="aspect-[2/3] w-full overflow-hidden bg-black/80 relative">
-                            <img src="${icon}" onerror="this.src='https://placehold.co/300x450/0c1018/d4af37?text=LuxStream+VOD'" alt="${title}" class="w-full h-full object-cover" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex flex-col justify-end">
-                                <span class="text-[10px] text-amber-300 font-bold mb-1"><i class="fa-solid fa-star text-amber-400 ml-1"></i>${item.rating || '8.8'} IMDb</span>
-                                <div class="w-full py-2 bg-gold-500 text-black font-extrabold rounded-xl text-xs text-center shadow-gold-glow">Details</div>
-                            </div>
-                            <button onclick="event.stopPropagation(); toggleFavorite('${id}')" class="absolute top-2 right-2 p-1.5 rounded-full bg-black/70 text-xs ${isFav ? 'text-amber-400' : 'text-gray-400'} z-10">
-                                <i class="fa-solid fa-star"></i>
-                            </button>
-                        </div>
-                        <div class="p-3 bg-black/70">
-                            <h4 class="text-xs font-bold text-gray-200 truncate group-hover:text-gold-400">${title}</h4>
-                        </div>
-                    `;
-                }
-                fragment.appendChild(card);
-            }
-
-            container.appendChild(fragment);
-            state.renderedCount = end;
-        }
-
-        function handleScroll(el) {
-            if (el.scrollTop + el.clientHeight >= el.scrollHeight - 300) {
-                renderNextBatch();
-            }
-        }
-
-        function openDetailsModal(index) {
-            const item = state.currentItems[index];
-            if (!item) return;
-
-            state.currentItem = item;
-            const icon = item.stream_icon || item.cover || 'https://placehold.co/800x450/0c1018/d4af37?text=LuxStream';
-            
-            document.getElementById('modalBackdrop').src = icon;
-            document.getElementById('modalTitle').innerText = item.name || item.title || 'LuxStream Title';
-            document.getElementById('modalRating').innerHTML = `<i class="fa-solid fa-star text-xs ml-1"></i> ${item.rating || '8.8'}`;
-            document.getElementById('modalPlot').innerText = item.plot || 'Enjoy watching this luxury title in ultra-high definition 4K without ads using the fast LuxStream Ultra server.';
-
-            const playBtn = document.getElementById('modalPlayBtn');
-            playBtn.onclick = () => { closeDetailsModal(); playItem(index); };
-
-            const seriesSection = document.getElementById('seriesEpisodesSection');
-            if (state.activeTab === 'series') {
-                seriesSection.classList.remove('hidden-screen');
-                loadSeasonEpisodes();
-            } else {
-                seriesSection.classList.add('hidden-screen');
-            }
-
-            document.getElementById('detailsModal').classList.remove('hidden-screen');
-        }
-
-        function closeDetailsModal() { document.getElementById('detailsModal').classList.add('hidden-screen'); }
-
-        function loadSeasonEpisodes() {
-            const container = document.getElementById('episodesList');
-            let html = '';
-            for (let i = 1; i <= 6; i++) {
-                html += `
-                    <div onclick="closeDetailsModal(); playItem(0);" class="ibo-card tv-focusable p-3 rounded-xl cursor-pointer hover:scale-105 flex items-center space-x-3">
-                        <div class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 font-bold flex items-center justify-center text-xs shrink-0">${i}</div>
-                        <div class="truncate">
-                            <h5 class="text-xs font-bold text-gray-200">Episode ${i}</h5>
-                            <span class="text-[10px] text-gray-400">45 mins</span>
-                        </div>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
-        }
-
-        function playItem(index) {
-            const item = state.currentItems[index];
-            if (!item) return;
-
-            state.currentItem = item;
-            const video = document.getElementById('videoElement');
-            const buffer = document.getElementById('playerBuffer');
-            document.getElementById('playerTitle').innerText = item.name || item.title || 'LuxStream Stream';
-
-            let streamUrl = '';
-            if (state.isDemoMode) {
-                streamUrl = 'https://test-streams.mux.dev/x36xhtml/x36xhtml.m3u8';
-            } else if (state.activeTab === 'live') {
-                streamUrl = `${state.host}/live/${state.username}/${state.password}/${item.stream_id}.m3u8`;
-            } else if (state.activeTab === 'vod') {
-                streamUrl = `${state.host}/movie/${state.username}/${state.password}/${item.stream_id}.${item.container_extension || 'mp4'}`;
-            } else {
-                streamUrl = `${state.host}/series/${state.username}/${state.password}/${item.stream_id}.m3u8`;
-            }
-
-            document.getElementById('playerOverlay').classList.remove('hidden-screen');
-            buffer.classList.remove('hidden-screen');
-
-            if (state.hlsInstance) {
-                state.hlsInstance.destroy();
-                state.hlsInstance = null;
-            }
-            video.pause();
-            video.removeAttribute('src');
-            video.load();
-
-            if (Hls.isSupported() && (streamUrl.endsWith('.m3u8') || state.activeTab === 'live')) {
-                const hls = new Hls({
-                    enableWorker: true,
-                    lowLatencyMode: true,
-                    maxBufferLength: 10,
-                    maxMaxBufferLength: 20
-                });
-                state.hlsInstance = hls;
-                hls.loadSource(streamUrl);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    video.play().catch(e => console.error(e));
-                });
-            } else {
-                video.src = streamUrl;
-                video.play().catch(e => console.error(e));
-            }
-        }
-
-        function bindPlayerEvents() {
-            const video = document.getElementById('videoElement');
-            const buffer = document.getElementById('playerBuffer');
-
-            video.addEventListener('canplay', () => buffer.classList.add('hidden-screen'));
-            video.addEventListener('playing', () => buffer.classList.add('hidden-screen'));
-            video.addEventListener('waiting', () => buffer.classList.remove('hidden-screen'));
-        }
-
-        function closePlayer() {
-            const video = document.getElementById('videoElement');
-            video.pause();
-            video.removeAttribute('src');
-            if (state.hlsInstance) {
-                state.hlsInstance.destroy();
-                state.hlsInstance = null;
-            }
-            document.getElementById('playerOverlay').classList.add('hidden-screen');
-        }
-
-        function togglePlayPause() {
-            const video = document.getElementById('videoElement');
-            if (video.paused) video.play(); else video.pause();
-        }
-
-        function toggleMute() {
-            const video = document.getElementById('videoElement');
-            video.muted = !video.muted;
-        }
-
-        function setVolume(v) { document.getElementById('videoElement').volume = v; }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) document.getElementById('playerOverlay').requestFullscreen();
-            else document.exitFullscreen();
-        }
-
-        function toggleAspect() {
-            const video = document.getElementById('videoElement');
-            video.style.objectFit = video.style.objectFit === 'cover' ? 'contain' : 'cover';
-        }
-
-        function toggleFavorite(id) {
-            const items = getCurrentTabItems();
-            const item = items.find(i => (i.stream_id || i.series_id) == id);
-            if (!item) return;
-
-            const idx = state.favorites.findIndex(f => (f.stream_id || f.series_id) == id);
-            if (idx > -1) state.favorites.splice(idx, 1);
-            else state.favorites.push(item);
-
-            localStorage.setItem('lux_favs_ibo', JSON.stringify(state.favorites));
-            updateHomeCounters();
-            filterAndRenderItems();
-        }
-
-        function handleGlobalSearch(q) {
-            if (document.getElementById('iboHomeScreen').classList.contains('hidden-screen') === false) {
-                openDashboardCategory('live');
-            }
-            filterAndRenderItems(q);
-        }
-
-        function showAccountModal() {
-            const info = state.userInfo || {};
-            const details = document.getElementById('accountInfoDetails');
-            details.innerHTML = `
-                <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Username:</span> <span class="font-bold text-gold-400">${info.username || state.username}</span></div>
-                <div class="flex justify-between py-2 border-b border-gray-800"><span class="text-gray-400">Status:</span> <span class="text-emerald-400 font-semibold">${info.status || 'Active'}</span></div>
-                <div class="flex justify-between py-2"><span class="text-gray-400">Server:</span> <span class="font-mono text-gray-300">${state.host || 'Demo Server'}</span></div>
-            `;
-            document.getElementById('accountModal').classList.remove('hidden-screen');
-        }
-
-        function closeAccountModal() { document.getElementById('accountModal').classList.add('hidden-screen'); }
-
-        function logout() { localStorage.clear(); location.reload(); }
-
-        function showLoginError(msg) {
-            const errDiv = document.getElementById('loginError');
-            if (msg) { errDiv.innerText = msg; errDiv.classList.remove('hidden'); }
-            else { errDiv.classList.add('hidden'); }
-        }
-
-        function initTVNavigation() {
-            document.addEventListener('keydown', (e) => {
-                const focusables = Array.from(document.querySelectorAll('.tv-focusable:not(.hidden-screen)'));
-                if (!focusables.length) return;
-
-                let activeEl = document.activeElement;
-                let currentIndex = focusables.indexOf(activeEl);
-
-                if (e.key === 'ArrowRight' && currentIndex < focusables.length - 1) focusables[currentIndex + 1].focus();
-                if (e.key === 'ArrowLeft' && currentIndex > 0) focusables[currentIndex - 1].focus();
-                if (e.key === 'ArrowDown' && currentIndex + 3 < focusables.length) focusables[currentIndex + 3].focus();
-                if (e.key === 'ArrowUp' && currentIndex - 3 >= 0) focusables[currentIndex - 3].focus();
-            });
-        }
-    </script>
+        <div class="sofiane-summary-box">
+          <div class="sofiane-sum-row">
+            <span>Total (DH) :</span>
+            <span style="font-weight:900; color:#d4af37;">${totalPrice.toLocaleString()} DH</span>
+          </div>
+        </div>
+
+        <div class="sofiane-footer-note">
+          ★ MERCI POUR VOTRE CONFIANCE ★<br>Eglicias ROKU IPTV.
+        </div>
+      </div>
+    `;
+
+    document.getElementById('receiptModalBody').innerHTML = receiptHTML;
+    document.getElementById('receiptModal').classList.add('hidden');
+    document.getElementById('receiptModal').classList.remove('hidden');
+    lastXtreamData = null;
+  }
+
+  function closeReceiptModal() { document.getElementById('receiptModal').classList.add('hidden'); }
+  function openSettingsModal() { document.getElementById('settingsModal').classList.remove('hidden'); }
+  function closeSettingsModal() { document.getElementById('settingsModal').classList.add('hidden'); }
+  function scrollToGrid() { const grid = document.getElementById('productsGrid'); if(grid) grid.scrollIntoView({ behavior: 'smooth' }); }
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.remove('translate-y-20', 'opacity-0');
+    setTimeout(() => { t.classList.add('translate-y-20', 'opacity-0'); }, 2200);
+  }
+
+  renderStoreProducts();
+</script>
 </body>
 </html>
