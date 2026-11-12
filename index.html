@@ -385,7 +385,7 @@
           
           <!-- 1. حقل IPTV -->
           <div class="space-y-1.5">
-            <div onclick="toggleAuthBox('iptvBox', this)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
+            <div onclick="toggleAuthBox('iptvBox', event)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
               <img src="https://i.ibb.co/217c4j4T/1794235213318.jpg" alt="IPTV Luxury Banner" class="w-full h-20 object-cover rounded-xl filter brightness-90 group-hover:brightness-100 transition">
               <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-2">
                 <span class="text-[9px] font-black text-neonLime flex items-center gap-1.5">
@@ -394,8 +394,8 @@
               </div>
             </div>
 
-            <div id="iptvBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl">
-              <textarea id="portalAuthIptvInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-neonLime text-[9.5px]" placeholder="Code Activation for Access"></textarea>
+            <div id="iptvBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl" onclick="event.stopPropagation()">
+              <textarea id="portalAuthIptvInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-neonLime text-[9.5px]" placeholder="Code Activation IPTV"></textarea>
               <button onclick="loginPortal('iptv')" class="w-full py-2 rounded-xl bg-gradient-to-r from-luxGold to-yellow-500 text-darkBg font-black text-[9.5px] shadow-lg flex items-center justify-center gap-1.5 hover:brightness-110 transition">
                 <i class="fa-solid fa-bolt"></i> <span>Entrer IPTV</span>
               </button>
@@ -404,7 +404,7 @@
 
           <!-- 2. حقل Électroménager -->
           <div class="space-y-1.5 pt-1">
-            <div onclick="toggleAuthBox('homeBox', this)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
+            <div onclick="toggleAuthBox('homeBox', event)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
               <img src="https://i.ibb.co/rRVDxfBq/1794308602825.jpg" alt="Électroménager Banner" class="w-full h-20 object-cover rounded-xl filter brightness-90 group-hover:brightness-100 transition">
               <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-2">
                 <span class="text-[9px] font-black text-cyan-400 flex items-center gap-1.5">
@@ -413,8 +413,8 @@
               </div>
             </div>
 
-            <div id="homeBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl">
-              <textarea id="portalAuthHomeInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-cyan-400 text-[9.5px]" placeholder="Code Activation for Access"></textarea>
+            <div id="homeBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl" onclick="event.stopPropagation()">
+              <textarea id="portalAuthHomeInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-cyan-400 text-[9.5px]" placeholder="Code Activation Électroménager"></textarea>
               <button onclick="loginPortal('home')" class="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-darkBg font-black text-[9.5px] shadow-lg flex items-center justify-center gap-1.5 hover:brightness-110 transition">
                 <i class="fa-solid fa-bolt"></i> <span>Entrer Électroménager</span>
               </button>
@@ -423,7 +423,7 @@
 
           <!-- 3. حقل مواقع وقوالب الويب الجاهزة -->
           <div class="space-y-1.5 pt-1">
-            <div onclick="toggleAuthBox('webBox', this)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
+            <div onclick="toggleAuthBox('webBox', event)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
               <img src="https://i.ibb.co/HD72fS8h/1794307372727.jpg" alt="Web Templates Banner" class="w-full h-20 object-cover rounded-xl filter brightness-90 group-hover:brightness-100 transition">
               <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-2">
                 <span class="text-[9px] font-black text-emerald-400 flex items-center gap-1.5">
@@ -432,17 +432,17 @@
               </div>
             </div>
 
-            <div id="webBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl">
-              <textarea id="portalAuthWebInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-emerald-400 text-[9.5px]" placeholder="Code Activation for Access"></textarea>
+            <div id="webBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl" onclick="event.stopPropagation()">
+              <textarea id="portalAuthWebInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-emerald-400 text-[9.5px]" placeholder="Code Activation Templates Web"></textarea>
               <button onclick="loginPortal('web')" class="w-full py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 text-darkBg font-black text-[9.5px] shadow-lg flex items-center justify-center gap-1.5 hover:brightness-110 transition">
                 <i class="fa-solid fa-bolt"></i> <span>Entrer Templates Web</span>
               </button>
             </div>
           </div>
 
-          <!-- 4. حقل صيانة الحواسب والهواتف والشاشات (Repair) بدون إظهار رمز الأمان -->
+          <!-- 4. حقل صيانة الحواسب والهواتف والشاشات (Repair) -->
           <div class="space-y-1.5 pt-1">
-            <div onclick="toggleAuthBox('repairBox', this)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
+            <div onclick="toggleAuthBox('repairBox', event)" class="cursor-pointer relative rounded-xl overflow-hidden shadow-xl group transition hover:scale-[1.01]">
               <img src="https://i.ibb.co/hJnzYgrz/png-clipart-appliance-and-device-repair-advertisement-screenshot-laptop-computer-repair-technician-m.webp" alt="Repair Banner" class="w-full h-20 object-cover rounded-xl filter brightness-90 group-hover:brightness-100 transition">
               <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-transparent to-transparent flex items-end p-2">
                 <span class="text-[9px] font-black text-amber-400 flex items-center gap-1.5">
@@ -451,8 +451,8 @@
               </div>
             </div>
 
-            <div id="repairBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl">
-              <textarea id="portalAuthRepairInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-amber-400 text-[9.5px]" placeholder="Code Activation for Access"></textarea>
+            <div id="repairBox" class="hidden space-y-2 pt-1 bg-black/40 p-2.5 rounded-2xl" onclick="event.stopPropagation()">
+              <textarea id="portalAuthRepairInput" rows="2" class="glass-input w-full p-2.5 rounded-xl font-mono text-amber-400 text-[9.5px]" placeholder="Code Activation Maintenance"></textarea>
               <button onclick="loginPortal('repair')" class="w-full py-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-600 text-darkBg font-black text-[9.5px] shadow-lg flex items-center justify-center gap-1.5 hover:brightness-110 transition">
                 <i class="fa-solid fa-bolt"></i> <span>Entrer Maintenance</span>
               </button>
@@ -1226,7 +1226,7 @@
     </div>
   </div>
 
-  <div id="toast" class="fixed bottom-16 right-4 glass-panel text-luxGold px-4 py-2.5 rounded-xl text-[10.5px] shadow-2xl transform translate-y-20 opacity-0 transition duration-300 z-50 font-black"></div>
+  <div id="toast" class="fixed bottom-16 right-4 glass-panel text-luxGold px-4 py-2.5 rounded-xl text-[10.5px] shadow-2xl transform translate-y-20 opacity-0 transition duration-300 z-[999999] font-black pointer-events-none"></div>
 
 <script>
   const ADMIN_SECRET_KEY = "farouk2026_admin";
@@ -1282,19 +1282,8 @@
   clientSecretPassword = localStorage.getItem('er_client_password') || "er2026_client";
 
   window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const userParam = urlParams.get('user');
-    
     let savedRole = localStorage.getItem('er_active_role');
     
-    if(userParam && !savedRole) {
-      activePortalRole = 'iptv';
-      localStorage.setItem('er_active_role', 'iptv');
-      document.getElementById('universalAuthScreen').classList.add('hidden');
-      applyPortalView();
-      return;
-    }
-
     if(savedRole && ['iptv', 'home', 'web', 'repair'].includes(savedRole)) {
       activePortalRole = savedRole;
       document.getElementById('universalAuthScreen').classList.add('hidden');
@@ -1304,28 +1293,41 @@
     }
   });
 
-  function toggleAuthBox(boxId, el) {
+  function toggleAuthBox(boxId, event) {
+    if(event) event.stopPropagation();
+    
+    const targetBox = document.getElementById(boxId);
+    const isAlreadyVisible = targetBox && !targetBox.classList.contains('hidden');
+
     ['iptvBox', 'homeBox', 'webBox', 'repairBox'].forEach(id => {
       const b = document.getElementById(id);
       if(b) b.classList.add('hidden');
     });
 
-    const targetBox = document.getElementById(boxId);
-    if(targetBox) {
+    if(targetBox && !isAlreadyVisible) {
       targetBox.classList.remove('hidden');
       const textarea = targetBox.querySelector('textarea');
-      if(textarea) { setTimeout(() => { textarea.focus(); }, 150); }
+      if(textarea) { 
+        setTimeout(() => { textarea.focus(); }, 100); 
+      }
+    } else if(targetBox && isAlreadyVisible) {
+      targetBox.classList.add('hidden');
     }
   }
 
-  function parseAndApplyEncryptedCode(rawCode) {
+  function parseAndApplyEncryptedCode(rawCode, expectedRole) {
     if (!rawCode || rawCode.trim() === "") return false;
     let cleanCode = rawCode.trim();
 
     try {
       let decodedStr = atob(cleanCode);
       let data = JSON.parse(decodedStr);
-      if(data) {
+      
+      if(data && (data.clientPassword || data.name)) {
+        if (data.platform && data.platform !== expectedRole) {
+          return false;
+        }
+
         clientProfile.name = data.name || "Client Sécurisé";
         clientProfile.storeName = data.storeName || data.name || "Boutique Partenaire";
         clientProfile.phone = data.phone || "+212630473498";
@@ -1339,11 +1341,9 @@
         return true;
       }
     } catch(e) {
-      clientSecretPassword = "er2026_client";
-      localStorage.setItem('er_client_password', clientSecretPassword);
-      return true;
+      return false;
     }
-    return true;
+    return false;
   }
 
   function loginPortal(role) {
@@ -1355,16 +1355,21 @@
 
     let codeValue = document.getElementById(codeInputId).value.trim();
     if(codeValue === "") {
-      toast('⚠️ Veuillez entrer le code d\'accès !');
+      toast('⚠️ الكود غير صحيح');
       return;
     }
 
-    parseAndApplyEncryptedCode(codeValue);
+    let isValidCode = parseAndApplyEncryptedCode(codeValue, role);
+    if (!isValidCode && codeValue !== ADMIN_SECRET_KEY) {
+      toast('الكود غير صحيح');
+      return;
+    }
+
     activePortalRole = role;
     localStorage.setItem('er_active_role', role);
     document.getElementById('universalAuthScreen').classList.add('hidden');
     applyPortalView();
-    toast('✨ Accès autorisé avec succès !');
+    toast('تهانينا لقد تم دخول بنجاح');
   }
 
   function logoutPortal() {
@@ -1385,21 +1390,19 @@
 
   function accessDashboard(viewName) {
     let savedClientPass = localStorage.getItem('er_client_password') || clientSecretPassword;
-    let password = prompt("🔒 Entrez votre mot de passe secret (Fourni dans votre code chiffré) :");
+    let password = prompt("🔒 Entrez votre mot de passe secret :");
     
     if (password === savedClientPass || password === ADMIN_SECRET_KEY) {
       switchView(viewName);
-      toast("✨ Accès Administrateur Autorisé");
+      toast("تهانينا لقد تم دخول بنجاح");
     } else {
-      toast("❌ Mot de passe incorrect ! Accès refusé.");
+      toast("الكود غير صحيح");
     }
   }
 
   function applyPortalView() {
     applyClientBranding();
     const navButtons = document.getElementById('headerNavButtons');
-    const urlParams = new URLSearchParams(window.location.search);
-    const userParam = urlParams.get('user');
 
     if(activePortalRole === 'iptv') {
       navButtons.innerHTML = `
@@ -1453,10 +1456,6 @@
     let effectiveLogo = clientProfile.logo || "https://i.ibb.co/HD72fS8h/1794307372727.jpg";
     let effectiveHero = clientProfile.heroBanner || clientProfile.logo || "https://i.ibb.co/HD72fS8h/1794307372727.jpg";
     let effectivePhone = clientProfile.phone || "+212630473498";
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const userParam = urlParams.get('user');
-    if(userParam) { effectiveStoreName = userParam.replace(/_/g, ' ').toUpperCase(); }
 
     document.getElementById('dynamicBrandLogo').src = effectiveLogo;
     if(document.getElementById('dynamicStoreHeroBanner')) document.getElementById('dynamicStoreHeroBanner').src = effectiveHero;
@@ -2346,11 +2345,16 @@
 
   function closeReceiptModal() { document.getElementById('receiptModal').classList.add('hidden'); }
   function scrollToGrid() { const grid = document.getElementById('storeSection'); if(grid) grid.scrollIntoView({ behavior: 'smooth' }); }
+  
   function toast(msg) {
     let t = document.getElementById('toast');
+    if(!t) return;
     t.textContent = msg;
     t.classList.remove('translate-y-20', 'opacity-0');
-    setTimeout(() => { t.classList.add('translate-y-20', 'opacity-0'); }, 2200);
+    t.style.zIndex = "999999";
+    setTimeout(() => { 
+      t.classList.add('translate-y-20', 'opacity-0'); 
+    }, 3000);
   }
 </script>
 </body>
