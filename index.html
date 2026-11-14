@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr" id="htmlRoot">
 <head>
@@ -112,10 +111,9 @@
 </head>
 <body>
 
-  <!-- نافذة تسجيل دخول الأدمين مع بانر الصورة الكبيرة فوق حقل كلمة السر -->
-  <div id="adminAuthModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[99999] hidden flex items-center justify-center p-4">
-    <div class="glass-panel w-full max-w-md p-6 rounded-3xl space-y-4 shadow-2xl text-center relative max-h-[90vh] overflow-y-auto">
-      <button type="button" onclick="closeAdminAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white cursor-pointer z-10"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <!-- نافذة تسجيل دخول الأدمين الحصري (بدون زر إغلاق لتفادي التخطي) -->
+  <div id="adminAuthModal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[99999] flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-md p-6 rounded-3xl space-y-4 shadow-2xl text-center relative max-h-[90vh] overflow-y-auto border border-luxGold/40">
       
       <!-- بانر الصورة الكبيرة فوق حقل كلمة السر -->
       <div class="w-full rounded-2xl overflow-hidden border border-luxGold/30 shadow-xl mb-2">
@@ -126,8 +124,8 @@
         <i class="fa-solid fa-user-shield text-darkBg"></i>
       </div>
       <div>
-        <h2 class="text-sm font-black text-luxGold tracking-widest uppercase">ESPACE ADMIN</h2>
-        <p class="text-[9.5px] text-gray-400 mt-1">Entrez le code secret Admin (er2026_master)</p>
+        <h2 class="text-sm font-black text-luxGold tracking-widest uppercase">ESPACE ADMIN SÉCURISÉ</h2>
+        <p class="text-[9.5px] text-gray-400 mt-1">Entrez le code secret Admin pour déverrouiller la page</p>
       </div>
 
       <div class="space-y-3 pt-2">
@@ -583,6 +581,8 @@
     const isAdmin = localStorage.getItem('er_admin_session') === 'true';
 
     if(isAdmin) {
+      // إذا كان مسجلاً مسبقاً، نخفي نافذة الإقرار ونفتح لوحة التحكم
+      document.getElementById('adminAuthModal').classList.add('hidden');
       clientProfile.userType = 'admin';
       document.getElementById('adminDashboardContainer').classList.remove('hidden');
       renderAdminCatalog('all');
@@ -590,6 +590,8 @@
     } else if(token) {
       let decryptedData = parseSecureToken(token);
       if(decryptedData) {
+        // إذا كان رابط زبون أو عميل، نخفي نافذة الأدمين الإجبارية ونعرض محتوى الزبون
+        document.getElementById('adminAuthModal').classList.add('hidden');
         currentLoadedData = decryptedData;
         clientProfile.name = decryptedData.client;
         clientProfile.storeName = decryptedData.client;
@@ -619,7 +621,8 @@
         document.body.innerHTML = `<div style="background:#030709;color:#ff4444;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:sans-serif;gap:10px;"><h2>❌ Lien Expiré ou Invalide !</h2><p style="color:#888;font-size:12px;">Ce lien sécurisé n'est plus actif ou a expiré.</p></div>`;
       }
     } else {
-      openAdminAuthModal();
+      // الزيارة المباشرة للرابط الرئيسي تتطلب كلمة سر الأدمين حصراً وإجبارياً بدون زر إغلاق
+      document.getElementById('adminAuthModal').classList.remove('hidden');
       renderCatalog('iptv');
     }
   });
@@ -863,14 +866,16 @@
     }
   }
 
-  function openAdminAuthModal() { document.getElementById('adminAuthModal').classList.remove('hidden'); }
-  function closeAdminAuthModal() { document.getElementById('adminAuthModal').classList.add('hidden'); }
+  function openAdminAuthModal() { 
+    // إذا أراد الأدمين إعادة فتح نافذة المصادقة يدوياً من الهيدر
+    document.getElementById('adminAuthModal').classList.remove('hidden'); 
+  }
 
   function verifyAdminPassword() {
     let pass = document.getElementById('adminSecretPasswordInput').value.trim();
     if(pass === ADMIN_SECRET) {
       localStorage.setItem('er_admin_session', 'true');
-      closeAdminAuthModal();
+      document.getElementById('adminAuthModal').classList.add('hidden');
       document.getElementById('adminDashboardContainer').classList.remove('hidden');
       renderAdminCatalog('all');
       renderAdminProductsList();
@@ -969,7 +974,7 @@
       </div>
     `;
     document.getElementById('receiptModalBody').innerHTML = receiptHTML;
-    document.getElementById('receiptModal').classList.remove('hidden');
+    document.getElementById('receiptModal').classList.add('hidden');
   }
   function closeReceiptModal() { document.getElementById('receiptModal').classList.add('hidden'); }
 
@@ -1026,7 +1031,7 @@
 
   function copyResellerCustomerLink() {
     const box = document.getElementById('resellerCustomerLinkInput');
-    box.select(); navigator.clipboard.writeText(box.value);
+    box.select(); navigator.clipboard.writeTest(box.value);
     toast('📋 Lien Client Final copié !');
   }
 
