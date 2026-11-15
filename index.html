@@ -160,7 +160,7 @@
                     <div class="flex items-center justify-between text-xs text-gray-400 px-1 pt-1">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" id="useProxy" checked class="rounded text-gold-500 bg-black/50">
-                            <span class="ml-2">Enable Smart Proxy & CORS Bypass</span>
+                            <span class="ml-2">Enable Smart Multi-Proxy Bypass</span>
                         </label>
                     </div>
 
@@ -488,43 +488,42 @@
             return host.replace(/\/+$/, '');
         }
 
-        /* دالة جلب البيانات مع إجبار المرور عبر البروكسي الآمن لتجاوز CORS وحظر الـ HTTP على GitHub */
+        /* نظام متعدد البروكسيات لضمان نجاح الاتصال على GitHub Pages وتجاوز أي حظر */
         async function fetchXtreamApi(actionUrl) {
             const useProxy = document.getElementById('useProxy')?.checked;
             
-            let finalUrl = actionUrl;
+            // قائمة البروكسيات المتاحة لتجربتها بالترتيب
+            let urlsToTry = [actionUrl];
             if (useProxy) {
-                finalUrl = `https://api.allorigins.win/raw?url=` + encodeURIComponent(actionUrl);
-            }
-            
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 12000);
-                const res = await fetch(finalUrl, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                
-                if (res.ok) {
-                    const text = await res.text();
-                    try {
-                        return JSON.parse(text);
-                    } catch (errParse) {
-                        if (text.trim().startsWith('{') || text.trim().startsWith('[')) {
-                            return JSON.parse(text);
-                        }
-                        return text;
-                    }
-                }
-            } catch (err) {
-                console.warn("Proxy fetch attempt failed, trying direct connection...");
+                urlsToTry = [
+                    `https://api.allorigins.win/raw?url=` + encodeURIComponent(actionUrl),
+                    `https://corsproxy.io/?` + encodeURIComponent(actionUrl),
+                    actionUrl // الاتصال المباشر كخيار أخير
+                ];
             }
 
-            // محاولة أخيرة الاتصال المباشر
-            try {
-                const directRes = await fetch(actionUrl);
-                if (directRes.ok) {
-                    return await directRes.json();
+            for (const targetUrl of urlsToTry) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 7000);
+                    const res = await fetch(targetUrl, { signal: controller.signal });
+                    clearTimeout(timeoutId);
+                    
+                    if (res.ok) {
+                        const text = await res.text();
+                        try {
+                            const json = JSON.parse(text);
+                            if (json) return json;
+                        } catch (e) {
+                            if (text.trim().startsWith('{') || text.trim().startsWith('[')) {
+                                return JSON.parse(text);
+                            }
+                        }
+                    }
+                } catch (err) {
+                    // الانتقال للبروكسي الموالي في القائمة في حال فشل الحالي
                 }
-            } catch (e) {}
+            }
 
             throw new Error("تعذر جلب البيانات من السيرفر. تحقق من صحة رابط الـ Host أو حالة الاشتراك.");
         }
