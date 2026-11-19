@@ -404,7 +404,7 @@ body.mode-invoice #invoiceView { display: flex !important; }
 .tag-pill {
   padding: 1px 7px;
   border-radius: 999px;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
 }
 .tag-trial { background: rgba(250,204,21,0.18); color: var(--royal-gold); }
@@ -425,73 +425,87 @@ body.mode-invoice #invoiceView { display: flex !important; }
 .mini-edit { background: rgba(250,204,21,0.16); color: var(--royal-gold); }
 .mini-del { background: rgba(248,113,113,0.16); color: var(--danger); }
 
-/* ================= DIRECT CLIENT INVOICE CARD VIEW ================= */
+/* ================= COMPACT ROYAL INVOICE + SEPARATE CREDENTIALS CARD ================= */
 .invoice-wrap {
   min-height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 14px;
+  padding: 16px 12px;
 }
 
 .invoice-shell {
   width: 100%;
-  max-width: 520px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 20px 18px;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(168, 255, 0, 0.12), transparent 55%),
-    linear-gradient(155deg, rgba(24, 36, 62, 0.96) 0%, rgba(9, 14, 26, 0.99) 100%);
-  box-shadow:
-    0 28px 60px -14px rgba(0, 0, 0, 0.94),
-    0 0 38px rgba(250, 204, 21, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .invoice-head {
   text-align: center;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.14), transparent 65%),
+    linear-gradient(155deg, rgba(24, 36, 62, 0.96) 0%, rgba(9, 14, 26, 0.99) 100%);
+  box-shadow:
+    0 18px 36px -12px rgba(0, 0, 0, 0.92),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .invoice-badge {
   display: inline-block;
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 800;
-  padding: 3px 11px;
+  padding: 2px 9px;
   border-radius: 999px;
-  background: rgba(168, 255, 0, 0.14);
-  color: var(--lime);
-  margin-bottom: 6px;
+  background: rgba(250, 204, 21, 0.14);
+  color: var(--royal-gold);
+  letter-spacing: 0.7px;
+  margin-bottom: 3px;
 }
 
 .invoice-head h1 {
-  margin: 0 0 3px;
-  font-size: 18px;
+  margin: 0 0 2px;
+  font-size: 15px;
   font-weight: 900;
-  color: var(--white);
+  background: linear-gradient(115deg, #ffffff 15%, var(--lime) 55%, #fde047 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .invoice-head p {
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
 }
 
 .invoice-cards-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
+.invoice-bundle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Compact Luxury Royal Invoice Card */
 .invoice-item-card {
-  background: rgba(6, 10, 18, 0.72);
+  background:
+    radial-gradient(circle at 85% 0%, rgba(250, 204, 21, 0.09), transparent 55%),
+    linear-gradient(160deg, rgba(22, 34, 59, 0.96) 0%, rgba(8, 13, 24, 0.99) 100%);
   border-radius: 20px;
-  padding: 14px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  padding: 12px;
+  box-shadow:
+    0 18px 36px -12px rgba(0, 0, 0, 0.92),
+    0 0 22px rgba(250, 204, 21, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .invoice-item-top {
@@ -499,48 +513,51 @@ body.mode-invoice #invoiceView { display: flex !important; }
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 10px;
+  padding-bottom: 8px;
+  margin-bottom: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.invoice-brand-mini {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--royal-gold);
+  letter-spacing: 0.4px;
+  display: block;
 }
 
 .invoice-client-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 900;
-  color: var(--lime);
+  color: var(--white);
 }
 
-.invoice-fields-list {
+.invoice-clean-rows {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5px;
 }
 
-.invoice-field-row {
+.invoice-clean-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 9px 11px;
-  border-radius: 12px;
-  background: rgba(15, 23, 42, 0.85);
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(6, 10, 18, 0.74);
 }
 
-.invoice-field-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-  flex: 1;
-}
-
-.invoice-field-label {
+.invoice-clean-label {
   font-size: 10px;
   font-weight: 800;
   color: var(--royal-gold);
+  flex-shrink: 0;
 }
 
-.invoice-field-val {
+.invoice-clean-val {
   font-family: monospace, 'Cairo', sans-serif;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--white);
   word-break: break-all;
@@ -548,47 +565,35 @@ body.mode-invoice #invoiceView { display: flex !important; }
   text-align: left;
 }
 
-.invoice-copy-field-btn {
-  padding: 6px 10px;
-  border-radius: 9px;
-  background: rgba(168, 255, 0, 0.16);
-  color: var(--lime);
-  font-family: 'Cairo', sans-serif;
-  font-size: 10.5px;
-  font-weight: 800;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
 .invoice-actions-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 .invoice-save-img-btn {
   flex: 1 1 auto;
-  height: 38px;
-  padding: 0 14px;
-  border-radius: 12px;
+  height: 33px;
+  padding: 0 10px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #fde047, #f59e0b);
   color: #060a12;
   font-family: 'Cairo', sans-serif;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 900;
   cursor: pointer;
 }
 
 .invoice-copy-all-btn {
   flex: 1 1 auto;
-  height: 38px;
-  padding: 0 14px;
-  border-radius: 12px;
+  height: 33px;
+  padding: 0 10px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--lime-bright), var(--lime), var(--lime-deep));
   color: #060a12;
   font-family: 'Cairo', sans-serif;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 900;
   cursor: pointer;
 }
@@ -597,24 +602,106 @@ body.mode-invoice #invoiceView { display: flex !important; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 12px;
+  height: 33px;
+  padding: 0 12px;
+  border-radius: 10px;
   text-decoration: none;
   background: rgba(34, 197, 94, 0.2);
   color: #4ade80;
   font-family: 'Cairo', sans-serif;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 900;
+}
+
+/* Compact Separate Card Below Invoice: Host / Username / Password Only */
+.credentials-box-card {
+  background: linear-gradient(160deg, rgba(20, 31, 54, 0.95) 0%, rgba(7, 11, 20, 0.99) 100%);
+  border-radius: 18px;
+  padding: 10px 11px;
+  box-shadow:
+    0 14px 28px -10px rgba(0, 0, 0, 0.88),
+    0 0 18px rgba(168, 255, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.credentials-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.credentials-box-title {
+  font-size: 10.5px;
+  font-weight: 900;
+  color: var(--lime);
+}
+
+.credentials-box-sub {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.credentials-only-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.credential-only-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  background: rgba(6, 10, 18, 0.8);
+}
+
+.credential-only-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.credential-only-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: var(--royal-gold);
+}
+
+.credential-only-val {
+  font-family: monospace, 'Cairo', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--white);
+  word-break: break-all;
+  direction: ltr;
+  text-align: left;
+}
+
+.credential-only-copy {
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: rgba(168, 255, 0, 0.16);
+  color: var(--lime);
+  font-family: 'Cairo', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .invoice-empty-box {
   text-align: center;
-  padding: 20px 14px;
+  padding: 16px 12px;
   border-radius: 16px;
-  background: rgba(6, 10, 18, 0.72);
+  background: rgba(6, 10, 18, 0.78);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -897,13 +984,13 @@ footer { padding: 14px 14px 32px; }
 </head>
 <body class="mode-admin">
 
-<!-- ================= DIRECT INVOICE CARD VIEW (TRIAL / SUBSCRIPTIONS LINKS) ================= -->
+<!-- ================= COMPACT ROYAL INVOICE + SEPARATE CREDENTIALS VIEW ================= -->
 <div id="invoiceView" class="invoice-wrap">
   <div class="invoice-shell">
     <div class="invoice-head">
-      <span class="invoice-badge" id="invoiceBadge">INVOICE CARD</span>
-      <h1 id="invoiceTitle">بيانات الفاتورة والتفعيل</h1>
-      <p id="invoiceSubtitle">بطاقة البيانات الخاصة بالزبون</p>
+      <span class="invoice-badge" id="invoiceBadge">COMPACT ROYAL INVOICE</span>
+      <h1 id="invoiceTitle">فاتورة التفعيل والاشتراك</h1>
+      <p id="invoiceSubtitle">YOUNES TECHNIQUE • بطاقة ملكية مصغرة</p>
     </div>
 
     <div class="invoice-cards-list" id="invoiceCardsList"></div>
@@ -1109,7 +1196,6 @@ footer { padding: 14px 14px 32px; }
       <p>تظهر لك فقط — والمتجر مخفي بالكامل حتى يتم توليده وإرساله للزبون</p>
     </div>
 
-    <!-- Luxury Button + Standalone Store Preview Button -->
     <div class="luxury-trigger-bar">
       <button type="button" class="luxury-master-btn" id="openAdminSuiteBtn">
         <span>✦ تفعيل زبون وتوليد الروابط</span>
@@ -1121,7 +1207,6 @@ footer { padding: 14px 14px 32px; }
       </a>
     </div>
 
-    <!-- Compact Activated Clients List -->
     <div class="admin-card">
       <div class="admin-section-title">
         <span>الزبناء المفعّلون</span>
@@ -1143,7 +1228,6 @@ footer { padding: 14px 14px 32px; }
       <button type="button" class="admin-modal-close" id="closeAdminSuiteBtn" aria-label="إغلاق">✕</button>
     </div>
 
-    <!-- Sub-section 1: Client Activation Form -->
     <div class="modal-sub-block">
       <div class="modal-block-title">
         <span>بيانات تفعيل الزبون</span>
@@ -1199,7 +1283,6 @@ footer { padding: 14px 14px 32px; }
       </form>
     </div>
 
-    <!-- Sub-section 2: Link Generator Buttons -->
     <div class="modal-sub-block">
       <div class="modal-block-title">
         <span>أزرار توليد الروابط</span>
@@ -1280,18 +1363,30 @@ function setMode(mode) {
   document.body.classList.add('mode-' + mode);
 }
 
-function buildClientFields(c) {
+function buildInvoiceCleanRows(c) {
   const rows = [
     { label: 'الاسم الكامل', value: c.name },
     { label: 'Gmail', value: c.gmail },
     { label: 'مدة الصلاحية', value: c.duration },
     { label: 'رقم الواتساب', value: '+' + c.whatsapp }
   ];
+  if (c.m3u) rows.push({ label: 'M3U URL', value: c.m3u });
+  return rows;
+}
+
+function buildLoginOnlyRows(c) {
+  const rows = [];
   if (c.host) rows.push({ label: 'Host', value: c.host });
   if (c.username) rows.push({ label: 'Username', value: c.username });
   if (c.password) rows.push({ label: 'Password', value: c.password });
-  if (c.m3u) rows.push({ label: 'M3U URL', value: c.m3u });
   return rows;
+}
+
+function buildFullTextSummary(c) {
+  return [
+    ...buildInvoiceCleanRows(c),
+    ...buildLoginOnlyRows(c)
+  ].map(f => `${f.label}: ${f.value}`).join('\n');
 }
 
 function drawRoundedRect(ctx, x, y, w, h, r) {
@@ -1305,14 +1400,17 @@ function drawRoundedRect(ctx, x, y, w, h, r) {
 }
 
 function saveInvoiceAsImage(client, isTrial) {
-  const fields = buildClientFields(client);
+  const mainRows = buildInvoiceCleanRows(client);
+  const loginRows = buildLoginOnlyRows(client);
+  const allRows = [...mainRows, ...loginRows];
+
   const scale = 2;
-  const width = 540;
-  const rowHeight = 66;
-  const rowGap = 10;
-  const headerHeight = 126;
-  const footerHeight = 46;
-  const height = headerHeight + fields.length * (rowHeight + rowGap) + footerHeight;
+  const width = 460;
+  const rowHeight = 56;
+  const rowGap = 8;
+  const headerHeight = 110;
+  const footerHeight = 40;
+  const height = headerHeight + allRows.length * (rowHeight + rowGap) + footerHeight;
 
   const canvas = document.createElement('canvas');
   canvas.width = width * scale;
@@ -1320,71 +1418,66 @@ function saveInvoiceAsImage(client, isTrial) {
   const ctx = canvas.getContext('2d');
   ctx.scale(scale, scale);
 
-  // Background card
   const bgGrad = ctx.createLinearGradient(0, 0, width, height);
   bgGrad.addColorStop(0, '#16223b');
   bgGrad.addColorStop(1, '#080d18');
   ctx.fillStyle = bgGrad;
-  drawRoundedRect(ctx, 0, 0, width, height, 28);
+  drawRoundedRect(ctx, 0, 0, width, height, 24);
   ctx.fill();
 
-  // Subtle top glow
-  const glow = ctx.createRadialGradient(width / 2, 10, 10, width / 2, 10, 240);
-  glow.addColorStop(0, 'rgba(168, 255, 0, 0.16)');
-  glow.addColorStop(1, 'rgba(168, 255, 0, 0)');
+  const glow = ctx.createRadialGradient(width / 2, 10, 10, width / 2, 10, 210);
+  glow.addColorStop(0, 'rgba(250, 204, 21, 0.16)');
+  glow.addColorStop(1, 'rgba(250, 204, 21, 0)');
   ctx.fillStyle = glow;
-  ctx.fillRect(0, 0, width, 160);
+  ctx.fillRect(0, 0, width, 140);
 
-  // Header brand & invoice label
   ctx.textAlign = 'right';
   ctx.fillStyle = '#a8ff00';
-  ctx.font = '800 13px Cairo, Tahoma, sans-serif';
-  ctx.fillText('YOUNES TECHNIQUE', width - 26, 36);
+  ctx.font = '800 12px Cairo, Tahoma, sans-serif';
+  ctx.fillText('YOUNES TECHNIQUE', width - 22, 32);
 
   ctx.textAlign = 'left';
-  ctx.fillStyle = isTrial ? '#facc15' : '#a8ff00';
-  ctx.font = '800 13px Cairo, Tahoma, sans-serif';
-  ctx.fillText(isTrial ? 'فاتورة تجربة' : 'فاتورة اشتراك وتفعيل', 26, 36);
+  ctx.fillStyle = '#facc15';
+  ctx.font = '800 12px Cairo, Tahoma, sans-serif';
+  ctx.fillText(isTrial ? 'فاتورة تجربة ملكية' : 'فاتورة اشتراك ملكية', 22, 32);
 
   ctx.textAlign = 'right';
   ctx.fillStyle = '#f8fafc';
-  ctx.font = '900 22px Cairo, Tahoma, sans-serif';
-  ctx.fillText(client.name || 'زبون', width - 26, 72);
+  ctx.font = '900 19px Cairo, Tahoma, sans-serif';
+  ctx.fillText(client.name || 'زبون', width - 22, 64);
 
   ctx.fillStyle = '#94a3b8';
-  ctx.font = '700 12px Cairo, Tahoma, sans-serif';
-  ctx.fillText('بطاقة بيانات التفعيل الخاصة بك', width - 26, 98);
+  ctx.font = '700 11px Cairo, Tahoma, sans-serif';
+  ctx.fillText('بطاقة ملكية مصغرة', width - 22, 86);
 
-  // Fields rows
   let currentY = headerHeight;
-  fields.forEach(item => {
+  allRows.forEach(item => {
     ctx.fillStyle = 'rgba(6, 10, 18, 0.85)';
-    drawRoundedRect(ctx, 22, currentY, width - 44, rowHeight, 14);
+    drawRoundedRect(ctx, 18, currentY, width - 36, rowHeight, 12);
     ctx.fill();
 
     ctx.textAlign = 'right';
     ctx.fillStyle = '#facc15';
-    ctx.font = '800 12px Cairo, Tahoma, sans-serif';
-    ctx.fillText(item.label, width - 36, currentY + 23);
+    ctx.font = '800 11px Cairo, Tahoma, sans-serif';
+    ctx.fillText(item.label, width - 30, currentY + 20);
 
     ctx.textAlign = 'left';
     ctx.fillStyle = '#f8fafc';
-    ctx.font = '700 13px monospace, Cairo, Tahoma, sans-serif';
+    ctx.font = '700 12px monospace, Cairo, Tahoma, sans-serif';
     const valStr = String(item.value || '');
-    const displayVal = valStr.length > 52 ? valStr.slice(0, 49) + '...' : valStr;
-    ctx.fillText(displayVal, 36, currentY + 47);
+    const displayVal = valStr.length > 44 ? valStr.slice(0, 41) + '...' : valStr;
+    ctx.fillText(displayVal, 30, currentY + 41);
 
     currentY += rowHeight + rowGap;
   });
 
-  // Footer
   ctx.textAlign = 'center';
   ctx.fillStyle = '#64748b';
-  ctx.font = '700 11px Cairo, Tahoma, sans-serif';
-  ctx.fillText('YOUNES TECHNIQUE • INVOICE', width / 2, height - 16);
+  ctx.font = '700 10px Cairo, Tahoma, sans-serif';
+  ctx.fillText('YOUNES TECHNIQUE • COMPACT ROYAL INVOICE', width / 2, height - 14);
 
   const safeSlug = (client.name || 'invoice').replace(/[^\w\u0600-\u06FF-]+/g, '_');
-  const fileName = `invoice-${safeSlug}.png`;
+  const fileName = `royal-invoice-${safeSlug}.png`;
 
   canvas.toBlob(async (blob) => {
     if (!blob) {
@@ -1402,9 +1495,7 @@ function saveInvoiceAsImage(client, isTrial) {
         showToast('تم تجهيز صورة الفاتورة');
         return;
       }
-    } catch (err) {
-      // Fallback to direct download below
-    }
+    } catch (err) {}
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -1425,9 +1516,9 @@ function renderDirectInvoiceView(portalType) {
   const list = document.getElementById('invoiceCardsList');
 
   const isTrial = portalType === 'trial';
-  badge.textContent = isTrial ? 'TRIAL INVOICE' : 'ACTIVATION INVOICE';
-  title.textContent = isTrial ? 'فاتورة وبيانات التجربة' : 'فاتورة وبيانات الاشتراك والتفعيل';
-  subtitle.textContent = 'يمكنك نسخ البيانات أو حفظ الفاتورة مباشرة كصورة على هاتفك';
+  badge.textContent = isTrial ? 'COMPACT TRIAL INVOICE' : 'COMPACT ROYAL INVOICE';
+  title.textContent = isTrial ? 'فاتورة التجربة الملكية' : 'فاتورة الاشتراك والتفعيل الملكية';
+  subtitle.textContent = 'YOUNES TECHNIQUE • بطاقة مصغرة مع كارت مستقل لبيانات الدخول';
 
   const matched = clients.filter(c => c.type === portalType);
   list.innerHTML = '';
@@ -1438,18 +1529,26 @@ function renderDirectInvoiceView(portalType) {
   }
 
   matched.forEach(c => {
-    const fields = buildClientFields(c);
-    const fullInvoiceText = fields.map(f => `${f.label}: ${f.value}`).join('\n');
+    const cleanRows = buildInvoiceCleanRows(c);
+    const loginRows = buildLoginOnlyRows(c);
+    const fullText = buildFullTextSummary(c);
     const waHref = c.whatsapp ? `https://wa.me/${c.whatsapp.replace(/\D/g, '')}` : '';
 
-    const card = document.createElement('div');
-    card.className = 'invoice-item-card';
-    card.innerHTML = `
+    const bundle = document.createElement('div');
+    bundle.className = 'invoice-bundle';
+
+    /* 1) Compact Luxury Royal Invoice Card */
+    const invoiceCard = document.createElement('div');
+    invoiceCard.className = 'invoice-item-card';
+    invoiceCard.innerHTML = `
       <div class="invoice-item-top">
-        <span class="invoice-client-name">${c.name}</span>
+        <div>
+          <span class="invoice-brand-mini">YOUNES TECHNIQUE</span>
+          <span class="invoice-client-name">${c.name}</span>
+        </div>
         <span class="tag-pill ${isTrial ? 'tag-trial' : 'tag-sub'}">${isTrial ? 'تجربة' : 'اشتراك'}</span>
       </div>
-      <div class="invoice-fields-list"></div>
+      <div class="invoice-clean-rows"></div>
       <div class="invoice-actions-bar">
         <button type="button" class="invoice-save-img-btn">حفظ كصورة</button>
         <button type="button" class="invoice-copy-all-btn">نسخ الفاتورة بالكامل</button>
@@ -1457,37 +1556,63 @@ function renderDirectInvoiceView(portalType) {
       </div>
     `;
 
-    const fieldsBox = card.querySelector('.invoice-fields-list');
-    fields.forEach(item => {
+    const cleanRowsBox = invoiceCard.querySelector('.invoice-clean-rows');
+    cleanRows.forEach(item => {
       const row = document.createElement('div');
-      row.className = 'invoice-field-row';
+      row.className = 'invoice-clean-row';
       row.innerHTML = `
-        <div class="invoice-field-meta">
-          <span class="invoice-field-label">${item.label}</span>
-          <span class="invoice-field-val">${item.value}</span>
-        </div>
-        <button type="button" class="invoice-copy-field-btn">نسخ</button>
+        <span class="invoice-clean-label">${item.label}</span>
+        <span class="invoice-clean-val">${item.value}</span>
       `;
-      const copyBtn = row.querySelector('button');
-      copyBtn.addEventListener('click', () => {
-        copyText(item.value);
-        copyBtn.textContent = 'تم النسخ';
-        setTimeout(() => { copyBtn.textContent = 'نسخ'; }, 1300);
-      });
-      fieldsBox.appendChild(row);
+      cleanRowsBox.appendChild(row);
     });
 
-    const saveImgBtn = card.querySelector('.invoice-save-img-btn');
-    saveImgBtn.addEventListener('click', () => saveInvoiceAsImage(c, isTrial));
-
-    const copyAllCardBtn = card.querySelector('.invoice-copy-all-btn');
+    invoiceCard.querySelector('.invoice-save-img-btn').addEventListener('click', () => saveInvoiceAsImage(c, isTrial));
+    const copyAllCardBtn = invoiceCard.querySelector('.invoice-copy-all-btn');
     copyAllCardBtn.addEventListener('click', () => {
-      copyText(fullInvoiceText);
+      copyText(fullText);
       copyAllCardBtn.textContent = 'تم نسخ الفاتورة بالكامل';
       setTimeout(() => { copyAllCardBtn.textContent = 'نسخ الفاتورة بالكامل'; }, 1300);
     });
 
-    list.appendChild(card);
+    bundle.appendChild(invoiceCard);
+
+    /* 2) Separate Card Below Invoice: Host / Username / Password Only with Copy Buttons */
+    if (loginRows.length > 0) {
+      const credCard = document.createElement('div');
+      credCard.className = 'credentials-box-card';
+      credCard.innerHTML = `
+        <div class="credentials-box-head">
+          <span class="credentials-box-title">بيانات الدخول (Host • Username • Password)</span>
+          <span class="credentials-box-sub">نسخ سريع</span>
+        </div>
+        <div class="credentials-only-list"></div>
+      `;
+
+      const onlyList = credCard.querySelector('.credentials-only-list');
+      loginRows.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'credential-only-row';
+        row.innerHTML = `
+          <div class="credential-only-meta">
+            <span class="credential-only-label">${item.label}</span>
+            <span class="credential-only-val">${item.value}</span>
+          </div>
+          <button type="button" class="credential-only-copy">نسخ</button>
+        `;
+        const btn = row.querySelector('button');
+        btn.addEventListener('click', () => {
+          copyText(item.value);
+          btn.textContent = 'تم النسخ';
+          setTimeout(() => { btn.textContent = 'نسخ'; }, 1300);
+        });
+        onlyList.appendChild(row);
+      });
+
+      bundle.appendChild(credCard);
+    }
+
+    list.appendChild(bundle);
   });
 }
 
@@ -1581,8 +1706,7 @@ function renderClientRows(showBox = true) {
     btn.addEventListener('click', () => {
       const c = clients[Number(btn.dataset.copyIdx)];
       if (!c) return;
-      const lineCopy = buildClientFields(c).map(f => `${f.label}: ${f.value}`).join('\n');
-      copyText(lineCopy);
+      copyText(buildFullTextSummary(c));
       showToast('تم نسخ بيانات الزبون');
     });
   });
@@ -1778,7 +1902,10 @@ function renderClientPersonalData(email, mode) {
     credentialsWaLink.href = 'https://wa.me/' + client.whatsapp.replace(/\D/g, '');
   }
 
-  const rows = buildClientFields(client);
+  const rows = [
+    ...buildInvoiceCleanRows(client),
+    ...buildLoginOnlyRows(client)
+  ];
   currentDisplayedItems = rows;
   credentialsList.innerHTML = '';
 
