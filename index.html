@@ -772,7 +772,7 @@ footer { padding: 14px 14px 32px; }
         <p class="credentials-note" id="credentialsNote">أدخل حساب Gmail الخاص بك لعرض بيانات التفعيل.</p>
         <div class="credentials-actions-wrap">
           <button type="button" class="copy-all-btn" id="copyAllBtn">نسخ الكل</button>
-          <a class="credentials-wa-btn" id="credentialsWaLink" href="https://wa.me/212630473498" target="_blank" rel="noopener">واتساب</a>
+          <a class="credentials-wa-btn" id="credentialsWaLink" href="" target="_blank" rel="noopener">واتساب</a>
         </div>
       </div>
     </div>
@@ -909,15 +909,15 @@ footer { padding: 14px 14px 32px; }
         <div class="admin-grid-3">
           <div class="field">
             <label>الاسم</label>
-            <input type="text" id="cName" placeholder="اسم الزبون" required>
+            <input type="text" id="cName" placeholder="" required>
           </div>
           <div class="field">
             <label>Gmail</label>
-            <input type="email" id="cGmail" class="ltr" placeholder="client@gmail.com" required>
+            <input type="email" id="cGmail" class="ltr" placeholder="" required>
           </div>
           <div class="field">
             <label>واتساب</label>
-            <input type="tel" id="cWhatsapp" class="ltr" placeholder="2126XXXXXXXX" required>
+            <input type="tel" id="cWhatsapp" class="ltr" placeholder="" required>
           </div>
           <div class="field">
             <label>النوع</label>
@@ -928,23 +928,23 @@ footer { padding: 14px 14px 32px; }
           </div>
           <div class="field">
             <label>المدة</label>
-            <input type="text" id="cDuration" placeholder="12 شهر / 24 ساعة" required>
+            <input type="text" id="cDuration" placeholder="" required>
           </div>
           <div class="field">
             <label>Host</label>
-            <input type="text" id="cHost" class="ltr" placeholder="http://host:8080">
+            <input type="text" id="cHost" class="ltr" placeholder="">
           </div>
           <div class="field">
             <label>Username</label>
-            <input type="text" id="cUser" class="ltr" placeholder="username">
+            <input type="text" id="cUser" class="ltr" placeholder="">
           </div>
           <div class="field">
             <label>Password</label>
-            <input type="text" id="cPass" class="ltr" placeholder="password">
+            <input type="text" id="cPass" class="ltr" placeholder="">
           </div>
           <div class="field">
-            <label>M3U (اختياري)</label>
-            <input type="text" id="cM3u" class="ltr" placeholder="تلقائي أو رابط M3U">
+            <label>M3U</label>
+            <input type="text" id="cM3u" class="ltr" placeholder="">
           </div>
         </div>
 
@@ -980,32 +980,7 @@ footer { padding: 14px 14px 32px; }
 <div class="toast" id="toast">تم النسخ</div>
 
 <script>
-const STORAGE_KEY = 'younes_store_clients_v2';
-
-const DEFAULT_CLIENTS = [
-  {
-    name: 'Farouk VIP',
-    gmail: 'egliciasroku@gmail.com',
-    whatsapp: '212630473498',
-    type: 'subscriptions',
-    duration: '12 شهر',
-    host: 'http://line.younes-vip.example:8080',
-    username: 'farouk_vip12',
-    password: 'VIP@2026',
-    m3u: 'http://line.younes-vip.example:8080/get.php?username=farouk_vip12&password=VIP%402026&type=m3u_plus&output=ts'
-  },
-  {
-    name: 'Younes Test',
-    gmail: 'hot.younes244@gmail.com',
-    whatsapp: '212650443149',
-    type: 'trial',
-    duration: '24 ساعة',
-    host: 'http://line.younes-vip.example:8080',
-    username: 'younes_24h',
-    password: 'TEST@2026',
-    m3u: 'http://line.younes-vip.example:8080/get.php?username=younes_24h&password=TEST%402026&type=m3u_plus&output=ts'
-  }
-];
+const STORAGE_KEY = 'younes_store_clients_clean_v1';
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1036,10 +1011,15 @@ const isStoreMode = urlParams.get('store') === '1';
 const initialPortal = urlParams.get('portal');
 const urlDataParam = urlParams.get('data');
 
-let clients = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-if (!Array.isArray(clients) || clients.length === 0) {
-  clients = [...DEFAULT_CLIENTS];
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(clients));
+let clients = [];
+const storedRaw = localStorage.getItem(STORAGE_KEY);
+if (storedRaw) {
+  try {
+    const parsedStored = JSON.parse(storedRaw);
+    if (Array.isArray(parsedStored)) clients = parsedStored;
+  } catch (e) {
+    clients = [];
+  }
 }
 
 if (urlDataParam) {
@@ -1093,14 +1073,14 @@ function renderClientRows(showBox = true) {
   box.classList.toggle('visible', showBox);
   box.innerHTML = '';
 
+  const fullUrl = buildGeneratedUrl();
+  document.getElementById('generatedLinkOutput').value = fullUrl;
+  document.getElementById('previewStoreBtn').href = fullUrl;
+
   if (clients.length === 0) {
     box.innerHTML = '<p style="color:#94a3b8;font-size:11.5px;text-align:center;margin:6px 0;">لا يوجد زبناء مفعّلون حالياً.</p>';
     return;
   }
-
-  const fullUrl = buildGeneratedUrl();
-  document.getElementById('generatedLinkOutput').value = fullUrl;
-  document.getElementById('previewStoreBtn').href = fullUrl;
 
   clients.forEach((c, idx) => {
     const line = document.createElement('div');
@@ -1110,7 +1090,7 @@ function renderClientRows(showBox = true) {
     const tagText = c.type === 'trial' ? 'تجربة' : 'اشتراك';
     const compactMeta = `${c.gmail} • ${c.duration} • +${c.whatsapp}`;
     const waText = encodeURIComponent(
-      `مرحباً ${c.name}، تم تفعيل حسابك بنجاح ✅\nGmail: ${c.gmail}\nالمدة: ${c.duration}\nرابط المتجر: ${buildGeneratedUrl(c.type)}`
+      `Gmail: ${c.gmail}\nالمدة: ${c.duration}\nالرابط: ${buildGeneratedUrl(c.type)}`
     );
 
     line.innerHTML = `
@@ -1271,8 +1251,8 @@ searchInput.addEventListener('input', () => {
 });
 
 const PORTAL_META = {
-  trial: { badge: '24H TRIAL', title: 'بوابة التجربة (24 ساعة)', waText: 'طلب تفعيل التجربة 24 ساعة' },
-  subscriptions: { badge: 'SUBSCRIPTIONS & ACTIVATION', title: 'بوابة استلام الاشتراكات والتفعيلات', waText: 'استلام بيانات الاشتراك والتفعيل' }
+  trial: { badge: '24H TRIAL', title: 'بوابة التجربة (24 ساعة)' },
+  subscriptions: { badge: 'SUBSCRIPTIONS & ACTIVATION', title: 'بوابة استلام الاشتراكات والتفعيلات' }
 };
 
 const trialCardBtn = document.getElementById('trialCardBtn');
@@ -1324,7 +1304,7 @@ function renderClientPersonalData(email, mode) {
   );
 
   if (!client) {
-    showGateView('هذا الحساب غير مفعّل. لا يمكن الدخول واستلام البيانات، تواصل عبر واتساب لتفعيل حسابك.');
+    showGateView('هذا الحساب غير مفعّل. لا يمكن الدخول واستلام البيانات.');
     return false;
   }
 
@@ -1335,6 +1315,10 @@ function renderClientPersonalData(email, mode) {
   activeClientName.textContent = client.name + ' (' + (client.type === 'trial' ? 'تجربة' : 'اشتراك مفعّل') + ')';
   activeAccountEmail.textContent = client.gmail;
   activeAccountBar.classList.add('visible');
+
+  if (client.whatsapp) {
+    credentialsWaLink.href = 'https://wa.me/' + client.whatsapp.replace(/\D/g, '');
+  }
 
   const rows = [
     { label: 'الاسم الكامل', value: client.name },
@@ -1383,7 +1367,6 @@ function openCredentialsModal(mode) {
   const meta = PORTAL_META[mode];
   credentialsBadge.textContent = meta.badge;
   credentialsTitle.textContent = meta.title;
-  credentialsWaLink.href = 'https://wa.me/212630473498?text=' + encodeURIComponent(meta.waText);
 
   if (currentVerifiedEmail) {
     renderClientPersonalData(currentVerifiedEmail, mode);
@@ -1405,7 +1388,7 @@ gmailGateForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = gmailInput.value.trim().toLowerCase();
   if (!/^[a-z0-9._%+-]+@gmail\.com$/i.test(email)) {
-    showGateView('يرجى إدخال حساب Gmail صحيح (مثال: name@gmail.com).');
+    showGateView('يرجى إدخال حساب Gmail صحيح.');
     return;
   }
   renderClientPersonalData(email, currentPortalMode);
