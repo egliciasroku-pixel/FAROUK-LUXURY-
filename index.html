@@ -48,11 +48,17 @@ body {
 }
 
 /* Mode Visibility Control */
-body.mode-admin #storeView { display: none !important; }
+body.mode-admin #storeView,
+body.mode-admin #invoiceView { display: none !important; }
 body.mode-admin #adminView { display: flex !important; }
 
-body.mode-store #adminView { display: none !important; }
+body.mode-store #adminView,
+body.mode-store #invoiceView { display: none !important; }
 body.mode-store #storeView { display: block !important; }
+
+body.mode-invoice #adminView,
+body.mode-invoice #storeView { display: none !important; }
+body.mode-invoice #invoiceView { display: flex !important; }
 
 /* ================= CENTERED LUXURY ADMIN PANEL CARD ================= */
 .admin-wrap {
@@ -419,6 +425,199 @@ body.mode-store #storeView { display: block !important; }
 .mini-edit { background: rgba(250,204,21,0.16); color: var(--royal-gold); }
 .mini-del { background: rgba(248,113,113,0.16); color: var(--danger); }
 
+/* ================= DIRECT CLIENT INVOICE CARD VIEW ================= */
+.invoice-wrap {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 14px;
+}
+
+.invoice-shell {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 20px 18px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(168, 255, 0, 0.12), transparent 55%),
+    linear-gradient(155deg, rgba(24, 36, 62, 0.96) 0%, rgba(9, 14, 26, 0.99) 100%);
+  box-shadow:
+    0 28px 60px -14px rgba(0, 0, 0, 0.94),
+    0 0 38px rgba(250, 204, 21, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.invoice-head {
+  text-align: center;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.invoice-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: rgba(168, 255, 0, 0.14);
+  color: var(--lime);
+  margin-bottom: 6px;
+}
+
+.invoice-head h1 {
+  margin: 0 0 3px;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--white);
+}
+
+.invoice-head p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.invoice-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.invoice-item-card {
+  background: rgba(6, 10, 18, 0.72);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.invoice-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.invoice-client-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--lime);
+}
+
+.invoice-fields-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.invoice-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.invoice-field-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.invoice-field-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--royal-gold);
+}
+
+.invoice-field-val {
+  font-family: monospace, 'Cairo', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  word-break: break-all;
+  direction: ltr;
+  text-align: left;
+}
+
+.invoice-copy-field-btn {
+  padding: 6px 10px;
+  border-radius: 9px;
+  background: rgba(168, 255, 0, 0.16);
+  color: var(--lime);
+  font-family: 'Cairo', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.invoice-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.invoice-save-img-btn {
+  flex: 1 1 auto;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fde047, #f59e0b);
+  color: #060a12;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.invoice-copy-all-btn {
+  flex: 1 1 auto;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--lime-bright), var(--lime), var(--lime-deep));
+  color: #060a12;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.invoice-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.invoice-empty-box {
+  text-align: center;
+  padding: 20px 14px;
+  border-radius: 16px;
+  background: rgba(6, 10, 18, 0.72);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* ================= FULL STORE STYLES ================= */
 .store-shell { direction: ltr; }
 header { position: relative; padding: 24px 14px 18px; text-align: center; }
@@ -697,6 +896,19 @@ footer { padding: 14px 14px 32px; }
 </style>
 </head>
 <body class="mode-admin">
+
+<!-- ================= DIRECT INVOICE CARD VIEW (TRIAL / SUBSCRIPTIONS LINKS) ================= -->
+<div id="invoiceView" class="invoice-wrap">
+  <div class="invoice-shell">
+    <div class="invoice-head">
+      <span class="invoice-badge" id="invoiceBadge">INVOICE CARD</span>
+      <h1 id="invoiceTitle">بيانات الفاتورة والتفعيل</h1>
+      <p id="invoiceSubtitle">بطاقة البيانات الخاصة بالزبون</p>
+    </div>
+
+    <div class="invoice-cards-list" id="invoiceCardsList"></div>
+  </div>
+</div>
 
 <!-- ================= STORE SECTION ================= -->
 <div id="storeView" class="store-shell">
@@ -1040,7 +1252,8 @@ function decodeData(str) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const isStoreLink = urlParams.get('store') === '1';
-const initialPortal = urlParams.get('portal');
+const isInvoiceLink = urlParams.get('invoice') === '1';
+const initialPortal = urlParams.get('portal') || 'subscriptions';
 const urlDataParam = urlParams.get('data');
 
 let clients = [];
@@ -1062,12 +1275,229 @@ if (urlDataParam) {
   }
 }
 
-if (isStoreLink) {
-  document.body.classList.remove('mode-admin');
-  document.body.classList.add('mode-store');
+function setMode(mode) {
+  document.body.classList.remove('mode-admin', 'mode-store', 'mode-invoice');
+  document.body.classList.add('mode-' + mode);
+}
+
+function buildClientFields(c) {
+  const rows = [
+    { label: 'الاسم الكامل', value: c.name },
+    { label: 'Gmail', value: c.gmail },
+    { label: 'مدة الصلاحية', value: c.duration },
+    { label: 'رقم الواتساب', value: '+' + c.whatsapp }
+  ];
+  if (c.host) rows.push({ label: 'Host', value: c.host });
+  if (c.username) rows.push({ label: 'Username', value: c.username });
+  if (c.password) rows.push({ label: 'Password', value: c.password });
+  if (c.m3u) rows.push({ label: 'M3U URL', value: c.m3u });
+  return rows;
+}
+
+function drawRoundedRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function saveInvoiceAsImage(client, isTrial) {
+  const fields = buildClientFields(client);
+  const scale = 2;
+  const width = 540;
+  const rowHeight = 66;
+  const rowGap = 10;
+  const headerHeight = 126;
+  const footerHeight = 46;
+  const height = headerHeight + fields.length * (rowHeight + rowGap) + footerHeight;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width * scale;
+  canvas.height = height * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+
+  // Background card
+  const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+  bgGrad.addColorStop(0, '#16223b');
+  bgGrad.addColorStop(1, '#080d18');
+  ctx.fillStyle = bgGrad;
+  drawRoundedRect(ctx, 0, 0, width, height, 28);
+  ctx.fill();
+
+  // Subtle top glow
+  const glow = ctx.createRadialGradient(width / 2, 10, 10, width / 2, 10, 240);
+  glow.addColorStop(0, 'rgba(168, 255, 0, 0.16)');
+  glow.addColorStop(1, 'rgba(168, 255, 0, 0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, width, 160);
+
+  // Header brand & invoice label
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#a8ff00';
+  ctx.font = '800 13px Cairo, Tahoma, sans-serif';
+  ctx.fillText('YOUNES TECHNIQUE', width - 26, 36);
+
+  ctx.textAlign = 'left';
+  ctx.fillStyle = isTrial ? '#facc15' : '#a8ff00';
+  ctx.font = '800 13px Cairo, Tahoma, sans-serif';
+  ctx.fillText(isTrial ? 'فاتورة تجربة' : 'فاتورة اشتراك وتفعيل', 26, 36);
+
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#f8fafc';
+  ctx.font = '900 22px Cairo, Tahoma, sans-serif';
+  ctx.fillText(client.name || 'زبون', width - 26, 72);
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '700 12px Cairo, Tahoma, sans-serif';
+  ctx.fillText('بطاقة بيانات التفعيل الخاصة بك', width - 26, 98);
+
+  // Fields rows
+  let currentY = headerHeight;
+  fields.forEach(item => {
+    ctx.fillStyle = 'rgba(6, 10, 18, 0.85)';
+    drawRoundedRect(ctx, 22, currentY, width - 44, rowHeight, 14);
+    ctx.fill();
+
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#facc15';
+    ctx.font = '800 12px Cairo, Tahoma, sans-serif';
+    ctx.fillText(item.label, width - 36, currentY + 23);
+
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = '700 13px monospace, Cairo, Tahoma, sans-serif';
+    const valStr = String(item.value || '');
+    const displayVal = valStr.length > 52 ? valStr.slice(0, 49) + '...' : valStr;
+    ctx.fillText(displayVal, 36, currentY + 47);
+
+    currentY += rowHeight + rowGap;
+  });
+
+  // Footer
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#64748b';
+  ctx.font = '700 11px Cairo, Tahoma, sans-serif';
+  ctx.fillText('YOUNES TECHNIQUE • INVOICE', width / 2, height - 16);
+
+  const safeSlug = (client.name || 'invoice').replace(/[^\w\u0600-\u06FF-]+/g, '_');
+  const fileName = `invoice-${safeSlug}.png`;
+
+  canvas.toBlob(async (blob) => {
+    if (!blob) {
+      showToast('تعذر إنشاء الصورة');
+      return;
+    }
+
+    try {
+      const file = new File([blob], fileName, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'فاتورة ' + (client.name || '')
+        });
+        showToast('تم تجهيز صورة الفاتورة');
+        return;
+      }
+    } catch (err) {
+      // Fallback to direct download below
+    }
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    showToast('تم حفظ الفاتورة كصورة');
+  }, 'image/png');
+}
+
+function renderDirectInvoiceView(portalType) {
+  const badge = document.getElementById('invoiceBadge');
+  const title = document.getElementById('invoiceTitle');
+  const subtitle = document.getElementById('invoiceSubtitle');
+  const list = document.getElementById('invoiceCardsList');
+
+  const isTrial = portalType === 'trial';
+  badge.textContent = isTrial ? 'TRIAL INVOICE' : 'ACTIVATION INVOICE';
+  title.textContent = isTrial ? 'فاتورة وبيانات التجربة' : 'فاتورة وبيانات الاشتراك والتفعيل';
+  subtitle.textContent = 'يمكنك نسخ البيانات أو حفظ الفاتورة مباشرة كصورة على هاتفك';
+
+  const matched = clients.filter(c => c.type === portalType);
+  list.innerHTML = '';
+
+  if (matched.length === 0) {
+    list.innerHTML = '<div class="invoice-empty-box">لا توجد بيانات مفعّلة ضمن هذا الرابط حالياً.</div>';
+    return;
+  }
+
+  matched.forEach(c => {
+    const fields = buildClientFields(c);
+    const fullInvoiceText = fields.map(f => `${f.label}: ${f.value}`).join('\n');
+    const waHref = c.whatsapp ? `https://wa.me/${c.whatsapp.replace(/\D/g, '')}` : '';
+
+    const card = document.createElement('div');
+    card.className = 'invoice-item-card';
+    card.innerHTML = `
+      <div class="invoice-item-top">
+        <span class="invoice-client-name">${c.name}</span>
+        <span class="tag-pill ${isTrial ? 'tag-trial' : 'tag-sub'}">${isTrial ? 'تجربة' : 'اشتراك'}</span>
+      </div>
+      <div class="invoice-fields-list"></div>
+      <div class="invoice-actions-bar">
+        <button type="button" class="invoice-save-img-btn">حفظ كصورة</button>
+        <button type="button" class="invoice-copy-all-btn">نسخ الفاتورة بالكامل</button>
+        ${waHref ? `<a class="invoice-wa-btn" href="${waHref}" target="_blank" rel="noopener">واتساب</a>` : ''}
+      </div>
+    `;
+
+    const fieldsBox = card.querySelector('.invoice-fields-list');
+    fields.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'invoice-field-row';
+      row.innerHTML = `
+        <div class="invoice-field-meta">
+          <span class="invoice-field-label">${item.label}</span>
+          <span class="invoice-field-val">${item.value}</span>
+        </div>
+        <button type="button" class="invoice-copy-field-btn">نسخ</button>
+      `;
+      const copyBtn = row.querySelector('button');
+      copyBtn.addEventListener('click', () => {
+        copyText(item.value);
+        copyBtn.textContent = 'تم النسخ';
+        setTimeout(() => { copyBtn.textContent = 'نسخ'; }, 1300);
+      });
+      fieldsBox.appendChild(row);
+    });
+
+    const saveImgBtn = card.querySelector('.invoice-save-img-btn');
+    saveImgBtn.addEventListener('click', () => saveInvoiceAsImage(c, isTrial));
+
+    const copyAllCardBtn = card.querySelector('.invoice-copy-all-btn');
+    copyAllCardBtn.addEventListener('click', () => {
+      copyText(fullInvoiceText);
+      copyAllCardBtn.textContent = 'تم نسخ الفاتورة بالكامل';
+      setTimeout(() => { copyAllCardBtn.textContent = 'نسخ الفاتورة بالكامل'; }, 1300);
+    });
+
+    list.appendChild(card);
+  });
+}
+
+if (isInvoiceLink) {
+  setMode('invoice');
+  renderDirectInvoiceView(initialPortal === 'trial' ? 'trial' : 'subscriptions');
+} else if (isStoreLink) {
+  setMode('store');
 } else {
-  document.body.classList.remove('mode-store');
-  document.body.classList.add('mode-admin');
+  setMode('admin');
 }
 
 /* Luxury Admin Suite Modal Controls */
@@ -1088,14 +1518,14 @@ adminSuiteModal.addEventListener('click', (e) => {
   if (e.target === adminSuiteModal) closeAdminSuite();
 });
 
-function buildGeneratedUrl(portal = '') {
+function buildGeneratedUrl(type = 'store') {
   const cleanBase = window.location.href.split('?')[0];
   const encoded = encodeData(clients);
-  let link = `${cleanBase}?store=1&data=${encodeURIComponent(encoded)}`;
-  if (portal) {
-    link += `&portal=${encodeURIComponent(portal)}`;
+
+  if (type === 'trial' || type === 'subscriptions') {
+    return `${cleanBase}?invoice=1&portal=${encodeURIComponent(type)}&data=${encodeURIComponent(encoded)}`;
   }
-  return link;
+  return `${cleanBase}?store=1&data=${encodeURIComponent(encoded)}`;
 }
 
 function renderClientRows(showBox = true) {
@@ -1105,9 +1535,12 @@ function renderClientRows(showBox = true) {
   box.classList.toggle('visible', showBox);
   box.innerHTML = '';
 
-  const fullUrl = buildGeneratedUrl();
-  document.getElementById('generatedLinkOutput').value = fullUrl;
-  document.getElementById('previewStoreBtn').href = fullUrl;
+  const storeUrl = buildGeneratedUrl('store');
+  document.getElementById('previewStoreBtn').href = storeUrl;
+
+  if (!document.getElementById('generatedLinkOutput').value) {
+    document.getElementById('generatedLinkOutput').value = storeUrl;
+  }
 
   if (clients.length === 0) {
     box.innerHTML = '<p style="color:#94a3b8;font-size:11.5px;text-align:center;margin:6px 0;">لا يوجد زبناء مفعّلون حالياً.</p>';
@@ -1121,8 +1554,9 @@ function renderClientRows(showBox = true) {
     const tagClass = c.type === 'trial' ? 'tag-trial' : 'tag-sub';
     const tagText = c.type === 'trial' ? 'تجربة' : 'اشتراك';
     const compactMeta = `${c.gmail} • ${c.duration} • +${c.whatsapp}`;
+    const clientInvoiceLink = buildGeneratedUrl(c.type);
     const waText = encodeURIComponent(
-      `Gmail: ${c.gmail}\nالمدة: ${c.duration}\nالرابط: ${buildGeneratedUrl(c.type)}`
+      `Gmail: ${c.gmail}\nالمدة: ${c.duration}\nالرابط: ${clientInvoiceLink}`
     );
 
     line.innerHTML = `
@@ -1147,17 +1581,7 @@ function renderClientRows(showBox = true) {
     btn.addEventListener('click', () => {
       const c = clients[Number(btn.dataset.copyIdx)];
       if (!c) return;
-      const lineCopy = [
-        `الاسم: ${c.name}`,
-        `Gmail: ${c.gmail}`,
-        `واتساب: +${c.whatsapp}`,
-        `النوع: ${c.type === 'trial' ? 'تجربة 24 ساعة' : 'اشتراك وتفعيل'}`,
-        `المدة: ${c.duration}`,
-        c.host ? `Host: ${c.host}` : '',
-        c.username ? `Username: ${c.username}` : '',
-        c.password ? `Password: ${c.password}` : '',
-        c.m3u ? `M3U: ${c.m3u}` : ''
-      ].filter(Boolean).join('\n');
+      const lineCopy = buildClientFields(c).map(f => `${f.label}: ${f.value}`).join('\n');
       copyText(lineCopy);
       showToast('تم نسخ بيانات الزبون');
     });
@@ -1244,16 +1668,18 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   document.getElementById('resetBtn').style.display = 'none';
 });
 
-function handleGenerateLink(portalMode = '') {
-  const link = buildGeneratedUrl(portalMode);
+function handleGenerateLink(linkType) {
+  const link = buildGeneratedUrl(linkType);
   document.getElementById('generatedLinkOutput').value = link;
-  document.getElementById('previewStoreBtn').href = link;
+  if (linkType === 'store') {
+    document.getElementById('previewStoreBtn').href = link;
+  }
   copyText(link);
   renderClientRows(true);
   showToast('تم توليد الرابط ونسخه');
 }
 
-document.getElementById('genStoreFullBtn').addEventListener('click', () => handleGenerateLink(''));
+document.getElementById('genStoreFullBtn').addEventListener('click', () => handleGenerateLink('store'));
 document.getElementById('genTrialPortalBtn').addEventListener('click', () => handleGenerateLink('trial'));
 document.getElementById('genSubPortalBtn').addEventListener('click', () => handleGenerateLink('subscriptions'));
 
@@ -1266,7 +1692,7 @@ document.getElementById('copyGeneratedBtn').addEventListener('click', () => {
 
 renderClientRows(true);
 
-/* ================= STORE CLIENT LOGIC ================= */
+/* ================= STORE CLIENT PORTAL LOGIC ================= */
 const searchInput = document.getElementById('appSearch');
 const cards = document.querySelectorAll('#appsGrid .app');
 const emptyState = document.getElementById('emptyState');
@@ -1352,16 +1778,7 @@ function renderClientPersonalData(email, mode) {
     credentialsWaLink.href = 'https://wa.me/' + client.whatsapp.replace(/\D/g, '');
   }
 
-  const rows = [
-    { label: 'الاسم الكامل', value: client.name },
-    { label: 'مدة الصلاحية', value: client.duration },
-    { label: 'رقم الواتساب', value: '+' + client.whatsapp }
-  ];
-  if (client.host) rows.push({ label: 'Host', value: client.host });
-  if (client.username) rows.push({ label: 'Username', value: client.username });
-  if (client.password) rows.push({ label: 'Password', value: client.password });
-  if (client.m3u) rows.push({ label: 'M3U URL', value: client.m3u });
-
+  const rows = buildClientFields(client);
   currentDisplayedItems = rows;
   credentialsList.innerHTML = '';
 
@@ -1437,7 +1854,7 @@ copyAllBtn.addEventListener('click', () => {
   if (!currentDisplayedItems.length) return;
   copyText(currentDisplayedItems.map(i => i.label + ': ' + i.value).join('\n'));
   copyAllBtn.textContent = 'تم نسخ الكل';
-  setTimeout(() => { copyAllBtn.textContent = 'نسخ الكل'; }, 1300);
+  setTimeout(() => { copyAllCardBtn.textContent = 'نسخ الكل'; }, 1300);
 });
 
 trialCardBtn.addEventListener('click', () => openCredentialsModal('trial'));
@@ -1477,10 +1894,6 @@ dlDropdown.querySelectorAll('.downloader-code-item').forEach(item => {
     setTimeout(() => { badge.textContent = code; }, 1300);
   });
 });
-
-if (isStoreLink && (initialPortal === 'trial' || initialPortal === 'subscriptions')) {
-  openCredentialsModal(initialPortal);
-}
 </script>
 </body>
 </html>
