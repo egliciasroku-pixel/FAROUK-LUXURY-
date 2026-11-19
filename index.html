@@ -147,6 +147,26 @@ body.mode-store #storeView { display: block !important; }
   box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(168, 255, 0, 0.16), inset 0 1px 0 rgba(168, 255, 0, 0.35);
 }
 
+/* Quick Switch Back to Admin inside Store View */
+.back-to-panel-pill {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 980;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  color: #060a12;
+  background: linear-gradient(135deg, #fde047, #a8ff00);
+  box-shadow: 0 12px 26px -6px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
 /* Hidden Luxury Modal (Activation + Link Generator) */
 .admin-modal-backdrop {
   position: fixed;
@@ -669,8 +689,10 @@ footer { padding: 14px 14px 32px; }
 </head>
 <body class="mode-admin">
 
-<!-- ================= HIDDEN STORE SECTION (SHOWN TO CLIENTS VIA LINK OR PREVIEW) ================= -->
+<!-- ================= STORE SECTION ================= -->
 <div id="storeView" class="store-shell">
+  <button type="button" class="back-to-panel-pill" id="returnToAdminBtn">✦ لوحتي</button>
+
   <header>
     <div class="hero-card">
       <div class="top-right-dock-card" aria-label="بوابة الاشتراكات والتجربة المجانية">
@@ -981,6 +1003,7 @@ footer { padding: 14px 14px 32px; }
 
 <script>
 const STORAGE_KEY = 'younes_store_clients_clean_v1';
+const PANEL_PREF_KEY = 'younes_panel_mode_pref_v1';
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1007,7 +1030,7 @@ function decodeData(str) {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-const isStoreMode = urlParams.get('store') === '1';
+const isStoreParam = urlParams.get('store') === '1';
 const initialPortal = urlParams.get('portal');
 const urlDataParam = urlParams.get('data');
 
@@ -1030,13 +1053,29 @@ if (urlDataParam) {
   }
 }
 
-if (isStoreMode) {
-  document.body.classList.remove('mode-admin');
-  document.body.classList.add('mode-store');
-} else {
-  document.body.classList.remove('mode-store');
-  document.body.classList.add('mode-admin');
+function setPageMode(mode) {
+  if (mode === 'store') {
+    document.body.classList.remove('mode-admin');
+    document.body.classList.add('mode-store');
+  } else {
+    document.body.classList.remove('mode-store');
+    document.body.classList.add('mode-admin');
+    localStorage.setItem(PANEL_PREF_KEY, 'admin');
+  }
 }
+
+const forcedAdminInSession = sessionStorage.getItem(PANEL_PREF_KEY) === 'admin';
+if (isStoreParam && !forcedAdminInSession) {
+  setPageMode('store');
+} else {
+  setPageMode('admin');
+}
+
+document.getElementById('returnToAdminBtn').addEventListener('click', () => {
+  sessionStorage.setItem(PANEL_PREF_KEY, 'admin');
+  setPageMode('admin');
+  renderClientRows(true);
+});
 
 /* Luxury Admin Suite Modal Controls */
 const adminSuiteModal = document.getElementById('adminSuiteModal');
@@ -1201,6 +1240,7 @@ document.getElementById('clientForm').addEventListener('submit', (e) => {
   document.getElementById('saveBtn').textContent = 'تفعيل الزبون';
   document.getElementById('resetBtn').style.display = 'none';
 
+  setPageMode('admin');
   renderClientRows(true);
 });
 
@@ -1217,6 +1257,7 @@ function handleGenerateLink(portalMode = '') {
   document.getElementById('generatedLinkOutput').value = link;
   document.getElementById('previewStoreBtn').href = link;
   copyText(link);
+  setPageMode('admin');
   renderClientRows(true);
   showToast('تم توليد الرابط ونسخه');
 }
@@ -1446,7 +1487,7 @@ dlDropdown.querySelectorAll('.downloader-code-item').forEach(item => {
   });
 });
 
-if (isStoreMode && (initialPortal === 'trial' || initialPortal === 'subscriptions')) {
+if (isStoreParam && !forcedAdminInSession && (initialPortal === 'trial' || initialPortal === 'subscriptions')) {
   openCredentialsModal(initialPortal);
 }
 </script>
