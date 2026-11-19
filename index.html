@@ -49,27 +49,57 @@ body {
 
 /* Mode Visibility Control */
 body.mode-admin #storeView { display: none !important; }
-body.mode-admin #adminView { display: block !important; }
+body.mode-admin #adminView { display: flex !important; }
 
 body.mode-store #adminView { display: none !important; }
 body.mode-store #storeView { display: block !important; }
 
-/* ================= COMPACT LUXURY ADMIN PANEL ================= */
+/* ================= CENTERED LUXURY ADMIN PANEL CARD ================= */
 .admin-wrap {
-  max-width: 720px;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 14px;
+}
+
+.admin-panel-shell {
+  width: 100%;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 14px 12px 32px;
+  padding: 18px 16px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.1), transparent 55%),
+    linear-gradient(155deg, rgba(24, 36, 62, 0.95) 0%, rgba(9, 14, 26, 0.99) 100%);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 28px 60px -14px rgba(0, 0, 0, 0.92),
+    0 0 40px rgba(168, 255, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .admin-header {
-  background: linear-gradient(155deg, var(--surface-card-top), #090e1a);
-  border-radius: 18px;
-  padding: 12px 16px;
+  background: linear-gradient(155deg, rgba(22, 34, 59, 0.85), rgba(6, 10, 18, 0.9));
+  border-radius: 20px;
+  padding: 14px 16px;
   text-align: center;
-  box-shadow: var(--shadow-card);
-  margin-bottom: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  margin-bottom: 14px;
 }
-.admin-header h1 { margin: 0 0 2px; font-size: 16px; font-weight: 900; color: var(--lime); }
+.admin-kicker {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: var(--royal-gold);
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.1);
+  margin-bottom: 4px;
+}
+.admin-header h1 { margin: 0 0 3px; font-size: 16.5px; font-weight: 900; color: var(--lime); }
 .admin-header p { margin: 0; font-size: 11px; color: var(--muted); }
 
 /* Action Bars */
@@ -78,7 +108,7 @@ body.mode-store #storeView { display: block !important; }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .luxury-master-btn {
@@ -89,7 +119,7 @@ body.mode-store #storeView { display: block !important; }
   gap: 10px;
   width: 100%;
   max-width: 420px;
-  height: 45px;
+  height: 46px;
   padding: 0 20px;
   border-radius: 999px;
   cursor: pointer;
@@ -130,7 +160,7 @@ body.mode-store #storeView { display: block !important; }
   gap: 8px;
   width: 100%;
   max-width: 420px;
-  height: 38px;
+  height: 39px;
   padding: 0 18px;
   border-radius: 999px;
   text-decoration: none;
@@ -145,26 +175,6 @@ body.mode-store #storeView { display: block !important; }
 .standalone-preview-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(168, 255, 0, 0.16), inset 0 1px 0 rgba(168, 255, 0, 0.35);
-}
-
-/* Quick Switch Back to Admin inside Store View */
-.back-to-panel-pill {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 980;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: 'Cairo', sans-serif;
-  font-size: 11px;
-  font-weight: 900;
-  color: #060a12;
-  background: linear-gradient(135deg, #fde047, #a8ff00);
-  box-shadow: 0 12px 26px -6px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 /* Hidden Luxury Modal (Activation + Link Generator) */
@@ -248,11 +258,10 @@ body.mode-store #storeView { display: block !important; }
 }
 
 .admin-card {
-  background: linear-gradient(160deg, var(--surface-card-top), var(--surface-card));
-  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(22, 34, 59, 0.78), rgba(6, 10, 18, 0.88));
+  border-radius: 18px;
   padding: 12px 14px;
-  margin-bottom: 10px;
-  box-shadow: var(--shadow-card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .admin-section-title {
@@ -339,7 +348,7 @@ body.mode-store #storeView { display: block !important; }
   display: none;
   flex-direction: column;
   gap: 6px;
-  max-height: 270px;
+  max-height: 240px;
   overflow-y: auto;
   padding-left: 2px;
 }
@@ -691,8 +700,6 @@ footer { padding: 14px 14px 32px; }
 
 <!-- ================= STORE SECTION ================= -->
 <div id="storeView" class="store-shell">
-  <button type="button" class="back-to-panel-pill" id="returnToAdminBtn">✦ لوحتي</button>
-
   <header>
     <div class="hero-card">
       <div class="top-right-dock-card" aria-label="بوابة الاشتراكات والتجربة المجانية">
@@ -881,32 +888,35 @@ footer { padding: 14px 14px 32px; }
   </footer>
 </div>
 
-<!-- ================= ADMIN PANEL SECTION ================= -->
+<!-- ================= CENTERED ADMIN PANEL SECTION ================= -->
 <div id="adminView" class="admin-wrap">
-  <div class="admin-header">
-    <h1>YOUNES TECHNIQUE — لوحة الإدارة</h1>
-    <p>تظهر لك فقط — والمتجر مخفي بالكامل حتى يتم توليده وإرساله للزبون</p>
-  </div>
-
-  <!-- Luxury Button + Standalone Store Preview Button -->
-  <div class="luxury-trigger-bar">
-    <button type="button" class="luxury-master-btn" id="openAdminSuiteBtn">
-      <span>✦ تفعيل زبون وتوليد الروابط</span>
-      <span class="luxury-btn-badge">VIP SUITE</span>
-    </button>
-
-    <a class="standalone-preview-btn" id="previewStoreBtn" href="?store=1" target="_blank" rel="noopener">
-      <span>معاينة Store</span>
-    </a>
-  </div>
-
-  <!-- Compact Activated Clients List -->
-  <div class="admin-card">
-    <div class="admin-section-title">
-      <span>الزبناء المفعّلون</span>
-      <span class="counter-pill" id="clientsCounter">0 زبون</span>
+  <div class="admin-panel-shell">
+    <div class="admin-header">
+      <span class="admin-kicker">ROYAL CONTROL SUITE</span>
+      <h1>YOUNES TECHNIQUE — لوحة الإدارة</h1>
+      <p>تظهر لك فقط — والمتجر مخفي بالكامل حتى يتم توليده وإرساله للزبون</p>
     </div>
-    <div class="clients-rows-box visible" id="clientsRowsBox"></div>
+
+    <!-- Luxury Button + Standalone Store Preview Button -->
+    <div class="luxury-trigger-bar">
+      <button type="button" class="luxury-master-btn" id="openAdminSuiteBtn">
+        <span>✦ تفعيل زبون وتوليد الروابط</span>
+        <span class="luxury-btn-badge">VIP SUITE</span>
+      </button>
+
+      <a class="standalone-preview-btn" id="previewStoreBtn" href="?store=1" target="_blank" rel="noopener">
+        <span>معاينة Store</span>
+      </a>
+    </div>
+
+    <!-- Compact Activated Clients List -->
+    <div class="admin-card">
+      <div class="admin-section-title">
+        <span>الزبناء المفعّلون</span>
+        <span class="counter-pill" id="clientsCounter">0 زبون</span>
+      </div>
+      <div class="clients-rows-box visible" id="clientsRowsBox"></div>
+    </div>
   </div>
 </div>
 
@@ -1003,7 +1013,6 @@ footer { padding: 14px 14px 32px; }
 
 <script>
 const STORAGE_KEY = 'younes_store_clients_clean_v1';
-const PANEL_PREF_KEY = 'younes_panel_mode_pref_v1';
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1030,7 +1039,7 @@ function decodeData(str) {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-const isStoreParam = urlParams.get('store') === '1';
+const isStoreLink = urlParams.get('store') === '1';
 const initialPortal = urlParams.get('portal');
 const urlDataParam = urlParams.get('data');
 
@@ -1053,29 +1062,13 @@ if (urlDataParam) {
   }
 }
 
-function setPageMode(mode) {
-  if (mode === 'store') {
-    document.body.classList.remove('mode-admin');
-    document.body.classList.add('mode-store');
-  } else {
-    document.body.classList.remove('mode-store');
-    document.body.classList.add('mode-admin');
-    localStorage.setItem(PANEL_PREF_KEY, 'admin');
-  }
-}
-
-const forcedAdminInSession = sessionStorage.getItem(PANEL_PREF_KEY) === 'admin';
-if (isStoreParam && !forcedAdminInSession) {
-  setPageMode('store');
+if (isStoreLink) {
+  document.body.classList.remove('mode-admin');
+  document.body.classList.add('mode-store');
 } else {
-  setPageMode('admin');
+  document.body.classList.remove('mode-store');
+  document.body.classList.add('mode-admin');
 }
-
-document.getElementById('returnToAdminBtn').addEventListener('click', () => {
-  sessionStorage.setItem(PANEL_PREF_KEY, 'admin');
-  setPageMode('admin');
-  renderClientRows(true);
-});
 
 /* Luxury Admin Suite Modal Controls */
 const adminSuiteModal = document.getElementById('adminSuiteModal');
@@ -1240,7 +1233,6 @@ document.getElementById('clientForm').addEventListener('submit', (e) => {
   document.getElementById('saveBtn').textContent = 'تفعيل الزبون';
   document.getElementById('resetBtn').style.display = 'none';
 
-  setPageMode('admin');
   renderClientRows(true);
 });
 
@@ -1257,7 +1249,6 @@ function handleGenerateLink(portalMode = '') {
   document.getElementById('generatedLinkOutput').value = link;
   document.getElementById('previewStoreBtn').href = link;
   copyText(link);
-  setPageMode('admin');
   renderClientRows(true);
   showToast('تم توليد الرابط ونسخه');
 }
@@ -1487,7 +1478,7 @@ dlDropdown.querySelectorAll('.downloader-code-item').forEach(item => {
   });
 });
 
-if (isStoreParam && !forcedAdminInSession && (initialPortal === 'trial' || initialPortal === 'subscriptions')) {
+if (isStoreLink && (initialPortal === 'trial' || initialPortal === 'subscriptions')) {
   openCredentialsModal(initialPortal);
 }
 </script>
