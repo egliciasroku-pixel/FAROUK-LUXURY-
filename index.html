@@ -1,11 +1,15 @@
 
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Générateur de Liens Courts — FAROUK LUXURY</title>
-  <!-- Chargement de la police Inter -->
+  <!-- Police Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Chargement de Tailwind CSS -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,66 +21,80 @@
           },
           colors: {
             obsidian: '#09090b',
-            charcoal: '#111116',
+            charcoal: '#111115',
             surface: '#18181f',
             gold: {
-              300: '#f3dc94',
+              200: '#fef08a',
+              300: '#f5d061',
               400: '#e5c158',
               500: '#d4af37',
               600: '#b58e22',
             },
           },
           boxShadow: {
-            goldGlow: '0 0 22px -6px rgba(212, 175, 55, 0.34)',
-            cardLuxury: '0 14px 36px -10px rgba(0, 0, 0, 0.88)',
-            softElevate: '0 8px 20px -8px rgba(0, 0, 0, 0.78)',
+            goldGlow: '0 0 24px -5px rgba(255, 215, 0, 0.42)',
+            cardLuxury: '0 14px 36px -10px rgba(0, 0, 0, 0.9)',
+            softElevate: '0 8px 20px -8px rgba(0, 0, 0, 0.8)',
           },
         },
       },
     };
   </script>
   <style>
-    /* Esthétique strictement sans bordure (border: none, border-width: 0, outline: none) sur tous les éléments */
+    /* Zéro bordure strictement appliqué sur tous les éléments */
     *, *::before, *::after {
       border: none !important;
       border-width: 0 !important;
       outline: none !important;
+      box-sizing: border-box;
     }
 
-    body {
+    html, body {
       font-family: 'Inter', sans-serif;
       background-color: #09090b;
       color: #f4f5f7;
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
+      max-width: 100vw;
     }
 
-    /* Arrière-plan obsidienne avec reflets or champagne */
+    /* Fond luxe noir obsidienne avec reflets or champagne */
     .luxury-bg {
       background-image:
-        radial-gradient(circle at 12% 8%, rgba(212, 175, 55, 0.09) 0%, transparent 42%),
-        radial-gradient(circle at 88% 90%, rgba(245, 208, 97, 0.06) 0%, transparent 48%),
-        linear-gradient(180deg, #09090b 0%, #111115 100%);
+        radial-gradient(circle at 12% 8%, rgba(255, 215, 0, 0.09) 0%, transparent 42%),
+        radial-gradient(circle at 88% 90%, rgba(212, 175, 55, 0.06) 0%, transparent 48%),
+        linear-gradient(180deg, #09090b 0%, #101015 100%);
     }
 
-    /* Lueur dorée éclatante pour l'accueil FAROUK LUXURY Welcome */
+    /* Texte doré مشع (radiant gold) pour FAROUK LUXURY Welcome */
     .radiant-gold-text {
-      background: linear-gradient(110deg, #d4af37 0%, #fff3b0 35%, #ffd700 55%, #f5d061 75%, #fff3b0 100%);
+      background: linear-gradient(110deg, #d4af37 0%, #fff3b0 32%, #ffd700 52%, #fef08a 75%, #fff3b0 100%);
       background-size: 220% auto;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 28px rgba(255, 215, 0, 0.55), 0 0 56px rgba(245, 208, 97, 0.35);
+      text-shadow: 0 0 26px rgba(255, 215, 0, 0.6), 0 0 54px rgba(245, 208, 97, 0.36);
       animation: goldShimmer 2.2s linear infinite;
     }
 
     .radiant-gold-halo {
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.24) 0%, rgba(245, 208, 97, 0.08) 45%, transparent 72%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, rgba(245, 208, 97, 0.08) 48%, transparent 74%);
       filter: blur(18px);
     }
 
     @keyframes goldShimmer {
       0% { background-position: 0% center; }
       100% { background-position: 220% center; }
+    }
+
+    @keyframes pulseGold {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.04); }
+    }
+
+    .animate-pulse-gold {
+      animation: pulseGold 1.4s infinite ease-in-out;
     }
 
     /* Barre de défilement discrète */
@@ -94,24 +112,16 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(245, 208, 97, 0.65);
     }
-
-    @keyframes pulseGold {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.78; transform: scale(1.04); }
-    }
-    .animate-pulse-gold {
-      animation: pulseGold 1.4s infinite ease-in-out;
-    }
   </style>
 </head>
-<body class="luxury-bg min-h-screen text-gray-100 antialiased selection:bg-gold-500/30 selection:text-gold-300">
+<body class="luxury-bg min-h-screen text-gray-100 antialiased selection:bg-gold-500/30 selection:text-gold-200">
 
-  <!-- Écran de bienvenue doré éclatant lors de la copie ou de l'ouverture d'un lien court -->
-  <div id="redirect-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 bg-obsidian/95 backdrop-blur-xl">
-    <div class="relative w-full max-w-md rounded-2xl bg-[#111115] p-5 sm:p-6 shadow-cardLuxury text-center space-y-4 overflow-hidden">
+  <!-- Écran de bienvenue doré éclatant « FAROUK LUXURY Welcome » + entrée directe sur la page -->
+  <div id="redirect-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-obsidian/95 backdrop-blur-xl">
+    <div class="relative w-full max-w-md rounded-2xl bg-charcoal p-5 sm:p-6 shadow-cardLuxury text-center space-y-4 overflow-hidden">
       <div class="radiant-gold-halo pointer-events-none absolute -inset-6"></div>
 
-      <div class="relative mx-auto w-12 h-12 rounded-2xl bg-amber-400/15 flex items-center justify-center text-[#ffd700] shadow-goldGlow animate-pulse-gold">
+      <div class="relative mx-auto w-12 h-12 rounded-2xl bg-gold-500/15 flex items-center justify-center text-gold-200 shadow-goldGlow animate-pulse-gold">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
@@ -121,62 +131,69 @@
         <h2 class="text-xl sm:text-2xl font-extrabold tracking-wide radiant-gold-text">
           FAROUK LUXURY Welcome
         </h2>
-        <p id="redirect-subtitle" class="text-xs text-[#fef08a]/85 font-medium">
+        <p id="redirect-subtitle" class="text-xs text-gold-200/90 font-medium">
           Lien copié — Accès direct à la page de destination...
         </p>
       </div>
 
-      <div class="relative rounded-xl bg-[#09090b] p-3 text-left space-y-1 shadow-softElevate">
-        <div class="text-[10px] text-[#f5d061] font-semibold uppercase tracking-wider">Page de destination</div>
-        <div id="redirect-target-url" class="text-xs text-gray-200 break-all font-medium"></div>
-        <div id="redirect-code-badge" class="text-[11px] text-[#fef08a]/85 pt-0.5 font-mono"></div>
+      <!-- Affichage clair du lien court copié + URL cible -->
+      <div class="relative rounded-xl bg-obsidian p-3 text-left space-y-2 shadow-softElevate">
+        <div class="space-y-0.5">
+          <div class="text-[10px] text-gold-300 font-semibold uppercase tracking-wider">Lien court copié</div>
+          <div id="redirect-copied-link" class="text-xs text-gold-200 break-all font-mono font-semibold select-all"></div>
+        </div>
+        <div class="space-y-0.5">
+          <div class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Page de destination</div>
+          <div id="redirect-target-url" class="text-xs text-gray-200 break-all font-medium"></div>
+        </div>
       </div>
 
-      <!-- Barre de progression rapide -->
+      <!-- Barre de progression -->
       <div class="relative space-y-1.5">
         <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-          <div id="redirect-progress-bar" class="h-full bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#fef08a] transition-all duration-75 w-0"></div>
+          <div id="redirect-progress-bar" class="h-full bg-gradient-to-r from-gold-500 via-gold-300 to-gold-200 transition-all duration-75 w-0"></div>
         </div>
-        <p id="redirect-status-text" class="text-[11px] text-[#f5d061]">Entrée directe sur la page...</p>
+        <p id="redirect-status-text" class="text-[11px] text-gold-300">Entrée directe sur la page...</p>
       </div>
 
+      <!-- Boutons d'action -->
       <div class="relative flex flex-col sm:flex-row gap-2 pt-1">
-        <a id="redirect-instant-btn" href="#" rel="noopener noreferrer"
-           class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f5d061] to-[#fef08a] text-[#09090b] font-bold text-xs hover:brightness-110 transition shadow-goldGlow flex items-center justify-center gap-1.5">
-          <span>Entrer maintenant</span>
+        <a id="redirect-instant-btn" href="#" target="_top" rel="noopener noreferrer"
+           class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-300 to-gold-200 text-obsidian font-extrabold text-xs hover:brightness-110 transition shadow-goldGlow flex items-center justify-center gap-1.5">
+          <span>Entrer sur la page</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
         </a>
         <button id="redirect-cancel-btn" type="button"
-                class="py-2.5 px-4 rounded-xl bg-[#18181f] hover:bg-white/10 text-gray-300 font-semibold text-xs transition">
-          Tableau de bord
+                class="py-2.5 px-4 rounded-xl bg-surface hover:bg-white/10 text-gray-200 font-semibold text-xs transition">
+          Rester ici
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Conteneur de notifications Toast -->
-  <div id="toast-container" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:w-80 z-50 flex flex-col gap-2 pointer-events-none"></div>
+  <!-- Notifications Toast -->
+  <div id="toast-container" class="fixed bottom-3 right-3 left-3 sm:left-auto sm:w-80 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-  <!-- Interface Principale Compacte -->
-  <div id="dashboard-app" class="max-w-4xl mx-auto px-3 sm:px-5 py-3.5 sm:py-6 space-y-3.5 sm:space-y-4">
+  <!-- Conteneur Principal Compact (Mobile & Desktop) -->
+  <main class="w-full max-w-3xl mx-auto px-3 sm:px-5 py-3 sm:py-6 space-y-3 sm:space-y-4">
 
     <!-- En-tête compact -->
-    <header class="flex items-center justify-between gap-2.5 bg-charcoal rounded-2xl px-3.5 py-3 shadow-cardLuxury">
+    <header class="flex items-center justify-between gap-2 bg-charcoal rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 shadow-cardLuxury">
       <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-9 h-9 shrink-0 rounded-xl bg-gold-500/15 flex items-center justify-center text-gold-400 shadow-goldGlow">
+        <div class="w-9 h-9 shrink-0 rounded-xl bg-gold-500/15 flex items-center justify-center text-gold-300 shadow-goldGlow">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
           </svg>
         </div>
         <div class="min-w-0">
-          <div class="flex items-center gap-2">
-            <h1 class="text-sm sm:text-lg font-extrabold tracking-tight text-white truncate">
-              FAROUK <span class="text-gold-400">LUXURY</span>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white truncate">
+              FAROUK <span class="radiant-gold-text">LUXURY</span>
             </h1>
             <span id="base-mode-badge" class="px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-300 text-[10px] font-semibold truncate">
-              Younes • Ultra-court
+              Younes • #Younes-a9
             </span>
           </div>
           <p id="current-origin-display" class="text-[11px] text-gray-400 truncate font-mono"></p>
@@ -184,35 +201,35 @@
       </div>
 
       <div class="flex items-center gap-1.5 shrink-0">
-        <button id="toggle-custom-base-btn" type="button"
-                class="px-2.5 py-2 rounded-xl bg-surface hover:bg-white/10 text-gold-300 text-xs font-semibold transition flex items-center gap-1">
+        <button id="toggle-settings-btn" type="button"
+                class="px-2.5 py-1.5 sm:py-2 rounded-xl bg-surface hover:bg-white/10 text-gold-300 text-xs font-semibold transition flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
           </svg>
           <span class="hidden sm:inline">Réglages</span>
         </button>
-        <button id="copy-dashboard-url-btn" type="button"
-                class="px-2.5 py-2 rounded-xl bg-obsidian hover:bg-surface text-gray-300 hover:text-white text-xs font-semibold transition">
-          Copier hôte
+        <button id="copy-base-btn" type="button"
+                class="px-2.5 py-1.5 sm:py-2 rounded-xl bg-obsidian hover:bg-surface text-gray-200 text-xs font-semibold transition">
+          Copier base
         </button>
       </div>
     </header>
 
-    <!-- Panneau compact de réglages (URL de base & Nom par défaut) -->
-    <section id="custom-base-panel" class="hidden rounded-2xl bg-charcoal p-3.5 sm:p-4 shadow-cardLuxury space-y-3">
+    <!-- Panneau réglages compact -->
+    <section id="settings-panel" class="hidden rounded-2xl bg-charcoal p-3.5 sm:p-4 shadow-cardLuxury space-y-3">
       <div class="flex items-center justify-between gap-2">
         <div>
-          <h2 class="text-xs sm:text-sm font-bold text-gold-300">Configuration de la base et du nom</h2>
-          <p class="text-[11px] text-gray-400">Nom par défaut : <span class="text-gold-300 font-mono">Younes</span> — format court <span class="text-gold-300 font-mono">#Younes-a9</span>.</p>
+          <h2 class="text-xs sm:text-sm font-bold text-gold-300">Paramètres de base et nom</h2>
+          <p class="text-[11px] text-gray-400">Nom par défaut : <span class="text-gold-300 font-mono">Younes</span> — lien ultra-court <span class="text-gold-300 font-mono">#Younes-a9</span>.</p>
         </div>
-        <button id="reset-base-url-btn" type="button" class="px-2.5 py-1.5 rounded-lg bg-surface hover:bg-white/10 text-[11px] text-gray-300 transition shrink-0">
+        <button id="reset-settings-btn" type="button" class="px-2.5 py-1.5 rounded-lg bg-surface hover:bg-white/10 text-[11px] text-gray-300 transition shrink-0">
           Réinitialiser
         </button>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
         <div class="sm:col-span-4 space-y-1">
-          <label for="default-brand-input" class="block text-[11px] font-semibold text-gold-300">Nom / Marque par défaut</label>
+          <label for="default-brand-input" class="block text-[11px] font-semibold text-gold-300">Nom / Marque</label>
           <input id="default-brand-input" type="text" maxlength="20" placeholder="Younes"
                  class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs text-gold-300 placeholder-gray-500 font-mono" />
         </div>
@@ -222,8 +239,8 @@
                  class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs text-white placeholder-gray-500 font-mono" />
         </div>
         <div class="sm:col-span-2 flex items-end">
-          <button id="save-base-url-btn" type="button" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:brightness-110 text-obsidian font-bold text-xs transition shadow-goldGlow">
-            Sauver
+          <button id="save-settings-btn" type="button" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-300 hover:brightness-110 text-obsidian font-bold text-xs transition shadow-goldGlow">
+            Enregistrer
           </button>
         </div>
       </div>
@@ -233,7 +250,7 @@
     <section class="grid grid-cols-3 gap-2 sm:gap-3">
       <div class="rounded-2xl bg-charcoal px-3 py-2.5 shadow-softElevate flex items-center justify-between">
         <div class="min-w-0">
-          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Liens</p>
+          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Liens créés</p>
           <p id="stat-total-links" class="text-base sm:text-xl font-extrabold text-white">0</p>
         </div>
         <span class="text-[10px] font-mono text-gold-400/80 hidden sm:inline">ACTIF</span>
@@ -241,7 +258,7 @@
 
       <div class="rounded-2xl bg-charcoal px-3 py-2.5 shadow-softElevate flex items-center justify-between">
         <div class="min-w-0">
-          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Clics</p>
+          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Clics totaux</p>
           <p id="stat-total-clicks" class="text-base sm:text-xl font-extrabold text-gold-300">0</p>
         </div>
         <span class="text-[10px] font-mono text-gold-400/80 hidden sm:inline">LIVE</span>
@@ -249,21 +266,20 @@
 
       <div class="rounded-2xl bg-charcoal px-3 py-2.5 shadow-softElevate flex items-center justify-between">
         <div class="min-w-0">
-          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Format</p>
+          <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">Format court</p>
           <p id="stat-active-format" class="text-xs sm:text-sm font-bold text-white truncate font-mono mt-0.5">#Younes-2c</p>
         </div>
       </div>
     </section>
 
-    <!-- Carte compacte de génération de lien ultra-court -->
+    <!-- Formulaire principal de génération -->
     <section class="rounded-2xl bg-charcoal p-3.5 sm:p-4 shadow-cardLuxury space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
-          <span class="w-1 h-4 rounded-full bg-gold-400"></span>
-          <h2 class="text-xs sm:text-sm font-bold text-white">Générer un lien ultra-court</h2>
+          <span class="w-1 h-4 rounded-full bg-gold-300"></span>
+          <h2 class="text-xs sm:text-sm font-bold text-white">Créer un lien court</h2>
         </div>
 
-        <!-- Sélecteur compact de longueur de code -->
         <div class="inline-flex rounded-xl bg-obsidian p-0.5 gap-0.5" role="group" aria-label="Longueur du code">
           <button type="button" data-code-len="2" id="len-2-btn"
                   class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-gold-500/20 text-gold-300 transition">
@@ -287,11 +303,11 @@
             <label for="long-url-input" class="block text-[11px] font-semibold text-gold-300">
               URL de destination <span class="text-gold-400">*</span>
             </label>
-            <input id="long-url-input" type="url" required placeholder="https://exemple.com/page-cible"
+            <input id="long-url-input" type="text" inputmode="url" required placeholder="exemple.com/page ou https://..."
                    class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs sm:text-sm text-white placeholder-gray-500" />
           </div>
 
-          <!-- Nom / Marque intégré dans le lien -->
+          <!-- Nom dans le lien -->
           <div class="sm:col-span-3 space-y-1">
             <label for="brand-prefix-input" class="block text-[11px] font-semibold text-gold-300">
               Nom dans le lien
@@ -300,7 +316,7 @@
                    class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs sm:text-sm text-gold-300 placeholder-gray-500 font-mono" />
           </div>
 
-          <!-- Code court / Alias optionnel -->
+          <!-- Code court optionnel -->
           <div class="sm:col-span-3 space-y-1">
             <label for="custom-slug-input" class="block text-[11px] font-semibold text-gray-300">
               Code <span class="text-gray-500 font-normal">(auto)</span>
@@ -310,30 +326,50 @@
           </div>
         </div>
 
-        <!-- Aperçu direct du lien le plus court + bouton Générer -->
+        <!-- Aperçu en direct + Bouton Générer -->
         <div class="rounded-xl bg-obsidian p-2.5 sm:px-3.5 sm:py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div class="min-w-0">
+          <div class="min-w-0 flex-1">
             <span class="block text-[10px] font-semibold uppercase tracking-wider text-gray-400">Aperçu du lien court</span>
-            <p id="live-short-preview" class="text-xs sm:text-sm font-bold text-gold-300 truncate font-mono"></p>
+            <p id="live-short-preview" class="text-xs sm:text-sm font-bold text-gold-300 break-all font-mono"></p>
           </div>
-          <button type="submit"
-                  class="shrink-0 py-2 px-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian font-bold text-xs sm:text-sm hover:brightness-110 active:scale-[0.99] transition shadow-goldGlow flex items-center justify-center gap-1.5">
-            <span>Générer</span>
+          <button type="submit" id="generate-submit-btn"
+                  class="shrink-0 py-2 px-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-300 text-obsidian font-extrabold text-xs sm:text-sm hover:brightness-110 active:scale-[0.99] transition shadow-goldGlow flex items-center justify-center gap-1.5">
+            <span>Générer et copier</span>
           </button>
         </div>
       </form>
+
+      <!-- Encadré permanent du lien généré pour lecture et copie manuelle immédiate -->
+      <div id="latest-generated-box" class="hidden rounded-xl bg-surface p-3 space-y-2 shadow-softElevate">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[11px] font-bold text-gold-300 uppercase tracking-wider">Dernier lien généré</span>
+          <span id="latest-generated-tag" class="px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-200 text-[11px] font-bold font-mono"></span>
+        </div>
+        <input id="latest-generated-input" type="text" readonly
+               class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs text-gold-200 font-mono select-all" />
+        <div class="flex flex-wrap items-center justify-end gap-2">
+          <button id="latest-copy-welcome-btn" type="button"
+                  class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-300 text-obsidian text-xs font-extrabold hover:brightness-110 transition shadow-goldGlow">
+            Copier &amp; Entrer (Welcome)
+          </button>
+          <button id="latest-copy-only-btn" type="button"
+                  class="px-3 py-1.5 rounded-xl bg-obsidian hover:bg-black/60 text-gold-300 text-xs font-semibold transition">
+            Copier le lien
+          </button>
+        </div>
+      </div>
     </section>
 
-    <!-- Liste compacte des liens courts -->
+    <!-- Liste des liens enregistrés -->
     <section class="rounded-2xl bg-charcoal p-3.5 sm:p-4 shadow-cardLuxury space-y-3">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div class="flex items-center gap-2">
-          <span class="w-1 h-4 rounded-full bg-gold-400"></span>
-          <h2 class="text-xs sm:text-sm font-bold text-white">Liens courts enregistrés</h2>
+          <span class="w-1 h-4 rounded-full bg-gold-300"></span>
+          <h2 class="text-xs sm:text-sm font-bold text-white">Liens enregistrés</h2>
         </div>
 
         <div class="flex items-center gap-2 w-full sm:w-auto">
-          <div class="relative flex-1 sm:w-52">
+          <div class="relative flex-1 sm:w-48">
             <input id="search-input" type="search" placeholder="Rechercher..."
                    class="w-full rounded-xl bg-obsidian px-3 py-1.5 pl-8 text-xs text-white placeholder-gray-500" />
             <svg class="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -351,50 +387,56 @@
       <div id="links-container" class="space-y-2"></div>
 
       <div id="empty-state" class="hidden text-center py-7 px-4 rounded-xl bg-obsidian/70 space-y-1">
-        <p class="text-xs sm:text-sm font-bold text-gray-300">Aucun lien court pour le moment</p>
-        <p class="text-[11px] text-gray-500">Ajoutez une URL ci-dessus pour obtenir un lien court au format #Younes-a9.</p>
+        <p class="text-xs sm:text-sm font-bold text-gray-300">Aucun lien enregistré pour le moment</p>
+        <p class="text-[11px] text-gray-500">Saisissez une URL ci-dessus et cliquez sur « Générer et copier ».</p>
       </div>
     </section>
 
-  </div>
+  </main>
 
   <script>
     (function () {
       'use strict';
 
       const STORAGE_KEYS = {
-        LINKS: 'farouk_luxury_short_links_v3',
-        CUSTOM_BASE: 'farouk_luxury_custom_base_v3',
-        DEFAULT_BRAND: 'farouk_luxury_default_brand_v3',
+        LINKS: 'farouk_luxury_links_v4',
+        CUSTOM_BASE: 'farouk_luxury_base_v4',
+        DEFAULT_BRAND: 'farouk_luxury_brand_v4',
       };
 
       const DEFAULT_BRAND = 'Younes';
 
+      // Stockage mémoire de secours garantissant l'enregistrement même si localStorage est restreint
+      let memoryLinks = [];
+      let memoryCustomBase = '';
+      let memoryDefaultBrand = DEFAULT_BRAND;
+
       let links = [];
       let customBaseUrl = '';
       let defaultBrandName = DEFAULT_BRAND;
-      let codeLengthMode = 2; // 2 = ultra-court (2 caractères), 4 = court (4 caractères), 'custom' = libre
+      let codeLengthMode = 2;
+      let latestGeneratedItem = null;
       let redirectTimer = null;
       let redirectProgressInterval = null;
 
       const el = {
         redirectOverlay: document.getElementById('redirect-overlay'),
         redirectSubtitle: document.getElementById('redirect-subtitle'),
+        redirectCopiedLink: document.getElementById('redirect-copied-link'),
         redirectTargetUrl: document.getElementById('redirect-target-url'),
-        redirectCodeBadge: document.getElementById('redirect-code-badge'),
         redirectProgressBar: document.getElementById('redirect-progress-bar'),
         redirectStatusText: document.getElementById('redirect-status-text'),
         redirectInstantBtn: document.getElementById('redirect-instant-btn'),
         redirectCancelBtn: document.getElementById('redirect-cancel-btn'),
         currentOriginDisplay: document.getElementById('current-origin-display'),
         baseModeBadge: document.getElementById('base-mode-badge'),
-        toggleCustomBaseBtn: document.getElementById('toggle-custom-base-btn'),
-        customBasePanel: document.getElementById('custom-base-panel'),
+        toggleSettingsBtn: document.getElementById('toggle-settings-btn'),
+        settingsPanel: document.getElementById('settings-panel'),
         defaultBrandInput: document.getElementById('default-brand-input'),
         customBaseInput: document.getElementById('custom-base-input'),
-        saveBaseUrlBtn: document.getElementById('save-base-url-btn'),
-        resetBaseUrlBtn: document.getElementById('reset-base-url-btn'),
-        copyDashboardUrlBtn: document.getElementById('copy-dashboard-url-btn'),
+        saveSettingsBtn: document.getElementById('save-settings-btn'),
+        resetSettingsBtn: document.getElementById('reset-settings-btn'),
+        copyBaseBtn: document.getElementById('copy-base-btn'),
         statTotalLinks: document.getElementById('stat-total-links'),
         statTotalClicks: document.getElementById('stat-total-clicks'),
         statActiveFormat: document.getElementById('stat-active-format'),
@@ -406,6 +448,11 @@
         brandPrefixInput: document.getElementById('brand-prefix-input'),
         customSlugInput: document.getElementById('custom-slug-input'),
         liveShortPreview: document.getElementById('live-short-preview'),
+        latestGeneratedBox: document.getElementById('latest-generated-box'),
+        latestGeneratedTag: document.getElementById('latest-generated-tag'),
+        latestGeneratedInput: document.getElementById('latest-generated-input'),
+        latestCopyWelcomeBtn: document.getElementById('latest-copy-welcome-btn'),
+        latestCopyOnlyBtn: document.getElementById('latest-copy-only-btn'),
         searchInput: document.getElementById('search-input'),
         clearAllBtn: document.getElementById('clear-all-btn'),
         linksContainer: document.getElementById('links-container'),
@@ -416,20 +463,20 @@
       function showToast(message, type = 'success') {
         const toast = document.createElement('div');
         const isError = type === 'error';
-        toast.className = `pointer-events-auto rounded-xl px-3.5 py-2 text-xs font-semibold shadow-cardLuxury backdrop-blur-md transition-all duration-300 flex items-center justify-between gap-2 ${
+        toast.className = `pointer-events-auto rounded-xl px-3.5 py-2 text-xs font-semibold shadow-cardLuxury transition-all duration-300 flex items-center justify-between gap-2 ${
           isError ? 'bg-red-950/95 text-red-200' : 'bg-surface/95 text-gold-200'
         }`;
         toast.innerHTML = `
-          <span>${escapeHtml(message)}</span>
-          <span class="w-1.5 h-1.5 shrink-0 rounded-full ${isError ? 'bg-red-400' : 'bg-gold-400'}"></span>
+          <span class="break-all">${escapeHtml(message)}</span>
+          <span class="w-1.5 h-1.5 shrink-0 rounded-full ${isError ? 'bg-red-400' : 'bg-gold-300'}"></span>
         `;
         el.toastContainer.appendChild(toast);
 
         setTimeout(() => {
           toast.style.opacity = '0';
           toast.style.transform = 'translateY(8px)';
-          setTimeout(() => toast.remove(), 260);
-        }, 2400);
+          setTimeout(() => toast.remove(), 250);
+        }, 2600);
       }
 
       function escapeHtml(str) {
@@ -441,6 +488,13 @@
           .replace(/'/g, '&#039;');
       }
 
+      function normalizeInputUrl(rawUrl) {
+        const trimmed = String(rawUrl || '').trim();
+        if (!trimmed) return '';
+        if (/^https?:\/\//i.test(trimmed)) return trimmed;
+        return `https://${trimmed}`;
+      }
+
       function isSafeHttpUrl(rawUrl) {
         try {
           const parsed = new URL(String(rawUrl || '').trim());
@@ -450,7 +504,66 @@
         }
       }
 
-      // Encodage et décodage Base64URL pour transporter l'URL cible sans serveur
+      function safeStorageGet(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function safeStorageSet(key, val) {
+        try {
+          window.localStorage.setItem(key, val);
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+
+      function safeStorageRemove(key) {
+        try {
+          window.localStorage.removeItem(key);
+        } catch (_) {}
+      }
+
+      function loadState() {
+        const rawBase = safeStorageGet(STORAGE_KEYS.CUSTOM_BASE);
+        customBaseUrl = (rawBase !== null ? rawBase : memoryCustomBase) || '';
+
+        const rawBrand = safeStorageGet(STORAGE_KEYS.DEFAULT_BRAND);
+        defaultBrandName = sanitizeSlug(rawBrand !== null ? rawBrand : memoryDefaultBrand, 20) || DEFAULT_BRAND;
+
+        const rawLinks = safeStorageGet(STORAGE_KEYS.LINKS);
+        if (rawLinks) {
+          try {
+            const parsed = JSON.parse(rawLinks);
+            if (Array.isArray(parsed)) {
+              links = parsed;
+              memoryLinks = parsed.slice();
+              return;
+            }
+          } catch (_) {}
+        }
+        links = memoryLinks.slice();
+      }
+
+      function saveLinks() {
+        memoryLinks = links.slice();
+        safeStorageSet(STORAGE_KEYS.LINKS, JSON.stringify(links));
+      }
+
+      function saveSettingsValues() {
+        memoryCustomBase = customBaseUrl;
+        memoryDefaultBrand = defaultBrandName;
+        if (customBaseUrl) {
+          safeStorageSet(STORAGE_KEYS.CUSTOM_BASE, customBaseUrl);
+        } else {
+          safeStorageRemove(STORAGE_KEYS.CUSTOM_BASE);
+        }
+        safeStorageSet(STORAGE_KEYS.DEFAULT_BRAND, defaultBrandName);
+      }
+
       function encodeBase64Url(str) {
         try {
           const bytes = new TextEncoder().encode(str);
@@ -479,7 +592,6 @@
         }
       }
 
-      // URL de base active : conserve l'URL exacte de la page/base (ex: https://egliciasroku-pixel.github.io/FAROUK-LUXURY-)
       function getActiveBaseUrl() {
         if (customBaseUrl && isSafeHttpUrl(customBaseUrl)) {
           return customBaseUrl;
@@ -487,14 +599,13 @@
         try {
           const loc = window.location;
           if (loc && (loc.protocol === 'http:' || loc.protocol === 'https:')) {
-            const cleanHref = loc.href.split('#')[0].split('?')[0];
-            return cleanHref || `${loc.origin}${loc.pathname}`;
+            const clean = loc.href.split('#')[0].split('?')[0];
+            if (clean && isSafeHttpUrl(clean)) return clean;
           }
         } catch (_) {}
         return 'https://egliciasroku-pixel.github.io/FAROUK-LUXURY-';
       }
 
-      // Nettoyage du nom ou code
       function sanitizeSlug(rawSlug, maxLen = 20) {
         return String(rawSlug || '')
           .trim()
@@ -505,89 +616,101 @@
           .slice(0, maxLen);
       }
 
-      // Format ultra-court compact : #Nom-code (ex: #Younes-a9)
       function formatCompactTag(brand, code) {
         const b = sanitizeSlug(brand, 20);
         const c = sanitizeSlug(code, 16);
         if (b && c) return `${b}-${c}`;
-        return b || c;
+        return b || c || `${DEFAULT_BRAND}-a9`;
       }
 
-      // Construction du lien court :
-      // - Lien court affiché / minimal : base#Younes-a9
-      // - Lien portable avec destination encodée : base#Younes-a9~<payload> (compact et sans slash supplémentaire)
-      function buildShortUrl(tag, targetUrl, withPayload = false) {
+      function generateShortCode(length = 2) {
+        const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+        let out = '';
+        for (let i = 0; i < length; i++) {
+          out += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return out;
+      }
+
+      // Lien ultra-court affiché : https://egliciasroku-pixel.github.io/FAROUK-LUXURY-#Younes-a9
+      // Lien portable avec cible encodée : https://egliciasroku-pixel.github.io/FAROUK-LUXURY-#Younes-a9~<payload>
+      function buildShortUrl(tag, targetUrl = '', includePayload = false) {
         const base = getActiveBaseUrl();
         const cleanTag = String(tag || '').replace(/^#+/, '');
-        if (!withPayload || !targetUrl) {
+        if (!includePayload || !targetUrl) {
           return `${base}#${cleanTag}`;
         }
         const payload = encodeBase64Url(targetUrl);
-        return `${base}#${cleanTag}~${payload}`;
-      function copyTextToClipboard(text, silentToast = false) {
-        if (!text) return false;
-        let copied = false;
-        try {
-          const temp = document.createElement('textarea');
-          temp.value = text;
-          temp.setAttribute('readonly', '');
-          temp.style.position = 'fixed';
-          temp.style.opacity = '0';
-          document.body.appendChild(temp);
-          temp.select();
-          copied = document.execCommand('copy');
-          document.body.removeChild(temp);
-        } catch (_) {}
-
-        if (copied) {
-          if (!silentToast) showToast(`Copié : ${text}`);
-          return true;
-        }
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text)
-            .then(() => {
-              if (!silentToast) showToast(`Copié : ${text}`);
-            })
-            .catch(() => {
-              if (!silentToast) showToast('Copie manuelle requise', 'error');
-            });
-          return true;
-        }
-
-        if (!silentToast) showToast('Copie manuelle requise', 'error');
-        return false;
+        return payload ? `${base}#${cleanTag}~${payload}` : `${base}#${cleanTag}`;
       }
 
-      // Affiche "FAROUK LUXURY Welcome" en or éclatant et entre directement sur la page cible
-      function triggerWelcomeAndEnterTarget(targetUrl, badgeLabel = '', subtitleLabel = 'FAROUK LUXURY Welcome — Entrée directe sur la page...') {
+      // Copie garantie avec fallback fiable (ne dépend jamais d'une seule API)
+      function copyTextToClipboard(text, silentToast = false) {
+        const val = String(text || '');
+        if (!val) return false;
+
+        let success = false;
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = val;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '0';
+          ta.style.left = '0';
+          ta.style.opacity = '0.01';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          ta.setSelectionRange(0, val.length);
+          success = document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (_) {
+          success = false;
+        }
+
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+          navigator.clipboard.writeText(val).catch(() => {});
+        }
+
+        if (!silentToast) {
+          showToast(success ? `Lien copié : ${val}` : `Lien prêt : ${val}`);
+        }
+        return true;
+      }
+
+      // Affiche "FAROUK LUXURY Welcome" en or مشع et entre directement sur la page cible
+      function triggerWelcomeAndEnterTarget(targetUrl, copiedShortLink, subtitle = 'FAROUK LUXURY Welcome — Entrée directe sur la page...') {
         if (!isSafeHttpUrl(targetUrl)) return;
 
         if (redirectTimer) clearTimeout(redirectTimer);
         if (redirectProgressInterval) clearInterval(redirectProgressInterval);
 
-        el.redirectSubtitle.textContent = subtitleLabel;
+        el.redirectSubtitle.textContent = subtitle;
+        el.redirectCopiedLink.textContent = copiedShortLink || targetUrl;
         el.redirectTargetUrl.textContent = targetUrl;
-        el.redirectCodeBadge.textContent = badgeLabel || 'Page de destination';
         el.redirectInstantBtn.href = targetUrl;
-        el.redirectProgressBar.style.width = '10%';
+        el.redirectProgressBar.style.width = '12%';
         el.redirectStatusText.textContent = 'FAROUK LUXURY Welcome...';
         el.redirectOverlay.classList.remove('hidden');
 
-        const durationMs = 750;
+        const durationMs = 700;
         const start = Date.now();
         redirectProgressInterval = setInterval(() => {
           const elapsed = Date.now() - start;
-          const pct = Math.min(100, 10 + (elapsed / durationMs) * 90);
+          const pct = Math.min(100, 12 + (elapsed / durationMs) * 88);
           el.redirectProgressBar.style.width = `${pct}%`;
-        }, 40);
+        }, 35);
 
         redirectTimer = setTimeout(() => {
           clearInterval(redirectProgressInterval);
           el.redirectProgressBar.style.width = '100%';
           el.redirectStatusText.textContent = 'Ouverture de la page...';
           try {
-            window.location.assign(targetUrl);
+            if (window.top && window.top !== window) {
+              window.top.location.href = targetUrl;
+            } else {
+              window.location.assign(targetUrl);
+            }
           } catch (_) {
             try {
               window.location.href = targetUrl;
@@ -613,10 +736,7 @@
           el.customSlugInput.placeholder = 'vip';
         }
 
-        const brandVal = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20) || DEFAULT_BRAND;
-        const lenLabel = mode === 'custom' ? 'libre' : `${mode}c`;
-        el.statActiveFormat.textContent = `#${brandVal}-${lenLabel}`;
-        updateLivePreview();
+        updateHeaderAndStats();
       }
 
       function updateHeaderAndStats() {
@@ -643,7 +763,7 @@
       }
 
       function updateLivePreview() {
-        const brandVal = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20);
+        const brandVal = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20) || DEFAULT_BRAND;
         const customCode = sanitizeSlug(el.customSlugInput.value, 16);
         const fallbackCode = codeLengthMode === 4 ? '87cd' : (codeLengthMode === 'custom' ? 'vip' : 'a9');
         const codePreview = customCode || fallbackCode;
@@ -669,6 +789,18 @@
         }
       }
 
+      function renderLatestGeneratedBox(item) {
+        if (!item) {
+          el.latestGeneratedBox.classList.add('hidden');
+          return;
+        }
+        latestGeneratedItem = item;
+        const portableUrl = buildShortUrl(item.tag, item.targetUrl, true);
+        el.latestGeneratedTag.textContent = `#${item.tag}`;
+        el.latestGeneratedInput.value = portableUrl;
+        el.latestGeneratedBox.classList.remove('hidden');
+      }
+
       function renderLinks() {
         const q = (el.searchInput.value || '').trim().toLowerCase();
         const filtered = links.filter((item) => {
@@ -691,8 +823,8 @@
 
         filtered.forEach((item) => {
           const tag = item.tag || formatCompactTag(item.brand, item.code);
-          const shortestUrl = buildShortUrl(tag, '', false);
-          const portableUrl = buildShortUrl(tag, item.targetUrl, true);
+          const displayShort = buildShortUrl(tag, '', false);
+          const copyableShort = buildShortUrl(tag, item.targetUrl, true);
           const clicksCount = Number(item.clicks || 0);
 
           const row = document.createElement('div');
@@ -700,15 +832,15 @@
 
           row.innerHTML = `
             <div class="min-w-0 flex-1 space-y-0.5">
-              <div class="flex items-center gap-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
                 <span class="px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-300 text-[11px] font-bold font-mono">
                   #${escapeHtml(tag)}
                 </span>
-                <span class="text-xs font-bold text-gold-300 truncate font-mono">
-                  ${escapeHtml(shortestUrl)}
+                <span class="text-xs font-bold text-gold-200 break-all font-mono">
+                  ${escapeHtml(displayShort)}
                 </span>
               </div>
-              <div class="text-[11px] text-gray-400 truncate">
+              <div class="text-[11px] text-gray-400 break-all">
                 → ${escapeHtml(item.targetUrl)}
               </div>
             </div>
@@ -718,12 +850,12 @@
                 ${clicksCount} clic${clicksCount > 1 ? 's' : ''}
               </span>
 
-              <button type="button" data-action="copy" data-url="${escapeHtml(portableUrl)}"
-                      class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 text-xs font-bold transition">
+              <button type="button" data-action="copy-welcome" data-id="${escapeHtml(item.id)}"
+                      class="px-2.5 py-1.5 rounded-lg bg-gold-500/20 hover:bg-gold-500/30 text-gold-200 text-xs font-bold transition">
                 Copier
               </button>
 
-              <button type="button" data-action="open" data-url="${escapeHtml(portableUrl)}"
+              <button type="button" data-action="open" data-id="${escapeHtml(item.id)}"
                       class="px-2.5 py-1.5 rounded-lg bg-surface hover:bg-white/10 text-gray-200 text-xs font-semibold transition">
                 Ouvrir
               </button>
@@ -741,7 +873,6 @@
         });
       }
 
-      // Redirection instantanée : prend en charge #Younes-a9, #Younes/87cd, #Younes-a9~payload ou #code
       function checkIncomingShortLink() {
         try {
           const rawHash = (window.location.hash || '').replace(/^#/, '').trim();
@@ -769,12 +900,10 @@
           let targetUrl = '';
           const matched = links.find((l) => {
             const itemTag = (l.tag || '').toLowerCase();
-            const slashTag = itemTag.replace('-', '/');
-            const hyphenTag = itemTag.replace('/', '-');
             return (
               itemTag === tagPart.toLowerCase() ||
-              slashTag === tagPart.toLowerCase() ||
-              hyphenTag === tagPart.toLowerCase() ||
+              itemTag.replace('-', '/') === tagPart.toLowerCase() ||
+              itemTag.replace('/', '-') === tagPart.toLowerCase() ||
               (l.code && l.code.toLowerCase() === tagPart.toLowerCase())
             );
           });
@@ -791,20 +920,20 @@
           }
 
           if (!targetUrl) {
-            window.history.replaceState({}, document.title, getActiveBaseUrl());
+            try {
+              window.history.replaceState({}, document.title, getActiveBaseUrl());
+            } catch (_) {}
             showToast('Lien court introuvable', 'error');
             return false;
           }
 
           triggerWelcomeAndEnterTarget(
             targetUrl,
-            tagPart ? `#${tagPart}` : 'Lien direct',
-            'FAROUK LUXURY Welcome — Redirection vers la page...'
+            tagPart ? buildShortUrl(tagPart, targetUrl, true) : targetUrl,
+            'FAROUK LUXURY Welcome — Redirection directe...'
           );
-
           return true;
-        } catch (err) {
-          console.error('Erreur redirection :', err);
+        } catch (_) {
           return false;
         }
       }
@@ -827,27 +956,25 @@
         el.lenCustomBtn.addEventListener('click', () => setCodeLengthMode('custom'));
 
         el.longUrlInput.addEventListener('input', updateLivePreview);
-        el.brandPrefixInput.addEventListener('input', () => {
-          updateHeaderAndStats();
-        });
+        el.brandPrefixInput.addEventListener('input', updateHeaderAndStats);
         el.customSlugInput.addEventListener('input', updateLivePreview);
 
         el.shortenForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          const rawUrl = el.longUrlInput.value.trim();
-          if (!isSafeHttpUrl(rawUrl)) {
-            showToast('Entrez une URL valide (http:// ou https://)', 'error');
+          const normalizedTarget = normalizeInputUrl(el.longUrlInput.value);
+          if (!isSafeHttpUrl(normalizedTarget)) {
+            showToast('Veuillez saisir une URL valide', 'error');
             return;
           }
 
-          const brand = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20);
+          const brand = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20) || DEFAULT_BRAND;
           let code = sanitizeSlug(el.customSlugInput.value, 16);
 
           if (code) {
             const candidateTag = formatCompactTag(brand, code);
             const exists = links.some((l) => (l.tag || '').toLowerCase() === candidateTag.toLowerCase());
             if (exists) {
-              showToast('Ce code existe déjà, saisissez-en un autre', 'error');
+              showToast('Ce code existe déjà, choisissez-en un autre', 'error');
               return;
             }
           } else {
@@ -858,50 +985,84 @@
               code = generateShortCode(len);
               candidateTag = formatCompactTag(brand, code);
               attempts++;
-            } while (links.some((l) => (l.tag || '').toLowerCase() === candidateTag.toLowerCase()) && attempts < 100);
+            } while (links.some((l) => (l.tag || '').toLowerCase() === candidateTag.toLowerCase()) && attempts < 120);
           }
 
           const tag = formatCompactTag(brand, code);
-
           const newItem = {
-          // Copie le lien portable le plus court puis affiche "FAROUK LUXURY Welcome" et entre sur la page cible
-          const portableShortUrl = buildShortUrl(tag, rawUrl, true);
-          copyTextToClipboard(portableShortUrl, true);
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+            brand,
+            code,
+            tag,
+            targetUrl: normalizedTarget,
+            clicks: 0,
+            createdAt: Date.now(),
+          };
+
+          // Enregistrement immédiat dans la liste + persistance
+          links.unshift(newItem);
+          saveLinks();
+          updateHeaderAndStats();
+          renderLinks();
+          renderLatestGeneratedBox(newItem);
+
+          const shortLinkToCopy = buildShortUrl(tag, normalizedTarget, true);
+          copyTextToClipboard(shortLinkToCopy, true);
 
           el.longUrlInput.value = '';
           el.customSlugInput.value = '';
           updateLivePreview();
 
           triggerWelcomeAndEnterTarget(
-            rawUrl,
-            `#${tag} • ${portableShortUrl}`,
+            normalizedTarget,
+            shortLinkToCopy,
             'Lien copié — FAROUK LUXURY Welcome !'
           );
+        });
+
+        el.latestCopyWelcomeBtn.addEventListener('click', () => {
+          if (!latestGeneratedItem) return;
+          const shortLinkToCopy = buildShortUrl(latestGeneratedItem.tag, latestGeneratedItem.targetUrl, true);
+          copyTextToClipboard(shortLinkToCopy, true);
+          triggerWelcomeAndEnterTarget(
+            latestGeneratedItem.targetUrl,
+            shortLinkToCopy,
+            'Lien copié — FAROUK LUXURY Welcome !'
+          );
+        });
+
+        el.latestCopyOnlyBtn.addEventListener('click', () => {
+          if (!latestGeneratedItem) return;
+          const shortLinkToCopy = buildShortUrl(latestGeneratedItem.tag, latestGeneratedItem.targetUrl, true);
+          copyTextToClipboard(shortLinkToCopy, false);
         });
 
         el.linksContainer.addEventListener('click', (e) => {
           const btn = e.target.closest('button[data-action]');
           if (!btn) return;
           const action = btn.getAttribute('data-action');
-          const url = btn.getAttribute('data-url');
           const id = btn.getAttribute('data-id');
+          const targetItem = links.find((l) => l.id === id);
 
-          if (action === 'copy') {
-            const linkedItem = links.find((l) => buildShortUrl(l.tag || formatCompactTag(l.brand, l.code), l.targetUrl, true) === url);
-            copyTextToClipboard(url, true);
-            const destination = linkedItem && isSafeHttpUrl(linkedItem.targetUrl) ? linkedItem.targetUrl : url;
-            const label = linkedItem && linkedItem.tag ? `#${linkedItem.tag}` : url;
+          if (action === 'copy-welcome' && targetItem) {
+            const shortLinkToCopy = buildShortUrl(targetItem.tag, targetItem.targetUrl, true);
+            copyTextToClipboard(shortLinkToCopy, true);
+            renderLatestGeneratedBox(targetItem);
             triggerWelcomeAndEnterTarget(
-              destination,
-              label,
+              targetItem.targetUrl,
+              shortLinkToCopy,
               'Lien copié — FAROUK LUXURY Welcome !'
             );
-          } else if (action === 'open') {
-            if (url && isSafeHttpUrl(url)) {
-              window.open(url, '_blank', 'noopener,noreferrer');
-            }
-          } else if (action === 'delete') {
+          } else if (action === 'open' && targetItem) {
+            const shortLinkToOpen = buildShortUrl(targetItem.tag, targetItem.targetUrl, true);
+            incrementClicks(targetItem.tag);
+            window.open(shortLinkToOpen, '_blank', 'noopener,noreferrer');
+          } else if (action === 'delete' && id) {
             links = links.filter((l) => l.id !== id);
+            if (latestGeneratedItem && latestGeneratedItem.id === id) {
+              latestGeneratedItem = null;
+              el.latestGeneratedBox.classList.add('hidden');
+            }
             saveLinks();
             updateHeaderAndStats();
             renderLinks();
@@ -913,62 +1074,59 @@
 
         el.clearAllBtn.addEventListener('click', () => {
           if (links.length === 0) {
-            showToast('Aucun lien à supprimer');
+            showToast('Aucun lien à effacer');
             return;
           }
           links = [];
+          latestGeneratedItem = null;
+          el.latestGeneratedBox.classList.add('hidden');
           saveLinks();
           updateHeaderAndStats();
           renderLinks();
-          showToast('Historique effacé');
+          showToast('Liste effacée');
         });
 
-        el.toggleCustomBaseBtn.addEventListener('click', () => {
-          el.customBasePanel.classList.toggle('hidden');
+        el.toggleSettingsBtn.addEventListener('click', () => {
+          el.settingsPanel.classList.toggle('hidden');
         });
 
-        el.saveBaseUrlBtn.addEventListener('click', () => {
+        el.saveSettingsBtn.addEventListener('click', () => {
           const baseVal = el.customBaseInput.value.trim();
           const brandVal = sanitizeSlug(el.defaultBrandInput.value, 20);
 
           if (baseVal && !isSafeHttpUrl(baseVal)) {
-            showToast('URL de base invalide (http:// ou https://)', 'error');
+            showToast('URL de base invalide', 'error');
             return;
           }
 
-          if (baseVal) {
-            customBaseUrl = baseVal;
-            localStorage.setItem(STORAGE_KEYS.CUSTOM_BASE, customBaseUrl);
-          } else {
-            customBaseUrl = '';
-            localStorage.removeItem(STORAGE_KEYS.CUSTOM_BASE);
-          }
-
+          customBaseUrl = baseVal;
           defaultBrandName = brandVal || DEFAULT_BRAND;
-          localStorage.setItem(STORAGE_KEYS.DEFAULT_BRAND, defaultBrandName);
           el.brandPrefixInput.value = defaultBrandName;
 
+          saveSettingsValues();
           updateHeaderAndStats();
           renderLinks();
-          el.customBasePanel.classList.add('hidden');
-          showToast('Réglages enregistrés');
+          if (latestGeneratedItem) renderLatestGeneratedBox(latestGeneratedItem);
+          el.settingsPanel.classList.add('hidden');
+          showToast('Paramètres enregistrés');
         });
 
-        el.resetBaseUrlBtn.addEventListener('click', () => {
+        el.resetSettingsBtn.addEventListener('click', () => {
           customBaseUrl = '';
           defaultBrandName = DEFAULT_BRAND;
           el.customBaseInput.value = '';
           el.defaultBrandInput.value = DEFAULT_BRAND;
           el.brandPrefixInput.value = DEFAULT_BRAND;
-          localStorage.removeItem(STORAGE_KEYS.CUSTOM_BASE);
-          localStorage.setItem(STORAGE_KEYS.DEFAULT_BRAND, DEFAULT_BRAND);
+
+          saveSettingsValues();
           updateHeaderAndStats();
           renderLinks();
-          showToast('Réglages réinitialisés');
+          if (latestGeneratedItem) renderLatestGeneratedBox(latestGeneratedItem);
+          showToast('Paramètres réinitialisés');
         });
 
-        el.copyDashboardUrlBtn.addEventListener('click', () => {
-          copyTextToClipboard(getActiveBaseUrl());
+        el.copyBaseBtn.addEventListener('click', () => {
+          copyTextToClipboard(getActiveBaseUrl(), false);
         });
       }
 
