@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>FAROUK LUXE | Registre Clients & Factures</title>
+  <title>FAROUK LUXE | Studio Codes & Liens Boutique</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
       --bg-obsidian: #060608;
-      --surface-glass: rgba(20, 20, 26, 0.78);
-      --surface-elevated: rgba(30, 30, 40, 0.92);
+      --surface-glass: rgba(18, 18, 24, 0.82);
+      --surface-elevated: rgba(28, 28, 38, 0.94);
       --gold-primary: #d4af37;
-      --gold-glow: rgba(212, 175, 55, 0.35);
-      --gold-gradient: linear-gradient(135deg, #f3d06b 0%, #d4af37 50%, #997a15 100%);
-      --luxury-media-bg: radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.22) 0%, rgba(18, 18, 25, 0.95) 68%, #07070a 100%);
-      --luxury-product-name-bg: linear-gradient(135deg, rgba(212, 175, 55, 0.24) 0%, rgba(18, 18, 24, 0.96) 55%, rgba(10, 10, 14, 0.98) 100%);
-      --luxury-invoice-paper: radial-gradient(circle at 12% 10%, rgba(212, 175, 55, 0.16) 0%, rgba(16, 16, 22, 0.98) 58%, #08080b 100%);
+      --gold-light: #f6dc88;
+      --gold-glow: rgba(212, 175, 55, 0.36);
+      --gold-gradient: linear-gradient(135deg, #f6dc88 0%, #d4af37 52%, #8e6f10 100%);
+      --luxury-card-bg: radial-gradient(circle at 80% 15%, rgba(212, 175, 55, 0.22) 0%, rgba(16, 16, 23, 0.96) 62%, #07070b 100%);
       --emerald: #00e676;
       --ruby: #ff3b5c;
       --sky: #38bdf8;
       --text-main: #f5f5f7;
       --text-muted: #8e8e98;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-luxury: 0 16px 38px rgba(0, 0, 0, 0.68);
+      --radius-lg: 20px;
+      --radius-md: 13px;
+      --shadow-luxury: 0 18px 42px rgba(0, 0, 0, 0.72);
     }
 
     * {
@@ -40,361 +39,196 @@
     body {
       background-color: var(--bg-obsidian);
       background-image:
-        radial-gradient(circle at 12% 10%, rgba(212, 175, 55, 0.13) 0%, transparent 42%),
-        radial-gradient(circle at 88% 88%, rgba(0, 230, 118, 0.06) 0%, transparent 42%);
+        radial-gradient(circle at 12% 8%, rgba(212, 175, 55, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 88% 90%, rgba(212, 175, 55, 0.08) 0%, transparent 45%);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 80px;
+      padding-bottom: 48px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(6, 6, 8, 0.86);
-      backdrop-filter: blur(20px);
-      padding: 12px 18px;
+      background: rgba(6, 6, 8, 0.88);
+      backdrop-filter: blur(22px);
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
+      letter-spacing: 0.4px;
       background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .mode-switch {
-      display: flex;
-      background: var(--surface-glass);
-      padding: 4px;
+    .edition-pill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.12);
+      padding: 6px 12px;
       border-radius: 50px;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .mode-btn {
-      padding: 6px 13px;
-      border-radius: 50px;
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .mode-btn.active {
-      background: var(--gold-gradient);
-      color: #060608;
-      box-shadow: 0 4px 14px var(--gold-glow);
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.14);
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 14px;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 14px;
-      scrollbar-width: none;
-    }
-    .nav-tabs::-webkit-scrollbar { display: none; }
-
-    .tab-btn {
-      background: var(--surface-glass);
-      backdrop-filter: blur(16px);
-      color: var(--text-muted);
-      padding: 9px 15px;
-      border-radius: var(--radius-md);
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition: 0.25s;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-    }
-
-    .tab-btn.active {
-      background: var(--surface-elevated);
-      color: var(--gold-primary);
-      box-shadow: 0 8px 22px rgba(212, 175, 55, 0.18);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-      gap: 11px;
-      margin-bottom: 16px;
-    }
-
-    .stat-card {
-      background: var(--surface-glass);
-      backdrop-filter: blur(18px);
-      padding: 13px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-luxury);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 38px; height: 38px;
-      background: radial-gradient(circle, var(--gold-glow), transparent 72%);
-    }
-
-    .stat-title {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .stat-value {
-      font-size: 1.18rem;
-      font-weight: 800;
-    }
-
-    .gold { color: var(--gold-primary); }
-    .green { color: var(--emerald); }
-    .red { color: var(--ruby); }
-    .blue { color: var(--sky); }
-
-    .glass-panel {
-      background: var(--surface-glass);
-      backdrop-filter: blur(20px);
-      border-radius: var(--radius-lg);
-      padding: 15px;
-      box-shadow: var(--shadow-luxury);
-      margin-bottom: 16px;
-    }
-
-    /* Luxury Encrypted Code Vault Window */
-    .luxury-vault-window {
-      background: radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.22) 0%, rgba(16, 16, 23, 0.96) 55%, #07070b 100%);
-      border-radius: var(--radius-lg);
       padding: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.78), inset 0 0 36px rgba(212, 175, 55, 0.1);
     }
 
-    .vault-header {
+    .hero-banner {
+      background: var(--luxury-card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-luxury), inset 0 0 36px rgba(212, 175, 55, 0.09);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 12px;
     }
 
-    .vault-badge {
-      font-size: 0.66rem;
+    .hero-title {
+      font-size: 1.15rem;
       font-weight: 800;
-      letter-spacing: 0.9px;
-      text-transform: uppercase;
-      color: #060608;
       background: var(--gold-gradient);
-      padding: 3px 9px;
-      border-radius: 50px;
-      box-shadow: 0 4px 14px var(--gold-glow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    textarea.vault-textarea {
-      width: 100%;
-      min-height: 92px;
-      resize: vertical;
-      background: rgba(7, 7, 11, 0.88);
-      color: var(--gold-primary);
-      padding: 12px;
-      border-radius: var(--radius-md);
+    .hero-sub {
       font-size: 0.78rem;
-      line-height: 1.5;
-      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8);
-    }
-
-    textarea.vault-textarea::placeholder {
       color: var(--text-muted);
-      font-weight: 400;
+      margin-top: 4px;
     }
 
-    .vault-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+    .counter-chip {
+      background: rgba(8, 8, 12, 0.85);
+      padding: 9px 15px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .vault-status {
-      font-size: 0.74rem;
-      font-weight: 700;
-      margin-top: 8px;
-      min-height: 18px;
+    .glass-panel {
+      background: var(--surface-glass);
+      backdrop-filter: blur(22px);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-luxury);
+      margin-bottom: 16px;
     }
 
-    .luxury-gallery-bg {
-      background: var(--luxury-media-bg);
-      border-radius: var(--radius-md);
-      padding: 12px;
-      box-shadow: inset 0 0 35px rgba(212, 175, 55, 0.08), 0 12px 28px rgba(0, 0, 0, 0.55);
+    .link-studio-panel {
+      background: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.2) 0%, rgba(16, 16, 23, 0.96) 62%, #07070b 100%);
+      backdrop-filter: blur(22px);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-luxury), inset 0 0 34px rgba(212, 175, 55, 0.08);
+      margin-bottom: 16px;
     }
 
     .panel-title {
       font-size: 0.95rem;
       font-weight: 800;
-      margin-bottom: 12px;
+      color: var(--gold-primary);
+      margin-bottom: 13px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: var(--gold-primary);
       gap: 8px;
       flex-wrap: wrap;
     }
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 11px;
     }
 
     .field-label {
       display: block;
       font-size: 0.7rem;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 5px;
+      font-weight: 600;
     }
 
-    input {
+    input, textarea.code-box, textarea.raw-code-box, input.link-output {
       width: 100%;
-      background: rgba(10, 10, 14, 0.88);
+      background: rgba(8, 8, 12, 0.9);
       color: var(--text-main);
-      padding: 10px 12px;
+      padding: 11px 13px;
       border-radius: var(--radius-md);
       font-size: 0.82rem;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.65);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
       transition: 0.2s;
     }
 
-    input:focus {
-      box-shadow: 0 0 0 2px var(--gold-glow), inset 0 2px 6px rgba(0, 0, 0, 0.65);
+    input:focus, textarea.code-box:focus, textarea.raw-code-box:focus, input.link-output:focus {
+      box-shadow: 0 0 0 2px var(--gold-glow), inset 0 2px 8px rgba(0, 0, 0, 0.75);
     }
 
-    .luxury-product-name-box {
-      position: relative;
-      background: var(--luxury-product-name-bg);
-      padding: 10px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(212, 175, 55, 0.1);
+    textarea.code-box {
+      min-height: 105px;
+      resize: vertical;
+      color: var(--gold-light);
+      font-weight: 600;
+      line-height: 1.55;
+      word-break: break-all;
     }
 
-    .luxury-product-name-box input {
-      background: rgba(8, 8, 12, 0.75);
-      color: var(--gold-primary);
-      font-weight: 700;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
-    }
-
-    .lux-select-trigger {
-      width: 100%;
-      background: rgba(8, 8, 12, 0.82);
-      color: var(--gold-primary);
-      padding: 10px 12px;
-      border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
-    }
-
-    .lux-select-menu {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      top: calc(100% + 4px);
-      background: #0d0d12;
-      background-image: var(--luxury-product-name-bg);
-      border-radius: var(--radius-md);
-      padding: 6px;
-      z-index: 150;
-      max-height: 210px;
-      overflow-y: auto;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95);
-    }
-
-    .lux-select-option {
-      padding: 9px 11px;
-      border-radius: 9px;
-      font-size: 0.8rem;
-      font-weight: 700;
+    textarea.raw-code-box {
+      min-height: 145px;
+      resize: vertical;
       color: var(--text-main);
-      background: rgba(14, 14, 20, 0.72);
-      margin-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      transition: 0.18s;
+      line-height: 1.5;
     }
 
-    .lux-select-option:last-child { margin-bottom: 0; }
-
-    .lux-select-option:hover {
-      background: rgba(212, 175, 55, 0.22);
-      color: var(--gold-primary);
+    input.link-output {
+      color: var(--emerald);
+      font-weight: 700;
+      font-size: 0.78rem;
     }
 
-    .selected-prod-preview {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--luxury-media-bg);
-      padding: 10px 12px;
+    .live-preview-frame {
+      width: 100%;
+      height: 240px;
       border-radius: var(--radius-md);
-      margin-top: 10px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
-    }
-
-    .selected-prod-thumb {
-      width: 56px;
-      height: 56px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: rgba(255, 255, 255, 0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-primary);
-      flex-shrink: 0;
+      background: #09090d;
+      margin-top: 12px;
+      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.85), 0 12px 28px rgba(0, 0, 0, 0.6);
     }
 
     .btn {
-      padding: 8px 13px;
+      padding: 9px 15px;
       border-radius: var(--radius-md);
       font-weight: 800;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
       transition: 0.2s;
       white-space: nowrap;
     }
@@ -404,7 +238,7 @@
     .btn-gold {
       background: var(--gold-gradient);
       color: #060608;
-      box-shadow: 0 6px 18px var(--gold-glow);
+      box-shadow: 0 7px 20px var(--gold-glow);
     }
 
     .btn-dark {
@@ -412,14 +246,14 @@
       color: var(--text-main);
     }
 
-    .btn-add-fin {
-      background: rgba(56, 189, 248, 0.16);
-      color: var(--sky);
-    }
-
     .btn-pay {
       background: rgba(0, 230, 118, 0.16);
       color: var(--emerald);
+    }
+
+    .btn-info {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--sky);
     }
 
     .btn-danger {
@@ -427,67 +261,14 @@
       color: var(--ruby);
     }
 
-    .client-card {
-      background: rgba(12, 12, 17, 0.82);
-      border-radius: var(--radius-md);
-      padding: 13px;
-      margin-bottom: 11px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .client-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .client-meta {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .finance-strip {
+    .drafts-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 9px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .fin-box-label {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-    }
-
-    .fin-box-val {
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-top: 2px;
-    }
-
-    .client-actions {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
       gap: 12px;
     }
 
-    .product-card {
-      background: var(--luxury-media-bg);
-      backdrop-filter: blur(18px);
+    .draft-card {
+      background: var(--luxury-card-bg);
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-luxury);
@@ -495,253 +276,78 @@
       flex-direction: column;
     }
 
-    .product-img {
+    .draft-img {
       width: 100%;
-      height: 125px;
+      height: 120px;
       object-fit: cover;
-      background: transparent;
     }
 
-    .product-img-placeholder {
+    .draft-img-placeholder {
       width: 100%;
-      height: 125px;
-      background: transparent;
+      height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--gold-primary);
       font-size: 1.8rem;
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .product-body {
-      padding: 10px;
-      background: rgba(14, 14, 20, 0.72);
+    .draft-body {
+      padding: 11px 12px 13px;
+      background: rgba(11, 11, 16, 0.8);
       display: flex;
       flex-direction: column;
       flex-grow: 1;
       justify-content: space-between;
-    }
-
-    .product-badge {
-      font-size: 0.66rem;
-      color: var(--gold-primary);
-      background: rgba(212, 175, 55, 0.14);
-      padding: 2px 7px;
-      border-radius: 6px;
-      align-self: flex-start;
-      margin-bottom: 5px;
-    }
-
-    .product-title {
-      font-size: 0.84rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .product-price {
-      font-size: 0.96rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-      margin-bottom: 8px;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.84);
-      backdrop-filter: blur(10px);
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-    }
-
-    .modal-backdrop.open { display: flex; }
-
-    .modal-box {
-      background: #111116;
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 430px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 16px;
-      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.92);
-    }
-
-    .invoice-paper {
-      background: var(--luxury-invoice-paper);
-      color: var(--text-main);
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      text-align: left;
-      box-shadow: inset 0 0 36px rgba(212, 175, 55, 0.09), 0 16px 36px rgba(0, 0, 0, 0.75);
-    }
-
-    .inv-top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 10px 12px;
-      border-radius: 10px;
-    }
-
-    .inv-brand-name {
-      font-size: 0.98rem;
-      font-weight: 800;
-      letter-spacing: 0.6px;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .inv-doc-tag {
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--gold-primary);
-      background: rgba(212, 175, 55, 0.14);
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-
-    .inv-meta-block {
-      font-size: 0.75rem;
-      line-height: 1.65;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.025);
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      text-align: left;
-    }
-
-    .inv-meta-row {
-      display: flex;
-      justify-content: flex-start;
-      gap: 6px;
-    }
-
-    .inv-meta-key {
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .inv-meta-val {
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .invoice-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 8px 0 10px;
-      font-size: 0.74rem;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .invoice-table th {
-      background: rgba(212, 175, 55, 0.16);
-      color: var(--gold-primary);
-      padding: 7px 8px;
-      text-align: left;
-      font-weight: 800;
-      font-size: 0.7rem;
-    }
-
-    .invoice-table td {
-      padding: 7px 8px;
-      background: rgba(255, 255, 255, 0.025);
-      color: var(--text-main);
-      text-align: left;
-    }
-
-    .inv-totals-box {
-      background: rgba(255, 255, 255, 0.035);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.78rem;
-      line-height: 1.75;
-      text-align: left;
-    }
-
-    .inv-total-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .inv-grand-total {
-      font-size: 0.92rem;
-      font-weight: 800;
-      padding-top: 5px;
-      margin-top: 4px;
-      background: rgba(212, 175, 55, 0.08);
-      padding: 6px 8px;
-      border-radius: 8px;
-    }
-
-    .inv-footer-note {
-      margin-top: 10px;
-      font-size: 0.66rem;
-      color: var(--text-muted);
-      text-align: left;
-    }
-
-    .fab-cart {
-      position: fixed;
-      bottom: 18px;
-      right: 18px;
-      background: var(--gold-gradient);
-      color: #060608;
-      padding: 12px 18px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 0.84rem;
-      box-shadow: 0 10px 26px var(--gold-glow);
-      cursor: pointer;
-      z-index: 90;
-      display: flex;
-      align-items: center;
       gap: 8px;
     }
 
+    .draft-cat {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.14);
+      padding: 2px 8px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+
+    .draft-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .draft-price {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 11px;
+    }
+
+    .status-msg {
+      margin-top: 9px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      min-height: 18px;
+    }
+
     .empty-state {
+      text-align: center;
       color: var(--text-muted);
       font-size: 0.82rem;
-      text-align: center;
-      padding: 16px 8px;
+      padding: 18px 10px;
+      grid-column: 1 / -1;
     }
 
     .hidden { display: none !important; }
-
-    @media print {
-      body * { visibility: hidden; }
-      #invoice-print-zone, #invoice-print-zone * { visibility: visible; }
-      #invoice-print-zone {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        background: var(--bg-obsidian);
-        padding: 16px;
-      }
-      .invoice-paper {
-        max-width: 420px;
-        background: var(--luxury-invoice-paper);
-        color: var(--text-main);
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    }
   </style>
 </head>
 <body>
@@ -751,278 +357,250 @@
       <i class="fa-solid fa-crown"></i>
       <span>FAROUK LUXE</span>
     </div>
-    <div class="mode-switch">
-      <button class="mode-btn active" id="btn-admin-mode" onclick="switchMode('admin')">Dashboard</button>
-      <button class="mode-btn" id="btn-store-mode" onclick="switchMode('store')">Boutique</button>
-    </div>
+    <div class="edition-pill"><i class="fa-solid fa-gem"></i> CODE & LINK STUDIO</div>
   </header>
 
-  <!-- ==================== ADMIN / CLIENT LEDGER VIEW ==================== -->
-  <div id="admin-view" class="container">
+  <div class="container">
 
-    <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('ledger', this)"><i class="fa-solid fa-address-book"></i> Registre Clients (<span id="badge-clients">0</span>)</button>
-      <button class="tab-btn" onclick="switchTab('products', this)"><i class="fa-solid fa-box-open"></i> Produits</button>
-      <button class="tab-btn" onclick="switchTab('quick-invoice', this)"><i class="fa-solid fa-file-invoice-dollar"></i> Facture Rapide</button>
-    </div>
-
-    <!-- TAB 1: CLIENT LEDGER -->
-    <div id="tab-ledger">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-title">Total à payer</div>
-          <div class="stat-value gold" id="stat-total-due">0 DH</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-title">Total payé</div>
-          <div class="stat-value green" id="stat-total-paid">0 DH</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-title">Reste à payer</div>
-          <div class="stat-value red" id="stat-total-rem">0 DH</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-title">Nombre clients</div>
-          <div class="stat-value blue" id="stat-clients-count">0</div>
-        </div>
-      </div>
-
-      <div class="glass-panel">
-        <div class="panel-title">
-          <span><i class="fa-solid fa-user-plus"></i> Ajouter un client</span>
-        </div>
-        <div class="form-grid">
-          <input type="text" id="new-c-name" placeholder="Nom du client">
-          <input type="tel" id="new-c-phone" placeholder="Téléphone">
-          <input type="text" id="new-c-note" placeholder="Produit / Motif">
-          <input type="number" id="new-c-total" placeholder="Montant total (DH)">
-          <input type="number" id="new-c-paid" placeholder="Montant payé (DH)">
-        </div>
-        <button class="btn btn-gold" style="margin-top: 10px; width: 100%;" onclick="addClient()">
-          <i class="fa-solid fa-plus"></i> Enregistrer dans le registre
-        </button>
-      </div>
-
-      <div class="glass-panel">
-        <div class="panel-title">
-          <span><i class="fa-solid fa-users-gear"></i> Liste des clients</span>
-          <input type="text" id="client-search" placeholder="Rechercher nom ou tél..." style="max-width: 230px;" oninput="renderClients()">
-        </div>
-        <div id="clients-list"></div>
-      </div>
-    </div>
-
-    <!-- TAB 2: PRODUCTS -->
-    <div id="tab-products" class="hidden">
-
-      <!-- Luxury Encrypted Products Import / Export Window -->
-      <div class="luxury-vault-window">
-        <div class="vault-header">
-          <div class="panel-title" style="margin:0;">
-            <span><i class="fa-solid fa-key"></i> Code Produits Crypté (Boutique)</span>
-          </div>
-          <span class="vault-badge">LUXURY VAULT</span>
-        </div>
-        <textarea id="encrypted-products-input" class="vault-textarea" placeholder="Collez ici le code crypté des produits (FLX1:... ou JSON) pour afficher directement dans Boutique..."></textarea>
-        <div class="vault-actions">
-          <button class="btn btn-gold" onclick="applyEncryptedProductsCode()">
-            <i class="fa-solid fa-bolt"></i> Décoder & Afficher en Boutique
-          </button>
-          <button class="btn btn-dark" onclick="generateEncryptedProductsCode()">
-            <i class="fa-solid fa-lock"></i> Générer le code actuel
-          </button>
-          <button class="btn btn-danger" onclick="clearVaultInput()">
-            <i class="fa-solid fa-eraser"></i> Effacer
-          </button>
-        </div>
-        <div class="vault-status" id="vault-status-msg"></div>
-      </div>
-
-      <div class="glass-panel">
-        <div class="panel-title"><span><i class="fa-solid fa-plus-circle"></i> Ajouter un produit</span></div>
-        <div class="form-grid">
-          <input type="text" id="prod-name" placeholder="Nom du produit">
-          <input type="number" id="prod-price" placeholder="Prix (DH)">
-          <input type="text" id="prod-cat" placeholder="Catégorie">
-          <input type="text" id="prod-img" placeholder="URL de l'image">
-        </div>
-        <button class="btn btn-gold" style="margin-top: 10px; width: 100%;" onclick="addProduct()">
-          <i class="fa-solid fa-check"></i> Ajouter au catalogue
-        </button>
-      </div>
-
-      <div class="glass-panel">
-        <div class="panel-title"><span><i class="fa-solid fa-boxes-stacked"></i> Galerie & liste des produits</span></div>
-        <div class="luxury-gallery-bg">
-          <div class="products-grid" id="admin-products-list"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 3: QUICK INVOICE -->
-    <div id="tab-quick-invoice" class="hidden">
-      <div class="glass-panel">
-        <div class="panel-title"><span><i class="fa-solid fa-file-signature"></i> Facture rapide</span></div>
-        <div class="form-grid">
-          <div>
-            <label class="field-label">Nom du client</label>
-            <input type="text" id="inv-client" placeholder="Nom du client">
-          </div>
-          <div>
-            <label class="field-label">Téléphone</label>
-            <input type="text" id="inv-phone" placeholder="Téléphone">
-          </div>
-          <div class="luxury-product-name-box">
-            <label class="field-label" style="color:var(--gold-primary);">Choisir un produit</label>
-            <div class="lux-select-trigger" onclick="toggleProductDropdown(event)">
-              <span id="lux-selected-label">-- Choisir un produit --</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="lux-select-menu hidden" id="lux-product-menu"></div>
-          </div>
-          <div class="luxury-product-name-box">
-            <label class="field-label" style="color:var(--gold-primary);">Nom du produit</label>
-            <input type="text" id="inv-item" placeholder="Nom du produit">
-          </div>
-          <div>
-            <label class="field-label">Quantité</label>
-            <input type="number" id="inv-qty" placeholder="Quantité">
-          </div>
-          <div>
-            <label class="field-label">Prix unitaire (DH)</label>
-            <input type="number" id="inv-price" placeholder="Prix unitaire (DH)">
-          </div>
-          <div>
-            <label class="field-label">Payé (DH)</label>
-            <input type="number" id="inv-paid" placeholder="Payé (DH)">
-          </div>
-        </div>
-
-        <div class="selected-prod-preview" id="inv-prod-preview">
-          <div class="selected-prod-thumb" id="inv-prod-thumb">
-            <i class="fa-solid fa-image"></i>
-          </div>
-          <div>
-            <div style="font-size:0.82rem; font-weight:700;" id="inv-preview-title">—</div>
-            <div style="font-size:0.74rem; color:var(--gold-primary); font-weight:700;" id="inv-preview-price"></div>
-          </div>
-        </div>
-
-        <button class="btn btn-gold" style="margin-top: 12px; width: 100%;" onclick="createQuickInvoice()">
-          <i class="fa-solid fa-print"></i> Générer et enregistrer la facture
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== STOREFRONT VIEW ==================== -->
-  <div id="store-view" class="container hidden">
-    <div class="glass-panel" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+    <div class="hero-banner">
       <div>
-        <h2 style="font-size:1.05rem; color:var(--gold-primary);">FAROUK LUXE</h2>
-        <p style="font-size:0.74rem; color:var(--text-muted);">Catalogue produits</p>
+        <div class="hero-title">Studio Codes, Liens Boutique & Sites</div>
+        <div class="hero-sub">Générez des codes produits, des liens Boutique et des liens instantanés depuis n'importe quel code complet</div>
       </div>
-      <input type="text" id="store-search" placeholder="Rechercher..." style="max-width:220px;" oninput="renderStore()">
+      <div class="counter-chip">
+        <i class="fa-solid fa-box"></i>
+        <span>Produits : <span id="drafts-count">0</span></span>
+      </div>
     </div>
 
-    <div class="luxury-gallery-bg">
-      <div class="products-grid" id="store-products-grid"></div>
-    </div>
-
-    <button class="fab-cart" onclick="openCartModal()">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span>Panier (<span id="cart-count">0</span>)</span>
-    </button>
-  </div>
-
-  <!-- ==================== CART MODAL ==================== -->
-  <div class="modal-backdrop" id="cart-modal">
-    <div class="modal-box">
+    <!-- Full Code to Site Link Generator -->
+    <div class="link-studio-panel">
       <div class="panel-title">
-        <span><i class="fa-solid fa-bag-shopping"></i> Enregistrer la commande</span>
-        <button class="btn btn-dark" onclick="closeModal('cart-modal')"><i class="fa-solid fa-xmark"></i></button>
+        <span><i class="fa-solid fa-globe"></i> Code Complet vers Lien de Site / App</span>
+        <span class="edition-pill">INSTANT SITE LINK</span>
       </div>
-      <div id="cart-items-container" style="margin-bottom:10px;"></div>
-      <div style="font-weight:800; font-size:1rem; color:var(--gold-primary); margin-bottom:10px;">
-        Total : <span id="cart-total">0</span> DH
+
+      <label class="field-label">Collez ici le code complet (page HTML, application ou tout code)</label>
+      <textarea id="full-code-input" class="raw-code-box" placeholder="Collez le code complet ici... le lien du site sera généré automatiquement" oninput="generateSiteFromFullCode()"></textarea>
+
+      <div class="form-grid" style="margin-top:11px;">
+        <div>
+          <label class="field-label">Lien Direct du Site (Blob URL)</label>
+          <input type="text" id="site-blob-link" class="link-output" readonly placeholder="blob:... généré automatiquement">
+          <div class="action-row">
+            <button class="btn btn-gold" onclick="copySpecificLink('site-blob-link', 'site-status')">
+              <i class="fa-solid fa-copy"></i> Copier Lien
+            </button>
+            <button class="btn btn-info" onclick="openSpecificLink('site-blob-link', 'site-status')">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir Site
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label">Lien Portable (Data URL)</label>
+          <input type="text" id="site-data-link" class="link-output" readonly placeholder="data:text/html;... généré automatiquement">
+          <div class="action-row">
+            <button class="btn btn-pay" onclick="copySpecificLink('site-data-link', 'site-status')">
+              <i class="fa-solid fa-copy"></i> Copier Data URL
+            </button>
+            <button class="btn btn-dark" onclick="toggleSitePreview()">
+              <i class="fa-solid fa-eye"></i> Aperçu
+            </button>
+            <button class="btn btn-danger" onclick="clearFullCodeBox()">
+              <i class="fa-solid fa-eraser"></i> Effacer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <iframe id="site-live-preview" class="live-preview-frame hidden" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe>
+      <div class="status-msg" id="site-status"></div>
+    </div>
+
+    <!-- Add Product Form -->
+    <div class="glass-panel">
+      <div class="panel-title">
+        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Nouveau Produit</span>
       </div>
       <div class="form-grid">
-        <input type="text" id="cust-name" placeholder="Nom du client">
-        <input type="tel" id="cust-phone" placeholder="Téléphone">
-        <input type="number" id="cust-paid" placeholder="Montant payé (DH)">
+        <div>
+          <label class="field-label">Nom du produit</label>
+          <input type="text" id="p-name" placeholder="Ex: Pack VIP Gold">
+        </div>
+        <div>
+          <label class="field-label">Prix (DH)</label>
+          <input type="number" id="p-price" placeholder="Ex: 299">
+        </div>
+        <div>
+          <label class="field-label">Catégorie</label>
+          <input type="text" id="p-cat" placeholder="Ex: Exclusif">
+        </div>
+        <div>
+          <label class="field-label">Lien image (optionnel)</label>
+          <input type="text" id="p-img" placeholder="https://...">
+        </div>
       </div>
-      <button class="btn btn-gold" style="width:100%; margin-top:12px;" onclick="submitStoreOrderToLedger()">
-        <i class="fa-solid fa-check"></i> Transférer au registre clients
-      </button>
+      <div class="action-row">
+        <button class="btn btn-gold" style="flex:1;" onclick="addDraftProduct()">
+          <i class="fa-solid fa-plus"></i> Ajouter à la liste
+        </button>
+        <button class="btn btn-dark" onclick="fillSampleProducts()">
+          <i class="fa-solid fa-sparkles"></i> Exemples
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- ==================== FINANCE ACTION MODAL ==================== -->
-  <div class="modal-backdrop" id="finance-modal">
-    <div class="modal-box">
+    <!-- Generated Encrypted Code Box -->
+    <div class="glass-panel">
       <div class="panel-title">
-        <span id="fin-modal-title"><i class="fa-solid fa-coins"></i> Mise à jour compte</span>
-        <button class="btn btn-dark" onclick="closeModal('finance-modal')"><i class="fa-solid fa-xmark"></i></button>
+        <span><i class="fa-solid fa-lock"></i> Code Crypté Généré</span>
+        <button class="btn btn-gold" onclick="buildAndCopyCode()">
+          <i class="fa-solid fa-copy"></i> Générer & Copier le Code
+        </button>
       </div>
-      <p id="fin-client-info" style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"></p>
+      <textarea id="generated-code-output" class="code-box" readonly placeholder="Le code crypté (FLX1:...) apparaîtra ici automatiquement..."></textarea>
+      <div class="action-row">
+        <button class="btn btn-pay" onclick="copyGeneratedCode()">
+          <i class="fa-solid fa-check-double"></i> Copier Code
+        </button>
+        <button class="btn btn-dark" onclick="importCodeIntoStudio()">
+          <i class="fa-solid fa-rotate"></i> Charger depuis un code
+        </button>
+        <button class="btn btn-danger" onclick="clearAllDrafts()">
+          <i class="fa-solid fa-trash"></i> Tout vider
+        </button>
+      </div>
+      <div class="status-msg" id="studio-status"></div>
+    </div>
+
+    <!-- Luxury Boutique Link Generator -->
+    <div class="link-studio-panel">
+      <div class="panel-title">
+        <span><i class="fa-solid fa-link"></i> Générateur de Liens Boutique</span>
+        <span class="edition-pill">INSTANT LINK</span>
+      </div>
+
+      <div class="form-grid" style="margin-bottom:11px;">
+        <div style="grid-column: 1 / -1;">
+          <label class="field-label">URL de base de la Boutique</label>
+          <input type="text" id="boutique-base-url" placeholder="https://exemple.com/boutique.html" oninput="refreshBoutiqueLinks()">
+        </div>
+      </div>
+
       <div class="form-grid">
-        <input type="number" id="fin-amount" placeholder="Montant (DH)">
-        <input type="text" id="fin-note" placeholder="Note">
-      </div>
-      <button class="btn btn-gold" id="fin-confirm-btn" style="width:100%; margin-top:12px;">
-        <i class="fa-solid fa-check-circle"></i> Valider
-      </button>
-    </div>
-  </div>
+        <div>
+          <label class="field-label">Lien Boutique (Paramètre ?code=)</label>
+          <input type="text" id="boutique-query-link" class="link-output" readonly placeholder="Le lien ?code=... s'affichera ici">
+          <div class="action-row">
+            <button class="btn btn-gold" onclick="copySpecificLink('boutique-query-link', 'link-status')">
+              <i class="fa-solid fa-copy"></i> Copier Lien
+            </button>
+            <button class="btn btn-info" onclick="openSpecificLink('boutique-query-link', 'link-status')">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir
+            </button>
+          </div>
+        </div>
 
-  <!-- ==================== INVOICE MODAL ==================== -->
-  <div class="modal-backdrop" id="invoice-modal">
-    <div class="modal-box">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-file-invoice"></i> Facture Originale</span>
-        <button class="btn btn-dark" onclick="closeModal('invoice-modal')"><i class="fa-solid fa-xmark"></i></button>
+        <div>
+          <label class="field-label">Lien Boutique (Ancre #code=)</label>
+          <input type="text" id="boutique-hash-link" class="link-output" readonly placeholder="Le lien #code=... s'affichera ici">
+          <div class="action-row">
+            <button class="btn btn-pay" onclick="copySpecificLink('boutique-hash-link', 'link-status')">
+              <i class="fa-solid fa-copy"></i> Copier Lien #
+            </button>
+            <button class="btn btn-info" onclick="openSpecificLink('boutique-hash-link', 'link-status')">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir #
+            </button>
+          </div>
+        </div>
       </div>
-      <div id="invoice-print-zone">
-        <div class="invoice-paper" id="invoice-content"></div>
-      </div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn btn-gold" style="flex:1;" onclick="window.print()">
-          <i class="fa-solid fa-print"></i> Imprimer / PDF
-        </button>
-        <button class="btn btn-pay" style="flex:1;" id="btn-wa-invoice">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </button>
-      </div>
+
+      <div class="status-msg" id="link-status"></div>
     </div>
+
+    <!-- Products List -->
+    <div class="glass-panel">
+      <div class="panel-title">
+        <span><i class="fa-solid fa-layer-group"></i> Aperçu des Produits Inclus</span>
+      </div>
+      <div class="drafts-grid" id="drafts-list"></div>
+    </div>
+
   </div>
 
   <script>
-    let products = JSON.parse(localStorage.getItem('fl_fr_v6_products')) || [];
-    let clients = JSON.parse(localStorage.getItem('fl_fr_v6_clients')) || [];
-    let cart = [];
+    let draftProducts = JSON.parse(localStorage.getItem('fl_code_studio_v1')) || [];
+    let currentBlobUrl = '';
 
-    function saveAll() {
-      localStorage.setItem('fl_fr_v6_products', JSON.stringify(products));
-      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      renderClients();
-      renderAdminProducts();
-      renderStore();
-      populateQuickInvoiceProducts();
+    const savedBaseUrl = localStorage.getItem('fl_boutique_base_url') || (window.location.origin + window.location.pathname);
+    document.getElementById('boutique-base-url').value = savedBaseUrl;
+
+    function normalizeRunnableHtml(rawCode) {
+      const trimmed = rawCode.trim();
+      const lower = trimmed.toLowerCase();
+      if (lower.includes('<html') || lower.includes('<!doctype')) {
+        return trimmed;
+      }
+      return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head><body style="background:#08080c;color:#f5f5f7;font-family:sans-serif;padding:16px;"><pre style="white-space:pre-wrap;word-break:break-word;">${trimmed.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></body></html>`;
     }
 
-    // Encode / Decode Luxury Product Payload
-    function encodePayload(obj) {
-      const jsonStr = JSON.stringify(obj);
+    function generateSiteFromFullCode() {
+      const raw = document.getElementById('full-code-input').value;
+      const blobOut = document.getElementById('site-blob-link');
+      const dataOut = document.getElementById('site-data-link');
+      const frame = document.getElementById('site-live-preview');
+
+      if (currentBlobUrl) {
+        URL.revokeObjectURL(currentBlobUrl);
+        currentBlobUrl = '';
+      }
+
+      if (!raw.trim()) {
+        blobOut.value = '';
+        dataOut.value = '';
+        frame.srcdoc = '';
+        setSiteStatus('');
+        return;
+      }
+
+      const htmlDoc = normalizeRunnableHtml(raw);
+      const blob = new Blob([htmlDoc], { type: 'text/html;charset=utf-8' });
+      currentBlobUrl = URL.createObjectURL(blob);
+
+      blobOut.value = currentBlobUrl;
+      dataOut.value = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlDoc);
+      frame.srcdoc = htmlDoc;
+
+      setSiteStatus('Lien du site généré avec succès. Prêt à ouvrir ou copier.');
+    }
+
+    function toggleSitePreview() {
+      const frame = document.getElementById('site-live-preview');
+      if (!document.getElementById('full-code-input').value.trim()) {
+        setSiteStatus('Collez un code complet d’abord.', 'var(--ruby)');
+        return;
+      }
+      frame.classList.toggle('hidden');
+    }
+
+    function clearFullCodeBox() {
+      document.getElementById('full-code-input').value = '';
+      generateSiteFromFullCode();
+      document.getElementById('site-live-preview').classList.add('hidden');
+    }
+
+    function encodeLuxuryCode(list) {
+      const jsonStr = JSON.stringify(list);
       const bytes = new TextEncoder().encode(jsonStr);
       let bin = '';
       bytes.forEach(b => { bin += String.fromCharCode(b); });
       return 'FLX1:' + btoa(bin);
     }
 
-    function decodePayload(rawStr) {
-      let clean = rawStr.trim();
+    function decodeLuxuryCode(raw) {
+      let clean = raw.trim();
       if (!clean) throw new Error('EMPTY');
-
       if (clean.startsWith('FLX1:')) {
         const b64 = clean.slice(5).trim();
         const bin = atob(b64);
@@ -1030,11 +608,9 @@
         for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
         clean = new TextDecoder().decode(bytes);
       }
-
       const parsed = JSON.parse(clean);
       const arr = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
       if (!arr) throw new Error('INVALID');
-
       return arr
         .map((item, idx) => ({
           id: item.id || (Date.now() + idx),
@@ -1046,471 +622,194 @@
         .filter(p => p.name && !isNaN(p.price) && p.price > 0);
     }
 
-    function generateEncryptedProductsCode() {
-      const statusEl = document.getElementById('vault-status-msg');
-      const areaEl = document.getElementById('encrypted-products-input');
-      if (!products.length) {
-        statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = 'Aucun produit à crypter.';
-        return;
-      }
-      const code = encodePayload(products);
-      areaEl.value = code;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).catch(() => {});
-      }
-      statusEl.style.color = 'var(--emerald)';
-      statusEl.innerText = `Code généré (${products.length} produit(s)).`;
+    function setStatus(msg, color = 'var(--emerald)') {
+      const el = document.getElementById('studio-status');
+      el.style.color = color;
+      el.innerText = msg;
     }
 
-    function applyEncryptedProductsCode() {
-      const statusEl = document.getElementById('vault-status-msg');
-      const areaEl = document.getElementById('encrypted-products-input');
+    function setLinkStatus(msg, color = 'var(--emerald)') {
+      const el = document.getElementById('link-status');
+      el.style.color = color;
+      el.innerText = msg;
+    }
+
+    function setSiteStatus(msg, color = 'var(--emerald)') {
+      const el = document.getElementById('site-status');
+      el.style.color = color;
+      el.innerText = msg;
+    }
+
+    function refreshBoutiqueLinks() {
+      const baseInput = document.getElementById('boutique-base-url').value.trim();
+      localStorage.setItem('fl_boutique_base_url', baseInput);
+
+      const code = draftProducts.length ? encodeLuxuryCode(draftProducts) : '';
+      const queryOut = document.getElementById('boutique-query-link');
+      const hashOut = document.getElementById('boutique-hash-link');
+
+      if (!baseInput || !code) {
+        queryOut.value = '';
+        hashOut.value = '';
+        return;
+      }
+
+      const cleanBase = baseInput.split('#')[0].split('?')[0];
+      const encodedParam = encodeURIComponent(code);
+      queryOut.value = `${cleanBase}?code=${encodedParam}`;
+      hashOut.value = `${cleanBase}#code=${encodedParam}`;
+    }
+
+    function syncStudio(autoCode = true) {
+      localStorage.setItem('fl_code_studio_v1', JSON.stringify(draftProducts));
+      document.getElementById('drafts-count').innerText = draftProducts.length;
+      const out = document.getElementById('generated-code-output');
+      if (autoCode) {
+        out.value = draftProducts.length ? encodeLuxuryCode(draftProducts) : '';
+      }
+      refreshBoutiqueLinks();
+      renderDrafts();
+    }
+
+    function addDraftProduct() {
+      const name = document.getElementById('p-name').value.trim();
+      const price = parseFloat(document.getElementById('p-price').value);
+      const cat = document.getElementById('p-cat').value.trim();
+      const img = document.getElementById('p-img').value.trim();
+
+      if (!name || isNaN(price) || price <= 0) {
+        setStatus('Veuillez saisir un nom et un prix valide.', 'var(--ruby)');
+        return;
+      }
+
+      draftProducts.unshift({
+        id: Date.now() + Math.floor(Math.random() * 999),
+        name,
+        price,
+        cat,
+        img
+      });
+
+      document.getElementById('p-name').value = '';
+      document.getElementById('p-price').value = '';
+      document.getElementById('p-cat').value = '';
+      document.getElementById('p-img').value = '';
+
+      syncStudio(true);
+      setStatus(`Produit "${name}" ajouté et liens Boutique mis à jour.`);
+    }
+
+    function fillSampleProducts() {
+      const samples = [
+        { id: Date.now() + 1, name: 'Abonnement Gold 12 Mois', price: 450, cat: 'VIP', img: '' },
+        { id: Date.now() + 2, name: 'Pack Royal 6 Mois', price: 280, cat: 'Premium', img: '' }
+      ];
+      draftProducts = [...samples, ...draftProducts];
+      syncStudio(true);
+      setStatus('Exemples ajoutés, code et liens mis à jour.');
+    }
+
+    function removeDraft(id) {
+      draftProducts = draftProducts.filter(p => p.id !== id);
+      syncStudio(true);
+      setStatus('Produit retiré.', 'var(--gold-primary)');
+    }
+
+    function clearAllDrafts() {
+      draftProducts = [];
+      syncStudio(true);
+      setStatus('Liste, code et liens réinitialisés.', 'var(--gold-primary)');
+    }
+
+    function copyGeneratedCode() {
+      const code = document.getElementById('generated-code-output').value.trim();
+      if (!code) {
+        setStatus('Aucun code à copier.', 'var(--ruby)');
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+          setStatus('Code crypté copié dans le presse-papiers.');
+        }).catch(() => {
+          setStatus('Code prêt à être copié manuellement.', 'var(--gold-primary)');
+        });
+      }
+    }
+
+    function buildAndCopyCode() {
+      if (!draftProducts.length) {
+        setStatus('Ajoutez au moins un produit avant de générer.', 'var(--ruby)');
+        return;
+      }
+      syncStudio(true);
+      copyGeneratedCode();
+    }
+
+    function importCodeIntoStudio() {
+      const raw = document.getElementById('generated-code-output').value;
       try {
-        const imported = decodePayload(areaEl.value);
-        if (!imported.length) {
-          statusEl.style.color = 'var(--ruby)';
-          statusEl.innerText = 'Code invalide ou vide.';
+        const list = decodeLuxuryCode(raw);
+        if (!list.length) {
+          setStatus('Aucun produit trouvé dans ce code.', 'var(--ruby)');
           return;
         }
-        products = imported;
-        saveAll();
-        statusEl.style.color = 'var(--emerald)';
-        statusEl.innerText = `${imported.length} produit(s) affiché(s) directement dans Boutique.`;
+        draftProducts = list;
+        syncStudio(true);
+        setStatus(`${list.length} produit(s) chargé(s) avec succès.`);
       } catch (e) {
-        statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = 'Format de code crypté invalide.';
+        setStatus('Code crypté invalide.', 'var(--ruby)');
       }
     }
 
-    function clearVaultInput() {
-      document.getElementById('encrypted-products-input').value = '';
-      document.getElementById('vault-status-msg').innerText = '';
-    }
-
-    function toggleProductDropdown(e) {
-      e.stopPropagation();
-      const menu = document.getElementById('lux-product-menu');
-      menu.classList.toggle('hidden');
-    }
-
-    document.addEventListener('click', () => {
-      const menu = document.getElementById('lux-product-menu');
-      if (menu) menu.classList.add('hidden');
-    });
-
-    function updateQuickPreview(prod) {
-      const thumb = document.getElementById('inv-prod-thumb');
-      const title = document.getElementById('inv-preview-title');
-      const price = document.getElementById('inv-preview-price');
-
-      if (!prod) {
-        thumb.innerHTML = `<i class="fa-solid fa-image"></i>`;
-        title.innerText = '—';
-        price.innerText = '';
+    function copySpecificLink(inputId, statusId) {
+      const val = document.getElementById(inputId).value.trim();
+      const targetStatus = statusId === 'site-status' ? setSiteStatus : setLinkStatus;
+      if (!val) {
+        targetStatus('Aucun lien disponible à copier.', 'var(--ruby)');
         return;
       }
-
-      thumb.innerHTML = prod.img
-        ? `<img src="${prod.img}" alt="${prod.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`
-        : `<i class="fa-solid fa-box"></i>`;
-      title.innerText = prod.name;
-      price.innerText = `${prod.price} DH`;
-    }
-
-    function populateQuickInvoiceProducts() {
-      const menu = document.getElementById('lux-product-menu');
-      if (!menu) return;
-      menu.innerHTML = products.length
-        ? products.map(p => `
-            <div class="lux-select-option" onclick="selectQuickProduct(${p.id})">
-              <span>${p.name}</span>
-              <span class="gold">${p.price} DH</span>
-            </div>
-          `).join('')
-        : `<div class="lux-select-option" style="justify-content:center;color:var(--text-muted);">—</div>`;
-    }
-
-    function selectQuickProduct(id) {
-      const prod = products.find(p => String(p.id) === String(id));
-      if (!prod) return;
-      document.getElementById('lux-selected-label').innerText = `${prod.name} (${prod.price} DH)`;
-      document.getElementById('inv-item').value = prod.name;
-      document.getElementById('inv-price').value = prod.price;
-      updateQuickPreview(prod);
-      document.getElementById('lux-product-menu').classList.add('hidden');
-    }
-
-    function switchMode(mode) {
-      document.getElementById('btn-admin-mode').classList.toggle('active', mode === 'admin');
-      document.getElementById('btn-store-mode').classList.toggle('active', mode === 'store');
-      document.getElementById('admin-view').classList.toggle('hidden', mode !== 'admin');
-      document.getElementById('store-view').classList.toggle('hidden', mode !== 'store');
-      if (mode === 'store') renderStore();
-    }
-
-    function switchTab(tabId, btn) {
-      ['ledger', 'products', 'quick-invoice'].forEach(t => {
-        document.getElementById('tab-' + t).classList.add('hidden');
-      });
-      document.getElementById('tab-' + tabId).classList.remove('hidden');
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      if (tabId === 'quick-invoice') populateQuickInvoiceProducts();
-    }
-
-    function addClient() {
-      const name = document.getElementById('new-c-name').value.trim();
-      const phone = document.getElementById('new-c-phone').value.trim();
-      const note = document.getElementById('new-c-note').value.trim();
-      const total = parseFloat(document.getElementById('new-c-total').value);
-      const paid = parseFloat(document.getElementById('new-c-paid').value) || 0;
-
-      if (!name || isNaN(total) || total <= 0) return;
-
-      clients.unshift({
-        id: "FAC-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name,
-        phone,
-        items: [{ name: note || name, qty: 1, price: total }],
-        total,
-        paid
-      });
-
-      document.getElementById('new-c-name').value = '';
-      document.getElementById('new-c-phone').value = '';
-      document.getElementById('new-c-note').value = '';
-      document.getElementById('new-c-total').value = '';
-      document.getElementById('new-c-paid').value = '';
-
-      saveAll();
-    }
-
-    function openFinanceModal(clientId, type) {
-      const cl = clients.find(c => c.id === clientId);
-      if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
-
-      document.getElementById('fin-amount').value = '';
-      document.getElementById('fin-note').value = '';
-
-      if (type === 'add') {
-        document.getElementById('fin-modal-title').innerHTML = `<i class="fa-solid fa-circle-plus"></i> Ajout financier (${cl.name})`;
-        document.getElementById('fin-client-info').innerText = `Total : ${cl.total} DH | Payé : ${cl.paid} DH | Reste : ${rem} DH`;
-        document.getElementById('fin-confirm-btn').onclick = () => {
-          const amt = parseFloat(document.getElementById('fin-amount').value);
-          const note = document.getElementById('fin-note').value.trim();
-          if (isNaN(amt) || amt <= 0) return;
-          cl.total += amt;
-          cl.items.push({ name: note || "+", qty: 1, price: amt });
-          closeModal('finance-modal');
-          saveAll();
-        };
-      } else {
-        document.getElementById('fin-modal-title').innerHTML = `<i class="fa-solid fa-money-bill-transfer"></i> Paiement (${cl.name})`;
-        document.getElementById('fin-client-info').innerText = `Reste : ${rem} DH`;
-        document.getElementById('fin-confirm-btn').onclick = () => {
-          const amt = parseFloat(document.getElementById('fin-amount').value);
-          if (isNaN(amt) || amt <= 0) return;
-          cl.paid += amt;
-          closeModal('finance-modal');
-          saveAll();
-        };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).then(() => {
+          targetStatus('Lien copié avec succès.');
+        }).catch(() => {
+          targetStatus('Lien prêt à être copié.', 'var(--gold-primary)');
+        });
       }
-
-      document.getElementById('finance-modal').classList.add('open');
     }
 
-    function deleteClient(id) {
-      clients = clients.filter(c => c.id !== id);
-      saveAll();
-    }
-
-    function openClientInvoice(id) {
-      const cl = clients.find(c => c.id === id);
-      if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
-      const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
-
-      const rows = cl.items.map(i => `
-        <tr>
-          <td>${i.name}</td>
-          <td>${i.qty}</td>
-          <td>${i.price} DH</td>
-          <td><strong class="gold">${i.qty * i.price} DH</strong></td>
-        </tr>
-      `).join('');
-
-      document.getElementById('invoice-content').innerHTML = `
-        <div class="inv-top-bar">
-          <div>
-            <div class="inv-brand-name">FAROUK LUXE</div>
-            <div style="font-size:0.68rem;color:var(--text-muted);margin-top:2px;">Facture Commerciale Originale</div>
-          </div>
-          <span class="inv-doc-tag">${statusLabel}</span>
-        </div>
-
-        <div class="inv-meta-block">
-          <div class="inv-meta-row"><span class="inv-meta-key">N° Facture :</span><span class="inv-meta-val gold">${cl.id}</span></div>
-          <div class="inv-meta-row"><span class="inv-meta-key">Date :</span><span class="inv-meta-val">${cl.date}</span></div>
-          ${cl.name ? `<div class="inv-meta-row"><span class="inv-meta-key">Client :</span><span class="inv-meta-val">${cl.name}</span></div>` : ''}
-          ${cl.phone ? `<div class="inv-meta-row"><span class="inv-meta-key">Téléphone :</span><span class="inv-meta-val">${cl.phone}</span></div>` : ''}
-        </div>
-
-        <table class="invoice-table">
-          <thead>
-            <tr>
-              <th>Désignation</th>
-              <th>Qté</th>
-              <th>P.U</th>
-              <th>Montant</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-
-        <div class="inv-totals-box">
-          <div class="inv-total-line">
-            <span style="color:var(--text-muted);">Sous-total :</span>
-            <strong>${cl.total} DH</strong>
-          </div>
-          <div class="inv-total-line">
-            <span style="color:var(--text-muted);">Payé :</span>
-            <strong class="green">${cl.paid} DH</strong>
-          </div>
-          <div class="inv-total-line inv-grand-total">
-            <span class="gold">Reste à payer :</span>
-            <strong class="${rem > 0 ? 'red' : 'green'}">${rem} DH</strong>
-          </div>
-        </div>
-
-        <div class="inv-footer-note">Document officiel généré par FAROUK LUXE.</div>
-      `;
-
-      const cleanPhone = (cl.phone || '').replace(/\D/g, '');
-      const msg = encodeURIComponent(`FAROUK LUXE - ${cl.id}\nClient : ${cl.name}\nTotal : ${cl.total} DH\nPayé : ${cl.paid} DH\nReste : ${rem} DH`);
-      document.getElementById('btn-wa-invoice').onclick = () => {
-        if (!cleanPhone) return;
-        window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
-      };
-
-      document.getElementById('invoice-modal').classList.add('open');
-    }
-
-    function addProduct() {
-      const name = document.getElementById('prod-name').value.trim();
-      const price = parseFloat(document.getElementById('prod-price').value);
-      const cat = document.getElementById('prod-cat').value.trim();
-      const img = document.getElementById('prod-img').value.trim();
-      if (!name || isNaN(price) || price <= 0) return;
-      products.unshift({ id: Date.now(), name, price, cat, img });
-      document.getElementById('prod-name').value = '';
-      document.getElementById('prod-price').value = '';
-      document.getElementById('prod-cat').value = '';
-      document.getElementById('prod-img').value = '';
-      saveAll();
-    }
-
-    function deleteProduct(id) {
-      products = products.filter(p => p.id !== id);
-      saveAll();
-    }
-
-    function renderProductMedia(p) {
-      if (p.img) {
-        return `<img src="${p.img}" class="product-img" alt="${p.name}">`;
+    function openSpecificLink(inputId, statusId) {
+      const val = document.getElementById(inputId).value.trim();
+      const targetStatus = statusId === 'site-status' ? setSiteStatus : setLinkStatus;
+      if (!val) {
+        targetStatus('Aucun lien disponible à ouvrir.', 'var(--ruby)');
+        return;
       }
-      return `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`;
+      window.open(val, '_blank');
     }
 
-    function renderStore() {
-      const q = (document.getElementById('store-search').value || '').toLowerCase();
-      const list = products.filter(p => p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q));
-      document.getElementById('store-products-grid').innerHTML = list.length ? list.map(p => `
-        <div class="product-card">
-          ${renderProductMedia(p)}
-          <div class="product-body">
+    function renderDrafts() {
+      const box = document.getElementById('drafts-list');
+      box.innerHTML = draftProducts.length ? draftProducts.map(p => `
+        <div class="draft-card">
+          ${p.img
+            ? `<img src="${p.img}" class="draft-img" alt="${p.name}">`
+            : `<div class="draft-img-placeholder"><i class="fa-solid fa-crown"></i></div>`
+          }
+          <div class="draft-body">
             <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-              <div class="product-title">${p.name}</div>
+              ${p.cat ? `<span class="draft-cat">${p.cat}</span>` : ''}
+              <div class="draft-name" style="margin-top:6px;">${p.name}</div>
+              <div class="draft-price" style="margin-top:3px;">${p.price} DH</div>
             </div>
-            <div>
-              <div class="product-price">${p.price} DH</div>
-              <button class="btn btn-gold" style="width:100%;" onclick="addToCart(${p.id})">
-                <i class="fa-solid fa-cart-plus"></i> Ajouter
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('') : '<div class="empty-state" style="grid-column:1/-1;">—</div>';
-    }
-
-    function addToCart(id) {
-      const prod = products.find(p => p.id === id);
-      if (!prod) return;
-      const ex = cart.find(c => c.id === id);
-      if (ex) ex.qty++;
-      else cart.push({ ...prod, qty: 1 });
-      document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0);
-    }
-
-    function openCartModal() {
-      const box = document.getElementById('cart-items-container');
-      box.innerHTML = cart.length ? cart.map(i => `
-        <div style="display:flex; justify-content:space-between; background:#191922; padding:8px 10px; border-radius:9px; margin-bottom:6px; font-size:0.82rem;">
-          <span>${i.name} (×${i.qty})</span>
-          <strong style="color:var(--gold-primary);">${i.price * i.qty} DH</strong>
-        </div>
-      `).join('') : '<div class="empty-state">—</div>';
-
-      document.getElementById('cart-total').innerText = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      document.getElementById('cart-modal').classList.add('open');
-    }
-
-    function submitStoreOrderToLedger() {
-      if (!cart.length) return;
-      const name = document.getElementById('cust-name').value.trim();
-      const phone = document.getElementById('cust-phone').value.trim();
-      const paid = parseFloat(document.getElementById('cust-paid').value) || 0;
-      if (!name) return;
-
-      const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      clients.unshift({
-        id: "FAC-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name,
-        phone,
-        items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price })),
-        total,
-        paid
-      });
-
-      cart = [];
-      document.getElementById('cart-count').innerText = '0';
-      document.getElementById('cust-name').value = '';
-      document.getElementById('cust-phone').value = '';
-      document.getElementById('cust-paid').value = '';
-      closeModal('cart-modal');
-      saveAll();
-      switchMode('admin');
-    }
-
-    function createQuickInvoice() {
-      const name = document.getElementById('inv-client').value.trim();
-      const phone = document.getElementById('inv-phone').value.trim();
-      const item = document.getElementById('inv-item').value.trim();
-      const qty = parseInt(document.getElementById('inv-qty').value) || 1;
-      const price = parseFloat(document.getElementById('inv-price').value);
-      const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
-
-      if (!item || isNaN(price) || price <= 0) return;
-
-      const newCl = {
-        id: "FAC-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name,
-        phone,
-        items: [{ name: item, qty, price }],
-        total: qty * price,
-        paid
-      };
-
-      clients.unshift(newCl);
-      saveAll();
-      openClientInvoice(newCl.id);
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
-    }
-
-    function renderClients() {
-      const q = (document.getElementById('client-search').value || '').toLowerCase();
-      const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone || '').toLowerCase().includes(q)
-      );
-
-      const totalDue = clients.reduce((s, c) => s + c.total, 0);
-      const totalPaid = clients.reduce((s, c) => s + c.paid, 0);
-      const totalRem = clients.reduce((s, c) => s + Math.max(0, c.total - c.paid), 0);
-
-      document.getElementById('stat-total-due').innerText = totalDue + " DH";
-      document.getElementById('stat-total-paid').innerText = totalPaid + " DH";
-      document.getElementById('stat-total-rem').innerText = totalRem + " DH";
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-
-      document.getElementById('clients-list').innerHTML = filtered.length ? filtered.map(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        const metaParts = [c.phone, c.date, c.items.map(i => i.name).join(', ')].filter(Boolean);
-        return `
-          <div class="client-card">
-            <div class="client-top">
-              <div>
-                <div style="font-weight:800; font-size:0.94rem; color:var(--gold-primary);">
-                  ${c.name} <span style="font-size:0.72rem; color:var(--text-muted);">(${c.id})</span>
-                </div>
-                <div class="client-meta">${metaParts.join(' • ')}</div>
-              </div>
-            </div>
-
-            <div class="finance-strip">
-              <div>
-                <div class="fin-box-label">Total</div>
-                <div class="fin-box-val gold">${c.total} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Payé</div>
-                <div class="fin-box-val green">${c.paid} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Reste</div>
-                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
-              </div>
-            </div>
-
-            <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')">
-                <i class="fa-solid fa-plus"></i> Ajout financier
-              </button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')">
-                <i class="fa-solid fa-wallet"></i> Payer
-              </button>
-              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}')">
-                <i class="fa-solid fa-file-invoice"></i> Facture
-              </button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')">
-                <i class="fa-solid fa-trash"></i> Supprimer
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('') : '<div class="empty-state">—</div>';
-    }
-
-    function renderAdminProducts() {
-      document.getElementById('admin-products-list').innerHTML = products.length ? products.map(p => `
-        <div class="product-card">
-          ${renderProductMedia(p)}
-          <div class="product-body">
-            <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})">
+            <button class="btn btn-danger" style="width:100%;" onclick="removeDraft(${p.id})">
               <i class="fa-solid fa-trash"></i> Supprimer
             </button>
           </div>
         </div>
-      `).join('') : '<div class="empty-state" style="grid-column:1/-1;">—</div>';
+      `).join('') : '<div class="empty-state">Aucun produit ajouté pour le moment.</div>';
     }
 
-    renderClients();
-    renderAdminProducts();
-    renderStore();
-    populateQuickInvoiceProducts();
+    syncStudio(true);
   </script>
 </body>
 </html>
