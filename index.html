@@ -1,815 +1,1067 @@
+```html
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>FAROUK LUXE | Studio Codes & Liens Boutique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Générateur de Liens Courts — Édition Prestige</title>
+  <!-- Chargement de la police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Chargement de Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#0b0c10',
+            charcoal: '#13151c',
+            surface: '#1a1d26',
+            gold: {
+              300: '#F3DC94',
+              400: '#E5C567',
+              500: '#D4AF37',
+              600: '#B58E22',
+            },
+          },
+          boxShadow: {
+            goldGlow: '0 0 22px -6px rgba(212, 175, 55, 0.32)',
+            cardLuxury: '0 14px 36px -10px rgba(0, 0, 0, 0.85)',
+            softElevate: '0 8px 20px -8px rgba(0, 0, 0, 0.75)',
+          },
+        },
+      },
+    };
+  </script>
   <style>
-    :root {
-      --bg-obsidian: #060608;
-      --surface-glass: rgba(18, 18, 24, 0.82);
-      --surface-elevated: rgba(28, 28, 38, 0.94);
-      --gold-primary: #d4af37;
-      --gold-light: #f6dc88;
-      --gold-glow: rgba(212, 175, 55, 0.36);
-      --gold-gradient: linear-gradient(135deg, #f6dc88 0%, #d4af37 52%, #8e6f10 100%);
-      --luxury-card-bg: radial-gradient(circle at 80% 15%, rgba(212, 175, 55, 0.22) 0%, rgba(16, 16, 23, 0.96) 62%, #07070b 100%);
-      --emerald: #00e676;
-      --ruby: #ff3b5c;
-      --sky: #38bdf8;
-      --text-main: #f5f5f7;
-      --text-muted: #8e8e98;
-      --radius-lg: 20px;
-      --radius-md: 13px;
-      --shadow-luxury: 0 18px 42px rgba(0, 0, 0, 0.72);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Esthétique strictement sans bordure (border: none) */
+    *, *::before, *::after {
       border: none !important;
-      outline: none !important;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-obsidian);
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0c10;
+      color: #F4F5F7;
+      overflow-x: hidden;
+    }
+
+    /* Arrière-plan dégradé obsidienne avec reflets or champagne */
+    .luxury-bg {
       background-image:
-        radial-gradient(circle at 12% 8%, rgba(212, 175, 55, 0.16) 0%, transparent 42%),
-        radial-gradient(circle at 88% 90%, rgba(212, 175, 55, 0.08) 0%, transparent 45%);
-      color: var(--text-main);
-      min-height: 100vh;
-      padding-bottom: 48px;
+        radial-gradient(circle at 12% 8%, rgba(212, 175, 55, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 88% 90%, rgba(212, 175, 55, 0.05) 0%, transparent 48%),
+        linear-gradient(180deg, #0b0c10 0%, #0e1016 100%);
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(6, 6, 8, 0.88);
-      backdrop-filter: blur(22px);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    /* Barre de défilement discrète */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0c10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(212, 175, 55, 0.65);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.08rem;
-      letter-spacing: 0.4px;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes pulseGold {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.72; transform: scale(1.03); }
     }
-
-    .edition-pill {
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gold-primary);
-      background: rgba(212, 175, 55, 0.12);
-      padding: 6px 12px;
-      border-radius: 50px;
-      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.14);
+    .animate-pulse-gold {
+      animation: pulseGold 2s infinite ease-in-out;
     }
-
-    .container {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    .hero-banner {
-      background: var(--luxury-card-bg);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-luxury), inset 0 0 36px rgba(212, 175, 55, 0.09);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .hero-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .counter-chip {
-      background: rgba(8, 8, 12, 0.85);
-      padding: 9px 15px;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .glass-panel {
-      background: var(--surface-glass);
-      backdrop-filter: blur(22px);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      box-shadow: var(--shadow-luxury);
-      margin-bottom: 16px;
-    }
-
-    .link-studio-panel {
-      background: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.2) 0%, rgba(16, 16, 23, 0.96) 62%, #07070b 100%);
-      backdrop-filter: blur(22px);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      box-shadow: var(--shadow-luxury), inset 0 0 34px rgba(212, 175, 55, 0.08);
-      margin-bottom: 16px;
-    }
-
-    .panel-title {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-      margin-bottom: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-      gap: 11px;
-    }
-
-    .field-label {
-      display: block;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    input, textarea.code-box, textarea.raw-code-box, input.link-output {
-      width: 100%;
-      background: rgba(8, 8, 12, 0.9);
-      color: var(--text-main);
-      padding: 11px 13px;
-      border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
-      transition: 0.2s;
-    }
-
-    input:focus, textarea.code-box:focus, textarea.raw-code-box:focus, input.link-output:focus {
-      box-shadow: 0 0 0 2px var(--gold-glow), inset 0 2px 8px rgba(0, 0, 0, 0.75);
-    }
-
-    textarea.code-box {
-      min-height: 105px;
-      resize: vertical;
-      color: var(--gold-light);
-      font-weight: 600;
-      line-height: 1.55;
-      word-break: break-all;
-    }
-
-    textarea.raw-code-box {
-      min-height: 145px;
-      resize: vertical;
-      color: var(--text-main);
-      line-height: 1.5;
-    }
-
-    input.link-output {
-      color: var(--emerald);
-      font-weight: 700;
-      font-size: 0.78rem;
-    }
-
-    .live-preview-frame {
-      width: 100%;
-      height: 240px;
-      border-radius: var(--radius-md);
-      background: #09090d;
-      margin-top: 12px;
-      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.85), 0 12px 28px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn {
-      padding: 9px 15px;
-      border-radius: var(--radius-md);
-      font-weight: 800;
-      font-size: 0.78rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn:active { transform: scale(0.96); }
-
-    .btn-gold {
-      background: var(--gold-gradient);
-      color: #060608;
-      box-shadow: 0 7px 20px var(--gold-glow);
-    }
-
-    .btn-dark {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-    }
-
-    .btn-pay {
-      background: rgba(0, 230, 118, 0.16);
-      color: var(--emerald);
-    }
-
-    .btn-info {
-      background: rgba(56, 189, 248, 0.16);
-      color: var(--sky);
-    }
-
-    .btn-danger {
-      background: rgba(255, 59, 92, 0.16);
-      color: var(--ruby);
-    }
-
-    .drafts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-      gap: 12px;
-    }
-
-    .draft-card {
-      background: var(--luxury-card-bg);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-luxury);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .draft-img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-    }
-
-    .draft-img-placeholder {
-      width: 100%;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-primary);
-      font-size: 1.8rem;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .draft-body {
-      padding: 11px 12px 13px;
-      background: rgba(11, 11, 16, 0.8);
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .draft-cat {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--gold-primary);
-      background: rgba(212, 175, 55, 0.14);
-      padding: 2px 8px;
-      border-radius: 6px;
-      align-self: flex-start;
-    }
-
-    .draft-name {
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .draft-price {
-      font-size: 0.98rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-    }
-
-    .action-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 11px;
-    }
-
-    .status-msg {
-      margin-top: 9px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      min-height: 18px;
-    }
-
-    .empty-state {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      padding: 18px 10px;
-      grid-column: 1 / -1;
-    }
-
-    .hidden { display: none !important; }
   </style>
 </head>
-<body>
+<body class="luxury-bg min-h-screen text-gray-100 antialiased selection:bg-gold-500/30 selection:text-gold-300">
 
-  <header>
-    <div class="brand">
-      <i class="fa-solid fa-crown"></i>
-      <span>FAROUK LUXE</span>
+  <!-- Écran de redirection automatique lors de l'ouverture d'un lien court -->
+  <div id="redirect-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 bg-obsidian/95 backdrop-blur-xl">
+    <div class="w-full max-w-md rounded-2xl bg-charcoal p-5 sm:p-7 shadow-cardLuxury text-center space-y-4">
+      <div class="mx-auto w-12 h-12 rounded-xl bg-gold-500/15 flex items-center justify-center text-gold-400 shadow-goldGlow animate-pulse-gold">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>
+      </div>
+
+      <div class="space-y-1">
+        <span class="inline-block px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-gold-500/15 text-gold-300">
+          Redirection sécurisée
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Redirection en cours...</h2>
+        <p class="text-xs text-gray-400">Vérification de l'URL de destination en cours</p>
+      </div>
+
+      <div class="rounded-xl bg-obsidian p-3 text-left space-y-1 shadow-softElevate">
+        <div class="text-[11px] text-gold-400 font-semibold uppercase tracking-wider">URL de destination</div>
+        <div id="redirect-target-url" class="text-xs text-gray-200 break-all font-medium"></div>
+        <div id="redirect-code-badge" class="text-[11px] text-gold-300/80 pt-0.5 font-mono"></div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="space-y-1.5">
+        <div class="w-full h-1 rounded-full bg-white/10 overflow-hidden">
+          <div id="redirect-progress-bar" class="h-full bg-gradient-to-r from-gold-500 to-gold-300 transition-all duration-100 w-0"></div>
+        </div>
+        <p id="redirect-status-text" class="text-[11px] text-gray-400">Transfert dans 1,5 seconde...</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2 pt-1">
+        <a id="redirect-instant-btn" href="#" rel="noopener noreferrer"
+           class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian font-bold text-xs hover:brightness-110 transition shadow-goldGlow flex items-center justify-center gap-1.5">
+          <span>Accéder immédiatement</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+        <button id="redirect-cancel-btn" type="button"
+                class="py-2.5 px-4 rounded-xl bg-surface hover:bg-white/10 text-gray-300 font-semibold text-xs transition">
+          Ouvrir le tableau de bord
+        </button>
+      </div>
     </div>
-    <div class="edition-pill"><i class="fa-solid fa-gem"></i> CODE & LINK STUDIO</div>
-  </header>
+  </div>
 
-  <div class="container">
-
-    <div class="hero-banner">
-      <div>
-        <div class="hero-title">Studio Codes, Liens Boutique & Sites</div>
-        <div class="hero-sub">Générez des codes produits, des liens Boutique et des liens instantanés depuis n'importe quel code complet</div>
+  <!-- Fenêtre modale Code QR -->
+  <div id="qr-modal" class="hidden fixed inset-0 z-40 flex items-center justify-center p-3 bg-obsidian/85 backdrop-blur-md">
+    <div class="w-full max-w-xs rounded-2xl bg-charcoal p-5 shadow-cardLuxury text-center space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-gold-300">Code QR du lien court</h3>
+        <button id="close-qr-btn" type="button" class="p-1.5 rounded-lg bg-surface text-gray-400 hover:text-white transition" aria-label="Fermer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-      <div class="counter-chip">
-        <i class="fa-solid fa-box"></i>
-        <span>Produits : <span id="drafts-count">0</span></span>
+      <div class="mx-auto w-40 h-40 rounded-xl bg-white p-2.5 flex items-center justify-center shadow-softElevate">
+        <img id="qr-image" src="" alt="Code QR" class="w-full h-full object-contain rounded" onerror="this.replaceWith(document.createTextNode('Code QR indisponible'))" />
       </div>
+      <p id="qr-link-preview" class="text-[11px] text-gold-300 break-all bg-obsidian p-2.5 rounded-xl font-mono"></p>
+      <button id="copy-qr-link-btn" type="button" class="w-full py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 font-bold text-xs transition">
+        Copier le lien
+      </button>
     </div>
+  </div>
 
-    <!-- Full Code to Site Link Generator -->
-    <div class="link-studio-panel">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-globe"></i> Code Complet vers Lien de Site / App</span>
-        <span class="edition-pill">INSTANT SITE LINK</span>
+  <!-- Conteneur de notifications Toast -->
+  <div id="toast-container" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:w-80 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Interface Principale Compacte -->
+  <div id="dashboard-app" class="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-7 space-y-4 sm:space-y-5">
+
+    <!-- En-tête compact et ergonomique -->
+    <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 bg-charcoal/90 rounded-2xl p-3.5 sm:p-4 shadow-cardLuxury">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl bg-gold-500/15 flex items-center justify-center text-gold-400 shadow-goldGlow">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-xl font-extrabold tracking-tight text-white truncate">
+              Générateur de <span class="text-gold-400">Liens Courts</span>
+            </h1>
+            <span id="base-mode-badge" class="hidden sm:inline-block px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-300 text-[10px] font-semibold">Auto</span>
+          </div>
+          <p id="current-origin-display" class="text-[11px] text-gray-400 truncate font-mono"></p>
+        </div>
       </div>
 
-      <label class="field-label">Collez ici le code complet (page HTML, application ou tout code)</label>
-      <textarea id="full-code-input" class="raw-code-box" placeholder="Collez le code complet ici... le lien du site sera généré automatiquement" oninput="generateSiteFromFullCode()"></textarea>
+      <!-- Actions rapides de configuration -->
+      <div class="flex items-center gap-2 self-end md:self-auto">
+        <button id="toggle-custom-base-btn" type="button"
+                class="px-3 py-2 rounded-xl bg-surface hover:bg-white/10 text-gold-300 text-xs font-semibold transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+          </svg>
+          <span>Configuration</span>
+        </button>
+        <button id="copy-dashboard-url-btn" type="button"
+                class="px-3 py-2 rounded-xl bg-obsidian hover:bg-surface text-gray-300 hover:text-white text-xs font-semibold transition">
+          Copier l'URL hôte
+        </button>
+      </div>
+    </header>
 
-      <div class="form-grid" style="margin-top:11px;">
+    <!-- Panneau repliable de configuration (Domaine & Préfixe par défaut) -->
+    <section id="custom-base-panel" class="hidden rounded-2xl bg-charcoal p-4 shadow-cardLuxury space-y-3">
+      <div class="flex items-center justify-between gap-2">
         <div>
-          <label class="field-label">Lien Direct du Site (Blob URL)</label>
-          <input type="text" id="site-blob-link" class="link-output" readonly placeholder="blob:... généré automatiquement">
-          <div class="action-row">
-            <button class="btn btn-gold" onclick="copySpecificLink('site-blob-link', 'site-status')">
-              <i class="fa-solid fa-copy"></i> Copier Lien
-            </button>
-            <button class="btn btn-info" onclick="openSpecificLink('site-blob-link', 'site-status')">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir Site
-            </button>
+          <h2 class="text-xs sm:text-sm font-bold text-gold-300">Paramètres du domaine et de la marque par défaut</h2>
+          <p class="text-[11px] text-gray-400">Définissez un préfixe permanent (ex. <span class="text-gold-300 font-mono">maison</span>) intégré à chaque lien court.</p>
+        </div>
+        <button id="reset-base-url-btn" type="button" class="px-2.5 py-1.5 rounded-lg bg-surface hover:bg-white/10 text-[11px] text-gray-300 transition shrink-0">
+          Réinitialiser
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+        <div class="sm:col-span-4 space-y-1">
+          <label for="default-brand-input" class="block text-[11px] font-semibold text-gold-300">Identifiant de marque par défaut</label>
+          <input id="default-brand-input" type="text" maxlength="20" placeholder="ex: maison"
+                 class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs text-gold-300 placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition font-mono" />
+        </div>
+        <div class="sm:col-span-6 space-y-1">
+          <label for="custom-base-input" class="block text-[11px] font-semibold text-gray-300">URL de base personnalisée (optionnel)</label>
+          <input id="custom-base-input" type="url" placeholder="https://votre-domaine.fr"
+                 class="w-full rounded-xl bg-obsidian px-3 py-2 text-xs text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition font-mono" />
+        </div>
+        <div class="sm:col-span-2 flex items-end">
+          <button id="save-base-url-btn" type="button" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:brightness-110 text-obsidian font-bold text-xs transition shadow-goldGlow">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barre compacte de statistiques en 3 colonnes -->
+    <section class="grid grid-cols-3 gap-2.5 sm:gap-4">
+      <div class="rounded-2xl bg-charcoal p-3 sm:p-3.5 shadow-softElevate flex items-center justify-between">
+        <div class="min-w-0">
+          <p class="text-[10px] sm:text-xs font-medium text-gray-400 truncate">Liens générés</p>
+          <p id="stat-total-links" class="text-lg sm:text-2xl font-extrabold text-white">0</p>
+        </div>
+        <div class="hidden sm:flex w-9 h-9 rounded-xl bg-gold-500/15 items-center justify-center text-gold-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-charcoal p-3 sm:p-3.5 shadow-softElevate flex items-center justify-between">
+        <div class="min-w-0">
+          <p class="text-[10px] sm:text-xs font-medium text-gray-400 truncate">Statistiques de clics</p>
+          <p id="stat-total-clicks" class="text-lg sm:text-2xl font-extrabold text-gold-300">0</p>
+        </div>
+        <div class="hidden sm:flex w-9 h-9 rounded-xl bg-gold-500/15 items-center justify-center text-gold-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672z" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-charcoal p-3 sm:p-3.5 shadow-softElevate flex items-center justify-between">
+        <div class="min-w-0">
+          <p class="text-[10px] sm:text-xs font-medium text-gray-400 truncate">Domaine actif</p>
+          <p id="stat-active-host" class="text-xs sm:text-base font-bold text-white truncate font-mono mt-0.5">—</p>
+        </div>
+        <div class="hidden sm:flex w-9 h-9 shrink-0 rounded-xl bg-gold-500/15 items-center justify-center text-gold-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire compact de génération de lien court -->
+    <section class="rounded-2xl bg-charcoal p-4 sm:p-5 shadow-cardLuxury space-y-3.5">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-1 h-4 rounded-full bg-gold-400"></span>
+          <h2 class="text-sm sm:text-base font-bold text-white">Créer un lien court personnalisé</h2>
+        </div>
+
+        <!-- Sélecteur compact de format -->
+        <div class="inline-flex rounded-xl bg-obsidian p-0.5 gap-0.5">
+          <button type="button" id="mode-brand-random-btn"
+                  class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-gold-500/20 text-gold-300 transition">
+            Marque + Code auto
+          </button>
+          <button type="button" id="mode-brand-custom-btn"
+                  class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-gray-400 hover:text-white transition">
+            Marque + Alias libre
+          </button>
+        </div>
+      </div>
+
+      <form id="shorten-form" class="space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+          <!-- URL de destination -->
+          <div class="sm:col-span-5 space-y-1">
+            <label for="long-url-input" class="block text-[11px] font-semibold text-gold-300">
+              URL de destination <span class="text-red-400">*</span>
+            </label>
+            <input id="long-url-input" type="url" required placeholder="https://exemple.fr/collection/privee"
+                   class="w-full rounded-xl bg-obsidian px-3 py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition" />
+          </div>
+
+          <!-- Identifiant de marque / Préfixe -->
+          <div class="sm:col-span-3 space-y-1">
+            <label for="brand-prefix-input" class="block text-[11px] font-semibold text-gold-300">
+              Identifiant de marque / Préfixe
+            </label>
+            <input id="brand-prefix-input" type="text" maxlength="20" placeholder="prestige"
+                   class="w-full rounded-xl bg-obsidian px-3 py-2.5 text-xs sm:text-sm text-gold-300 placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition font-mono" />
+          </div>
+
+          <!-- Suffixe / Alias -->
+          <div class="sm:col-span-2 space-y-1">
+            <label for="custom-slug-input" class="block text-[11px] font-semibold text-gray-300">
+              Suffixe <span class="text-gray-500 font-normal">(opt.)</span>
+            </label>
+            <input id="custom-slug-input" type="text" maxlength="20" placeholder="auto"
+                   class="w-full rounded-xl bg-obsidian px-3 py-2.5 text-xs sm:text-sm text-gold-300 placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition font-mono" />
+          </div>
+
+          <!-- Libellé interne -->
+          <div class="sm:col-span-2 space-y-1">
+            <label for="label-input" class="block text-[11px] font-semibold text-gray-300">
+              Libellé <span class="text-gray-500 font-normal">(opt.)</span>
+            </label>
+            <input id="label-input" type="text" maxlength="60" placeholder="Campagne VIP"
+                   class="w-full rounded-xl bg-obsidian px-3 py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition" />
           </div>
         </div>
 
-        <div>
-          <label class="field-label">Lien Portable (Data URL)</label>
-          <input type="text" id="site-data-link" class="link-output" readonly placeholder="data:text/html;... généré automatiquement">
-          <div class="action-row">
-            <button class="btn btn-pay" onclick="copySpecificLink('site-data-link', 'site-status')">
-              <i class="fa-solid fa-copy"></i> Copier Data URL
-            </button>
-            <button class="btn btn-dark" onclick="toggleSitePreview()">
-              <i class="fa-solid fa-eye"></i> Aperçu
-            </button>
-            <button class="btn btn-danger" onclick="clearFullCodeBox()">
-              <i class="fa-solid fa-eraser"></i> Effacer
-            </button>
+        <!-- Aperçu en direct & Bouton d'action -->
+        <div class="rounded-xl bg-obsidian p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div class="min-w-0">
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-gray-400">Aperçu du lien court généré</span>
+            <p id="live-short-preview" class="text-xs sm:text-sm font-bold text-gold-300 truncate font-mono"></p>
           </div>
+          <button type="submit"
+                  class="shrink-0 py-2.5 px-5 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-obsidian font-bold text-xs sm:text-sm hover:brightness-110 active:scale-[0.99] transition shadow-goldGlow flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span>Générer le lien</span>
+          </button>
         </div>
-      </div>
+      </form>
+    </section>
 
-      <iframe id="site-live-preview" class="live-preview-frame hidden" sandbox="allow-scripts allow-forms allow-modals allow-popups"></iframe>
-      <div class="status-msg" id="site-status"></div>
-    </div>
-
-    <!-- Add Product Form -->
-    <div class="glass-panel">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Nouveau Produit</span>
-      </div>
-      <div class="form-grid">
-        <div>
-          <label class="field-label">Nom du produit</label>
-          <input type="text" id="p-name" placeholder="Ex: Pack VIP Gold">
+    <!-- Historique des liens générés -->
+    <section class="rounded-2xl bg-charcoal p-4 sm:p-5 shadow-cardLuxury space-y-3.5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-1 h-4 rounded-full bg-gold-400"></span>
+          <h2 class="text-sm sm:text-base font-bold text-white">Historique des liens</h2>
         </div>
-        <div>
-          <label class="field-label">Prix (DH)</label>
-          <input type="number" id="p-price" placeholder="Ex: 299">
-        </div>
-        <div>
-          <label class="field-label">Catégorie</label>
-          <input type="text" id="p-cat" placeholder="Ex: Exclusif">
-        </div>
-        <div>
-          <label class="field-label">Lien image (optionnel)</label>
-          <input type="text" id="p-img" placeholder="https://...">
-        </div>
-      </div>
-      <div class="action-row">
-        <button class="btn btn-gold" style="flex:1;" onclick="addDraftProduct()">
-          <i class="fa-solid fa-plus"></i> Ajouter à la liste
-        </button>
-        <button class="btn btn-dark" onclick="fillSampleProducts()">
-          <i class="fa-solid fa-sparkles"></i> Exemples
-        </button>
-      </div>
-    </div>
 
-    <!-- Generated Encrypted Code Box -->
-    <div class="glass-panel">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-lock"></i> Code Crypté Généré</span>
-        <button class="btn btn-gold" onclick="buildAndCopyCode()">
-          <i class="fa-solid fa-copy"></i> Générer & Copier le Code
-        </button>
-      </div>
-      <textarea id="generated-code-output" class="code-box" readonly placeholder="Le code crypté (FLX1:...) apparaîtra ici automatiquement..."></textarea>
-      <div class="action-row">
-        <button class="btn btn-pay" onclick="copyGeneratedCode()">
-          <i class="fa-solid fa-check-double"></i> Copier Code
-        </button>
-        <button class="btn btn-dark" onclick="importCodeIntoStudio()">
-          <i class="fa-solid fa-rotate"></i> Charger depuis un code
-        </button>
-        <button class="btn btn-danger" onclick="clearAllDrafts()">
-          <i class="fa-solid fa-trash"></i> Tout vider
-        </button>
-      </div>
-      <div class="status-msg" id="studio-status"></div>
-    </div>
-
-    <!-- Luxury Boutique Link Generator -->
-    <div class="link-studio-panel">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-link"></i> Générateur de Liens Boutique</span>
-        <span class="edition-pill">INSTANT LINK</span>
-      </div>
-
-      <div class="form-grid" style="margin-bottom:11px;">
-        <div style="grid-column: 1 / -1;">
-          <label class="field-label">URL de base de la Boutique</label>
-          <input type="text" id="boutique-base-url" placeholder="https://exemple.com/boutique.html" oninput="refreshBoutiqueLinks()">
-        </div>
-      </div>
-
-      <div class="form-grid">
-        <div>
-          <label class="field-label">Lien Boutique (Paramètre ?code=)</label>
-          <input type="text" id="boutique-query-link" class="link-output" readonly placeholder="Le lien ?code=... s'affichera ici">
-          <div class="action-row">
-            <button class="btn btn-gold" onclick="copySpecificLink('boutique-query-link', 'link-status')">
-              <i class="fa-solid fa-copy"></i> Copier Lien
-            </button>
-            <button class="btn btn-info" onclick="openSpecificLink('boutique-query-link', 'link-status')">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir
-            </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <!-- Recherche -->
+          <div class="relative flex-1 sm:w-56">
+            <input id="search-input" type="search" placeholder="Rechercher un lien, préfixe..."
+                   class="w-full rounded-xl bg-obsidian px-3 py-2 pl-8 text-xs text-white placeholder-gray-500 outline-none focus:ring-1 focus:ring-gold-500/40 transition" />
+            <svg class="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
           </div>
-        </div>
 
-        <div>
-          <label class="field-label">Lien Boutique (Ancre #code=)</label>
-          <input type="text" id="boutique-hash-link" class="link-output" readonly placeholder="Le lien #code=... s'affichera ici">
-          <div class="action-row">
-            <button class="btn btn-pay" onclick="copySpecificLink('boutique-hash-link', 'link-status')">
-              <i class="fa-solid fa-copy"></i> Copier Lien #
-            </button>
-            <button class="btn btn-info" onclick="openSpecificLink('boutique-hash-link', 'link-status')">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir #
-            </button>
-          </div>
+          <!-- Tout effacer -->
+          <button id="clear-all-btn" type="button"
+                  class="px-3 py-2 rounded-xl bg-red-500/15 hover:bg-red-500/25 text-red-300 text-xs font-semibold transition shrink-0">
+            Tout effacer
+          </button>
         </div>
       </div>
 
-      <div class="status-msg" id="link-status"></div>
-    </div>
+      <!-- Liste des liens -->
+      <div id="links-container" class="space-y-2"></div>
 
-    <!-- Products List -->
-    <div class="glass-panel">
-      <div class="panel-title">
-        <span><i class="fa-solid fa-layer-group"></i> Aperçu des Produits Inclus</span>
+      <!-- État vide -->
+      <div id="empty-state" class="hidden text-center py-8 px-4 rounded-xl bg-obsidian/70 space-y-1">
+        <p class="text-xs sm:text-sm font-bold text-gray-300">Aucun lien court enregistré</p>
+        <p class="text-[11px] text-gray-500">Saisissez une URL de destination et votre préfixe de marque ci-dessus pour générer votre premier lien.</p>
       </div>
-      <div class="drafts-grid" id="drafts-list"></div>
-    </div>
+    </section>
 
   </div>
 
   <script>
-    let draftProducts = JSON.parse(localStorage.getItem('fl_code_studio_v1')) || [];
-    let currentBlobUrl = '';
+    (function () {
+      'use strict';
 
-    const savedBaseUrl = localStorage.getItem('fl_boutique_base_url') || (window.location.origin + window.location.pathname);
-    document.getElementById('boutique-base-url').value = savedBaseUrl;
+      // Clés de stockage local
+      const STORAGE_KEYS = {
+        LINKS: 'luxury_shortener_links_v2',
+        CUSTOM_BASE: 'luxury_shortener_custom_base_v2',
+        DEFAULT_BRAND: 'luxury_shortener_default_brand_v2',
+      };
 
-    function normalizeRunnableHtml(rawCode) {
-      const trimmed = rawCode.trim();
-      const lower = trimmed.toLowerCase();
-      if (lower.includes('<html') || lower.includes('<!doctype')) {
-        return trimmed;
-      }
-      return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head><body style="background:#08080c;color:#f5f5f7;font-family:sans-serif;padding:16px;"><pre style="white-space:pre-wrap;word-break:break-word;">${trimmed.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></body></html>`;
-    }
+      // État de l'application
+      let links = [];
+      let customBaseUrl = '';
+      let defaultBrandName = '';
+      let linkBuildMode = 'brand-random';
+      let redirectTimer = null;
+      let redirectProgressInterval = null;
 
-    function generateSiteFromFullCode() {
-      const raw = document.getElementById('full-code-input').value;
-      const blobOut = document.getElementById('site-blob-link');
-      const dataOut = document.getElementById('site-data-link');
-      const frame = document.getElementById('site-live-preview');
+      // Références DOM
+      const el = {
+        redirectOverlay: document.getElementById('redirect-overlay'),
+        redirectTargetUrl: document.getElementById('redirect-target-url'),
+        redirectCodeBadge: document.getElementById('redirect-code-badge'),
+        redirectProgressBar: document.getElementById('redirect-progress-bar'),
+        redirectStatusText: document.getElementById('redirect-status-text'),
+        redirectInstantBtn: document.getElementById('redirect-instant-btn'),
+        redirectCancelBtn: document.getElementById('redirect-cancel-btn'),
+        currentOriginDisplay: document.getElementById('current-origin-display'),
+        baseModeBadge: document.getElementById('base-mode-badge'),
+        toggleCustomBaseBtn: document.getElementById('toggle-custom-base-btn'),
+        customBasePanel: document.getElementById('custom-base-panel'),
+        defaultBrandInput: document.getElementById('default-brand-input'),
+        customBaseInput: document.getElementById('custom-base-input'),
+        saveBaseUrlBtn: document.getElementById('save-base-url-btn'),
+        resetBaseUrlBtn: document.getElementById('reset-base-url-btn'),
+        copyDashboardUrlBtn: document.getElementById('copy-dashboard-url-btn'),
+        statTotalLinks: document.getElementById('stat-total-links'),
+        statTotalClicks: document.getElementById('stat-total-clicks'),
+        statActiveHost: document.getElementById('stat-active-host'),
+        modeBrandRandomBtn: document.getElementById('mode-brand-random-btn'),
+        modeBrandCustomBtn: document.getElementById('mode-brand-custom-btn'),
+        shortenForm: document.getElementById('shorten-form'),
+        longUrlInput: document.getElementById('long-url-input'),
+        brandPrefixInput: document.getElementById('brand-prefix-input'),
+        customSlugInput: document.getElementById('custom-slug-input'),
+        labelInput: document.getElementById('label-input'),
+        liveShortPreview: document.getElementById('live-short-preview'),
+        searchInput: document.getElementById('search-input'),
+        clearAllBtn: document.getElementById('clear-all-btn'),
+        linksContainer: document.getElementById('links-container'),
+        emptyState: document.getElementById('empty-state'),
+        toastContainer: document.getElementById('toast-container'),
+        qrModal: document.getElementById('qr-modal'),
+        qrImage: document.getElementById('qr-image'),
+        qrLinkPreview: document.getElementById('qr-link-preview'),
+        closeQrBtn: document.getElementById('close-qr-btn'),
+        copyQrLinkBtn: document.getElementById('copy-qr-link-btn'),
+      };
 
-      if (currentBlobUrl) {
-        URL.revokeObjectURL(currentBlobUrl);
-        currentBlobUrl = '';
-      }
+      // Affichage d'une notification Toast élégante
+      function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        const isError = type === 'error';
+        toast.className = `pointer-events-auto rounded-xl px-3.5 py-2.5 text-xs font-semibold shadow-cardLuxury backdrop-blur-md transition-all duration-300 flex items-center justify-between gap-2.5 ${
+          isError
+            ? 'bg-red-950/95 text-red-200'
+            : 'bg-surface/95 text-gold-200'
+        }`;
+        toast.innerHTML = `
+          <span>${escapeHtml(message)}</span>
+          <span class="w-1.5 h-1.5 shrink-0 rounded-full ${isError ? 'bg-red-400' : 'bg-gold-400'}"></span>
+        `;
+        el.toastContainer.appendChild(toast);
 
-      if (!raw.trim()) {
-        blobOut.value = '';
-        dataOut.value = '';
-        frame.srcdoc = '';
-        setSiteStatus('');
-        return;
-      }
-
-      const htmlDoc = normalizeRunnableHtml(raw);
-      const blob = new Blob([htmlDoc], { type: 'text/html;charset=utf-8' });
-      currentBlobUrl = URL.createObjectURL(blob);
-
-      blobOut.value = currentBlobUrl;
-      dataOut.value = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlDoc);
-      frame.srcdoc = htmlDoc;
-
-      setSiteStatus('Lien du site généré avec succès. Prêt à ouvrir ou copier.');
-    }
-
-    function toggleSitePreview() {
-      const frame = document.getElementById('site-live-preview');
-      if (!document.getElementById('full-code-input').value.trim()) {
-        setSiteStatus('Collez un code complet d’abord.', 'var(--ruby)');
-        return;
-      }
-      frame.classList.toggle('hidden');
-    }
-
-    function clearFullCodeBox() {
-      document.getElementById('full-code-input').value = '';
-      generateSiteFromFullCode();
-      document.getElementById('site-live-preview').classList.add('hidden');
-    }
-
-    function encodeLuxuryCode(list) {
-      const jsonStr = JSON.stringify(list);
-      const bytes = new TextEncoder().encode(jsonStr);
-      let bin = '';
-      bytes.forEach(b => { bin += String.fromCharCode(b); });
-      return 'FLX1:' + btoa(bin);
-    }
-
-    function decodeLuxuryCode(raw) {
-      let clean = raw.trim();
-      if (!clean) throw new Error('EMPTY');
-      if (clean.startsWith('FLX1:')) {
-        const b64 = clean.slice(5).trim();
-        const bin = atob(b64);
-        const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        clean = new TextDecoder().decode(bytes);
-      }
-      const parsed = JSON.parse(clean);
-      const arr = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
-      if (!arr) throw new Error('INVALID');
-      return arr
-        .map((item, idx) => ({
-          id: item.id || (Date.now() + idx),
-          name: String(item.name || item.title || '').trim(),
-          price: parseFloat(item.price),
-          cat: String(item.cat || item.category || '').trim(),
-          img: String(item.img || item.image || '').trim()
-        }))
-        .filter(p => p.name && !isNaN(p.price) && p.price > 0);
-    }
-
-    function setStatus(msg, color = 'var(--emerald)') {
-      const el = document.getElementById('studio-status');
-      el.style.color = color;
-      el.innerText = msg;
-    }
-
-    function setLinkStatus(msg, color = 'var(--emerald)') {
-      const el = document.getElementById('link-status');
-      el.style.color = color;
-      el.innerText = msg;
-    }
-
-    function setSiteStatus(msg, color = 'var(--emerald)') {
-      const el = document.getElementById('site-status');
-      el.style.color = color;
-      el.innerText = msg;
-    }
-
-    function refreshBoutiqueLinks() {
-      const baseInput = document.getElementById('boutique-base-url').value.trim();
-      localStorage.setItem('fl_boutique_base_url', baseInput);
-
-      const code = draftProducts.length ? encodeLuxuryCode(draftProducts) : '';
-      const queryOut = document.getElementById('boutique-query-link');
-      const hashOut = document.getElementById('boutique-hash-link');
-
-      if (!baseInput || !code) {
-        queryOut.value = '';
-        hashOut.value = '';
-        return;
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(8px)';
+          setTimeout(() => toast.remove(), 280);
+        }, 2600);
       }
 
-      const cleanBase = baseInput.split('#')[0].split('?')[0];
-      const encodedParam = encodeURIComponent(code);
-      queryOut.value = `${cleanBase}?code=${encodedParam}`;
-      hashOut.value = `${cleanBase}#code=${encodedParam}`;
-    }
-
-    function syncStudio(autoCode = true) {
-      localStorage.setItem('fl_code_studio_v1', JSON.stringify(draftProducts));
-      document.getElementById('drafts-count').innerText = draftProducts.length;
-      const out = document.getElementById('generated-code-output');
-      if (autoCode) {
-        out.value = draftProducts.length ? encodeLuxuryCode(draftProducts) : '';
-      }
-      refreshBoutiqueLinks();
-      renderDrafts();
-    }
-
-    function addDraftProduct() {
-      const name = document.getElementById('p-name').value.trim();
-      const price = parseFloat(document.getElementById('p-price').value);
-      const cat = document.getElementById('p-cat').value.trim();
-      const img = document.getElementById('p-img').value.trim();
-
-      if (!name || isNaN(price) || price <= 0) {
-        setStatus('Veuillez saisir un nom et un prix valide.', 'var(--ruby)');
-        return;
+      // Échappement HTML sécurisé
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
       }
 
-      draftProducts.unshift({
-        id: Date.now() + Math.floor(Math.random() * 999),
-        name,
-        price,
-        cat,
-        img
-      });
-
-      document.getElementById('p-name').value = '';
-      document.getElementById('p-price').value = '';
-      document.getElementById('p-cat').value = '';
-      document.getElementById('p-img').value = '';
-
-      syncStudio(true);
-      setStatus(`Produit "${name}" ajouté et liens Boutique mis à jour.`);
-    }
-
-    function fillSampleProducts() {
-      const samples = [
-        { id: Date.now() + 1, name: 'Abonnement Gold 12 Mois', price: 450, cat: 'VIP', img: '' },
-        { id: Date.now() + 2, name: 'Pack Royal 6 Mois', price: 280, cat: 'Premium', img: '' }
-      ];
-      draftProducts = [...samples, ...draftProducts];
-      syncStudio(true);
-      setStatus('Exemples ajoutés, code et liens mis à jour.');
-    }
-
-    function removeDraft(id) {
-      draftProducts = draftProducts.filter(p => p.id !== id);
-      syncStudio(true);
-      setStatus('Produit retiré.', 'var(--gold-primary)');
-    }
-
-    function clearAllDrafts() {
-      draftProducts = [];
-      syncStudio(true);
-      setStatus('Liste, code et liens réinitialisés.', 'var(--gold-primary)');
-    }
-
-    function copyGeneratedCode() {
-      const code = document.getElementById('generated-code-output').value.trim();
-      if (!code) {
-        setStatus('Aucun code à copier.', 'var(--ruby)');
-        return;
+      // Validation d'URL HTTP/HTTPS
+      function isSafeHttpUrl(rawUrl) {
+        try {
+          const parsed = new URL(String(rawUrl || '').trim());
+          return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+        } catch (_) {
+          return false;
+        }
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).then(() => {
-          setStatus('Code crypté copié dans le presse-papiers.');
-        }).catch(() => {
-          setStatus('Code prêt à être copié manuellement.', 'var(--gold-primary)');
+
+      // Encodage et décodage Base64URL pour la portabilité multi-appareils
+      function encodeBase64Url(str) {
+        try {
+          const bytes = new TextEncoder().encode(str);
+          let binary = '';
+          for (let i = 0; i < bytes.length; i++) {
+            binary += String.fromCharCode(bytes[i]);
+          }
+          return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function decodeBase64Url(b64url) {
+        try {
+          let base64 = String(b64url || '').replace(/-/g, '+').replace(/_/g, '/');
+          while (base64.length % 4) base64 += '=';
+          const binary = atob(base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+          }
+          return new TextDecoder().decode(bytes);
+        } catch (_) {
+          return '';
+        }
+      }
+
+      // Récupération de l'URL de base active
+      function getActiveBaseUrl() {
+        if (customBaseUrl && isSafeHttpUrl(customBaseUrl)) {
+          return customBaseUrl.replace(/\/+$/, '');
+        }
+        try {
+          const loc = window.location;
+          if (loc && (loc.protocol === 'http:' || loc.protocol === 'https:')) {
+            return `${loc.origin}${loc.pathname}`.replace(/\/+$/, '') || loc.origin;
+          }
+        } catch (_) {}
+        return 'https://lien.prestige';
+      }
+
+      // Normalisation du préfixe ou code
+      function sanitizeSlug(rawSlug, maxLen = 20) {
+        return String(rawSlug || '')
+          .trim()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/[^a-zA-Z0-9_-]/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '')
+          .slice(0, maxLen);
+      }
+
+      // Assemblage marque/code
+      function formatFullSlug(brand, code) {
+        const cleanBrand = sanitizeSlug(brand, 20);
+        const cleanCode = sanitizeSlug(code, 20);
+        if (cleanBrand && cleanCode) return `${cleanBrand}/${cleanCode}`;
+        return cleanBrand || cleanCode;
+      }
+
+      // Construction du lien court complet
+      function buildShortUrl(fullSlug, targetUrl, includePayload = true) {
+        const base = getActiveBaseUrl();
+        const cleanFullSlug = String(fullSlug || '').replace(/^\/+|\/+$/g, '');
+        if (!includePayload || !targetUrl) {
+          return `${base}#${cleanFullSlug}`;
+        }
+        const payload = encodeBase64Url(targetUrl);
+        return `${base}#${cleanFullSlug}?u=${payload}`;
+      }
+
+      // Génération d'un code court aléatoire (4 caractères)
+      function generateRandomCode(length = 4) {
+        const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+        let result = '';
+        const array = new Uint32Array(length);
+        if (window.crypto && window.crypto.getRandomValues) {
+          window.crypto.getRandomValues(array);
+          for (let i = 0; i < length; i++) {
+            result += chars[array[i] % chars.length];
+          }
+        } else {
+          for (let i = 0; i < length; i++) {
+            result += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        return result;
+      }
+
+      // Chargement depuis localStorage
+      function loadState() {
+        try {
+          customBaseUrl = localStorage.getItem(STORAGE_KEYS.CUSTOM_BASE) || '';
+          defaultBrandName = localStorage.getItem(STORAGE_KEYS.DEFAULT_BRAND) || '';
+          const rawLinks = localStorage.getItem(STORAGE_KEYS.LINKS);
+          links = rawLinks ? JSON.parse(rawLinks) : [];
+          if (!Array.isArray(links)) links = [];
+        } catch (err) {
+          console.error('Erreur de lecture du stockage local :', err);
+          links = [];
+        }
+      }
+
+      // Sauvegarde dans localStorage
+      function saveLinks() {
+        try {
+          localStorage.setItem(STORAGE_KEYS.LINKS, JSON.stringify(links));
+        } catch (err) {
+          console.error('Erreur de sauvegarde :', err);
+          showToast('Impossible de sauvegarder dans le navigateur', 'error');
+        }
+      }
+
+      // Copie dans le presse-papiers
+      function copyTextToClipboard(text) {
+        if (!text) return;
+        try {
+          const tempInput = document.createElement('textarea');
+          tempInput.value = text;
+          tempInput.setAttribute('readonly', '');
+          tempInput.style.position = 'fixed';
+          tempInput.style.opacity = '0';
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          const success = document.execCommand('copy');
+          document.body.removeChild(tempInput);
+          if (success) {
+            showToast('Lien court copié dans le presse-papiers');
+            return;
+          }
+        } catch (_) {}
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text)
+            .then(() => showToast('Lien court copié dans le presse-papiers'))
+            .catch(() => showToast('Veuillez copier le lien manuellement', 'error'));
+        } else {
+          showToast('Veuillez copier le lien manuellement', 'error');
+        }
+      }
+
+      // Bascule entre génération automatique ou alias libre
+      function setLinkBuildMode(mode) {
+        linkBuildMode = mode;
+        if (mode === 'brand-random') {
+          el.modeBrandRandomBtn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-gold-500/20 text-gold-300 transition';
+          el.modeBrandCustomBtn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold text-gray-400 hover:text-white transition';
+          el.customSlugInput.placeholder = 'auto';
+        } else {
+          el.modeBrandCustomBtn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-gold-500/20 text-gold-300 transition';
+          el.modeBrandRandomBtn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold text-gray-400 hover:text-white transition';
+          el.customSlugInput.placeholder = 'offre-vip';
+        }
+        updateLivePreview();
+      }
+
+      // Mise à jour de l'en-tête et des compteurs
+      function updateHeaderAndStats() {
+        const activeBase = getActiveBaseUrl();
+        el.currentOriginDisplay.textContent = activeBase;
+        el.customBaseInput.value = customBaseUrl;
+        el.defaultBrandInput.value = defaultBrandName;
+
+        if (defaultBrandName && !el.brandPrefixInput.value) {
+          el.brandPrefixInput.value = defaultBrandName;
+        }
+
+        if (customBaseUrl || defaultBrandName) {
+          el.baseModeBadge.textContent = defaultBrandName ? `Marque : ${defaultBrandName}` : 'Personnalisé';
+          el.baseModeBadge.className = 'hidden sm:inline-block px-2 py-0.5 rounded-md bg-gold-500/20 text-gold-300 text-[10px] font-semibold';
+        } else {
+          el.baseModeBadge.textContent = 'Auto';
+          el.baseModeBadge.className = 'hidden sm:inline-block px-2 py-0.5 rounded-md bg-white/10 text-gray-300 text-[10px]';
+        }
+
+        try {
+          const parsedHost = new URL(activeBase).host;
+          el.statActiveHost.textContent = parsedHost || activeBase;
+        } catch (_) {
+          el.statActiveHost.textContent = activeBase;
+        }
+
+        const totalClicks = links.reduce((sum, item) => sum + (Number(item.clicks) || 0), 0);
+        el.statTotalLinks.textContent = links.length.toLocaleString('fr-FR');
+        el.statTotalClicks.textContent = totalClicks.toLocaleString('fr-FR');
+        updateLivePreview();
+      }
+
+      // Aperçu en temps réel du lien court
+      function updateLivePreview() {
+        const brandVal = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20);
+        const slugVal = sanitizeSlug(el.customSlugInput.value, 20);
+        const codePreview = slugVal || (linkBuildMode === 'brand-custom' ? 'alias' : 'a7k9');
+        const fullSlugPreview = formatFullSlug(brandVal, codePreview);
+        el.liveShortPreview.textContent = buildShortUrl(fullSlugPreview, '', false);
+      }
+
+      // Incrémentation du compteur de clics
+      function incrementClicks(fullSlug) {
+        let updated = false;
+        links = links.map((item) => {
+          if (item.fullSlug === fullSlug || item.code === fullSlug) {
+            updated = true;
+            return { ...item, clicks: (Number(item.clicks) || 0) + 1 };
+          }
+          return item;
         });
+        if (updated) {
+          saveLinks();
+          updateHeaderAndStats();
+          renderLinks();
+        }
       }
-    }
 
-    function buildAndCopyCode() {
-      if (!draftProducts.length) {
-        setStatus('Ajoutez au moins un produit avant de générer.', 'var(--ruby)');
-        return;
-      }
-      syncStudio(true);
-      copyGeneratedCode();
-    }
+      // Rendu compact et responsive des lignes de liens
+      function renderLinks() {
+        const query = (el.searchInput.value || '').trim().toLowerCase();
+        const filtered = links.filter((item) => {
+          if (!query) return true;
+          return (
+            (item.fullSlug && item.fullSlug.toLowerCase().includes(query)) ||
+            (item.brand && item.brand.toLowerCase().includes(query)) ||
+            (item.label && item.label.toLowerCase().includes(query)) ||
+            (item.targetUrl && item.targetUrl.toLowerCase().includes(query))
+          );
+        });
 
-    function importCodeIntoStudio() {
-      const raw = document.getElementById('generated-code-output').value;
-      try {
-        const list = decodeLuxuryCode(raw);
-        if (!list.length) {
-          setStatus('Aucun produit trouvé dans ce code.', 'var(--ruby)');
+        el.linksContainer.innerHTML = '';
+
+        if (filtered.length === 0) {
+          el.emptyState.classList.remove('hidden');
           return;
         }
-        draftProducts = list;
-        syncStudio(true);
-        setStatus(`${list.length} produit(s) chargé(s) avec succès.`);
-      } catch (e) {
-        setStatus('Code crypté invalide.', 'var(--ruby)');
-      }
-    }
 
-    function copySpecificLink(inputId, statusId) {
-      const val = document.getElementById(inputId).value.trim();
-      const targetStatus = statusId === 'site-status' ? setSiteStatus : setLinkStatus;
-      if (!val) {
-        targetStatus('Aucun lien disponible à copier.', 'var(--ruby)');
-        return;
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(val).then(() => {
-          targetStatus('Lien copié avec succès.');
-        }).catch(() => {
-          targetStatus('Lien prêt à être copié.', 'var(--gold-primary)');
+        el.emptyState.classList.add('hidden');
+
+        filtered.forEach((item) => {
+          const fullSlug = item.fullSlug || formatFullSlug(item.brand, item.code);
+          const displayShortUrl = buildShortUrl(fullSlug, '', false);
+          const shareableShortUrl = buildShortUrl(fullSlug, item.targetUrl, true);
+          const createdDate = item.createdAt
+            ? new Date(item.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })
+            : '';
+
+          const row = document.createElement('div');
+          row.className = 'rounded-xl bg-obsidian/90 hover:bg-obsidian p-3 sm:px-4 sm:py-3 transition flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shadow-softElevate';
+
+          row.innerHTML = `
+            <div class="min-w-0 flex-1 space-y-0.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-300 text-[11px] font-bold font-mono">
+                  #${escapeHtml(fullSlug)}
+                </span>
+                ${item.label ? `<span class="text-xs font-semibold text-white truncate max-w-[160px] sm:max-w-[220px]">${escapeHtml(item.label)}</span>` : ''}
+                <span class="hidden md:inline text-[10px] text-gray-500">${escapeHtml(createdDate)}</span>
+              </div>
+              <div class="text-xs font-bold text-gold-300 truncate font-mono">
+                ${escapeHtml(displayShortUrl)}
+              </div>
+              <div class="text-[11px] text-gray-400 truncate" title="${escapeHtml(item.targetUrl)}">
+                → ${escapeHtml(item.targetUrl)}
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between sm:justify-end gap-1.5 pt-1.5 sm:pt-0 shrink-0">
+              <span class="px-2.5 py-1.5 rounded-lg bg-surface text-[11px] font-semibold text-gray-200">
+                ${Number(item.clicks || 0).toLocaleString('fr-FR')} clic${Number(item.clicks || 0) > 1 ? 's' : ''}
+              </span>
+
+              <button type="button" data-action="copy" data-url="${escapeHtml(shareableShortUrl)}"
+                      class="px-3 py-1.5 rounded-lg bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 text-xs font-bold transition">
+                Copier
+              </button>
+
+              <button type="button" data-action="test" data-url="${escapeHtml(shareableShortUrl)}"
+                      class="hidden sm:inline-flex px-2.5 py-1.5 rounded-lg bg-surface hover:bg-white/10 text-gray-200 text-xs font-semibold transition">
+                Ouvrir
+              </button>
+
+              <button type="button" data-action="qr" data-url="${escapeHtml(shareableShortUrl)}" data-display="${escapeHtml(displayShortUrl)}"
+                      class="p-2 rounded-lg bg-surface hover:bg-white/10 text-gray-300 hover:text-gold-300 transition" title="Code QR" aria-label="Code QR">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 13.5h2.25v2.25H13.5zm4.5 0h2.25v2.25H18zm-4.5 4.5h2.25v2.25H13.5zm4.5 4.5h2.25V20.25H18z" />
+                </svg>
+              </button>
+
+              <button type="button" data-action="delete" data-id="${escapeHtml(item.id)}"
+                      class="p-2 rounded-lg bg-red-500/15 hover:bg-red-500/25 text-red-300 transition" title="Supprimer" aria-label="Supprimer">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+              </button>
+            </div>
+          `;
+
+          el.linksContainer.appendChild(row);
         });
       }
-    }
 
-    function openSpecificLink(inputId, statusId) {
-      const val = document.getElementById(inputId).value.trim();
-      const targetStatus = statusId === 'site-status' ? setSiteStatus : setLinkStatus;
-      if (!val) {
-        targetStatus('Aucun lien disponible à ouvrir.', 'var(--ruby)');
-        return;
-      }
-      window.open(val, '_blank');
-    }
+      // Redirection côté client lors de l'ouverture d'un lien court (#marque/code)
+      function checkIncomingShortLink() {
+        try {
+          const urlObj = new URL(window.location.href);
+          let fullSlug = '';
+          let encodedPayload = urlObj.searchParams.get('d') || '';
 
-    function renderDrafts() {
-      const box = document.getElementById('drafts-list');
-      box.innerHTML = draftProducts.length ? draftProducts.map(p => `
-        <div class="draft-card">
-          ${p.img
-            ? `<img src="${p.img}" class="draft-img" alt="${p.name}">`
-            : `<div class="draft-img-placeholder"><i class="fa-solid fa-crown"></i></div>`
+          const rawHash = (window.location.hash || '').replace(/^#/, '');
+          if (rawHash) {
+            const [hashPath, hashQuery] = rawHash.split('?');
+            fullSlug = decodeURIComponent(hashPath || '').replace(/^s\//, '').replace(/^\/+|\/+$/g, '');
+            if (hashQuery) {
+              const hashParams = new URLSearchParams(hashQuery);
+              encodedPayload = hashParams.get('u') || hashParams.get('d') || encodedPayload;
+            }
           }
-          <div class="draft-body">
-            <div>
-              ${p.cat ? `<span class="draft-cat">${p.cat}</span>` : ''}
-              <div class="draft-name" style="margin-top:6px;">${p.name}</div>
-              <div class="draft-price" style="margin-top:3px;">${p.price} DH</div>
-            </div>
-            <button class="btn btn-danger" style="width:100%;" onclick="removeDraft(${p.id})">
-              <i class="fa-solid fa-trash"></i> Supprimer
-            </button>
-          </div>
-        </div>
-      `).join('') : '<div class="empty-state">Aucun produit ajouté pour le moment.</div>';
-    }
 
-    syncStudio(true);
+          if (!fullSlug && urlObj.searchParams.get('s')) {
+            fullSlug = urlObj.searchParams.get('s').trim();
+          }
+
+          if (!fullSlug && !encodedPayload) return false;
+
+          let targetUrl = '';
+          const matchedItem = links.find(
+            (l) => (l.fullSlug && l.fullSlug.toLowerCase() === fullSlug.toLowerCase()) ||
+                   (l.code && l.code.toLowerCase() === fullSlug.toLowerCase())
+          );
+
+          if (matchedItem && isSafeHttpUrl(matchedItem.targetUrl)) {
+            targetUrl = matchedItem.targetUrl;
+            incrementClicks(matchedItem.fullSlug || matchedItem.code);
+          } else if (encodedPayload) {
+            const decoded = decodeBase64Url(encodedPayload);
+            if (isSafeHttpUrl(decoded)) {
+              targetUrl = decoded;
+              if (fullSlug) incrementClicks(fullSlug);
+            }
+          }
+
+          if (!targetUrl) {
+            window.history.replaceState({}, document.title, getActiveBaseUrl());
+            showToast('Lien court introuvable ou invalide', 'error');
+            return false;
+          }
+
+          el.redirectTargetUrl.textContent = targetUrl;
+          el.redirectCodeBadge.textContent = fullSlug ? `#${fullSlug}` : 'Redirection directe';
+          el.redirectInstantBtn.href = targetUrl;
+          el.redirectOverlay.classList.remove('hidden');
+
+          const durationMs = 1500;
+          const startTime = Date.now();
+
+          redirectProgressInterval = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const pct = Math.min(100, (elapsed / durationMs) * 100);
+            el.redirectProgressBar.style.width = `${pct}%`;
+            const remainingSec = Math.max(0.1, ((durationMs - elapsed) / 1000)).toFixed(1).replace('.', ',');
+            el.redirectStatusText.textContent = `Transfert dans ${remainingSec} s...`;
+          }, 60);
+
+          redirectTimer = setTimeout(() => {
+            clearInterval(redirectProgressInterval);
+            window.location.replace(targetUrl);
+          }, durationMs);
+
+          return true;
+        } catch (err) {
+          console.error('Erreur lors de la redirection :', err);
+          return false;
+        }
+      }
+
+      // Annulation de la redirection
+      function cancelRedirectToDashboard() {
+        if (redirectTimer) clearTimeout(redirectTimer);
+        if (redirectProgressInterval) clearInterval(redirectProgressInterval);
+        el.redirectOverlay.classList.add('hidden');
+        try {
+          window.history.replaceState({}, document.title, getActiveBaseUrl());
+        } catch (_) {}
+      }
+
+      // Liaison des événements
+      function bindEvents() {
+        el.redirectCancelBtn.addEventListener('click', cancelRedirectToDashboard);
+        window.addEventListener('hashchange', checkIncomingShortLink);
+
+        el.modeBrandRandomBtn.addEventListener('click', () => setLinkBuildMode('brand-random'));
+        el.modeBrandCustomBtn.addEventListener('click', () => setLinkBuildMode('brand-custom'));
+
+        el.longUrlInput.addEventListener('input', updateLivePreview);
+        el.brandPrefixInput.addEventListener('input', updateLivePreview);
+        el.customSlugInput.addEventListener('input', updateLivePreview);
+
+        el.shortenForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const rawUrl = el.longUrlInput.value.trim();
+          if (!isSafeHttpUrl(rawUrl)) {
+            showToast('Veuillez saisir une URL valide (http:// ou https://)', 'error');
+            return;
+          }
+
+          const brand = sanitizeSlug(el.brandPrefixInput.value || defaultBrandName, 20);
+          let code = sanitizeSlug(el.customSlugInput.value, 20);
+
+          if (code) {
+            const candidateFullSlug = formatFullSlug(brand, code);
+            const exists = links.some((l) => (l.fullSlug || '').toLowerCase() === candidateFullSlug.toLowerCase());
+            if (exists) {
+              showToast('Cet identifiant est déjà utilisé, veuillez en choisir un autre', 'error');
+              return;
+            }
+          } else {
+            let candidateFullSlug = '';
+            do {
+              code = generateRandomCode(4);
+              candidateFullSlug = formatFullSlug(brand, code);
+            } while (links.some((l) => (l.fullSlug || '').toLowerCase() === candidateFullSlug.toLowerCase()));
+          }
+
+          const fullSlug = formatFullSlug(brand, code);
+
+          const newLink = {
+            id: `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+            brand,
+            code,
+            fullSlug,
+            targetUrl: rawUrl,
+            label: el.labelInput.value.trim(),
+            clicks: 0,
+            createdAt: new Date().toISOString(),
+          };
+
+          links.unshift(newLink);
+          saveLinks();
+          updateHeaderAndStats();
+          renderLinks();
+
+          const shareableShortUrl = buildShortUrl(newLink.fullSlug, newLink.targetUrl, true);
+          copyTextToClipboard(shareableShortUrl);
+
+          el.longUrlInput.value = '';
+          el.customSlugInput.value = '';
+          el.labelInput.value = '';
+          el.brandPrefixInput.value = defaultBrandName;
+          updateLivePreview();
+        });
+
+        // Délégation d'événements sur l'historique
+        el.linksContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-action]');
+          if (!btn) return;
+
+          const action = btn.getAttribute('data-action');
+          const url = btn.getAttribute('data-url');
+          const displayUrl = btn.getAttribute('data-display') || url;
+          const id = btn.getAttribute('data-id');
+
+          if (action === 'copy') {
+            copyTextToClipboard(url);
+          } else if (action === 'test') {
+            if (url && isSafeHttpUrl(url)) {
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          } else if (action === 'qr') {
+            el.qrLinkPreview.textContent = displayUrl;
+            el.qrLinkPreview.setAttribute('data-share-url', url);
+            el.qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+            el.qrModal.classList.remove('hidden');
+          } else if (action === 'delete') {
+            links = links.filter((l) => l.id !== id);
+            saveLinks();
+            updateHeaderAndStats();
+            renderLinks();
+            showToast('Lien court supprimé');
+          }
+        });
+
+        // Gestion de la modale Code QR
+        el.closeQrBtn.addEventListener('click', () => el.qrModal.classList.add('hidden'));
+        el.qrModal.addEventListener('click', (e) => {
+          if (e.target === el.qrModal) el.qrModal.classList.add('hidden');
+        });
+        el.copyQrLinkBtn.addEventListener('click', () => {
+          const shareUrl = el.qrLinkPreview.getAttribute('data-share-url') || el.qrLinkPreview.textContent;
+          copyTextToClipboard(shareUrl);
+        });
+
+        // Recherche et suppression globale
+        el.searchInput.addEventListener('input', renderLinks);
+        el.clearAllBtn.addEventListener('click', () => {
+          if (links.length === 0) {
+            showToast('L\'historique est déjà vide');
+            return;
+          }
+          links = [];
+          saveLinks();
+          updateHeaderAndStats();
+          renderLinks();
+          showToast('Tous les liens ont été supprimés');
+        });
+
+        // Configuration du domaine et du préfixe par défaut
+        el.toggleCustomBaseBtn.addEventListener('click', () => {
+          el.customBasePanel.classList.toggle('hidden');
+        });
+
+        el.saveBaseUrlBtn.addEventListener('click', () => {
+          const baseVal = el.customBaseInput.value.trim();
+          const brandVal = sanitizeSlug(el.defaultBrandInput.value, 20);
+
+          if (baseVal && !isSafeHttpUrl(baseVal)) {
+            showToast('L\'URL de base doit commencer par http:// ou https://', 'error');
+            return;
+          }
+
+          if (baseVal) {
+            customBaseUrl = baseVal.replace(/\/+$/, '');
+            localStorage.setItem(STORAGE_KEYS.CUSTOM_BASE, customBaseUrl);
+          } else {
+            customBaseUrl = '';
+            localStorage.removeItem(STORAGE_KEYS.CUSTOM_BASE);
+          }
+
+          if (brandVal) {
+            defaultBrandName = brandVal;
+            localStorage.setItem(STORAGE_KEYS.DEFAULT_BRAND, defaultBrandName);
+            el.brandPrefixInput.value = defaultBrandName;
+          } else {
+            defaultBrandName = '';
+            localStorage.removeItem(STORAGE_KEYS.DEFAULT_BRAND);
+          }
+
+          updateHeaderAndStats();
+          renderLinks();
+          el.customBasePanel.classList.add('hidden');
+          showToast('Paramètres enregistrés avec succès');
+        });
+
+        el.resetBaseUrlBtn.addEventListener('click', () => {
+          customBaseUrl = '';
+          defaultBrandName = '';
+          el.customBaseInput.value = '';
+          el.defaultBrandInput.value = '';
+          el.brandPrefixInput.value = '';
+          localStorage.removeItem(STORAGE_KEYS.CUSTOM_BASE);
+          localStorage.removeItem(STORAGE_KEYS.DEFAULT_BRAND);
+          updateHeaderAndStats();
+          renderLinks();
+          showToast('Paramètres par défaut restaurés');
+        });
+
+        el.copyDashboardUrlBtn.addEventListener('click', () => {
+          copyTextToClipboard(getActiveBaseUrl());
+        });
+      }
+
+      // Initialisation
+      function init() {
+        loadState();
+        updateHeaderAndStats();
+        renderLinks();
+        bindEvents();
+        checkIncomingShortLink();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
   </script>
 </body>
 </html>
+```
