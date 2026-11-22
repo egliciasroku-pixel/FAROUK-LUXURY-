@@ -515,7 +515,6 @@
       gap: 10px;
     }
 
-    /* ==================== BANNIÈRE PROMOTIONNELLE SERVICES DASHBOARD ==================== */
     .direction-services-promo-banner {
       position: relative;
       border-radius: 18px;
@@ -688,6 +687,19 @@
         0 10px 26px rgba(0, 0, 0, 0.55);
     }
 
+    .activation-subfields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 520px) {
+      .activation-subfields-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .activation-error-msg {
       margin-top: 8px;
       padding: 8px 11px;
@@ -701,7 +713,6 @@
       gap: 6px;
     }
 
-    /* ==================== DIRECTION CLIENT RECEPTION SHOWCASE ==================== */
     .direction-welcome-showcase {
       position: relative;
       border-radius: 22px;
@@ -1118,6 +1129,7 @@
       font-weight: 800;
       color: var(--neon-green);
       margin-top: 2px;
+      word-break: break-all;
       text-shadow: 0 0 10px rgba(0, 255, 136, 0.55);
     }
 
@@ -2371,7 +2383,6 @@
             </div>
           </div>
 
-          <!-- حقل رابط التفعيل فقط حتى يتم التفعيل -->
           <div class="unified-dashboard-body hidden" id="dashboard-activation-gate">
             <div class="activation-only-box">
               <label class="lux-neon-label" for="dashboard-activation-link-input">
@@ -2390,6 +2401,34 @@
                   <i class="fa-solid fa-key"></i> تفعيل
                 </button>
               </div>
+
+              <div class="activation-subfields-grid">
+                <div>
+                  <label class="lux-neon-label" for="dashboard-activation-name-input">
+                    <span><i class="fa-solid fa-user"></i> الاسم</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="dashboard-activation-name-input"
+                    class="lux-neon-input"
+                    placeholder="أدخل اسمك..."
+                    onkeydown="if(event.key==='Enter') verifyDashboardActivationLink();"
+                  >
+                </div>
+                <div>
+                  <label class="lux-neon-label" for="dashboard-activation-phone-input">
+                    <span><i class="fa-brands fa-whatsapp"></i> رقم واتساب</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="dashboard-activation-phone-input"
+                    class="lux-neon-input"
+                    placeholder="+212 6XXXXXXXXX"
+                    onkeydown="if(event.key==='Enter') verifyDashboardActivationLink();"
+                  >
+                </div>
+              </div>
+
               <div class="activation-error-msg hidden" id="dashboard-activation-error">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <span id="dashboard-activation-error-text">رابط التفعيل غير صحيح.</span>
@@ -2397,7 +2436,6 @@
             </div>
           </div>
 
-          <!-- محتوى الداشبورد يظهر بعد تفعيل الرابط الصالح -->
           <div class="unified-dashboard-body hidden" id="dashboard-button-cards-container">
             <div class="luxury-action-bar">
               <div>
@@ -2502,7 +2540,6 @@
               </div>
             </div>
 
-            <!-- قسم مخفي تماماً حتى يدخل العميل برابطه الخاص -->
             <div class="dashboard-boutique-embed hidden" id="dashboard-boutique-container">
               <div class="panel-title" style="margin-bottom:10px;">
                 <span id="dashboard-boutique-heading"></span>
@@ -2515,7 +2552,6 @@
           </div>
         </div>
 
-        <!-- ==================== شريط بانر إشهاري يعرض جميع خدمات Dashboard للعملاء ==================== -->
         <div class="direction-services-promo-banner" id="direction-services-promo-banner">
           <div class="promo-banner-top">
             <div class="promo-banner-label">
@@ -2527,7 +2563,6 @@
 
           <div class="promo-marquee-viewport">
             <div class="promo-marquee-track" id="promo-services-marquee-track">
-              <!-- المجموعة الأولى -->
               <div class="promo-service-pill" onclick="triggerPromoService('activation')">
                 <span class="promo-service-icon"><i class="fa-solid fa-bolt"></i></span>
                 <span class="promo-service-text">
@@ -2584,7 +2619,6 @@
                 </span>
               </div>
 
-              <!-- تكرار المجموعة لتأثير شريط مستمر سلس -->
               <div class="promo-service-pill" onclick="triggerPromoService('activation')">
                 <span class="promo-service-icon"><i class="fa-solid fa-bolt"></i></span>
                 <span class="promo-service-text">
@@ -2644,7 +2678,6 @@
           </div>
         </div>
 
-        <!-- ==================== لوحة استقبال العميل وتجهيز الدخول أسفل البانر ==================== -->
         <div class="direction-welcome-showcase" id="direction-client-reception-card">
           <div class="direction-welcome-grid">
             <div class="direction-visual-card">
@@ -2828,7 +2861,7 @@
       </div>
     </div>
 
-    <!-- ==================== CLIENT VIEW (مخفية تماماً حتى يدخل العميل برابطه) ==================== -->
+    <!-- ==================== CLIENT VIEW ==================== -->
     <div id="store-view" class="store-compact-shell hidden">
       <div class="store-compact-header">
         <div>
@@ -2872,9 +2905,9 @@
     <div class="modal-box modal-luxury-neon">
       <div class="lux-neon-header">
         <div>
-          <span class="lux-neon-badge"><i class="fa-solid fa-sparkles"></i> LUXURY CLIENT LINK · ADMIN</span>
+          <span class="lux-neon-badge"><i class="fa-solid fa-sparkles"></i> LUXURY CLIENT LINK · CRYPTÉ</span>
           <div class="lux-neon-title"><i class="fa-solid fa-key"></i> مفتاح توليد رابط العميل</div>
-          <div class="lux-neon-sub">متاح فقط للعميل الذي يدخل برابط الأدمن</div>
+          <div class="lux-neon-sub">Validité chiffrée dans le lien & activation synchronisée</div>
         </div>
         <button class="btn btn-dark" onclick="closeModal('client-link-luxury-modal')">
           <i class="fa-solid fa-xmark"></i>
@@ -2891,7 +2924,7 @@
           </div>
           <div>
             <label class="lux-neon-label">
-              <span><i class="fa-regular fa-calendar-check"></i> Fin de validité du lien</span>
+              <span><i class="fa-regular fa-calendar-check"></i> Fin de validité (Cryptée)</span>
             </label>
             <input type="date" id="lux-link-expiry-date" class="lux-neon-input" oninput="updateClientLuxuryLink()">
           </div>
@@ -2927,7 +2960,7 @@
 
         <div class="lux-neon-link-box">
           <div class="lux-neon-label" style="margin-bottom:6px;">
-            <span><i class="fa-solid fa-globe"></i> Lien Client (Sans مفتاح توليد رابط لعملائه)</span>
+            <span><i class="fa-solid fa-lock"></i> Lien Client Crypté (Validité chiffrée)</span>
             <span id="lux-store-slug-badge" class="neon-green-text" style="font-size:0.64rem;">CLIENT</span>
           </div>
           <div class="lux-neon-url" id="lux-generated-client-url"></div>
@@ -2935,8 +2968,8 @@
 
         <div class="lux-neon-meta-strip">
           <div class="lux-neon-stat">
-            <div class="lux-neon-stat-k">IDENTIFIANT</div>
-            <div class="lux-neon-stat-v" id="lux-display-store-name">-</div>
+            <div class="lux-neon-stat-k">TOKEN VALIDITÉ CHIFFRÉ</div>
+            <div class="lux-neon-stat-v" id="lux-display-encrypted-token">-</div>
           </div>
           <div class="lux-neon-stat">
             <div class="lux-neon-stat-k">FIN DE VALIDITÉ</div>
@@ -3289,6 +3322,8 @@
   <script>
     const WHATSAPP_ORDER_NUMBER = '212630473498';
     const BRAND_NAME = 'DIRECTION GENERALE';
+    const SECRET_CIPHER_KEY = 'YOUNES#2026$STORE@KEY';
+
     const DEFAULT_PRODUCTS = [
       {
         id: 1001,
@@ -3362,6 +3397,55 @@
     let isHiddenAccessFieldVisible = false;
     let isLedgerVisible = false;
     let pendingProductImageData = '';
+
+    // تشفير تاريخ نهاية الصلاحية (مطابق للوحة YOUNES STORE dashboard)
+    function encryptExpiryDate(expiryDateStr) {
+      if (!expiryDateStr) return '';
+      const raw = `EXP|${expiryDateStr}|YS`;
+      let xored = '';
+      for (let i = 0; i < raw.length; i++) {
+        const code = raw.charCodeAt(i) ^ SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        xored += String.fromCharCode(code);
+      }
+      const b64 = btoa(xored).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      let checksum = 0;
+      for (let i = 0; i < b64.length; i++) {
+        checksum = (checksum * 31 + b64.charCodeAt(i)) % 4096;
+      }
+      return `${b64}.${checksum.toString(16).padStart(3, '0')}`;
+    }
+
+    // فك تشفير تاريخ نهاية الصلاحية (مطابق للوحة YOUNES STORE dashboard)
+    function decryptExpiryDate(token) {
+      try {
+        if (!token || !token.includes('.')) return '';
+        const [b64, sig] = token.split('.');
+        let checksum = 0;
+        for (let i = 0; i < b64.length; i++) {
+          checksum = (checksum * 31 + b64.charCodeAt(i)) % 4096;
+        }
+        if (checksum.toString(16).padStart(3, '0') !== sig) return '';
+        const padded = b64.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((b64.length + 3) % 4);
+        const xored = atob(padded);
+        let decoded = '';
+        for (let i = 0; i < xored.length; i++) {
+          const code = xored.charCodeAt(i) ^ SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+          decoded += String.fromCharCode(code);
+        }
+        if (!decoded.startsWith('EXP|') || !decoded.endsWith('|YS')) return '';
+        return decoded.split('|')[1] || '';
+      } catch (_) {
+        return '';
+      }
+    }
+
+    function syncPromoAndReceptionVisibility() {
+      const promoBanner = document.getElementById('direction-services-promo-banner');
+      const receptionCard = document.getElementById('direction-client-reception-card');
+      const hideForClient = Boolean(isClientStoreVisible);
+      if (promoBanner) promoBanner.classList.toggle('hidden', hideForClient);
+      if (receptionCard) receptionCard.classList.toggle('hidden', hideForClient);
+    }
 
     function triggerPromoService(serviceKey) {
       if (serviceKey === 'fx') {
@@ -3485,6 +3569,7 @@
         document.getElementById('btn-admin-mode').classList.add('active');
       }
 
+      syncPromoAndReceptionVisibility();
       updateDirectionWelcomeShowcase();
     }
 
@@ -3539,6 +3624,7 @@
       return digits;
     }
 
+    // توليد رابط عميل متوافق مع تشفير الصلاحية v وبيانات العميل
     function buildClientStoreUrl(storeName, expiryDate, subscriberName = '', phone = '') {
       const slug = slugifyStoreName(storeName);
       const base = (window.location.origin && window.location.origin !== 'null')
@@ -3548,7 +3634,12 @@
       params.set('access', slug);
       params.set('role', 'client');
       params.set('act', 'DG-ACT');
-      if (subscriberName && subscriberName.trim()) params.set('client', subscriberName.trim());
+      const encryptedExp = encryptExpiryDate(expiryDate);
+      if (encryptedExp) params.set('v', encryptedExp);
+      if (subscriberName && subscriberName.trim()) {
+        params.set('u', subscriberName.trim());
+        params.set('client', subscriberName.trim());
+      }
       if (phone && phone.trim()) params.set('phone', normalizeWhatsAppNumber(phone));
       if (expiryDate) params.set('expires', expiryDate);
       return `${base}#ACCESS=${encodeURIComponent(slug)}&${params.toString()}`;
@@ -3603,25 +3694,42 @@
       }
     }
 
-    function parseActivationLinkPayload(rawInput) {
+    // مطابقة التفعيل وفك التشفير v واستخراج بيانات العميل والصلاحية
+    function parseActivationLinkPayload(rawInput, customName = '', customPhone = '') {
       const trimmed = String(rawInput || '').trim();
+      const cleanCustomName = String(customName || '').trim();
+      const cleanCustomPhone = String(customPhone || '').trim();
+
       if (!trimmed) {
         return { valid: false, error: 'المرجو إدخال رابط التفعيل أولاً.' };
       }
 
       const sp = extractParamsFromString(trimmed);
-      const hasParam = Boolean(sp && (sp.get('access') || sp.get('store') || sp.get('act') || sp.get('token') || sp.get('expires') || sp.get('client') || sp.get('phone') || sp.get('role') || sp.get('admin')));
-      const looksLikeLink = trimmed.toLowerCase().includes('access=') || trimmed.toLowerCase().includes('store=') || trimmed.toLowerCase().includes('expires=') || trimmed.toLowerCase().includes('client=') || trimmed.toLowerCase().includes('role=') || trimmed.toLowerCase().includes('admin=');
+      const encryptedToken = sp ? (sp.get('v') || '').trim() : '';
+      const decryptedExp = encryptedToken ? decryptExpiryDate(encryptedToken) : '';
+
+      const hasParam = Boolean(
+        sp && (
+          sp.get('v') || sp.get('u') || sp.get('access') || sp.get('store') ||
+          sp.get('act') || sp.get('token') || sp.get('expires') || sp.get('exp') ||
+          sp.get('client') || sp.get('phone') || sp.get('wa') || sp.get('role') || sp.get('admin')
+        )
+      );
+      const looksLikeLink = /([?&=#])(v|u|access|store|expires|exp|client|phone|wa|role|admin)=/i.test(trimmed);
 
       if (!hasParam && !looksLikeLink) {
         return { valid: false, error: 'رابط التفعيل غير صحيح. تأكد من لصق رابط تفعيل صالح.' };
+      }
+
+      if (encryptedToken && !decryptedExp) {
+        return { valid: false, error: 'رمز التفعيل المشفر (v) غير صالح أو تم تعديله.' };
       }
 
       const roleParam = (sp && sp.get('role') ? sp.get('role').trim().toLowerCase() : '');
       const adminParam = (sp && sp.get('admin') ? sp.get('admin').trim().toLowerCase() : '');
       const isAdminLink = roleParam === 'admin' || adminParam === '1' || adminParam === 'true' || roleParam === 'superadmin';
 
-      const expires = (sp && sp.get('expires')) ? sp.get('expires').trim() : '';
+      const expires = decryptedExp || (sp && (sp.get('expires') || sp.get('exp')) ? (sp.get('expires') || sp.get('exp')).trim() : '');
       if (expires) {
         const expInfo = computeExpiryInfo(expires);
         if (expInfo.isExpired) {
@@ -3633,13 +3741,21 @@
         ? (sp.get('access') || sp.get('store')).trim()
         : clientLinkConfig.storeName;
 
+      const linkClientName = (sp && (sp.get('u') || sp.get('client')))
+        ? (sp.get('u') || sp.get('client')).trim()
+        : '';
+      const linkPhone = (sp && (sp.get('phone') || sp.get('wa')))
+        ? (sp.get('phone') || sp.get('wa')).trim()
+        : '';
+
       return {
         valid: true,
         isAdminLink,
         storeName: storeSlug,
-        clientName: (sp && sp.get('client')) ? sp.get('client').trim() : '',
-        phone: (sp && sp.get('phone')) ? sp.get('phone').trim() : '',
-        expires
+        clientName: cleanCustomName || linkClientName,
+        phone: cleanCustomPhone || linkPhone,
+        expires,
+        encryptedToken
       };
     }
 
@@ -3650,7 +3766,8 @@
 
       setAdminLinkGeneratorRole(Boolean(payload.isAdminLink));
 
-      isClientStoreVisible = !payload.isAdminLink || Boolean(payload.clientName || payload.phone);
+      const hasAccountIdentity = Boolean(payload.clientName || payload.phone);
+      isClientStoreVisible = !payload.isAdminLink || hasAccountIdentity;
       applyClientVisibilityState();
 
       document.getElementById('dashboard-activation-gate').classList.add('hidden');
@@ -3661,9 +3778,9 @@
       btnEl.classList.add('active-toggle');
       btnEl.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span id="btn-toggle-dashboard-cards-text">Dashboard مفعّل</span>`;
       if (stateLabelEl) {
-        stateLabelEl.textContent = payload.isAdminLink
+        stateLabelEl.textContent = payload.isAdminLink && !hasAccountIdentity
           ? 'تم التفعيل برابط الأدمن'
-          : 'تم التفعيل برابط العميل';
+          : `تم التفعيل — الحساب: ${payload.clientName || payload.phone || 'Client'}`;
       }
 
       if (payload.storeName || payload.clientName || payload.phone || payload.expires) {
@@ -3677,7 +3794,7 @@
         localStorage.setItem('fl_fr_v7_client_link_cfg', JSON.stringify(clientLinkConfig));
       }
 
-      if (payload.clientName || payload.phone) {
+      if (hasAccountIdentity) {
         registerOrUpdateClientFromLink(
           payload.clientName || 'Client',
           payload.phone,
@@ -3689,6 +3806,7 @@
       if (isClientStoreVisible) {
         renderDashboardBoutique();
         renderStore();
+        renderStoreClientSessionBanner();
       }
       updateDirectionWelcomeShowcase();
     }
@@ -3727,9 +3845,15 @@
     }
 
     function verifyDashboardActivationLink() {
-      const inputEl = document.getElementById('dashboard-activation-link-input');
-      const rawVal = inputEl ? inputEl.value : '';
-      const check = parseActivationLinkPayload(rawVal);
+      const linkInput = document.getElementById('dashboard-activation-link-input');
+      const nameInput = document.getElementById('dashboard-activation-name-input');
+      const phoneInput = document.getElementById('dashboard-activation-phone-input');
+
+      const rawVal = linkInput ? linkInput.value : '';
+      const customName = nameInput ? nameInput.value : '';
+      const customPhone = phoneInput ? phoneInput.value : '';
+
+      const check = parseActivationLinkPayload(rawVal, customName, customPhone);
 
       if (!check.valid) {
         showActivationError(check.error);
@@ -3827,10 +3951,16 @@
         setAdminLinkGeneratorRole(isAdminLink);
       }
 
-      const clientParam = (sp.get('client') || '').trim();
-      const phoneParam = (sp.get('phone') || '').trim();
-      const expiresParam = (sp.get('expires') || '').trim();
+      const encryptedToken = (sp.get('v') || '').trim();
+      const decryptedExp = encryptedToken ? decryptExpiryDate(encryptedToken) : '';
+      const clientParam = (sp.get('u') || sp.get('client') || '').trim();
+      const phoneParam = (sp.get('phone') || sp.get('wa') || '').trim();
+      const expiresParam = decryptedExp || (sp.get('expires') || sp.get('exp') || '').trim();
       const storeParam = (sp.get('access') || sp.get('store') || '').trim();
+
+      if (expiresParam && computeExpiryInfo(expiresParam).isExpired) {
+        return;
+      }
 
       if (!isAdminLink && (clientParam || phoneParam || expiresParam || storeParam)) {
         clientLinkConfig = {
@@ -4014,13 +4144,14 @@
         waBadge.innerText = normalizedPhone ? `+${normalizedPhone}` : 'Numéro requis';
       }
 
+      const encryptedToken = encryptExpiryDate(expiryDate);
       const slug = slugifyStoreName(storeName);
       const url = buildClientStoreUrl(storeName, expiryDate, subscriberName, phone);
       const expInfo = computeExpiryInfo(expiryDate);
 
       document.getElementById('lux-store-slug-badge').innerText = `ID: ${slug}`;
       document.getElementById('lux-generated-client-url').innerText = url;
-      document.getElementById('lux-display-store-name').innerText = slug;
+      document.getElementById('lux-display-encrypted-token').innerText = encryptedToken || 'Aucun';
 
       const expEl = document.getElementById('lux-display-expiry-status');
       expEl.innerText = `${expInfo.formatted} (${expInfo.remainingText})`;
@@ -4987,6 +5118,7 @@
       if (mode === 'admin') {
         switchTab('ledger');
         applyRoleVisibility();
+        syncPromoAndReceptionVisibility();
         document.getElementById('admin-view').scrollTop = 0;
       } else {
         renderStore();
@@ -5212,169 +5344,211 @@
 
     function buildWhatsAppOrderUrl(prod) {
       const session = activeClientSession || clientLinkConfig;
-      const lines = [
-        `Bonjour ${BRAND_NAME}, je souhaite commander :`,
-        session && session.subscriberName ? `- Client : ${session.subscriberName}` : (session && session.name ? `- Client : ${session.name}` : ''),
-        session && session.phone ? `- Tél client : ${session.phone}` : '',
-        `- Produit : ${prod.name}`,
-        prod.cat ? `- Catégorie : ${prod.cat}` : '',
-        `- Prix : ${prod.price} DH`
-      ].filter(Boolean);
-      const destPhone = (session && normalizeWhatsAppNumber(session.phone)) || WHATSAPP_ORDER_NUMBER;
-      return `https://wa.me/${destPhone}?text=${encodeURIComponent(lines.join('\n'))}`;
+      const clientInfo = (session && (session.name || session.phone))
+        ? `\nClient : ${session.name || '-'}${session.phone ? ' (' + session.phone + ')' : ''}`
+        : '';
+      const text = `Bonjour ${BRAND_NAME},${clientInfo}\nJe souhaite commander : ${prod.name} - ${prod.price} DH`;
+      return `https://wa.me/${WHATSAPP_ORDER_NUMBER}?text=${encodeURIComponent(text)}`;
     }
 
-    function orderProductOnWhatsApp(id) {
-      const prod = products.find(p => String(p.id) === String(id));
-      if (!prod) return;
-      window.open(buildWhatsAppOrderUrl(prod), '_blank', 'noopener,noreferrer');
-    }
-
-    function renderProductsCardsInto(targetId, queryStr = '') {
-      const grid = document.getElementById(targetId);
-      if (!grid) return;
-      const q = (queryStr || '').toLowerCase();
-      const list = products.filter(p => p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q));
-      grid.innerHTML = list.length ? list.map(p => `
+    function renderAdminProducts() {
+      document.getElementById('badge-products').innerText = products.length;
+      const box = document.getElementById('admin-products-list');
+      if (!products.length) {
+        box.innerHTML = `<p class="empty-state" style="grid-column:1/-1;">Aucun produit ajouté.</p>`;
+        return;
+      }
+      box.innerHTML = products.map(p => `
         <div class="product-card">
           ${renderProductMedia(p)}
           <div class="product-body">
             <div>
               ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
               <div class="product-title">${p.name}</div>
-            </div>
-            <div>
               <div class="product-price">${p.price} DH</div>
-              <button class="btn btn-wa-order" style="width:100%;" onclick="orderProductOnWhatsApp(${p.id})">
-                <i class="fa-brands fa-whatsapp"></i> Commander
-              </button>
             </div>
+            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
           </div>
         </div>
-      `).join('') : '<div class="empty-state" style="grid-column:1/-1;">-</div>';
+      `).join('');
     }
 
     function renderStore() {
-      if (!isClientStoreVisible) return;
-      const q = document.getElementById('store-search').value || '';
-      renderProductsCardsInto('store-products-grid', q);
+      const q = (document.getElementById('store-search').value || '').toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q));
+      const grid = document.getElementById('store-products-grid');
+      if (!filtered.length) {
+        grid.innerHTML = `<p class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</p>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          ${renderProductMedia(p)}
+          <div class="product-body">
+            <div>
+              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <a class="btn btn-wa-order" style="width:100%;" href="${buildWhatsAppOrderUrl(p)}" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </a>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderDashboardBoutique() {
-      if (!isClientStoreVisible) return;
+      if (!isClientStoreVisible) {
+        document.getElementById('dashboard-boutique-container').classList.add('hidden');
+        return;
+      }
       const searchEl = document.getElementById('dashboard-boutique-search');
-      const q = searchEl ? (searchEl.value || '') : '';
-      renderProductsCardsInto('dashboard-boutique-grid', q);
+      const q = (searchEl ? searchEl.value : '').toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q));
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!grid) return;
+
+      if (!filtered.length) {
+        grid.innerHTML = `<p class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          ${renderProductMedia(p)}
+          <div class="product-body">
+            <div>
+              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <a class="btn btn-wa-order" style="width:100%;" href="${buildWhatsAppOrderUrl(p)}" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </a>
+          </div>
+        </div>
+      `).join('');
     }
 
     function createQuickInvoice() {
-      const name = document.getElementById('inv-client').value.trim();
+      const clientName = document.getElementById('inv-client').value.trim();
       const phone = document.getElementById('inv-phone').value.trim();
       const item = document.getElementById('inv-item').value.trim();
       const qty = parseInt(document.getElementById('inv-qty').value) || 1;
       const price = parseFloat(document.getElementById('inv-price').value);
       const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
 
-      if (!item || isNaN(price) || price <= 0) return;
+      if (!clientName || !item || isNaN(price) || price <= 0) return;
 
+      const total = qty * price;
       const newCl = {
         id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name,
+        name: clientName,
         phone,
         items: [{ name: item, qty, price }],
-        total: qty * price,
+        total,
         paid
       };
 
       clients.unshift(newCl);
+      document.getElementById('inv-client').value = '';
+      document.getElementById('inv-phone').value = '';
+      document.getElementById('inv-item').value = '';
+      document.getElementById('inv-qty').value = '';
+      document.getElementById('inv-price').value = '';
+      document.getElementById('inv-paid').value = '';
+      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
+      updateQuickPreview(null);
+
       saveAll();
       openClientInvoice(newCl.id, false);
+    }
+
+    function renderClients() {
+      const q = (document.getElementById('client-search').value || '').toLowerCase();
+      let totalDue = 0, totalPaid = 0, totalRem = 0;
+
+      clients.forEach(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        totalDue += c.total;
+        totalPaid += c.paid;
+        totalRem += rem;
+      });
+
+      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
+      document.getElementById('stat-clients-count').innerText = clients.length;
+      document.getElementById('badge-clients').innerText = clients.length;
+      document.getElementById('toggle-ledger-count').innerText = clients.length;
+
+      const filtered = clients.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+      );
+
+      const list = document.getElementById('clients-list');
+      if (!filtered.length) {
+        list.innerHTML = `<p class="empty-state">Aucun client enregistré.</p>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        const tech = getTechFields(c);
+        const techBadge = tech.mac
+          ? ` • <span class="gold">MAC: ${tech.mac}</span>`
+          : (tech.username ? ` • <span class="gold">User: ${tech.username}</span>` : '');
+        const expBadge = tech.expiry ? ` • Exp: ${tech.expiry}` : '';
+        return `
+          <div class="client-card">
+            <div class="client-top">
+              <div>
+                <div style="font-weight:800;font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || '-'} • ${c.date}${techBadge}${expBadge}</div>
+              </div>
+              <span style="font-size:0.72rem;font-weight:800;color:${rem === 0 ? 'var(--emerald)' : 'var(--ruby)'};">
+                ${rem === 0 ? 'Payé' : 'Reste ' + rem + ' DH'}
+              </span>
+            </div>
+
+            <div class="finance-strip">
+              <div>
+                <div class="fin-box-label">Total</div>
+                <div class="fin-box-val gold">${c.total} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Payé</div>
+                <div class="fin-box-val green">${c.paid} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Reste</div>
+                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
+              </div>
+            </div>
+
+            <div class="client-actions">
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajout</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Paiement</button>
+              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)"><i class="fa-solid fa-file-invoice"></i> Facture</button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
     }
 
-    function renderClients() {
-      const q = (document.getElementById('client-search').value || '').toLowerCase();
-      const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone || '').toLowerCase().includes(q)
-      );
-
-      const totalDue = clients.reduce((s, c) => s + c.total, 0);
-      const totalPaid = clients.reduce((s, c) => s + c.paid, 0);
-      const totalRem = clients.reduce((s, c) => s + Math.max(0, c.total - c.paid), 0);
-
-      document.getElementById('stat-total-due').innerText = totalDue + " DH";
-      document.getElementById('stat-total-paid').innerText = totalPaid + " DH";
-      document.getElementById('stat-total-rem').innerText = totalRem + " DH";
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-      document.getElementById('toggle-ledger-count').innerText = clients.length;
-
-      document.getElementById('clients-list').innerHTML = filtered.length ? filtered.map(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        const tech = getTechFields(c);
-        const techSummary = [
-          tech.host ? `Host: ${tech.host}` : '',
-          tech.username ? `User: ${tech.username}` : '',
-          tech.mac ? `MAC: ${tech.mac}` : '',
-          tech.app ? `App: ${tech.app}` : '',
-          tech.expiry ? `Exp: ${tech.expiry}` : ''
-        ].filter(Boolean).join(' | ');
-        const metaParts = [c.phone, c.date, techSummary || c.items.map(i => i.name).join(', ')].filter(Boolean);
-
-        return `
-          <div class="client-card">
-            <div class="client-top">
-              <div>
-                <div style="font-weight:800;font-size:0.92rem;">${c.name} <span style="font-size:0.7rem;color:var(--text-muted);">#${c.id}</span></div>
-                <div class="client-meta">${metaParts.join(' • ')}</div>
-              </div>
-              <span class="btn ${rem === 0 ? 'btn-pay' : 'btn-danger'}" style="cursor:default;">${rem === 0 ? 'PAYÉE' : 'EN ATTENTE'}</span>
-            </div>
-            <div class="finance-strip">
-              <div><div class="fin-box-label">Total</div><div class="fin-box-val gold">${c.total} DH</div></div>
-              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
-              <div><div class="fin-box-label">Reste</div><div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div></div>
-            </div>
-            <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Payer</button>
-              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)"><i class="fa-solid fa-file-invoice"></i> Facture</button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
-            </div>
-          </div>
-        `;
-      }).join('') : '<div class="empty-state">-</div>';
-    }
-
-    function renderAdminProducts() {
-      document.getElementById('badge-products').innerText = products.length;
-      document.getElementById('admin-products-list').innerHTML = products.length ? products.map(p => `
-        <div class="product-card">
-          ${renderProductMedia(p)}
-          <div class="product-body">
-            <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-              <div class="product-title">${p.name}</div>
-            </div>
-            <div>
-              <div class="product-price">${p.price} DH</div>
-              <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
-            </div>
-          </div>
-        </div>
-      `).join('') : '<div class="empty-state" style="grid-column:1/-1;">-</div>';
-    }
-
     syncCopyrightYear();
     checkIncomingClientAccessLink();
-    applyRoleVisibility();
     applyClientVisibilityState();
+    applyRoleVisibility();
     saveAll();
-    updateDirectionWelcomeShowcase();
+    calculateFx();
   </script>
 </body>
 </html>
