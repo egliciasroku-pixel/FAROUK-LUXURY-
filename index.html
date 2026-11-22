@@ -358,11 +358,23 @@
       border-radius: 999px;
     }
 
-    .client-session-expiry {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--neon-green-soft);
-      margin-top: 3px;
+    .client-expiry-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #f3d06b;
+      background: rgba(212, 175, 55, 0.16);
+      padding: 2px 9px;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.35);
+    }
+
+    .client-expiry-chip.expired {
+      color: #fecdd3;
+      background: rgba(255, 59, 92, 0.22);
+      box-shadow: inset 0 0 0 1px rgba(255, 59, 92, 0.45);
     }
 
     .client-quick-buttons-strip {
@@ -2464,7 +2476,7 @@
                     type="tel"
                     id="dashboard-activation-phone-input"
                     class="lux-neon-input"
-                    placeholder="+212 6XXXXXXXXX"
+                    placeholder="رقم واتساب..."
                     onkeydown="if(event.key==='Enter') verifyDashboardActivationLink();"
                   >
                 </div>
@@ -2536,7 +2548,7 @@
                 </div>
                 <div>
                   <label class="lux-neon-label">Numéro WhatsApp</label>
-                  <input type="tel" id="inline-access-client-phone" class="lux-neon-input" placeholder="+212 6XXXXXXXXX" oninput="updateInlineClientAccessPreview()">
+                  <input type="tel" id="inline-access-client-phone" class="lux-neon-input" placeholder="Numéro WhatsApp..." oninput="updateInlineClientAccessPreview()">
                 </div>
                 <div>
                   <label class="lux-neon-label">Fin de validité</label>
@@ -2918,7 +2930,7 @@
           <div class="client-session-name" id="store-client-session-name">
             <i class="fa-solid fa-user-check"></i> <span>-</span>
           </div>
-          <div class="client-session-expiry" id="store-client-session-expiry">-</div>
+          <div class="client-session-expiry hidden" id="store-client-session-expiry"></div>
         </div>
         <span class="vault-badge" id="store-client-session-badge">ACTIF</span>
       </div>
@@ -2985,7 +2997,7 @@
             <label class="lux-neon-label">
               <span><i class="fa-brands fa-whatsapp"></i> WhatsApp du client</span>
             </label>
-            <input type="tel" id="lux-subscriber-phone" class="lux-neon-input" placeholder="Ex: +212630473498 ou 0630473498" oninput="updateClientLuxuryLink()">
+            <input type="tel" id="lux-subscriber-phone" class="lux-neon-input" placeholder="Numéro WhatsApp..." oninput="updateClientLuxuryLink()">
           </div>
         </div>
 
@@ -3080,7 +3092,7 @@
         </div>
         <div>
           <label class="field-label">WhatsApp</label>
-          <input type="text" id="act-whatsapp" placeholder="+212 6XXXXXXXXX">
+          <input type="text" id="act-whatsapp" placeholder="Numéro WhatsApp...">
         </div>
         <div>
           <label class="field-label">MAC Address</label>
@@ -3210,7 +3222,7 @@
         </div>
         <div>
           <label class="field-label">WhatsApp</label>
-          <input type="text" id="sub-whatsapp" placeholder="+212 6XXXXXXXXX">
+          <input type="text" id="sub-whatsapp" placeholder="Numéro WhatsApp...">
         </div>
       </div>
 
@@ -3364,9 +3376,18 @@
   </div>
 
   <script>
-    const WHATSAPP_ORDER_NUMBER = '212630473498';
+    const WHATSAPP_ORDER_NUMBER = '';
     const BRAND_NAME = 'DIRECTION GENERALE';
     const SECRET_CIPHER_KEY = 'YOUNES#2026$STORE@KEY';
+
+    function buildWhatsAppUrl(phoneDigits, messageText) {
+      const cleanDigits = normalizeWhatsAppNumber(phoneDigits || WHATSAPP_ORDER_NUMBER);
+      const encoded = encodeURIComponent(messageText || '');
+      if (cleanDigits) {
+        return `https://wa.me/${cleanDigits}?text=${encoded}`;
+      }
+      return encoded ? `https://wa.me/?text=${encoded}` : 'https://wa.me/';
+    }
 
     const DEFAULT_PRODUCTS = [
       {
@@ -3496,7 +3517,8 @@
       }
       if (serviceKey === 'whatsapp') {
         const text = `Bonjour ${BRAND_NAME}, je souhaite découvrir vos services disponibles sur le dashboard.`;
-        window.open(`https://wa.me/${WHATSAPP_ORDER_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+        const targetPhone = (activeClientSession && activeClientSession.phone) || clientLinkConfig.phone || '';
+        window.open(buildWhatsAppUrl(targetPhone, text), '_blank', 'noopener,noreferrer');
         return;
       }
       if (!isDashboardUnlocked) {
@@ -3585,10 +3607,39 @@
       }
     }
 
+    function getActiveExpiryTextForDashboard() {
+      const expDate = (activeClientSession && activeClientSession.expiryDate) || clientLinkConfig.expiryDate || '';
+      if (!expDate) return '';
+      const info = computeExpiryInfo(expDate);
+      return `${info.formatted} (${info.remainingText})`;
+    }
+
+    function renderDashboardClientHeading() {
+      const dashHeading = document.getElementById('dashboard-boutique-heading');
+      if (!dashHeading || !isClientStoreVisible) return;
+
+      const clientName = (activeClientSession && activeClientSession.name)
+        ? activeClientSession.name
+        : (clientLinkConfig.subscriberName || clientLinkConfig.storeName || 'Espace Client');
+      const clientPhone = (activeClientSession && activeClientSession.phone)
+        ? activeClientSession.phone
+        : (clientLinkConfig.phone || '');
+      const expDate = (activeClientSession && activeClientSession.expiryDate) || clientLinkConfig.expiryDate || '';
+      const expInfo = expDate ? computeExpiryInfo(expDate) : null;
+
+      const phoneBadge = clientPhone
+        ? `<span class="client-phone-chip"><i class="fa-solid fa-phone"></i> ${clientPhone}</span>`
+        : '';
+      const expiryBadge = expInfo
+        ? `<span class="client-expiry-chip ${expInfo.isExpired ? 'expired' : ''}"><i class="fa-regular fa-calendar-check"></i> Fin: ${expInfo.formatted} (${expInfo.remainingText})</span>`
+        : '';
+
+      dashHeading.innerHTML = `<i class="fa-solid fa-user-check"></i> <span>${clientName}</span> ${phoneBadge} ${expiryBadge}`;
+    }
+
     function applyClientVisibilityState() {
       const headerBtn = document.getElementById('btn-store-mode');
       const dashBox = document.getElementById('dashboard-boutique-container');
-      const dashHeading = document.getElementById('dashboard-boutique-heading');
       const storeView = document.getElementById('store-view');
 
       if (headerBtn) {
@@ -3600,14 +3651,8 @@
 
       if (dashBox) {
         dashBox.classList.toggle('hidden', !isClientStoreVisible);
-        if (isClientStoreVisible && dashHeading) {
-          const clientName = (activeClientSession && activeClientSession.name)
-            ? activeClientSession.name
-            : (clientLinkConfig.subscriberName || clientLinkConfig.storeName || 'Espace Client');
-          const clientPhone = (activeClientSession && activeClientSession.phone)
-            ? activeClientSession.phone
-            : (clientLinkConfig.phone || '');
-          dashHeading.innerHTML = `<i class="fa-solid fa-user-check"></i> ${clientName}${clientPhone ? ` <span class="client-phone-chip"><i class="fa-solid fa-phone"></i> ${clientPhone}</span>` : ''}`;
+        if (isClientStoreVisible) {
+          renderDashboardClientHeading();
         }
       }
 
@@ -3666,9 +3711,6 @@
       let digits = String(rawPhone || '').replace(/\D/g, '');
       if (!digits) return '';
       if (digits.startsWith('00')) digits = digits.slice(2);
-      if (digits.startsWith('0') && digits.length === 10) {
-        digits = '212' + digits.slice(1);
-      }
       return digits;
     }
 
@@ -3835,7 +3877,8 @@
       btnEl.classList.add('active-toggle');
       btnEl.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span id="btn-toggle-dashboard-cards-text">Dashboard مفعّل</span>`;
       if (stateLabelEl) {
-        const acctSummary = [payload.clientName, payload.phone].filter(Boolean).join(' • ');
+        const expText = payload.expires ? computeExpiryInfo(payload.expires).formatted : '';
+        const acctSummary = [payload.clientName, payload.phone, expText ? `Fin: ${expText}` : ''].filter(Boolean).join(' • ');
         stateLabelEl.textContent = payload.isAdminLink && !hasAccountIdentity
           ? 'تم التفعيل برابط الأدمن'
           : `تم التفعيل — الحساب: ${acctSummary || 'Client'}`;
@@ -4068,6 +4111,9 @@
       const badgeEl = document.getElementById('store-client-session-badge');
       if (!banner || !nameEl || !expEl || !badgeEl) return;
 
+      expEl.textContent = '';
+      expEl.classList.add('hidden');
+
       if (!isClientStoreVisible || !activeClientSession || (!activeClientSession.name && !activeClientSession.phone)) {
         banner.classList.add('hidden');
         return;
@@ -4081,8 +4127,6 @@
         ? `<span class="client-phone-chip"><i class="fa-solid fa-phone"></i> ${activeClientSession.phone}</span>`
         : '';
       nameEl.innerHTML = `<i class="fa-solid fa-user-check"></i> <span>${activeClientSession.name}</span> ${phoneBadge}`;
-      expEl.textContent = `Fin de validité : ${expInfo.formatted} (${expInfo.remainingText})`;
-      expEl.style.color = expInfo.isExpired ? 'var(--ruby)' : 'var(--neon-green-soft)';
 
       badgeEl.textContent = expInfo.isExpired ? 'EXPIRÉ' : 'ACTIF';
       badgeEl.style.background = expInfo.isExpired
@@ -4162,8 +4206,8 @@
         `Fin de validité : ${expInfo.formatted} (${expInfo.remainingText})`
       ].filter(Boolean);
 
-      fb.innerText = `Envoi du lien vers +${targetPhone}...`;
-      window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+      fb.innerText = targetPhone ? `Envoi du lien vers +${targetPhone}...` : 'Ouverture de WhatsApp...';
+      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
     }
 
     function openClientLuxuryLinkModal(presetClient = null) {
@@ -4268,8 +4312,8 @@
         `Fin de validité : ${expInfo.formatted} (${expInfo.remainingText})`
       ].filter(Boolean);
 
-      if (fb) fb.innerText = `Envoi direct vers +${targetPhone}...`;
-      window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+      if (fb) fb.innerText = targetPhone ? `Envoi direct vers +${targetPhone}...` : 'Ouverture de WhatsApp...';
+      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
     }
 
     function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
@@ -4666,7 +4710,7 @@
       }
 
       setTimeout(() => {
-        window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgLines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+        window.open(buildWhatsAppUrl(cleanPhone, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
       }, 250);
     }
 
@@ -5191,6 +5235,7 @@
       if (mode === 'admin') {
         switchTab('ledger');
         applyRoleVisibility();
+        applyClientVisibilityState();
         syncPromoAndReceptionVisibility();
         document.getElementById('admin-view').scrollTop = 0;
       } else {
@@ -5330,11 +5375,13 @@
         techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Validité</span><span class="inv-tech-code">${valStr}</span></div>`);
       }
 
-      const techHtml = showTech ? `
+      const techPanelHtml = showTech ? `
         <div class="inv-tech-panel">
-          <div class="inv-tech-title"><i class="fa-solid fa-shield-halved"></i> Paramètres d'accès & playlist</div>
+          <div class="inv-tech-title">
+            <span><i class="fa-solid fa-sliders"></i> Paramètres d'accès</span>
+          </div>
           ${macBannerHtml}
-          <div class="inv-tech-grid">${techCells.join('')}</div>
+          ${techCells.length ? `<div class="inv-tech-grid">${techCells.join('')}</div>` : ''}
         </div>
       ` : '';
 
@@ -5354,11 +5401,16 @@
           <div class="inv-meta-row"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone || '-'}</span></div>
         </div>
 
-        ${techHtml}
+        ${techPanelHtml}
 
         <table class="invoice-table">
           <thead>
-            <tr><th>Désignation</th><th>Qté</th><th>P.U</th><th>Total</th></tr>
+            <tr>
+              <th>Désignation</th>
+              <th>Qté</th>
+              <th>P.U</th>
+              <th>Total</th>
+            </tr>
           </thead>
           <tbody>${rows}</tbody>
         </table>
@@ -5372,11 +5424,12 @@
           </div>
         </div>
 
-        <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME} - Reçu officiel digital</div>
+        <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME}</div>
       `;
 
       document.getElementById('btn-save-invoice-png').onclick = () => saveInvoiceOnly(cl);
       document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceImageViaWhatsApp(cl);
+
       document.getElementById('invoice-modal').classList.add('open');
 
       if (autoSave) {
@@ -5385,98 +5438,28 @@
     }
 
     function createQuickInvoice() {
-      const name = document.getElementById('inv-client').value.trim();
+      const clientName = document.getElementById('inv-client').value.trim() || "Client";
       const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
-      const item = document.getElementById('inv-item').value.trim();
+      const itemName = document.getElementById('inv-item').value.trim() || "Produit";
       const qty = parseInt(document.getElementById('inv-qty').value) || 1;
-      const price = parseFloat(document.getElementById('inv-price').value);
+      const price = parseFloat(document.getElementById('inv-price').value) || 0;
       const paidRaw = document.getElementById('inv-paid').value;
-
-      if (!name || !item || isNaN(price) || price <= 0) return;
-
       const total = qty * price;
       const paid = paidRaw === '' ? total : (parseFloat(paidRaw) || 0);
 
       const newCl = {
         id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name,
+        name: clientName,
         phone,
-        items: [{ name: item, qty, price }],
+        items: [{ name: itemName, qty, price }],
         total,
         paid
       };
 
       clients.unshift(newCl);
-      document.getElementById('inv-client').value = '';
-      document.getElementById('inv-phone').value = '';
-      document.getElementById('inv-item').value = '';
-      document.getElementById('inv-qty').value = '';
-      document.getElementById('inv-price').value = '';
-      document.getElementById('inv-paid').value = '';
-      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
-      updateQuickPreview(null);
-
       saveAll();
-      switchTab('ledger');
       openClientInvoice(newCl.id, false);
-    }
-
-    function renderClients() {
-      const q = (document.getElementById('client-search').value || '').toLowerCase();
-      const list = document.getElementById('clients-list');
-
-      let sumTotal = 0, sumPaid = 0, sumRem = 0;
-      clients.forEach(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        sumTotal += c.total;
-        sumPaid += c.paid;
-        sumRem += rem;
-      });
-
-      document.getElementById('stat-total-due').innerText = `${sumTotal} DH`;
-      document.getElementById('stat-total-paid').innerText = `${sumPaid} DH`;
-      document.getElementById('stat-total-rem').innerText = `${sumRem} DH`;
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-      document.getElementById('toggle-ledger-count').innerText = clients.length;
-
-      const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
-      );
-
-      if (!filtered.length) {
-        list.innerHTML = `<div class="empty-state">-</div>`;
-        return;
-      }
-
-      list.innerHTML = filtered.map(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        const tech = getTechFields(c);
-        const macLine = tech.mac ? ` • <strong class="gold">MAC: ${tech.mac}</strong>` : '';
-        const phoneLine = c.phone ? ` • <strong class="neon-green-text"><i class="fa-solid fa-phone"></i> ${c.phone}</strong>` : '';
-        return `
-          <div class="client-card">
-            <div class="client-top">
-              <div>
-                <div style="font-weight:800;font-size:0.92rem;">${c.name}</div>
-                <div class="client-meta">${c.id} • ${c.date}${phoneLine}${macLine}</div>
-              </div>
-              <button class="btn btn-dark" onclick="openClientInvoice('${c.id}', false)"><i class="fa-solid fa-file-invoice"></i> Facture</button>
-            </div>
-            <div class="finance-strip">
-              <div><div class="fin-box-label">Total</div><div class="fin-box-val gold">${c.total} DH</div></div>
-              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
-              <div><div class="fin-box-label">Reste</div><div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div></div>
-            </div>
-            <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Payer</button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i> Supprimer</button>
-            </div>
-          </div>
-        `;
-      }).join('');
     }
 
     function addProduct() {
@@ -5487,7 +5470,14 @@
 
       if (!name || isNaN(price) || price <= 0) return;
 
-      products.push({ id: Date.now(), name, price, cat, img });
+      products.push({
+        id: Date.now(),
+        name,
+        price,
+        cat,
+        img
+      });
+
       document.getElementById('prod-name').value = '';
       document.getElementById('prod-price').value = '';
       document.getElementById('prod-cat').value = '';
@@ -5500,144 +5490,260 @@
       saveAll();
     }
 
-    function renderAdminProducts() {
-      document.getElementById('badge-products').innerText = products.length;
-      const list = document.getElementById('admin-products-list');
-      if (!products.length) {
-        list.innerHTML = `<div class="empty-state">-</div>`;
+    function orderViaWhatsApp(productName, price) {
+      const activeClientName = (activeClientSession && activeClientSession.name) ? activeClientSession.name : '';
+      const activeClientPhone = (activeClientSession && activeClientSession.phone) ? activeClientSession.phone : '';
+      const lines = [
+        `${BRAND_NAME} - Commande`,
+        activeClientName ? `Client : ${activeClientName}` : '',
+        activeClientPhone ? `Téléphone : ${activeClientPhone}` : '',
+        `Produit : ${productName}`,
+        `Prix : ${price} DH`
+      ].filter(Boolean);
+      const targetPhone = (activeClientSession && activeClientSession.normPhone) || WHATSAPP_ORDER_NUMBER;
+      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
+    }
+
+    function renderClients() {
+      const q = (document.getElementById('client-search')?.value || '').toLowerCase().trim();
+      const list = document.getElementById('clients-list');
+
+      let totalDue = 0;
+      let totalPaid = 0;
+
+      clients.forEach(c => {
+        totalDue += Number(c.total) || 0;
+        totalPaid += Number(c.paid) || 0;
+      });
+
+      const totalRem = Math.max(0, totalDue - totalPaid);
+      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
+      document.getElementById('stat-clients-count').innerText = clients.length;
+      document.getElementById('badge-clients').innerText = clients.length;
+      document.getElementById('toggle-ledger-count').innerText = clients.length;
+
+      const filtered = clients.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+      );
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty-state">Aucun client enregistré.</div>`;
         return;
       }
 
-      list.innerHTML = products.map(p => `
+      list.innerHTML = filtered.map(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        const tech = getTechFields(c);
+        const techBadges = [
+          tech.mac ? `MAC: ${tech.mac}` : '',
+          tech.app ? `App: ${tech.app}` : '',
+          tech.username ? `User: ${tech.username}` : '',
+          tech.expiry ? `Exp: ${tech.expiry}` : ''
+        ].filter(Boolean).join(' • ');
+
+        return `
+          <div class="client-card">
+            <div class="client-top">
+              <div>
+                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || '-'} • ${c.id} • ${c.date}</div>
+                ${techBadges ? `<div class="client-meta" style="color:var(--gold-primary);font-weight:700;">${techBadges}</div>` : ''}
+                <div class="client-meta">${c.items.map(i => `${i.name} (x${i.qty})`).join(' - ')}</div>
+              </div>
+              <span class="btn ${rem === 0 ? 'btn-pay' : 'btn-danger'}" style="cursor:default;">
+                ${rem === 0 ? 'Payé' : 'Reste : ' + rem + ' DH'}
+              </span>
+            </div>
+
+            <div class="finance-strip">
+              <div>
+                <div class="fin-box-label">Total</div>
+                <div class="fin-box-val gold">${c.total} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Payé</div>
+                <div class="fin-box-val green">${c.paid} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Reste</div>
+                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
+              </div>
+            </div>
+
+            <div class="client-actions">
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')">
+                <i class="fa-solid fa-plus"></i> Ajouter
+              </button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')">
+                <i class="fa-solid fa-check"></i> Paiement
+              </button>
+              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)">
+                <i class="fa-solid fa-file-invoice"></i> Facture
+              </button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAdminProducts() {
+      document.getElementById('badge-products').innerText = products.length;
+      const grid = document.getElementById('admin-products-list');
+
+      if (!products.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit.</div>`;
+        return;
+      }
+
+      grid.innerHTML = products.map(p => `
         <div class="product-card">
           <div class="product-media-frame">
             ${p.img
               ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`
-            }
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
           </div>
           <div class="product-body">
-            ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
+            <div>
+              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
           </div>
         </div>
       `).join('');
     }
 
-    function buildClientProductButtonsHtml(prodList) {
-      if (!isClientStoreVisible || !Array.isArray(prodList) || !prodList.length) return '';
-      return prodList.map(p => `
-        <button class="client-prod-action-btn" onclick="orderViaWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price})">
+    function renderQuickProductButtons(containerId) {
+      const strip = document.getElementById(containerId);
+      if (!strip) return;
+      if (!products.length) {
+        strip.innerHTML = '';
+        return;
+      }
+      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
+      strip.innerHTML = products.map(p => `
+        <button class="client-prod-action-btn" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
           <i class="fa-brands fa-whatsapp"></i>
-          <span>${p.name} · ${p.price} DH</span>
+          <span>${p.name} — ${p.price} DH</span>
         </button>
+      `).join('');
+    }
+
+    function renderDashboardBoutique() {
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!grid || !isClientStoreVisible) return;
+      renderDashboardClientHeading();
+      renderQuickProductButtons('dashboard-client-product-buttons');
+
+      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase().trim();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
+      );
+
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</div>`;
+        return;
+      }
+
+      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
+          </div>
+          <div class="product-body">
+            <div>
+              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </button>
+          </div>
+        </div>
       `).join('');
     }
 
     function renderStore() {
       if (!isClientStoreVisible) return;
-      const q = (document.getElementById('store-search').value || '').toLowerCase();
+      const q = (document.getElementById('store-search')?.value || '').toLowerCase().trim();
       const grid = document.getElementById('store-products-grid');
-      const btnsStrip = document.getElementById('store-client-product-buttons');
+      const titleEl = document.getElementById('store-view-title');
+      const subEl = document.getElementById('store-view-subtitle');
+      renderStoreClientSessionBanner();
+      renderQuickProductButtons('store-client-product-buttons');
+
+      if (titleEl) {
+        titleEl.innerText = activeClientSession && activeClientSession.name
+          ? `${activeClientSession.name}`
+          : BRAND_NAME;
+      }
+      if (subEl) {
+        subEl.innerText = activeClientSession && activeClientSession.phone
+          ? `Espace client • ${activeClientSession.phone}`
+          : 'Espace client - WhatsApp direct';
+      }
+
       const filtered = products.filter(p =>
         p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
       );
 
-      if (btnsStrip) {
-        btnsStrip.innerHTML = buildClientProductButtonsHtml(filtered);
-      }
-
       if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state">-</div>`;
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</div>`;
         return;
       }
 
+      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
       grid.innerHTML = filtered.map(p => `
         <div class="product-card">
           <div class="product-media-frame">
             ${p.img
               ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`
-            }
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
           </div>
           <div class="product-body">
-            ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price})">
-              <i class="fa-brands fa-whatsapp"></i> Commander ${p.name}
+            <div>
+              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
+              <i class="fa-brands fa-whatsapp"></i> Commander
             </button>
           </div>
         </div>
       `).join('');
-    }
-
-    function renderDashboardBoutique() {
-      const container = document.getElementById('dashboard-boutique-container');
-      if (!container || !isClientStoreVisible || container.classList.contains('hidden')) return;
-      const q = ((document.getElementById('dashboard-boutique-search') && document.getElementById('dashboard-boutique-search').value) || '').toLowerCase();
-      const grid = document.getElementById('dashboard-boutique-grid');
-      const btnsStrip = document.getElementById('dashboard-client-product-buttons');
-      const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
-      );
-
-      if (btnsStrip) {
-        btnsStrip.innerHTML = buildClientProductButtonsHtml(filtered);
-      }
-
-      if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state">-</div>`;
-        return;
-      }
-
-      grid.innerHTML = filtered.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`
-            }
-          </div>
-          <div class="product-body">
-            ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price})">
-              <i class="fa-brands fa-whatsapp"></i> Commander ${p.name}
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function orderViaWhatsApp(productName, price) {
-      const cName = (activeClientSession && activeClientSession.name) ? activeClientSession.name : (clientLinkConfig.subscriberName || '');
-      const cPhone = (activeClientSession && activeClientSession.phone) ? activeClientSession.phone : (clientLinkConfig.phone || '');
-      const lines = [
-        `Bonjour ${BRAND_NAME}, je souhaite commander :`,
-        `Produit : ${productName} (${price} DH)`,
-        cName ? `Client : ${cName}` : '',
-        cPhone ? `Téléphone : ${cPhone}` : ''
-      ].filter(Boolean);
-      const url = `https://wa.me/${WHATSAPP_ORDER_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
     }
 
+    document.querySelectorAll('.modal-backdrop').forEach(m => {
+      m.addEventListener('click', e => {
+        if (e.target === m) m.classList.remove('open');
+      });
+    });
+
     syncCopyrightYear();
+    applyRoleVisibility();
+    applyClientVisibilityState();
     renderClients();
     renderAdminProducts();
     populateQuickInvoiceProducts();
     populateClientDropdowns();
-    applyRoleVisibility();
-    applyClientVisibilityState();
-    renderStoreClientSessionBanner();
+    updateQuickPreview(null);
     updateDirectionWelcomeShowcase();
     checkIncomingClientAccessLink();
   </script>
