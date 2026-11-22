@@ -284,7 +284,7 @@
       width: 100%;
       max-width: 680px;
       margin: 0 auto;
-      padding: 10px 12px 96px;
+      padding: 12px 12px 32px;
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
@@ -308,80 +308,10 @@
     }
 
     .store-compact-header h2 {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--gold-primary);
       font-weight: 800;
-    }
-
-    .store-compact-header p {
-      font-size: 0.66rem;
-      color: var(--text-muted);
-    }
-
-    .client-session-banner {
-      border-radius: 16px;
-      padding: 10px 13px;
-      margin-bottom: 10px;
-      background: radial-gradient(circle at 85% 15%, rgba(0, 255, 136, 0.14) 0%, rgba(14, 18, 17, 0.85) 70%);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(0, 255, 136, 0.25);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .client-session-banner.expired-banner {
-      background: radial-gradient(circle at 85% 15%, rgba(255, 59, 92, 0.16) 0%, rgba(22, 12, 15, 0.88) 70%);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 59, 92, 0.35);
-    }
-
-    .client-session-name {
-      font-size: 0.84rem;
-      font-weight: 800;
-      color: var(--neon-green);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .client-phone-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: #04140c;
-      background: var(--neon-green);
-      padding: 2px 8px;
-      border-radius: 999px;
-    }
-
-    .client-expiry-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: #f3d06b;
-      background: rgba(212, 175, 55, 0.16);
-      padding: 2px 9px;
-      border-radius: 999px;
-      box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.35);
-    }
-
-    .client-expiry-chip.expired {
-      color: #fecdd3;
-      background: rgba(255, 59, 92, 0.22);
-      box-shadow: inset 0 0 0 1px rgba(255, 59, 92, 0.45);
-    }
-
-    .client-quick-buttons-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 10px;
+      letter-spacing: 0.4px;
     }
 
     .client-prod-action-btn {
@@ -2376,7 +2306,7 @@
     <header>
       <div class="brand">
         <div class="brand-main-line">
-          <span class="brand-under-title">
+          <span class="brand-under-title" id="header-brand-label">
             <span>DIRECTION GENERALE</span>
           </span>
         </div>
@@ -2915,37 +2845,22 @@
       </div>
     </div>
 
-    <!-- ==================== CLIENT VIEW ==================== -->
+    <!-- ==================== CLIENT VIEW (STORE ONLY - PRODUCTS ONLY) ==================== -->
     <div id="store-view" class="store-compact-shell hidden">
       <div class="store-compact-header">
-        <div>
-          <h2 id="store-view-title">DIRECTION GENERALE</h2>
-          <p id="store-view-subtitle">Espace client - WhatsApp direct</p>
-        </div>
+        <h2 id="store-view-title">STORE</h2>
         <input type="text" id="store-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderStore()">
       </div>
-
-      <div class="client-session-banner hidden" id="store-client-session-banner">
-        <div>
-          <div class="client-session-name" id="store-client-session-name">
-            <i class="fa-solid fa-user-check"></i> <span>-</span>
-          </div>
-          <div class="client-session-expiry hidden" id="store-client-session-expiry"></div>
-        </div>
-        <span class="vault-badge" id="store-client-session-badge">ACTIF</span>
-      </div>
-
-      <div class="client-quick-buttons-strip" id="store-client-product-buttons"></div>
 
       <div class="luxury-gallery-bg store-compact-gallery">
         <div class="products-grid store-compact-grid" id="store-products-grid"></div>
       </div>
     </div>
 
-    <footer class="luxury-footer">
+    <footer class="luxury-footer" id="main-luxury-footer">
       <div class="luxury-footer-brand">
         <i class="fa-solid fa-crown" style="-webkit-text-fill-color:#d4af37;"></i>
-        <span>DIRECTION GENERALE</span>
+        <span id="footer-brand-label">DIRECTION GENERALE</span>
       </div>
       <div class="luxury-footer-copy">
         <span>© <span class="luxury-footer-year" id="copyright-year">2026</span></span>
@@ -3455,6 +3370,7 @@
     let activeClientSession = JSON.parse(localStorage.getItem('fl_fr_v7_active_client_session')) || null;
 
     let isClientStoreVisible = false;
+    let isInsideStoreMode = false;
     let hasAdminLinkGeneratorAccess = localStorage.getItem('fl_fr_v7_admin_link_gen') === '1';
 
     let isActivationGateOpen = false;
@@ -3499,6 +3415,65 @@
         return decoded.split('|')[1] || '';
       } catch (_) {
         return '';
+      }
+    }
+
+    function computeExpiryInfo(expiryDateStr) {
+      if (!expiryDateStr) {
+        return { formatted: 'Non définie', remainingText: 'Sans limite', isExpired: false };
+      }
+      const expDate = new Date(expiryDateStr + 'T23:59:59');
+      if (isNaN(expDate.getTime())) {
+        return { formatted: expiryDateStr, remainingText: '-', isExpired: false };
+      }
+      const formatted = new Date(expiryDateStr + 'T00:00:00').toLocaleDateString('fr-FR');
+      const diffMs = expDate.getTime() - Date.now();
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) {
+        return { formatted, remainingText: `Expiré (${Math.abs(diffDays)}j)`, isExpired: true };
+      }
+      if (diffDays === 0) {
+        return { formatted, remainingText: 'Expire aujourd\'hui', isExpired: false };
+      }
+      return { formatted, remainingText: `${diffDays} j restants`, isExpired: false };
+    }
+
+    function getActiveClientName() {
+      if (!activeClientSession || !activeClientSession.name) return '';
+      if (activeClientSession.expiryDate && computeExpiryInfo(activeClientSession.expiryDate).isExpired) {
+        return '';
+      }
+      return String(activeClientSession.name).trim();
+    }
+
+    function formatClientStoreTitle() {
+      const clientName = getActiveClientName() || (clientLinkConfig.subscriberName || '').trim() || (clientLinkConfig.storeName || '').trim();
+      return clientName ? `STORE · ${clientName}` : 'STORE';
+    }
+
+    function enforceClientValidityAndBrand() {
+      if (activeClientSession && activeClientSession.expiryDate) {
+        const expInfo = computeExpiryInfo(activeClientSession.expiryDate);
+        if (expInfo.isExpired) {
+          activeClientSession = null;
+          localStorage.removeItem('fl_fr_v7_active_client_session');
+          isClientStoreVisible = false;
+          isInsideStoreMode = false;
+        }
+      }
+
+      const activeClientName = (!hasAdminLinkGeneratorAccess) ? getActiveClientName() : '';
+      const displayBrand = activeClientName || BRAND_NAME;
+      document.title = isInsideStoreMode ? formatClientStoreTitle() : displayBrand;
+
+      const headerBrandEl = document.getElementById('header-brand-label');
+      if (headerBrandEl) {
+        headerBrandEl.innerHTML = `<span>${displayBrand}</span>`;
+      }
+
+      const footerBrandEl = document.getElementById('footer-brand-label');
+      if (footerBrandEl) {
+        footerBrandEl.textContent = displayBrand;
       }
     }
 
@@ -3560,15 +3535,11 @@
       const statusLabelEl = document.getElementById('direction-status-label');
       if (!descEl || !btnTextEl || !statusLabelEl) return;
 
-      if (isClientStoreVisible) {
-        const clientLabel = (activeClientSession && activeClientSession.name)
-          ? activeClientSession.name
-          : (clientLinkConfig.subscriberName || 'Client VIP');
-        const phoneSuffix = (activeClientSession && activeClientSession.phone)
-          ? ` (${activeClientSession.phone})`
-          : (clientLinkConfig.phone ? ` (${clientLinkConfig.phone})` : '');
-        descEl.textContent = `Bienvenue ${clientLabel}${phoneSuffix} dans votre espace DIRECTION. Votre compte et vos produits sont prêts.`;
-        btnTextEl.textContent = 'Accéder à mon espace';
+      if (isClientStoreVisible && activeClientSession) {
+        const clientLabel = activeClientSession.name || 'Client VIP';
+        const phoneSuffix = activeClientSession.phone ? ` (${activeClientSession.phone})` : '';
+        descEl.textContent = `Bienvenue ${clientLabel}${phoneSuffix}. Votre compte et vos produits sont prêts jusqu'à fin de validité.`;
+        btnTextEl.textContent = formatClientStoreTitle();
         statusLabelEl.textContent = 'Session client activée';
       } else if (isDashboardUnlocked) {
         descEl.textContent = `Espace DIRECTION prêt. Préparez ou activez un accès client à tout moment depuis le panneau ci-dessus.`;
@@ -3577,7 +3548,7 @@
       } else {
         descEl.textContent = `Bienvenue dans votre espace DIRECTION. Préparez votre lien d'accès ou votre code d'activation pour accéder instantanément à vos services et commandes.`;
         btnTextEl.textContent = 'Préparer l\'entrée client';
-        statusLabelEl.textContent = 'Prêt pour l\'accueil';
+        statusLabelEl.textContent = 'Prêt pour l'accueil';
       }
     }
 
@@ -3607,45 +3578,24 @@
       }
     }
 
-    function getActiveExpiryTextForDashboard() {
-      const expDate = (activeClientSession && activeClientSession.expiryDate) || clientLinkConfig.expiryDate || '';
-      if (!expDate) return '';
-      const info = computeExpiryInfo(expDate);
-      return `${info.formatted} (${info.remainingText})`;
-    }
-
     function renderDashboardClientHeading() {
       const dashHeading = document.getElementById('dashboard-boutique-heading');
       if (!dashHeading || !isClientStoreVisible) return;
-
-      const clientName = (activeClientSession && activeClientSession.name)
-        ? activeClientSession.name
-        : (clientLinkConfig.subscriberName || clientLinkConfig.storeName || 'Espace Client');
-      const clientPhone = (activeClientSession && activeClientSession.phone)
-        ? activeClientSession.phone
-        : (clientLinkConfig.phone || '');
-      const expDate = (activeClientSession && activeClientSession.expiryDate) || clientLinkConfig.expiryDate || '';
-      const expInfo = expDate ? computeExpiryInfo(expDate) : null;
-
-      const phoneBadge = clientPhone
-        ? `<span class="client-phone-chip"><i class="fa-solid fa-phone"></i> ${clientPhone}</span>`
-        : '';
-      const expiryBadge = expInfo
-        ? `<span class="client-expiry-chip ${expInfo.isExpired ? 'expired' : ''}"><i class="fa-regular fa-calendar-check"></i> Fin: ${expInfo.formatted} (${expInfo.remainingText})</span>`
-        : '';
-
-      dashHeading.innerHTML = `<i class="fa-solid fa-user-check"></i> <span>${clientName}</span> ${phoneBadge} ${expiryBadge}`;
+      dashHeading.innerHTML = `<i class="fa-solid fa-store"></i> <span>${formatClientStoreTitle()}</span>`;
     }
 
     function applyClientVisibilityState() {
+      enforceClientValidityAndBrand();
+
       const headerBtn = document.getElementById('btn-store-mode');
       const dashBox = document.getElementById('dashboard-boutique-container');
       const storeView = document.getElementById('store-view');
+      const footerEl = document.getElementById('main-luxury-footer');
 
       if (headerBtn) {
         headerBtn.classList.toggle('hidden', !isClientStoreVisible);
         if (isClientStoreVisible) {
-          headerBtn.innerHTML = '<i class="fa-solid fa-user-check"></i> Espace Client';
+          headerBtn.innerHTML = `<i class="fa-solid fa-store"></i> ${formatClientStoreTitle()}`;
         }
       }
 
@@ -3656,10 +3606,16 @@
         }
       }
 
+      if (footerEl) {
+        footerEl.classList.toggle('hidden', isInsideStoreMode);
+      }
+
       if (storeView && !isClientStoreVisible) {
+        isInsideStoreMode = false;
         storeView.classList.add('hidden');
         document.getElementById('admin-view').classList.remove('hidden');
         document.getElementById('btn-admin-mode').classList.add('active');
+        if (footerEl) footerEl.classList.remove('hidden');
       }
 
       syncPromoAndReceptionVisibility();
@@ -3674,6 +3630,7 @@
         localStorage.removeItem('fl_fr_v7_admin_link_gen');
         isHiddenAccessFieldVisible = false;
       }
+      enforceClientValidityAndBrand();
       applyRoleVisibility();
     }
 
@@ -3743,26 +3700,6 @@
       }
       if (expiryDate) params.set('expires', expiryDate);
       return `${base}#ACCESS=${encodeURIComponent(slug)}&${params.toString()}`;
-    }
-
-    function computeExpiryInfo(expiryDateStr) {
-      if (!expiryDateStr) {
-        return { formatted: 'Non définie', remainingText: 'Sans limite', isExpired: false };
-      }
-      const expDate = new Date(expiryDateStr + 'T23:59:59');
-      if (isNaN(expDate.getTime())) {
-        return { formatted: expiryDateStr, remainingText: '-', isExpired: false };
-      }
-      const formatted = new Date(expiryDateStr + 'T00:00:00').toLocaleDateString('fr-FR');
-      const diffMs = expDate.getTime() - Date.now();
-      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-      if (diffDays < 0) {
-        return { formatted, remainingText: `Expiré (${Math.abs(diffDays)}j)`, isExpired: true };
-      }
-      if (diffDays === 0) {
-        return { formatted, remainingText: 'Expire aujourd\'hui', isExpired: false };
-      }
-      return { formatted, remainingText: `${diffDays} j restants`, isExpired: false };
     }
 
     function showActivationError(msg) {
@@ -3858,7 +3795,7 @@
       };
     }
 
-    function unlockDashboardWithValidLink(payload) {
+    function unlockDashboardWithValidLink(payload, openStoreDirectly = false) {
       isDashboardUnlocked = true;
       isActivationGateOpen = false;
       hideActivationError();
@@ -3867,22 +3804,6 @@
 
       const hasAccountIdentity = Boolean(payload.clientName || payload.phone);
       isClientStoreVisible = !payload.isAdminLink || hasAccountIdentity;
-      applyClientVisibilityState();
-
-      document.getElementById('dashboard-activation-gate').classList.add('hidden');
-      document.getElementById('dashboard-button-cards-container').classList.remove('hidden');
-
-      const btnEl = document.getElementById('btn-toggle-dashboard-cards');
-      const stateLabelEl = document.getElementById('dashboard-cards-state-label');
-      btnEl.classList.add('active-toggle');
-      btnEl.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span id="btn-toggle-dashboard-cards-text">Dashboard مفعّل</span>`;
-      if (stateLabelEl) {
-        const expText = payload.expires ? computeExpiryInfo(payload.expires).formatted : '';
-        const acctSummary = [payload.clientName, payload.phone, expText ? `Fin: ${expText}` : ''].filter(Boolean).join(' • ');
-        stateLabelEl.textContent = payload.isAdminLink && !hasAccountIdentity
-          ? 'تم التفعيل برابط الأدمن'
-          : `تم التفعيل — الحساب: ${acctSummary || 'Client'}`;
-      }
 
       if (payload.storeName || payload.clientName || payload.phone || payload.expires) {
         clientLinkConfig = {
@@ -3904,10 +3825,29 @@
         );
       }
 
+      applyClientVisibilityState();
+
+      document.getElementById('dashboard-activation-gate').classList.add('hidden');
+      document.getElementById('dashboard-button-cards-container').classList.remove('hidden');
+
+      const btnEl = document.getElementById('btn-toggle-dashboard-cards');
+      const stateLabelEl = document.getElementById('dashboard-cards-state-label');
+      btnEl.classList.add('active-toggle');
+      btnEl.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span id="btn-toggle-dashboard-cards-text">Dashboard مفعّل</span>`;
+      if (stateLabelEl) {
+        const expText = payload.expires ? computeExpiryInfo(payload.expires).formatted : '';
+        const acctSummary = [payload.clientName, payload.phone, expText ? `Fin: ${expText}` : ''].filter(Boolean).join(' • ');
+        stateLabelEl.textContent = payload.isAdminLink && !hasAccountIdentity
+          ? 'تم التفعيل برابط الأدمن'
+          : `تم التفعيل — الحساب: ${acctSummary || 'Client'}`;
+      }
+
       if (isClientStoreVisible) {
         renderDashboardBoutique();
         renderStore();
-        renderStoreClientSessionBanner();
+        if (openStoreDirectly) {
+          switchMode('store');
+        }
       }
       updateDirectionWelcomeShowcase();
     }
@@ -3961,7 +3901,7 @@
         return;
       }
 
-      unlockDashboardWithValidLink(check);
+      unlockDashboardWithValidLink(check, !check.isAdminLink);
     }
 
     function registerOrUpdateClientFromLink(name, phone, expiryDate, storeName, extraTotal = 0, extraPaid = 0, noteLabel = '') {
@@ -3971,19 +3911,29 @@
       const displayPhone = formatDisplayPhone(cleanPhone, normPhone);
       if (!cleanName && !normPhone) return;
 
-      const expInfo = computeExpiryInfo(expiryDate);
+      const resolvedExpiry = expiryDate || clientLinkConfig.expiryDate || '';
+      const expInfo = computeExpiryInfo(resolvedExpiry);
+      if (expInfo.isExpired) {
+        activeClientSession = null;
+        localStorage.removeItem('fl_fr_v7_active_client_session');
+        isInsideStoreMode = false;
+        enforceClientValidityAndBrand();
+        return;
+      }
+
       const sessionObj = {
         name: cleanName || (displayPhone || 'Client'),
         phone: displayPhone,
         normPhone,
-        expiryDate: expiryDate || '',
+        expiryDate: resolvedExpiry,
         storeName: slugifyStoreName(storeName || clientLinkConfig.storeName),
         activatedAt: new Date().toLocaleDateString('fr-FR'),
-        active: !expInfo.isExpired
+        active: true
       };
 
       activeClientSession = sessionObj;
       localStorage.setItem('fl_fr_v7_active_client_session', JSON.stringify(sessionObj));
+      enforceClientValidityAndBrand();
 
       const existingIdx = clients.findIndex(c => {
         const cNorm = normalizeWhatsAppNumber(c.phone || '');
@@ -4008,7 +3958,7 @@
           ...(clients[existingIdx].tech || {}),
           expiry: expInfo.formatted,
           store: sessionObj.storeName,
-          status: expInfo.isExpired ? 'Expiré' : 'Actif'
+          status: 'Actif'
         };
       } else {
         clients.unshift({
@@ -4026,7 +3976,7 @@
           tech: {
             expiry: expInfo.formatted,
             store: sessionObj.storeName,
-            status: expInfo.isExpired ? 'Expiré' : 'Actif'
+            status: 'Actif'
           }
         });
       }
@@ -4034,7 +3984,6 @@
       localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
       renderClients();
       populateClientDropdowns();
-      renderStoreClientSessionBanner();
       updateDirectionWelcomeShowcase();
       applyClientVisibilityState();
     }
@@ -4071,6 +4020,10 @@
       const storeParam = (sp.get('access') || sp.get('store') || '').trim();
 
       if (expiresParam && computeExpiryInfo(expiresParam).isExpired) {
+        activeClientSession = null;
+        localStorage.removeItem('fl_fr_v7_active_client_session');
+        isInsideStoreMode = false;
+        enforceClientValidityAndBrand();
         return;
       }
 
@@ -4100,39 +4053,8 @@
           clientName: clientParam,
           phone: displayPhone,
           expires: expiresParam
-        });
+        }, true);
       }
-    }
-
-    function renderStoreClientSessionBanner() {
-      const banner = document.getElementById('store-client-session-banner');
-      const nameEl = document.getElementById('store-client-session-name');
-      const expEl = document.getElementById('store-client-session-expiry');
-      const badgeEl = document.getElementById('store-client-session-badge');
-      if (!banner || !nameEl || !expEl || !badgeEl) return;
-
-      expEl.textContent = '';
-      expEl.classList.add('hidden');
-
-      if (!isClientStoreVisible || !activeClientSession || (!activeClientSession.name && !activeClientSession.phone)) {
-        banner.classList.add('hidden');
-        return;
-      }
-
-      const expInfo = computeExpiryInfo(activeClientSession.expiryDate);
-      banner.classList.remove('hidden');
-      banner.classList.toggle('expired-banner', expInfo.isExpired);
-
-      const phoneBadge = activeClientSession.phone
-        ? `<span class="client-phone-chip"><i class="fa-solid fa-phone"></i> ${activeClientSession.phone}</span>`
-        : '';
-      nameEl.innerHTML = `<i class="fa-solid fa-user-check"></i> <span>${activeClientSession.name}</span> ${phoneBadge}`;
-
-      badgeEl.textContent = expInfo.isExpired ? 'EXPIRÉ' : 'ACTIF';
-      badgeEl.style.background = expInfo.isExpired
-        ? 'linear-gradient(135deg, #ff6b81 0%, #ff3b5c 100%)'
-        : 'linear-gradient(135deg, #6effbc 0%, #00ff88 100%)';
-      badgeEl.style.color = expInfo.isExpired ? '#ffffff' : '#04140c';
     }
 
     function toggleHiddenAccessField() {
@@ -5081,12 +5003,12 @@
     function saveAll() {
       localStorage.setItem('fl_fr_v7_products', JSON.stringify(products));
       localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
+      enforceClientValidityAndBrand();
       renderClients();
       renderAdminProducts();
       if (isClientStoreVisible) {
         renderStore();
         renderDashboardBoutique();
-        renderStoreClientSessionBanner();
       }
       populateQuickInvoiceProducts();
       populateClientDropdowns();
@@ -5225,9 +5147,18 @@
     }
 
     function switchMode(mode) {
+      enforceClientValidityAndBrand();
       if (mode === 'store' && !isClientStoreVisible) {
         return;
       }
+      isInsideStoreMode = (mode === 'store');
+      enforceClientValidityAndBrand();
+
+      const footerEl = document.getElementById('main-luxury-footer');
+      if (footerEl) {
+        footerEl.classList.toggle('hidden', isInsideStoreMode);
+      }
+
       document.getElementById('btn-admin-mode').classList.toggle('active', mode === 'admin');
       document.getElementById('btn-store-mode').classList.toggle('active', mode === 'store');
       document.getElementById('admin-view').classList.toggle('hidden', mode !== 'admin');
@@ -5240,7 +5171,6 @@
         document.getElementById('admin-view').scrollTop = 0;
       } else {
         renderStore();
-        renderStoreClientSessionBanner();
         document.getElementById('store-view').scrollTop = 0;
       }
     }
@@ -5287,6 +5217,7 @@
         active: true
       };
       localStorage.setItem('fl_fr_v7_active_client_session', JSON.stringify(activeClientSession));
+      enforceClientValidityAndBrand();
 
       document.getElementById('new-c-name').value = '';
       document.getElementById('new-c-phone').value = '';
@@ -5343,45 +5274,32 @@
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
       const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
+      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
       const showTech = hasAnyTechField(tech);
 
-      const feedbackEl = document.getElementById('wa-export-feedback');
-      if (feedbackEl) feedbackEl.innerText = '';
+      const techFieldsList = [
+        tech.host ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>` : '',
+        tech.username ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>` : '',
+        tech.password ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>` : '',
+        tech.app ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>` : '',
+        (tech.duration || tech.expiry) ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' - ')}</span></div>` : ''
+      ].filter(Boolean).join('');
 
-      const rows = cl.items.map(i => `
-        <tr>
-          <td>${i.name}</td>
-          <td>${i.qty}</td>
-          <td>${i.price} DH</td>
-          <td><strong class="ink-gold">${i.qty * i.price} DH</strong></td>
-        </tr>
-      `).join('');
-
-      const macBannerHtml = tech.mac ? `
+      const macHighlightHtml = tech.mac ? `
         <div class="inv-mac-banner">
-          <span class="inv-mac-badge"><i class="fa-solid fa-microchip"></i> MAC ADDRESS</span>
+          <span class="inv-mac-badge">MAC ADDRESS</span>
           <span class="inv-mac-value">${tech.mac}</span>
         </div>
       ` : '';
 
-      const techCells = [];
-      if (tech.host) techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
-      if (tech.username) techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
-      if (tech.password) techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
-      if (tech.app) techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
-      if (tech.duration || tech.expiry) {
-        const valStr = [tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ');
-        techCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Validité</span><span class="inv-tech-code">${valStr}</span></div>`);
-      }
-
-      const techPanelHtml = showTech ? `
+      const techBlockHtml = showTech ? `
         <div class="inv-tech-panel">
           <div class="inv-tech-title">
-            <span><i class="fa-solid fa-sliders"></i> Paramètres d'accès</span>
+            <span><i class="fa-solid fa-sliders"></i> Paramètres d'accès & playlist</span>
           </div>
-          ${macBannerHtml}
-          ${techCells.length ? `<div class="inv-tech-grid">${techCells.join('')}</div>` : ''}
+          ${macHighlightHtml}
+          ${techFieldsList ? `<div class="inv-tech-grid">${techFieldsList}</div>` : ''}
         </div>
       ` : '';
 
@@ -5389,7 +5307,7 @@
         <div class="inv-top-bar">
           <div>
             <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.5rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
+            <div style="font-size:0.52rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
           </div>
           <span class="inv-doc-tag">${statusLabel}</span>
         </div>
@@ -5401,7 +5319,7 @@
           <div class="inv-meta-row"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone || '-'}</span></div>
         </div>
 
-        ${techPanelHtml}
+        ${techBlockHtml}
 
         <table class="invoice-table">
           <thead>
@@ -5412,7 +5330,16 @@
               <th>Total</th>
             </tr>
           </thead>
-          <tbody>${rows}</tbody>
+          <tbody>
+            ${items.map(it => `
+              <tr>
+                <td>${it.name}</td>
+                <td>${it.qty || 1}</td>
+                <td>${it.price} DH</td>
+                <td class="ink-gold">${(it.qty || 1) * it.price} DH</td>
+              </tr>
+            `).join('')}
+          </tbody>
         </table>
 
         <div class="inv-totals-box">
@@ -5427,39 +5354,89 @@
         <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME}</div>
       `;
 
+      const fbEl = document.getElementById('wa-export-feedback');
+      if (fbEl) fbEl.innerText = '';
+
       document.getElementById('btn-save-invoice-png').onclick = () => saveInvoiceOnly(cl);
       document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceImageViaWhatsApp(cl);
 
       document.getElementById('invoice-modal').classList.add('open');
 
       if (autoSave) {
-        saveInvoiceOnly(cl);
+        setTimeout(() => saveInvoiceOnly(cl), 180);
       }
     }
 
-    function createQuickInvoice() {
-      const clientName = document.getElementById('inv-client').value.trim() || "Client";
-      const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
-      const itemName = document.getElementById('inv-item').value.trim() || "Produit";
-      const qty = parseInt(document.getElementById('inv-qty').value) || 1;
-      const price = parseFloat(document.getElementById('inv-price').value) || 0;
-      const paidRaw = document.getElementById('inv-paid').value;
-      const total = qty * price;
-      const paid = paidRaw === '' ? total : (parseFloat(paidRaw) || 0);
+    function renderClients() {
+      const q = (document.getElementById('client-search')?.value || '').toLowerCase().trim();
+      const list = document.getElementById('clients-list');
 
-      const newCl = {
-        id: "FAC-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name: clientName,
-        phone,
-        items: [{ name: itemName, qty, price }],
-        total,
-        paid
-      };
+      let totalDue = 0, totalPaid = 0, totalRem = 0;
+      clients.forEach(c => {
+        totalDue += c.total;
+        totalPaid += c.paid;
+        totalRem += Math.max(0, c.total - c.paid);
+      });
 
-      clients.unshift(newCl);
-      saveAll();
-      openClientInvoice(newCl.id, false);
+      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
+      document.getElementById('stat-clients-count').innerText = clients.length;
+      document.getElementById('badge-clients').innerText = clients.length;
+      document.getElementById('toggle-ledger-count').innerText = clients.length;
+
+      const filtered = clients.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.phone || '').toLowerCase().includes(q)
+      );
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty-state">Aucun client enregistré.</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        const tech = getTechFields(c);
+        const techBadge = tech.mac
+          ? ` • MAC: <strong class="gold">${tech.mac}</strong>`
+          : (tech.username ? ` • User: <strong class="gold">${tech.username}</strong>` : '');
+
+        return `
+          <div class="client-card">
+            <div class="client-top">
+              <div>
+                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || '-'} • ${c.date}${techBadge}</div>
+              </div>
+              <span style="font-size:0.72rem; font-weight:700; color:${rem === 0 ? 'var(--emerald)' : 'var(--ruby)'};">
+                ${rem === 0 ? 'Soldé' : 'En cours'}
+              </span>
+            </div>
+
+            <div class="finance-strip">
+              <div>
+                <div class="fin-box-label">Total</div>
+                <div class="fin-box-val gold">${c.total} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Payé</div>
+                <div class="fin-box-val green">${c.paid} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Reste</div>
+                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
+              </div>
+            </div>
+
+            <div class="client-actions">
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajout</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Paiement</button>
+              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)"><i class="fa-solid fa-file-invoice"></i> Facture</button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function addProduct() {
@@ -5482,6 +5459,7 @@
       document.getElementById('prod-price').value = '';
       document.getElementById('prod-cat').value = '';
       resetProductImagePicker();
+
       saveAll();
     }
 
@@ -5490,113 +5468,12 @@
       saveAll();
     }
 
-    function orderViaWhatsApp(productName, price) {
-      const activeClientName = (activeClientSession && activeClientSession.name) ? activeClientSession.name : '';
-      const activeClientPhone = (activeClientSession && activeClientSession.phone) ? activeClientSession.phone : '';
-      const lines = [
-        `${BRAND_NAME} - Commande`,
-        activeClientName ? `Client : ${activeClientName}` : '',
-        activeClientPhone ? `Téléphone : ${activeClientPhone}` : '',
-        `Produit : ${productName}`,
-        `Prix : ${price} DH`
-      ].filter(Boolean);
-      const targetPhone = (activeClientSession && activeClientSession.normPhone) || WHATSAPP_ORDER_NUMBER;
-      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
-    }
-
-    function renderClients() {
-      const q = (document.getElementById('client-search')?.value || '').toLowerCase().trim();
-      const list = document.getElementById('clients-list');
-
-      let totalDue = 0;
-      let totalPaid = 0;
-
-      clients.forEach(c => {
-        totalDue += Number(c.total) || 0;
-        totalPaid += Number(c.paid) || 0;
-      });
-
-      const totalRem = Math.max(0, totalDue - totalPaid);
-      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
-      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
-      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-      document.getElementById('toggle-ledger-count').innerText = clients.length;
-
-      const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
-      );
-
-      if (!filtered.length) {
-        list.innerHTML = `<div class="empty-state">Aucun client enregistré.</div>`;
-        return;
-      }
-
-      list.innerHTML = filtered.map(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        const tech = getTechFields(c);
-        const techBadges = [
-          tech.mac ? `MAC: ${tech.mac}` : '',
-          tech.app ? `App: ${tech.app}` : '',
-          tech.username ? `User: ${tech.username}` : '',
-          tech.expiry ? `Exp: ${tech.expiry}` : ''
-        ].filter(Boolean).join(' • ');
-
-        return `
-          <div class="client-card">
-            <div class="client-top">
-              <div>
-                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
-                <div class="client-meta">${c.phone || '-'} • ${c.id} • ${c.date}</div>
-                ${techBadges ? `<div class="client-meta" style="color:var(--gold-primary);font-weight:700;">${techBadges}</div>` : ''}
-                <div class="client-meta">${c.items.map(i => `${i.name} (x${i.qty})`).join(' - ')}</div>
-              </div>
-              <span class="btn ${rem === 0 ? 'btn-pay' : 'btn-danger'}" style="cursor:default;">
-                ${rem === 0 ? 'Payé' : 'Reste : ' + rem + ' DH'}
-              </span>
-            </div>
-
-            <div class="finance-strip">
-              <div>
-                <div class="fin-box-label">Total</div>
-                <div class="fin-box-val gold">${c.total} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Payé</div>
-                <div class="fin-box-val green">${c.paid} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Reste</div>
-                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
-              </div>
-            </div>
-
-            <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')">
-                <i class="fa-solid fa-plus"></i> Ajouter
-              </button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')">
-                <i class="fa-solid fa-check"></i> Paiement
-              </button>
-              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)">
-                <i class="fa-solid fa-file-invoice"></i> Facture
-              </button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
     function renderAdminProducts() {
-      document.getElementById('badge-products').innerText = products.length;
       const grid = document.getElementById('admin-products-list');
+      document.getElementById('badge-products').innerText = products.length;
 
       if (!products.length) {
-        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit.</div>`;
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit ajouté.</div>`;
         return;
       }
 
@@ -5604,12 +5481,14 @@
         <div class="product-card">
           <div class="product-media-frame">
             ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                 <div class="product-img-placeholder" style="display:none;"><i class="fa-solid fa-box"></i></div>`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`
+            }
           </div>
           <div class="product-body">
             <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
+              ${p.cat ? `<div class="product-badge">${p.cat}</div>` : ''}
               <div class="product-title">${p.name}</div>
               <div class="product-price">${p.price} DH</div>
             </div>
@@ -5621,82 +5500,66 @@
       `).join('');
     }
 
-    function renderQuickProductButtons(containerId) {
-      const strip = document.getElementById(containerId);
-      if (!strip) return;
-      if (!products.length) {
-        strip.innerHTML = '';
-        return;
-      }
-      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
-      strip.innerHTML = products.map(p => `
-        <button class="client-prod-action-btn" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
-          <i class="fa-brands fa-whatsapp"></i>
-          <span>${p.name} — ${p.price} DH</span>
-        </button>
-      `).join('');
+    function buildProductCardHtml(p) {
+      return `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                 <div class="product-img-placeholder" style="display:none;"><i class="fa-solid fa-box"></i></div>`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`
+            }
+          </div>
+          <div class="product-body">
+            <div>
+              ${p.cat ? `<div class="product-badge">${p.cat}</div>` : ''}
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-wa-order" style="width:100%;" onclick="orderProductWhatsApp('${p.name.replace(/'/g, "\\'")}', ${p.price})">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </button>
+          </div>
+        </div>
+      `;
     }
 
     function renderDashboardBoutique() {
-      const grid = document.getElementById('dashboard-boutique-grid');
-      if (!grid || !isClientStoreVisible) return;
+      const dashContainer = document.getElementById('dashboard-boutique-container');
+      const dashGrid = document.getElementById('dashboard-boutique-grid');
+      if (!dashContainer || !dashGrid) return;
+
+      if (!isClientStoreVisible) {
+        dashContainer.classList.add('hidden');
+        return;
+      }
+
+      dashContainer.classList.remove('hidden');
       renderDashboardClientHeading();
-      renderQuickProductButtons('dashboard-client-product-buttons');
 
       const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase().trim();
       const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
+        p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q)
       );
 
       if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</div>`;
+        dashGrid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible.</div>`;
         return;
       }
 
-      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
-      grid.innerHTML = filtered.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
-          </div>
-          <div class="product-body">
-            <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
-              <i class="fa-brands fa-whatsapp"></i> Commander
-            </button>
-          </div>
-        </div>
-      `).join('');
+      dashGrid.innerHTML = filtered.map(buildProductCardHtml).join('');
     }
 
     function renderStore() {
-      if (!isClientStoreVisible) return;
+      const storeTitleEl = document.getElementById('store-view-title');
+      if (storeTitleEl) {
+        storeTitleEl.textContent = formatClientStoreTitle();
+      }
+
       const q = (document.getElementById('store-search')?.value || '').toLowerCase().trim();
       const grid = document.getElementById('store-products-grid');
-      const titleEl = document.getElementById('store-view-title');
-      const subEl = document.getElementById('store-view-subtitle');
-      renderStoreClientSessionBanner();
-      renderQuickProductButtons('store-client-product-buttons');
-
-      if (titleEl) {
-        titleEl.innerText = activeClientSession && activeClientSession.name
-          ? `${activeClientSession.name}`
-          : BRAND_NAME;
-      }
-      if (subEl) {
-        subEl.innerText = activeClientSession && activeClientSession.phone
-          ? `Espace client • ${activeClientSession.phone}`
-          : 'Espace client - WhatsApp direct';
-      }
-
       const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
+        p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q)
       );
 
       if (!filtered.length) {
@@ -5704,48 +5567,66 @@
         return;
       }
 
-      const safeName = (s) => String(s || '').replace(/'/g, "\\'");
-      grid.innerHTML = filtered.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
-          </div>
-          <div class="product-body">
-            <div>
-              ${p.cat ? `<span class="product-badge">${p.cat}</span>` : ''}
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <button class="btn btn-wa-order" style="width:100%;" onclick="orderViaWhatsApp('${safeName(p.name)}', ${Number(p.price) || 0})">
-              <i class="fa-brands fa-whatsapp"></i> Commander
-            </button>
-          </div>
-        </div>
-      `).join('');
+      grid.innerHTML = filtered.map(buildProductCardHtml).join('');
+    }
+
+    function orderProductWhatsApp(prodName, price) {
+      const clientLabel = getActiveClientName();
+      const msg = clientLabel
+        ? `Bonjour, je suis ${clientLabel}. Je souhaite commander : ${prodName} (${price} DH)`
+        : `Bonjour, je souhaite commander : ${prodName} (${price} DH)`;
+      const targetPhone = (activeClientSession && activeClientSession.normPhone) || WHATSAPP_ORDER_NUMBER;
+      window.open(buildWhatsAppUrl(targetPhone, msg), '_blank', 'noopener,noreferrer');
+    }
+
+    function createQuickInvoice() {
+      const clientName = document.getElementById('inv-client').value.trim() || 'Client';
+      const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
+      const item = document.getElementById('inv-item').value.trim() || 'Produit';
+      const qty = parseInt(document.getElementById('inv-qty').value) || 1;
+      const price = parseFloat(document.getElementById('inv-price').value) || 0;
+      const paidRaw = document.getElementById('inv-paid').value;
+
+      if (price <= 0) return;
+
+      const total = qty * price;
+      const paid = paidRaw === '' ? total : (parseFloat(paidRaw) || 0);
+
+      const newCl = {
+        id: "FAC-" + Date.now().toString().slice(-6),
+        date: new Date().toLocaleDateString('fr-FR'),
+        name: clientName,
+        phone,
+        items: [{ name: item, qty, price }],
+        total,
+        paid
+      };
+
+      clients.unshift(newCl);
+      document.getElementById('inv-client').value = '';
+      document.getElementById('inv-phone').value = '';
+      document.getElementById('inv-item').value = '';
+      document.getElementById('inv-qty').value = '';
+      document.getElementById('inv-price').value = '';
+      document.getElementById('inv-paid').value = '';
+      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
+      updateQuickPreview(null);
+
+      saveAll();
+      openClientInvoice(newCl.id, false);
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
     }
 
-    document.querySelectorAll('.modal-backdrop').forEach(m => {
-      m.addEventListener('click', e => {
-        if (e.target === m) m.classList.remove('open');
-      });
-    });
-
     syncCopyrightYear();
+    enforceClientValidityAndBrand();
     applyRoleVisibility();
     applyClientVisibilityState();
-    renderClients();
-    renderAdminProducts();
-    populateQuickInvoiceProducts();
-    populateClientDropdowns();
-    updateQuickPreview(null);
-    updateDirectionWelcomeShowcase();
+    saveAll();
     checkIncomingClientAccessLink();
+    updateDirectionWelcomeShowcase();
   </script>
 </body>
 </html>
