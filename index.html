@@ -294,6 +294,7 @@
     }
 
     .store-top-glass-bar {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -312,6 +313,248 @@
         0 4px 18px rgba(212, 175, 55, 0.16),
         inset 0 1px 1px rgba(255, 244, 196, 0.34),
         inset 0 0 24px rgba(212, 175, 55, 0.09);
+    }
+
+    .store-top-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ==================== CLIENT GALLERY APPS DROPDOWN BUTTON & PANEL ==================== */
+    .store-apps-dropdown-wrap {
+      position: relative;
+    }
+
+    .store-apps-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.25px;
+      color: #060608;
+      background: linear-gradient(135deg, #fff1b8 0%, #f3d06b 48%, #d4af37 100%);
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.58),
+        0 0 16px rgba(212, 175, 55, 0.32),
+        inset 0 1px 1px rgba(255, 255, 255, 0.75);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .store-apps-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+      box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.7),
+        0 0 22px rgba(212, 175, 55, 0.48),
+        inset 0 1px 1px rgba(255, 255, 255, 0.85);
+    }
+
+    .store-apps-btn:active {
+      transform: scale(0.96);
+    }
+
+    .store-apps-btn .chevron-icon {
+      font-size: 0.66rem;
+      transition: transform 0.22s ease;
+    }
+
+    .store-apps-btn.is-open .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    .store-apps-dropdown-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: min(360px, calc(100vw - 36px));
+      z-index: 160;
+      padding: 12px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(0, 255, 136, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 15% 88%, rgba(212, 175, 55, 0.24) 0%, transparent 52%),
+        linear-gradient(150deg, rgba(16, 16, 24, 0.96) 0%, rgba(8, 8, 13, 0.98) 100%);
+      backdrop-filter: blur(24px) saturate(165%);
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.92),
+        0 0 28px rgba(212, 175, 55, 0.22),
+        inset 0 1px 1px rgba(255, 244, 196, 0.36),
+        inset 0 0 24px rgba(212, 175, 55, 0.08);
+    }
+
+    .apps-dropdown-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 7px;
+      box-shadow: inset 0 -1px 0 rgba(212, 175, 55, 0.16);
+    }
+
+    .apps-dropdown-title {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .apps-dropdown-badge {
+      font-size: 0.54rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #04130b;
+      background: linear-gradient(135deg, #6effbc 0%, #00ff88 60%, #00c96b 100%);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .apps-list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 310px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .app-entry-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.48),
+        inset 0 1px 1px rgba(255, 242, 185, 0.16);
+    }
+
+    .app-entry-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .app-entry-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: rgba(212, 175, 55, 0.14);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .app-entry-meta {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-entry-name {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .app-downloader-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      width: fit-content;
+      padding: 2px 7px;
+      border-radius: 7px;
+      background: rgba(0, 255, 136, 0.11);
+      color: var(--neon-green);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 1px rgba(0, 255, 136, 0.25);
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .app-downloader-pill:hover {
+      background: rgba(0, 255, 136, 0.2);
+      transform: scale(1.02);
+    }
+
+    .app-entry-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .app-copy-code-btn {
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gold-primary);
+      font-size: 0.66rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .app-copy-code-btn:hover {
+      background: rgba(212, 175, 55, 0.22);
+    }
+
+    .app-download-btn {
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6effbc 0%, #00ff88 55%, #00b862 100%);
+      color: #04140c;
+      font-size: 0.66rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.32);
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .app-download-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .apps-dropdown-feedback {
+      margin-top: 8px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      color: var(--neon-green);
+      text-align: center;
+      min-height: 15px;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.45);
     }
 
     .store-glass-identity-card {
@@ -707,7 +950,6 @@
       gap: 10px;
     }
 
-    /* ==================== LUXURY ROTATING GLASS PRODUCT SHOWCASE BELOW CLIENT DASHBOARD ==================== */
     .client-rotating-product-showcase {
       position: relative;
       border-radius: 24px;
@@ -1362,7 +1604,6 @@
       }
     }
 
-    /* ==================== LUXURY GLASS CARD FOR GENERAL ADMINISTRATION (ADMIN ONLY) ==================== */
     .dg-admin-glass-card {
       position: relative;
       border-radius: 22px;
@@ -2971,7 +3212,6 @@
 
       <!-- TAB 1: CLIENT LEDGER -->
       <div id="tab-ledger">
-        <!-- Stats hidden on Admin interface -->
         <div class="stats-grid hidden" id="admin-stats-grid" aria-hidden="true">
           <div class="stat-card">
             <div class="stat-title">Total à payer</div>
@@ -2991,7 +3231,6 @@
           </div>
         </div>
 
-        <!-- Unified Dashboard Panel (Visible ONLY in Client Account; hidden in Admin before client enters) -->
         <div class="unified-dashboard-panel hidden" id="dashboard-actions-panel">
           <div class="unified-dashboard-header">
             <div>
@@ -3064,7 +3303,6 @@
           </div>
 
           <div class="unified-dashboard-body" id="dashboard-button-cards-container">
-            <!-- 1. Gestion des clients FIRST -->
             <div class="luxury-add-client-bar">
               <div>
                 <div style="font-size: 0.86rem; font-weight: 800; color: var(--text-main);">
@@ -3127,7 +3365,6 @@
               <div class="lux-neon-feedback" id="inline-access-feedback"></div>
             </div>
 
-            <!-- 2. Activation & Abonnement SECOND -->
             <div class="luxury-action-bar">
               <div>
                 <div style="font-size: 0.92rem; font-weight: 800; color: var(--gold-primary);">
@@ -3149,7 +3386,6 @@
               </div>
             </div>
 
-            <!-- 3. Produits & Facture Rapide THIRD -->
             <div class="luxury-action-bar">
               <div>
                 <div style="font-size: 0.86rem; font-weight: 800; color: var(--text-main);">
@@ -3171,7 +3407,6 @@
               </div>
             </div>
 
-            <!-- Hidden inside dashboard until user navigates to GALLERY -->
             <div class="dashboard-boutique-embed hidden" id="dashboard-boutique-container" aria-hidden="true">
               <div class="panel-title" style="margin-bottom:10px; align-items:flex-start;">
                 <div id="dashboard-boutique-heading" style="flex:1; min-width:200px;">
@@ -3189,7 +3424,6 @@
           </div>
         </div>
 
-        <!-- ==================== ROTATING GLASS PRODUCT CARD BELOW CLIENT DASHBOARD ==================== -->
         <section class="client-rotating-product-showcase hidden" id="client-rotating-product-card" aria-label="Aperçu dynamique des produits">
           <div class="rotating-showcase-topbar">
             <span class="rotating-showcase-title">
@@ -3211,7 +3445,6 @@
           </div>
         </section>
 
-        <!-- Account Ledger Panel (Toggled by Registre des Clients button) -->
         <div class="glass-panel hidden" id="clients-ledger-panel">
           <div class="panel-title">
             <span><i class="fa-solid fa-users-gear"></i> Registre des Clients (<span id="badge-clients">0</span>)</span>
@@ -3225,7 +3458,6 @@
           <div id="clients-list"></div>
         </div>
 
-        <!-- Pure promotional marquee strip: display only, no click actions -->
         <div class="direction-services-promo-banner" id="direction-services-promo-banner" aria-label="Services disponibles">
           <div class="promo-banner-top">
             <div class="promo-banner-label">
@@ -3404,7 +3636,6 @@
           </div>
         </div>
 
-        <!-- ==================== LUXURY GLASS CARD: GENERAL ADMINISTRATION (ADMIN ONLY) ==================== -->
         <section class="dg-admin-glass-card" id="dg-general-admin-glass-card" aria-label="الإدارة العامة">
           <div class="dg-admin-glass-inner">
             <div class="dg-admin-glass-header">
@@ -3532,7 +3763,6 @@
           </button>
         </div>
 
-        <!-- Kept hidden so products remain hidden inside Produits button tab until navigating to GALLERY -->
         <div class="glass-panel hidden" id="admin-products-list-panel" aria-hidden="true">
           <div class="panel-title"><span><i class="fa-solid fa-boxes-stacked"></i> Galerie & liste des produits</span></div>
           <div class="luxury-gallery-bg">
@@ -3606,7 +3836,7 @@
       </div>
     </div>
 
-    <!-- ==================== CLIENT GALLERY VIEW (GLASS IDENTITY CARD + GALERIE DES PRODUITS MARQUEE) ==================== -->
+    <!-- ==================== CLIENT GALLERY VIEW ==================== -->
     <div id="store-view" class="store-compact-shell hidden">
       <div class="store-top-glass-bar">
         <div class="store-glass-identity-card" id="store-client-header-badge">
@@ -3615,10 +3845,41 @@
             <span>GALERIE des produits</span>
           </span>
         </div>
-        <input type="text" id="store-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderStore()">
+
+        <div class="store-top-controls-right">
+          <div class="store-apps-dropdown-wrap" onclick="event.stopPropagation()">
+            <button
+              type="button"
+              class="store-apps-btn"
+              id="btn-store-apps-dropdown"
+              aria-expanded="false"
+              aria-controls="store-apps-dropdown-panel"
+              onclick="toggleStoreAppsDropdown(event)"
+            >
+              <i class="fa-solid fa-grid-2"></i>
+              <span>التطبيقات • Applications</span>
+              <i class="fa-solid fa-chevron-down chevron-icon"></i>
+            </button>
+
+            <div class="store-apps-dropdown-panel hidden" id="store-apps-dropdown-panel" role="region" aria-label="قائمة التطبيقات">
+              <div class="apps-dropdown-header">
+                <span class="apps-dropdown-title">
+                  <i class="fa-solid fa-mobile-screen-button"></i>
+                  <span>التطبيقات & Downloader</span>
+                </span>
+                <span class="apps-dropdown-badge" id="store-apps-count-badge">4 APPS</span>
+              </div>
+
+              <div class="apps-list-stack" id="store-apps-list"></div>
+
+              <div class="apps-dropdown-feedback" id="store-apps-feedback"></div>
+            </div>
+          </div>
+
+          <input type="text" id="store-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderStore()">
+        </div>
       </div>
 
-      <!-- Pure promotional products marquee: display only, no click actions -->
       <div class="store-promo-marquee-banner" id="store-products-marquee-banner" aria-label="GALERIE des produits">
         <div class="store-promo-header">
           <span class="store-promo-title">
@@ -4077,6 +4338,143 @@
     const SECRET_CIPHER_KEY = 'YOUNES#2026$STORE@KEY';
     const HOT_IPTV_IMAGE = 'https://i.ibb.co/m5CRtrtV/939e65a3-917f-48a1-915e-3d77f2904537-1000x1000-BUu-BOu-M6s78-PKC3y7lv-RUrdb-TYB6r-Sb-Pj-Thw8f-Ah-1.webp';
 
+    const GALLERY_APPLICATIONS = [
+      {
+        id: 'app-hot-iptv',
+        name: 'Hot IPTV',
+        downloaderCode: '784512',
+        downloadUrl: 'https://aftv.news/784512',
+        img: HOT_IPTV_IMAGE
+      },
+      {
+        id: 'app-bob-player',
+        name: 'Bob Player',
+        downloaderCode: '912405',
+        downloadUrl: 'https://aftv.news/912405',
+        img: 'https://i.ibb.co/tPYc0tFM/bob-player.webp'
+      },
+      {
+        id: 'app-ib-player',
+        name: 'IB Player',
+        downloaderCode: '639184',
+        downloadUrl: 'https://aftv.news/639184',
+        img: 'https://i.ibb.co/DfxxWqWr/logo-512.webp'
+      },
+      {
+        id: 'app-virginia',
+        name: 'VIRGINIA',
+        downloaderCode: '504921',
+        downloadUrl: 'https://aftv.news/504921',
+        img: 'https://i.ibb.co/dsmKfKT0/IMG-20261001-152624.webp'
+      }
+    ];
+
+    let isStoreAppsDropdownOpen = false;
+
+    function toggleStoreAppsDropdown(event) {
+      if (event) event.stopPropagation();
+      isStoreAppsDropdownOpen = !isStoreAppsDropdownOpen;
+      const btn = document.getElementById('btn-store-apps-dropdown');
+      const panel = document.getElementById('store-apps-dropdown-panel');
+      if (btn) {
+        btn.classList.toggle('is-open', isStoreAppsDropdownOpen);
+        btn.setAttribute('aria-expanded', String(isStoreAppsDropdownOpen));
+      }
+      if (panel) {
+        panel.classList.toggle('hidden', !isStoreAppsDropdownOpen);
+      }
+      if (isStoreAppsDropdownOpen) {
+        renderStoreAppsDropdown();
+      }
+    }
+
+    function closeStoreAppsDropdown() {
+      isStoreAppsDropdownOpen = false;
+      const btn = document.getElementById('btn-store-apps-dropdown');
+      const panel = document.getElementById('store-apps-dropdown-panel');
+      if (btn) {
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      if (panel) {
+        panel.classList.add('hidden');
+      }
+    }
+
+    function copyAppDownloaderCode(appName, code) {
+      const cleanCode = String(code || '').trim();
+      if (!cleanCode) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cleanCode).catch(() => {});
+      }
+      const fb = document.getElementById('store-apps-feedback');
+      if (fb) {
+        fb.textContent = `Code Downloader (${appName}): ${cleanCode} — تم النسخ / Copié`;
+      }
+    }
+
+    function triggerAppDownload(appName, code, url) {
+      const targetUrl = String(url || '').trim();
+      const fb = document.getElementById('store-apps-feedback');
+      if (fb) {
+        fb.textContent = `تحميل ${appName} • Downloader: ${code}`;
+      }
+      if (targetUrl) {
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+
+    function renderStoreAppsDropdown() {
+      const listEl = document.getElementById('store-apps-list');
+      const badgeEl = document.getElementById('store-apps-count-badge');
+      if (!listEl) return;
+
+      if (badgeEl) {
+        badgeEl.textContent = `${GALLERY_APPLICATIONS.length} APPS`;
+      }
+
+      listEl.innerHTML = GALLERY_APPLICATIONS.map(app => `
+        <div class="app-entry-card">
+          <div class="app-entry-left">
+            ${app.img
+              ? `<img src="${app.img}" alt="${app.name}" class="app-entry-icon">`
+              : `<span class="app-entry-icon"><i class="fa-solid fa-tv"></i></span>`}
+            <div class="app-entry-meta">
+              <div class="app-entry-name">${app.name}</div>
+              <span
+                class="app-downloader-pill"
+                title="Copier le code Downloader"
+                onclick="copyAppDownloaderCode('${app.name.replace(/'/g, "\\'")}', '${app.downloaderCode}')"
+              >
+                <i class="fa-solid fa-download"></i>
+                <span>Downloader: ${app.downloaderCode}</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="app-entry-actions">
+            <button
+              type="button"
+              class="app-copy-code-btn"
+              title="Copier le code Downloader"
+              onclick="copyAppDownloaderCode('${app.name.replace(/'/g, "\\'")}', '${app.downloaderCode}')"
+            >
+              <i class="fa-regular fa-copy"></i>
+              <span>Code</span>
+            </button>
+            <button
+              type="button"
+              class="app-download-btn"
+              onclick="triggerAppDownload('${app.name.replace(/'/g, "\\'")}', '${app.downloaderCode}', '${app.downloadUrl.replace(/'/g, "\\'")}')"
+            >
+              <i class="fa-solid fa-cloud-arrow-down"></i>
+              <span>تحميل • Download</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
     function buildWhatsAppUrl(phoneDigits, messageText) {
       const cleanDigits = normalizeWhatsAppNumber(phoneDigits || WHATSAPP_ORDER_NUMBER);
       const encoded = encodeURIComponent(messageText || '');
@@ -4174,7 +4572,6 @@
     let isLedgerVisible = false;
     let pendingProductImageData = '';
 
-    /* ==================== LUXURY ROTATING PRODUCT CARD ENGINE ==================== */
     const ROTATING_DURATION_MS = 3800;
     const ROTATING_FADE_MS = 480;
     let rotatingProductIndex = 0;
@@ -4645,6 +5042,7 @@
 
       if (storeView && !isClientStoreVisible) {
         isInStoreViewNow = false;
+        closeStoreAppsDropdown();
         storeView.classList.add('hidden');
         document.getElementById('admin-view').classList.remove('hidden');
         document.getElementById('btn-admin-mode').classList.add('active');
@@ -5133,24 +5531,27 @@
       if (expVal) clientLinkConfig.expiryDate = expVal;
       localStorage.setItem('fl_fr_v7_client_link_cfg', JSON.stringify(clientLinkConfig));
 
-      const url = buildClientStoreUrl(clientLinkConfig.storeName, expVal || clientLinkConfig.expiryDate, nameVal, phoneVal);
-      const expInfo = computeExpiryInfo(expVal || clientLinkConfig.expiryDate);
+      const url = buildClientStoreUrl(clientLinkConfig.storeName || 'DG-VIP', expVal || clientLinkConfig.expiryDate, nameVal, phoneVal);
+      document.getElementById('inline-generated-access-url').textContent = url;
 
-      document.getElementById('inline-generated-access-url').innerText = url;
-      const badge = document.getElementById('inline-access-status-badge');
-      badge.innerText = expInfo.isExpired ? 'EXPIRÉ' : `EXP: ${expInfo.formatted}`;
-      badge.style.color = expInfo.isExpired ? 'var(--ruby)' : 'var(--neon-green)';
+      const statusBadge = document.getElementById('inline-access-status-badge');
+      if (expVal) {
+        const info = computeExpiryInfo(expVal);
+        statusBadge.textContent = info.isExpired ? 'EXPIRÉ' : `VALIDE (${info.remainingText})`;
+      } else {
+        statusBadge.textContent = 'PRÊT';
+      }
     }
 
     function copyInlineClientAccessLink() {
       if (!hasAdminLinkGeneratorAccess) return;
       updateInlineClientAccessPreview();
-      const url = document.getElementById('inline-generated-access-url').innerText.trim();
-      const fb = document.getElementById('inline-access-feedback');
+      const url = document.getElementById('inline-generated-access-url').textContent;
+      if (!url) return;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).catch(() => {});
       }
-      fb.innerText = 'Lien client copié !';
+      document.getElementById('inline-access-feedback').textContent = 'Lien client crypté copié dans le presse-papiers.';
     }
 
     function sendInlineClientAccessWhatsApp() {
@@ -5158,683 +5559,375 @@
       updateInlineClientAccessPreview();
       const nameVal = document.getElementById('inline-access-client-name').value.trim();
       const phoneVal = document.getElementById('inline-access-client-phone').value.trim();
-      const expVal = document.getElementById('inline-access-expiry-date').value.trim() || clientLinkConfig.expiryDate;
-      const fb = document.getElementById('inline-access-feedback');
-
-      const targetPhone = normalizeWhatsAppNumber(phoneVal) || WHATSAPP_ORDER_NUMBER;
-      const url = buildClientStoreUrl(clientLinkConfig.storeName, expVal, nameVal, phoneVal);
+      const expVal = document.getElementById('inline-access-expiry-date').value.trim();
+      const url = document.getElementById('inline-generated-access-url').textContent;
       const expInfo = computeExpiryInfo(expVal);
 
-      if (nameVal || phoneVal) {
-        registerOrUpdateClientFromLink(nameVal || 'Client', phoneVal, expVal, clientLinkConfig.storeName);
-      }
-
-      const lines = [
-        `${BRAND_NAME} - Lien d'accès Client`,
-        nameVal ? `Client : ${nameVal}` : '',
-        phoneVal ? `Téléphone : ${phoneVal}` : '',
-        `Lien : ${url}`,
-        `Fin de validité : ${expInfo.formatted} (${expInfo.remainingText})`
-      ].filter(Boolean);
-
-      fb.innerText = targetPhone ? `Envoi du lien vers +${targetPhone}...` : 'Ouverture de WhatsApp...';
-      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
+      const greeting = nameVal ? `Bonjour ${nameVal}, ` : 'Bonjour, ';
+      const expLine = expVal ? `\nFin de validité : ${expInfo.formatted}` : '';
+      const msg = `${greeting}voici votre lien d'accès sécurisé ${BRAND_NAME} :${expLine}\n${url}`;
+      const digits = normalizeWhatsAppNumber(phoneVal);
+      window.open(buildWhatsAppUrl(digits, msg), '_blank', 'noopener,noreferrer');
+      document.getElementById('inline-access-feedback').textContent = digits
+        ? `Ouverture WhatsApp vers +${digits}...`
+        : 'Ouverture WhatsApp...';
     }
 
-    function openClientLuxuryLinkModal(presetClient = null) {
+    function openClientLuxuryLinkModal() {
       if (!hasAdminLinkGeneratorAccess) return;
-      if (presetClient) {
-        if (!clientLinkConfig.subscriberName && presetClient.name) {
-          clientLinkConfig.subscriberName = presetClient.name;
-        }
-        if (!clientLinkConfig.phone && presetClient.phone) {
-          clientLinkConfig.phone = presetClient.phone;
-        }
-      }
       document.getElementById('lux-client-store-name').value = clientLinkConfig.storeName || 'DG-VIP';
       document.getElementById('lux-link-expiry-date').value = clientLinkConfig.expiryDate || '';
       document.getElementById('lux-subscriber-name').value = clientLinkConfig.subscriberName || '';
       document.getElementById('lux-subscriber-phone').value = clientLinkConfig.phone || '';
       document.getElementById('lux-client-whatsapp-direct').value = clientLinkConfig.phone || '';
-      document.getElementById('lux-link-feedback').innerText = '';
+      document.getElementById('lux-link-feedback').textContent = '';
       updateClientLuxuryLink();
       document.getElementById('client-link-luxury-modal').classList.add('open');
     }
 
     function syncWhatsAppFromDirect(val) {
-      const subInput = document.getElementById('lux-subscriber-phone');
-      if (subInput && subInput.value !== val) {
-        subInput.value = val;
-      }
+      const subPhoneEl = document.getElementById('lux-subscriber-phone');
+      if (subPhoneEl) subPhoneEl.value = val;
       updateClientLuxuryLink();
     }
 
     function updateClientLuxuryLink() {
       if (!hasAdminLinkGeneratorAccess) return;
-      const storeName = document.getElementById('lux-client-store-name').value.trim() || 'DG-VIP';
-      const expiryDate = document.getElementById('lux-link-expiry-date').value.trim();
+      const rawStore = document.getElementById('lux-client-store-name').value.trim() || 'DG-VIP';
+      const expiryDate = document.getElementById('lux-link-expiry-date').value;
       const subscriberName = document.getElementById('lux-subscriber-name').value.trim();
-      const phoneInput = document.getElementById('lux-subscriber-phone');
-      const directInput = document.getElementById('lux-client-whatsapp-direct');
-      const phone = (phoneInput ? phoneInput.value : '') || (directInput ? directInput.value : '');
+      const subPhoneEl = document.getElementById('lux-subscriber-phone');
+      const directWaEl = document.getElementById('lux-client-whatsapp-direct');
+      const phone = (subPhoneEl && subPhoneEl.value.trim()) || (directWaEl && directWaEl.value.trim()) || '';
 
-      if (directInput && directInput.value !== phone) {
-        directInput.value = phone;
+      if (subPhoneEl && directWaEl && subPhoneEl.value !== directWaEl.value) {
+        directWaEl.value = phone;
       }
 
-      clientLinkConfig = { storeName, expiryDate, subscriberName, phone: phone.trim() };
+      clientLinkConfig = {
+        storeName: rawStore,
+        expiryDate,
+        subscriberName,
+        phone
+      };
       localStorage.setItem('fl_fr_v7_client_link_cfg', JSON.stringify(clientLinkConfig));
 
-      const normalizedPhone = normalizeWhatsAppNumber(phone);
-      const waBadge = document.getElementById('lux-wa-formatted-badge');
-      if (waBadge) {
-        waBadge.innerText = normalizedPhone ? `+${normalizedPhone}` : 'Numéro requis';
-      }
-
-      const encryptedToken = encryptExpiryDate(expiryDate);
-      const slug = slugifyStoreName(storeName);
-      const url = buildClientStoreUrl(storeName, expiryDate, subscriberName, phone);
+      const slug = slugifyStoreName(rawStore);
+      const encToken = encryptExpiryDate(expiryDate);
+      const fullUrl = buildClientStoreUrl(rawStore, expiryDate, subscriberName, phone);
       const expInfo = computeExpiryInfo(expiryDate);
+      const waDigits = normalizeWhatsAppNumber(phone);
 
-      document.getElementById('lux-store-slug-badge').innerText = `ID: ${slug}`;
-      document.getElementById('lux-generated-client-url').innerText = url;
-      document.getElementById('lux-display-encrypted-token').innerText = encryptedToken || 'Aucun';
+      document.getElementById('lux-store-slug-badge').textContent = slug.toUpperCase();
+      document.getElementById('lux-generated-client-url').textContent = fullUrl;
+      document.getElementById('lux-display-encrypted-token').textContent = encToken || 'SANS DATE';
+      document.getElementById('lux-wa-formatted-badge').textContent = waDigits ? `+${waDigits}` : 'NON RENSEIGNÉ';
 
-      const expEl = document.getElementById('lux-display-expiry-status');
-      expEl.innerText = `${expInfo.formatted} (${expInfo.remainingText})`;
-      expEl.classList.toggle('expired', expInfo.isExpired);
+      const statusEl = document.getElementById('lux-display-expiry-status');
+      statusEl.textContent = expiryDate ? `${expInfo.formatted} (${expInfo.remainingText})` : 'Illimitée';
+      statusEl.classList.toggle('expired', Boolean(expInfo.isExpired));
 
       const openBtn = document.getElementById('lux-open-client-link-btn');
-      if (openBtn) openBtn.href = url;
+      if (openBtn) openBtn.href = fullUrl;
     }
 
     function copyClientLuxuryLink() {
       if (!hasAdminLinkGeneratorAccess) return;
-      const url = document.getElementById('lux-generated-client-url').innerText.trim();
-      const fb = document.getElementById('lux-link-feedback');
+      updateClientLuxuryLink();
+      const url = document.getElementById('lux-generated-client-url').textContent;
       if (!url) return;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).catch(() => {});
       }
-      fb.innerText = 'Lien client copié avec succès !';
+      document.getElementById('lux-link-feedback').textContent = 'Lien client crypté copié.';
     }
 
     function shareClientLuxuryLinkWhatsApp() {
       if (!hasAdminLinkGeneratorAccess) return;
-      const storeName = document.getElementById('lux-client-store-name').value.trim() || 'DG-VIP';
-      const expiryDate = document.getElementById('lux-link-expiry-date').value.trim();
-      const subscriberName = document.getElementById('lux-subscriber-name').value.trim();
-      const rawPhone = (document.getElementById('lux-client-whatsapp-direct').value || document.getElementById('lux-subscriber-phone').value || '').trim();
-      const fb = document.getElementById('lux-link-feedback');
-      const targetPhone = normalizeWhatsAppNumber(rawPhone) || WHATSAPP_ORDER_NUMBER;
-
-      const url = buildClientStoreUrl(storeName, expiryDate, subscriberName, rawPhone);
+      updateClientLuxuryLink();
+      const name = document.getElementById('lux-subscriber-name').value.trim();
+      const directInput = document.getElementById('lux-client-whatsapp-direct').value.trim();
+      const subInput = document.getElementById('lux-subscriber-phone').value.trim();
+      const phoneRaw = directInput || subInput || '';
+      const expiryDate = document.getElementById('lux-link-expiry-date').value;
+      const url = document.getElementById('lux-generated-client-url').textContent;
       const expInfo = computeExpiryInfo(expiryDate);
+      const waDigits = normalizeWhatsAppNumber(phoneRaw);
 
-      if (subscriberName || rawPhone) {
-        registerOrUpdateClientFromLink(subscriberName || 'Client', rawPhone, expiryDate, storeName);
+      if (!waDigits) {
+        document.getElementById('lux-link-feedback').textContent = 'Veuillez saisir le numéro WhatsApp du client.';
+        return;
       }
 
-      const lines = [
-        `${BRAND_NAME}`,
-        subscriberName ? `Client : ${subscriberName}` : '',
-        rawPhone ? `Téléphone : ${rawPhone}` : '',
-        `Lien : ${url}`,
-        `Fin de validité : ${expInfo.formatted} (${expInfo.remainingText})`
-      ].filter(Boolean);
-
-      if (fb) fb.innerText = targetPhone ? `Envoi direct vers +${targetPhone}...` : 'Ouverture de WhatsApp...';
-      window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
+      const hello = name ? `Bonjour ${name}, ` : 'Bonjour, ';
+      const validityLine = expiryDate ? `\nFin de validité : ${expInfo.formatted} (${expInfo.remainingText})` : '';
+      const msg = `${hello}voici votre lien d'accès client ${BRAND_NAME} :${validityLine}\n${url}`;
+      window.open(buildWhatsAppUrl(waDigits, msg), '_blank', 'noopener,noreferrer');
+      document.getElementById('lux-link-feedback').textContent = `Lien envoyé via WhatsApp vers +${waDigits}.`;
     }
 
-    function drawRoundRect(ctx, x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.arcTo(x + w, y, x + w, y + h, r);
-      ctx.arcTo(x + w, y + h, x, y + h, r);
-      ctx.arcTo(x, y + h, x, y, r);
-      ctx.arcTo(x, y, x + w, y, r);
-      ctx.closePath();
-    }
+    let selectedQuickProduct = null;
+    let isProductDropdownOpen = false;
 
-    function getTechFields(cl) {
-      const tech = cl.tech || {};
-      const host = tech.host || '';
-      const username = tech.username || '';
-      const password = tech.password || '';
-      const mac = tech.mac || '';
-      const app = tech.app && tech.app !== 'None' ? tech.app : '';
-      const duration = tech.duration || '';
-      const expiry = tech.expiry || '';
-      const startDate = tech.startDate || '';
-      return { host, username, password, mac, app, duration, expiry, startDate };
-    }
+    const CURRENCY_META = {
+      MAD: { symbol: 'DH', label: 'MAD' },
+      EUR: { symbol: '€', label: 'EUR' },
+      USD: { symbol: '$', label: 'USD' },
+      CFA: { symbol: 'FCFA', label: 'CFA' }
+    };
 
-    function hasAnyTechField(tech) {
-      return Boolean(tech.host || tech.username || tech.password || tech.mac || tech.app || tech.duration || tech.expiry);
-    }
-
-    function renderInvoiceToCanvas(cl) {
-      const rem = Math.max(0, cl.total - cl.paid);
-      const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
-      const tech = getTechFields(cl);
-      const showTech = hasAnyTechField(tech);
-      const hasMac = Boolean(tech.mac);
-
-      const frameW = 420;
-      const frameH = 780;
-
-      const cardW = 338;
-      const macBannerHeight = hasMac ? 32 : 0;
-      const techCells = [];
-      if (tech.host) techCells.push(['HOST', tech.host]);
-      if (tech.username) techCells.push(['USERNAME', tech.username]);
-      if (tech.password) techCells.push(['PASSWORD', tech.password]);
-      if (tech.app) techCells.push(['APPLICATION', tech.app]);
-      if (tech.duration || tech.expiry) {
-        techCells.push(['DURÉE / VALIDITÉ', [tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')]);
+    function encodeLuxuryProducts(list) {
+      const jsonStr = JSON.stringify(list);
+      const bytes = new TextEncoder().encode(jsonStr);
+      let xored = '';
+      for (let i = 0; i < bytes.length; i++) {
+        const k = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        xored += String.fromCharCode(bytes[i] ^ k);
       }
-      const techRowsCount = Math.ceil(techCells.length / 2);
-      const techBoxHeight = showTech ? (30 + macBannerHeight + techRowsCount * 30) : 0;
-      const itemRowHeight = 26;
-      const cardH = 258 + techBoxHeight + items.length * itemRowHeight;
-
-      const cardX = Math.round((frameW - cardW) / 2);
-      const cardY = Math.round((frameH - cardH) / 2);
-
-      const scale = 2;
-      const canvas = document.createElement('canvas');
-      canvas.width = frameW * scale;
-      canvas.height = frameH * scale;
-      const ctx = canvas.getContext('2d');
-      ctx.scale(scale, scale);
-
-      const outerGrad = ctx.createRadialGradient(frameW * 0.5, frameH * 0.45, 30, frameW * 0.5, frameH * 0.5, frameH * 0.72);
-      outerGrad.addColorStop(0, '#121218');
-      outerGrad.addColorStop(0.6, '#09090d');
-      outerGrad.addColorStop(1, '#040406');
-      ctx.fillStyle = outerGrad;
-      ctx.fillRect(0, 0, frameW, frameH);
-
-      const glowGrad = ctx.createRadialGradient(frameW * 0.5, frameH * 0.5, 20, frameW * 0.5, frameH * 0.5, 240);
-      glowGrad.addColorStop(0, 'rgba(212, 175, 55, 0.14)');
-      glowGrad.addColorStop(1, 'rgba(212, 175, 55, 0)');
-      ctx.fillStyle = glowGrad;
-      ctx.fillRect(0, 0, frameW, frameH);
-
-      const bgGrad = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
-      bgGrad.addColorStop(0, '#f8fafc');
-      bgGrad.addColorStop(0.55, '#ffffff');
-      bgGrad.addColorStop(1, '#fef9e7');
-      drawRoundRect(ctx, cardX, cardY, cardW, cardH, 16);
-      ctx.fillStyle = bgGrad;
-      ctx.fill();
-      ctx.lineWidth = 1.2;
-      ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
-      ctx.stroke();
-
-      drawRoundRect(ctx, cardX + 12, cardY + 13, cardW - 24, 38, 8);
-      ctx.fillStyle = '#f8fafc';
-      ctx.fill();
-
-      const goldGrad = ctx.createLinearGradient(cardX + 18, cardY + 17, cardX + 150, cardY + 45);
-      goldGrad.addColorStop(0, '#9c7812');
-      goldGrad.addColorStop(0.5, '#d4af37');
-      goldGrad.addColorStop(1, '#785b0a');
-
-      ctx.fillStyle = goldGrad;
-      ctx.font = '800 10.5px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(BRAND_NAME, cardX + 18, cardY + 29);
-
-      ctx.fillStyle = '#64748b';
-      ctx.font = '600 8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(`Reçu N° ${cl.id}`, cardX + 18, cardY + 42);
-
-      drawRoundRect(ctx, cardX + cardW - 76, cardY + 21, 58, 20, 10);
-      ctx.fillStyle = rem === 0 ? 'rgba(5, 150, 105, 0.14)' : 'rgba(212, 175, 55, 0.18)';
-      ctx.fill();
-
-      ctx.fillStyle = rem === 0 ? '#059669' : '#9c7812';
-      ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(statusLabel, cardX + cardW - 47, cardY + 34);
-      ctx.textAlign = 'left';
-
-      let y = cardY + 60;
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 34, 8);
-      ctx.fillStyle = '#f8fafc';
-      ctx.fill();
-
-      ctx.fillStyle = '#0f172a';
-      ctx.font = '700 9px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(`Client : ${cl.name}`, cardX + 18, y + 14);
-      ctx.fillStyle = '#475569';
-      ctx.font = '600 8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(`Date : ${cl.date}`, cardX + cardW - 96, y + 14);
-      if (cl.phone) {
-        ctx.fillText(`Tél : ${cl.phone}`, cardX + 18, y + 27);
-      }
-      y += 42;
-
-      if (showTech) {
-        drawRoundRect(ctx, cardX + 12, y, cardW - 24, techBoxHeight, 8);
-        ctx.fillStyle = '#f8fafc';
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
-        ctx.stroke();
-
-        ctx.fillStyle = '#9c7812';
-        ctx.font = '800 8px "Plus Jakarta Sans", sans-serif';
-        ctx.fillText('IDENTIFIANTS & ACCÈS', cardX + 18, y + 14);
-
-        let curTy = y + 20;
-        if (hasMac) {
-          drawRoundRect(ctx, cardX + 18, curTy, cardW - 36, 24, 6);
-          ctx.fillStyle = '#fef3c7';
-          ctx.fill();
-          ctx.strokeStyle = 'rgba(212, 175, 55, 0.75)';
-          ctx.stroke();
-
-          ctx.fillStyle = '#9c7812';
-          ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
-          ctx.fillText('MAC', cardX + 24, curTy + 15);
-
-          ctx.fillStyle = '#451a03';
-          ctx.font = '800 8.5px "Plus Jakarta Sans", sans-serif';
-          ctx.textAlign = 'right';
-          ctx.fillText(tech.mac, cardX + cardW - 24, curTy + 15);
-          ctx.textAlign = 'left';
-          curTy += 30;
-        }
-
-        const halfW = Math.floor((cardW - 42) / 2);
-        for (let i = 0; i < techCells.length; i++) {
-          const col = i % 2;
-          const row = Math.floor(i / 2);
-          const cx = cardX + 18 + col * (halfW + 6);
-          const cy = curTy + row * 30;
-          drawRoundRect(ctx, cx, cy, halfW, 25, 5);
-          ctx.fillStyle = '#ffffff';
-          ctx.fill();
-          ctx.strokeStyle = 'rgba(203, 213, 225, 0.6)';
-          ctx.stroke();
-
-          ctx.fillStyle = '#64748b';
-          ctx.font = '700 6.5px "Plus Jakarta Sans", sans-serif';
-          ctx.fillText(techCells[i][0], cx + 6, cy + 9);
-
-          ctx.fillStyle = '#0f172a';
-          ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
-          const valStr = String(techCells[i][1]);
-          ctx.fillText(valStr.length > 22 ? valStr.slice(0, 21) + '…' : valStr, cx + 6, cy + 20);
-        }
-        y += techBoxHeight + 8;
-      }
-
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 22, 6);
-      ctx.fillStyle = 'rgba(212, 175, 55, 0.14)';
-      ctx.fill();
-      ctx.fillStyle = '#785b0a';
-      ctx.font = '800 8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Désignation', cardX + 18, y + 14);
-      ctx.textAlign = 'center';
-      ctx.fillText('Qté', cardX + cardW - 102, y + 14);
-      ctx.textAlign = 'right';
-      ctx.fillText('Total', cardX + cardW - 18, y + 14);
-      ctx.textAlign = 'left';
-      y += 24;
-
-      items.forEach((it) => {
-        const lineTot = (it.qty || 1) * (it.price || 0);
-        ctx.fillStyle = '#1e293b';
-        ctx.font = '600 8.5px "Plus Jakarta Sans", sans-serif';
-        const titleStr = String(it.name || '');
-        ctx.fillText(titleStr.length > 26 ? titleStr.slice(0, 25) + '…' : titleStr, cardX + 18, y + 16);
-        ctx.textAlign = 'center';
-        ctx.fillText(String(it.qty || 1), cardX + cardW - 102, y + 16);
-        ctx.textAlign = 'right';
-        ctx.fillText(`${lineTot} DH`, cardX + cardW - 18, y + 16);
-        ctx.textAlign = 'left';
-
-        ctx.fillStyle = '#e2e8f0';
-        ctx.fillRect(cardX + 14, y + 23, cardW - 28, 1);
-        y += itemRowHeight;
-      });
-
-      y += 8;
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 62, 8);
-      ctx.fillStyle = '#f8fafc';
-      ctx.fill();
-
-      ctx.fillStyle = '#334155';
-      ctx.font = '700 8.5px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Total à payer :', cardX + 18, y + 16);
-      ctx.textAlign = 'right';
-      ctx.fillText(`${cl.total} DH`, cardX + cardW - 18, y + 16);
-      ctx.textAlign = 'left';
-
-      ctx.fillStyle = '#059669';
-      ctx.fillText('Montant payé :', cardX + 18, y + 32);
-      ctx.textAlign = 'right';
-      ctx.fillText(`${cl.paid} DH`, cardX + cardW - 18, y + 32);
-      ctx.textAlign = 'left';
-
-      ctx.fillStyle = rem > 0 ? '#dc2626' : '#059669';
-      ctx.font = '800 9px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Reste à payer :', cardX + 18, y + 50);
-      ctx.textAlign = 'right';
-      ctx.fillText(`${rem} DH`, cardX + cardW - 18, y + 50);
-      ctx.textAlign = 'left';
-
-      ctx.fillStyle = '#64748b';
-      ctx.font = '600 7.5px "Plus Jakarta Sans", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(`Merci pour votre confiance • ${BRAND_NAME}`, frameW / 2, cardY + cardH - 10);
-      ctx.textAlign = 'left';
-
-      return canvas;
+      return 'FLX1:' + btoa(xored);
     }
 
-    function buildWhatsAppReceiptText(cl) {
-      const rem = Math.max(0, cl.total - cl.paid);
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
-      const tech = getTechFields(cl);
-
-      const lines = [
-        `*${BRAND_NAME}*`,
-        `Reçu N° : *${cl.id}*`,
-        `Date : ${cl.date}`,
-        `Client : *${cl.name}*`
-      ];
-      if (cl.phone) lines.push(`Téléphone : ${cl.phone}`);
-
-      if (tech.mac) lines.push(`MAC : *${tech.mac}*`);
-      if (tech.app) lines.push(`Application : ${tech.app}`);
-      if (tech.host) lines.push(`Host : ${tech.host}`);
-      if (tech.username) lines.push(`Username : ${tech.username}`);
-      if (tech.password) lines.push(`Password : ${tech.password}`);
-      if (tech.duration || tech.expiry) {
-        lines.push(`Validité : ${[tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')}`);
+    function decodeLuxuryProducts(encodedText) {
+      const trimmed = (encodedText || '').trim();
+      if (!trimmed) throw new Error('Champ vide');
+      if (trimmed.startsWith('[')) {
+        const parsed = JSON.parse(trimmed);
+        if (!Array.isArray(parsed)) throw new Error('Format JSON invalide');
+        return parsed;
       }
-
-      lines.push('', '*Détails :*');
-      items.forEach(it => {
-        const q = it.qty || 1;
-        const p = it.price || 0;
-        lines.push(`• ${it.name} (x${q}) : ${q * p} DH`);
-      });
-
-      lines.push(
-        '',
-        `Total : *${cl.total} DH*`,
-        `Payé : *${cl.paid} DH*`,
-        `Reste à payer : *${rem} DH*`,
-        '',
-        `Merci pour votre confiance • ${BRAND_NAME}`
-      );
-      return lines.join('\n');
+      if (!trimmed.startsWith('FLX1:')) {
+        throw new Error('Préfixe FLX1: manquant');
+      }
+      const b64 = trimmed.slice(5);
+      const xored = atob(b64);
+      const bytes = new Uint8Array(xored.length);
+      for (let i = 0; i < xored.length; i++) {
+        const k = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        bytes[i] = xored.charCodeAt(i) ^ k;
+      }
+      const jsonStr = new TextDecoder().decode(bytes);
+      const parsed = JSON.parse(jsonStr);
+      if (!Array.isArray(parsed)) throw new Error('Données décodées invalides');
+      return parsed;
     }
 
-    async function saveInvoicePngToDevice(cl) {
-      const fb = document.getElementById('wa-export-feedback');
-      try {
-        const canvas = renderInvoiceToCanvas(cl);
-        const fileName = `Recu-${cl.id}-${String(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
-        const dataUrl = canvas.toDataURL('image/png');
-
-        const link = document.createElement('a');
-        link.download = fileName;
-        link.href = dataUrl;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        if (fb) {
-          fb.style.color = '#059669';
-          fb.innerText = `Facture enregistrée : ${fileName}`;
-        }
-      } catch (_) {
-        if (fb) {
-          fb.style.color = '#dc2626';
-          fb.innerText = 'Erreur lors de l\'enregistrement de la facture.';
-        }
-      }
-    }
-
-    async function sendInvoiceToWhatsApp(cl) {
-      const fb = document.getElementById('wa-export-feedback');
-      const textMsg = buildWhatsAppReceiptText(cl);
-      const targetPhone = normalizeWhatsAppNumber(cl.phone) || WHATSAPP_ORDER_NUMBER;
-
-      try {
-        const canvas = renderInvoiceToCanvas(cl);
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        const fileName = `Recu-${cl.id}.png`;
-
-        if (blob && navigator.canShare) {
-          const file = new File([blob], fileName, { type: 'image/png' });
-          if (navigator.canShare({ files: [file] }) && navigator.share) {
-            await navigator.share({
-              title: `Reçu ${cl.id} - ${BRAND_NAME}`,
-              text: textMsg,
-              files: [file]
-            });
-            if (fb) {
-              fb.style.color = '#059669';
-              fb.innerText = 'Facture partagée avec succès.';
-            }
-            return;
-          }
-        }
-      } catch (err) {
-        if (err && err.name === 'AbortError') return;
-      }
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textMsg).catch(() => {});
-      }
-
-      if (fb) {
-        fb.style.color = '#059669';
-        fb.innerText = targetPhone ? `Ouverture de WhatsApp (+${targetPhone})...` : 'Ouverture de WhatsApp...';
-      }
-
-      window.open(buildWhatsAppUrl(targetPhone, textMsg), '_blank', 'noopener,noreferrer');
-    }
-
-    function xorCipher(str, key) {
-      let out = '';
-      for (let i = 0; i < str.length; i++) {
-        out += String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-      }
-      return out;
-    }
-
-    function encodeLuxuryVault(obj) {
-      const jsonStr = JSON.stringify(obj);
-      const utf8Bytes = encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-        String.fromCharCode(parseInt(p1, 16))
-      );
-      const ciphered = xorCipher(utf8Bytes, SECRET_CIPHER_KEY);
-      return 'FLX1:' + btoa(ciphered);
-    }
-
-    function decodeLuxuryVault(rawText) {
-      const trimmed = (rawText || '').trim();
-      if (!trimmed) throw new Error('Le champ est vide.');
-
-      if (trimmed.startsWith('FLX1:')) {
-        const b64 = trimmed.slice(5).trim();
-        const ciphered = atob(b64);
-        const utf8Bytes = xorCipher(ciphered, SECRET_CIPHER_KEY);
-        const jsonStr = decodeURIComponent(
-          utf8Bytes.split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
-        );
-        return JSON.parse(jsonStr);
-      }
-      return JSON.parse(trimmed);
-    }
-
-    function generateEncryptedProductsCode() {
-      const payload = {
-        v: 1,
-        brand: BRAND_NAME,
-        products: products
+    function normalizeImportedProduct(item, idx) {
+      const cleanName = String(item.name || item.title || '').trim() || `Produit ${idx + 1}`;
+      const cleanPrice = Number(item.price) || 0;
+      const cleanCat = String(item.cat || item.category || 'Catalogue').trim() || 'Catalogue';
+      const cleanImg = String(item.img || item.image || '').trim();
+      return {
+        id: Number(item.id) || (Date.now() + idx),
+        name: cleanName,
+        price: cleanPrice,
+        cat: cleanCat,
+        img: cleanImg
       };
-      const code = encodeLuxuryVault(payload);
-      const textarea = document.getElementById('encrypted-products-input');
-      textarea.value = code;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).catch(() => {});
-      }
-      const status = document.getElementById('vault-status-msg');
-      status.style.color = 'var(--emerald)';
-      status.innerText = 'Code crypté généré et copié !';
     }
 
     function applyEncryptedProductsCode() {
-      const raw = document.getElementById('encrypted-products-input').value;
-      const status = document.getElementById('vault-status-msg');
+      const inputEl = document.getElementById('encrypted-products-input');
+      const statusEl = document.getElementById('vault-status-msg');
       try {
-        const parsed = decodeLuxuryVault(raw);
-        const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
-        if (!list) throw new Error('Format invalide.');
-
-        products = list.map((item, idx) => ({
-          id: item.id || (Date.now() + idx),
-          name: String(item.name || 'Produit').trim(),
-          price: Math.max(0, Number(item.price) || 0),
-          cat: String(item.cat || 'Général').trim(),
-          img: String(item.img || '').trim()
-        }));
-
+        const decodedList = decodeLuxuryProducts(inputEl.value);
+        products = decodedList.map((item, idx) => normalizeImportedProduct(item, idx));
         saveProducts();
-        renderAll();
-        status.style.color = 'var(--emerald)';
-        status.innerText = `${products.length} produit(s) décodé(s) et appliqué(s) !`;
+        rotatingProductIndex = 0;
+        syncRotatingProductCardVisibility();
+        statusEl.className = 'vault-status green';
+        statusEl.textContent = `${products.length} produit(s) décodé(s) et synchronisé(s) avec succès.`;
       } catch (err) {
-        status.style.color = 'var(--ruby)';
-        status.innerText = 'Code invalide : ' + (err.message || 'Impossible de décoder.');
+        statusEl.className = 'vault-status red';
+        statusEl.textContent = `Erreur de décodage : ${err.message}`;
       }
+    }
+
+    function generateEncryptedProductsCode() {
+      const inputEl = document.getElementById('encrypted-products-input');
+      const statusEl = document.getElementById('vault-status-msg');
+      const cipherCode = encodeLuxuryProducts(products);
+      inputEl.value = cipherCode;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cipherCode).catch(() => {});
+      }
+      statusEl.className = 'vault-status gold';
+      statusEl.textContent = 'Code crypté FLX1 généré et copié.';
     }
 
     function clearVaultInput() {
       document.getElementById('encrypted-products-input').value = '';
-      document.getElementById('vault-status-msg').innerText = '';
+      const statusEl = document.getElementById('vault-status-msg');
+      statusEl.className = 'vault-status';
+      statusEl.textContent = '';
     }
 
-    function setTodayDefaults() {
-      const today = new Date().toISOString().slice(0, 10);
+    function handleProductImageFile(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const nameEl = document.getElementById('prod-img-filename');
+      const previewEl = document.getElementById('prod-img-preview');
+      if (nameEl) nameEl.textContent = file.name;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        pendingProductImageData = e.target.result || '';
+        if (previewEl && pendingProductImageData) {
+          previewEl.src = pendingProductImageData;
+          previewEl.classList.remove('hidden');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetProductImageUploader() {
+      pendingProductImageData = '';
+      const fileEl = document.getElementById('prod-img-file');
+      const nameEl = document.getElementById('prod-img-filename');
+      const previewEl = document.getElementById('prod-img-preview');
+      if (fileEl) fileEl.value = '';
+      if (nameEl) nameEl.textContent = 'Choisir une photo...';
+      if (previewEl) {
+        previewEl.src = '';
+        previewEl.classList.add('hidden');
+      }
+    }
+
+    function initDefaultDates() {
+      const todayStr = new Date().toISOString().slice(0, 10);
       const actStart = document.getElementById('act-start-date');
       const subStart = document.getElementById('sub-start-date');
-      if (actStart && !actStart.value) actStart.value = today;
-      if (subStart && !subStart.value) subStart.value = today;
+      if (actStart && !actStart.value) actStart.value = todayStr;
+      if (subStart && !subStart.value) subStart.value = todayStr;
       updateSubExpiry();
     }
 
+    function formatFrenchDate(dateObj) {
+      if (!(dateObj instanceof Date) || isNaN(dateObj.getTime())) return '';
+      const dd = String(dateObj.getDate()).padStart(2, '0');
+      const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const yyyy = dateObj.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
+
+    function addMonthsToDate(startStr, monthsToAdd) {
+      const base = startStr ? new Date(startStr + 'T00:00:00') : new Date();
+      if (isNaN(base.getTime())) return '';
+      const target = new Date(base.getFullYear(), base.getMonth() + monthsToAdd, base.getDate());
+      return formatFrenchDate(target);
+    }
+
+    function updateSubExpiry() {
+      const startStr = document.getElementById('sub-start-date').value;
+      const durText = document.getElementById('sub-duration').value;
+      const monthsMatch = durText.match(/(\d+)/);
+      const months = monthsMatch ? parseInt(monthsMatch[1], 10) : 1;
+      const expEl = document.getElementById('sub-expiry-display');
+      if (expEl) {
+        expEl.value = addMonthsToDate(startStr, months);
+      }
+    }
+
     function populateClientDropdowns() {
-      const optionsHtml = '<option value="">Sélectionner un client</option>' +
-        clients.map(c => `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`).join('');
       const actSel = document.getElementById('act-client-select');
       const subSel = document.getElementById('sub-client-select');
+      const optionsHtml = '<option value="">Sélectionner un client</option>' +
+        clients.map(c => `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`).join('');
       if (actSel) actSel.innerHTML = optionsHtml;
       if (subSel) subSel.innerHTML = optionsHtml;
     }
 
-    function fillClientFromSelect(selectId, nameInputId, waInputId) {
+    function fillClientFromSelect(selectId, nameInputId, phoneInputId) {
       const sel = document.getElementById(selectId);
       if (!sel || !sel.value) return;
-      const cl = clients.find(c => String(c.id) === String(sel.value));
-      if (!cl) return;
+      const found = clients.find(c => String(c.id) === String(sel.value));
+      if (!found) return;
       const nameEl = document.getElementById(nameInputId);
-      const waEl = document.getElementById(waInputId);
-      if (nameEl) nameEl.value = cl.name || '';
-      if (waEl && cl.phone) waEl.value = cl.phone;
+      const phoneEl = document.getElementById(phoneInputId);
+      if (nameEl) nameEl.value = found.name || '';
+      if (phoneEl) phoneEl.value = found.phone || '';
     }
 
     function openActivationModal() {
-      setTodayDefaults();
+      initDefaultDates();
       populateClientDropdowns();
       prepareActivationInvoice();
       document.getElementById('activation-modal').classList.add('open');
     }
 
     function openAbonnementModal() {
-      setTodayDefaults();
+      initDefaultDates();
       populateClientDropdowns();
       prepareAbonnementInvoice();
       document.getElementById('abonnement-modal').classList.add('open');
     }
 
-    function durationToMonths(durText) {
-      if (!durText) return 1;
-      if (durText.includes('12')) return 12;
-      if (durText.includes('6')) return 6;
-      if (durText.includes('3')) return 3;
-      return 1;
-    }
-
-    function updateSubExpiry() {
-      const startVal = document.getElementById('sub-start-date').value;
-      const durVal = document.getElementById('sub-duration').value;
-      const outEl = document.getElementById('sub-expiry-display');
-      if (!outEl) return;
-
-      const baseDate = startVal ? new Date(startVal + 'T00:00:00') : new Date();
-      if (isNaN(baseDate.getTime())) return;
-      const months = durationToMonths(durVal);
-      const expDate = new Date(baseDate.getFullYear(), baseDate.getMonth() + months, baseDate.getDate());
-      outEl.value = expDate.toLocaleDateString('fr-FR');
-    }
-
     function autoExtractXtreamFromM3U() {
-      const m3uRaw = (document.getElementById('sub-m3u-url').value || '').trim();
-      if (!m3uRaw) return;
+      const m3uInput = document.getElementById('sub-m3u-url').value.trim();
+      if (!m3uInput) return;
       try {
-        const normalized = m3uRaw.startsWith('http') ? m3uRaw : 'http://' + m3uRaw;
+        const normalized = m3uInput.replace(/^([a-zA-Z0-9+.-]+):\/\//, 'http://');
         const urlObj = new URL(normalized);
         const user = urlObj.searchParams.get('username') || urlObj.searchParams.get('user') || '';
         const pass = urlObj.searchParams.get('password') || urlObj.searchParams.get('pass') || '';
-        const hostVal = `${urlObj.protocol}//${urlObj.host}`;
+        const portPart = urlObj.port ? `:${urlObj.port}` : '';
+        const serverHost = `${urlObj.protocol}//${urlObj.hostname}${portPart}`;
 
-        if (hostVal && !document.getElementById('sub-server').value) {
-          document.getElementById('sub-server').value = hostVal;
+        if (serverHost && urlObj.hostname) {
+          document.getElementById('sub-server').value = serverHost;
         }
-        if (user && !document.getElementById('sub-username').value) {
-          document.getElementById('sub-username').value = user;
+        if (user) document.getElementById('sub-username').value = user;
+        if (pass) document.getElementById('sub-password').value = pass;
+
+        const expParam = urlObj.searchParams.get('exp_date') || urlObj.searchParams.get('expires') || '';
+        if (expParam) {
+          let expDateObj = null;
+          if (/^\d{10}$/.test(expParam)) {
+            expDateObj = new Date(parseInt(expParam, 10) * 1000);
+          } else if (/^\d{13}$/.test(expParam)) {
+            expDateObj = new Date(parseInt(expParam, 10));
+          } else {
+            const parsed = new Date(expParam);
+            if (!isNaN(parsed.getTime())) expDateObj = parsed;
+          }
+          if (expDateObj && !isNaN(expDateObj.getTime())) {
+            document.getElementById('sub-expiry-display').value = formatFrenchDate(expDateObj);
+          }
         }
-        if (pass && !document.getElementById('sub-password').value) {
-          document.getElementById('sub-password').value = pass;
-        }
-        updateSubExpiry();
-      } catch (_) {}
+      } catch (_) {
+        const userMatch = m3uInput.match(/[?&](?:username|user)=([^&\s]+)/i);
+        const passMatch = m3uInput.match(/[?&](?:password|pass)=([^&\s]+)/i);
+        const hostMatch = m3uInput.match(/^(https?:\/\/[^\/\s?]+)/i);
+        if (hostMatch) document.getElementById('sub-server').value = hostMatch[1];
+        if (userMatch) document.getElementById('sub-username').value = decodeURIComponent(userMatch[1]);
+        if (passMatch) document.getElementById('sub-password').value = decodeURIComponent(passMatch[1]);
+      }
     }
 
     function prepareActivationInvoice() {
       const previewEl = document.getElementById('act-live-invoice-preview');
       if (!previewEl) return;
-      const name = (document.getElementById('act-client-name').value || '').trim() || 'Client';
-      const mac = (document.getElementById('act-mac').value || '').trim();
+      const clientName = document.getElementById('act-client-name').value.trim() || 'Client';
+      const whatsapp = document.getElementById('act-whatsapp').value.trim() || '-';
+      const mac = document.getElementById('act-mac').value.trim() || '-';
       const app = document.getElementById('act-app').value;
-      const dur = document.getElementById('act-duration').value;
-      const price = Number(document.getElementById('act-price').value) || 0;
-      const paid = Number(document.getElementById('act-paid').value) || 0;
+      const duration = document.getElementById('act-duration').value;
+      const startDate = document.getElementById('act-start-date').value || new Date().toISOString().slice(0, 10);
+      const price = parseFloat(document.getElementById('act-price').value) || 0;
+      const paid = parseFloat(document.getElementById('act-paid').value) || 0;
       const rem = Math.max(0, price - paid);
 
-      const appLabel = app && app !== 'None' ? app : 'Playlist';
-      const macChip = mac ? `<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>` : '';
       previewEl.innerHTML = `
-        <div><strong>${name}</strong> • ${appLabel} (${dur})</div>
+        <div><strong>Client :</strong> ${clientName} • <strong>WhatsApp :</strong> ${whatsapp}</div>
         <div class="live-prep-cred-grid">
-          ${macChip}
-          <div class="live-prep-cred-chip"><strong>App:</strong> ${appLabel}</div>
-          <div class="live-prep-cred-chip"><strong>Durée:</strong> ${dur}</div>
+          <div class="live-prep-cred-chip mac-highlight"><strong>MAC :</strong> ${mac}</div>
+          <div class="live-prep-cred-chip"><strong>App :</strong> ${app}</div>
+          <div class="live-prep-cred-chip"><strong>Durée :</strong> ${duration}</div>
+          <div class="live-prep-cred-chip"><strong>Début :</strong> ${new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR')}</div>
         </div>
         <div class="live-prep-line">
-          <span>Total: <strong>${price} DH</strong></span>
-          <span style="color:#059669;">Payé: <strong>${paid} DH</strong></span>
-          <span style="color:#dc2626;">Reste: <strong>${rem} DH</strong></span>
+          <span><strong>Prix :</strong> ${price} DH</span>
+          <span><strong>Payé :</strong> <span class="ink-green">${paid} DH</span></span>
+          <span><strong>Reste :</strong> <span class="ink-red">${rem} DH</span></span>
         </div>
       `;
     }
@@ -5842,103 +5935,132 @@
     function prepareAbonnementInvoice() {
       const previewEl = document.getElementById('sub-live-invoice-preview');
       if (!previewEl) return;
-      const name = (document.getElementById('sub-client-name').value || '').trim() || 'Client';
+      const clientName = document.getElementById('sub-client-name').value.trim() || 'Client';
+      const whatsapp = document.getElementById('sub-whatsapp').value.trim() || '-';
       const app = document.getElementById('sub-app').value;
-      const mac = (document.getElementById('sub-mac').value || '').trim();
-      const host = (document.getElementById('sub-server').value || '').trim();
-      const user = (document.getElementById('sub-username').value || '').trim();
-      const pass = (document.getElementById('sub-password').value || '').trim();
-      const dur = document.getElementById('sub-duration').value;
-      const exp = document.getElementById('sub-expiry-display').value;
-      const price = Number(document.getElementById('sub-price').value) || 0;
-
-      const chips = [];
-      if (mac) chips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
-      if (host) chips.push(`<div class="live-prep-cred-chip"><strong>Host:</strong> ${host}</div>`);
-      if (user) chips.push(`<div class="live-prep-cred-chip"><strong>User:</strong> ${user}</div>`);
-      if (pass) chips.push(`<div class="live-prep-cred-chip"><strong>Pass:</strong> ${pass}</div>`);
-      if (app && app !== 'None') chips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
+      const mac = document.getElementById('sub-mac').value.trim() || '-';
+      const server = document.getElementById('sub-server').value.trim() || '-';
+      const username = document.getElementById('sub-username').value.trim() || '-';
+      const password = document.getElementById('sub-password').value.trim() || '-';
+      const duration = document.getElementById('sub-duration').value;
+      const expiry = document.getElementById('sub-expiry-display').value || '-';
+      const price = parseFloat(document.getElementById('sub-price').value) || 0;
 
       previewEl.innerHTML = `
-        <div><strong>${name}</strong> • Abonnement (${dur}${exp ? ' • Exp: ' + exp : ''})</div>
-        ${chips.length ? `<div class="live-prep-cred-grid">${chips.join('')}</div>` : ''}
+        <div><strong>Client :</strong> ${clientName} • <strong>WhatsApp :</strong> ${whatsapp}</div>
+        <div class="live-prep-cred-grid">
+          <div class="live-prep-cred-chip mac-highlight"><strong>MAC :</strong> ${mac}</div>
+          <div class="live-prep-cred-chip"><strong>Host :</strong> ${server}</div>
+          <div class="live-prep-cred-chip"><strong>User :</strong> ${username}</div>
+          <div class="live-prep-cred-chip"><strong>Pass :</strong> ${password}</div>
+          <div class="live-prep-cred-chip"><strong>App :</strong> ${app}</div>
+          <div class="live-prep-cred-chip"><strong>Durée :</strong> ${duration} • <strong>Exp :</strong> ${expiry}</div>
+        </div>
         <div class="live-prep-line">
-          <span>Total: <strong>${price} DH</strong></span>
-          <span style="color:#9c7812;">Format: <strong>Verre Blanc</strong></span>
+          <span><strong>Abonnement :</strong> ${app !== 'None' ? app : 'Xtream IPTV'} (${duration})</span>
+          <span><strong>Prix :</strong> <span class="ink-gold">${price} DH</span></span>
         </div>
       `;
     }
 
     function submitActivation() {
-      const name = (document.getElementById('act-client-name').value || '').trim();
-      if (!name) return alert('Veuillez saisir le nom du client');
-      const phone = (document.getElementById('act-whatsapp').value || '').trim();
-      const mac = (document.getElementById('act-mac').value || '').trim();
+      const name = document.getElementById('act-client-name').value.trim() || 'Client Activation';
+      const phone = document.getElementById('act-whatsapp').value.trim();
+      const mac = document.getElementById('act-mac').value.trim();
       const app = document.getElementById('act-app').value;
       const duration = document.getElementById('act-duration').value;
-      const startDate = document.getElementById('act-start-date').value;
-      const price = Math.max(0, Number(document.getElementById('act-price').value) || 0);
-      const paid = Math.max(0, Number(document.getElementById('act-paid').value) || 0);
-      const note = (document.getElementById('act-note').value || '').trim();
+      const startDate = document.getElementById('act-start-date').value || new Date().toISOString().slice(0, 10);
+      const price = parseFloat(document.getElementById('act-price').value) || 0;
+      const paid = parseFloat(document.getElementById('act-paid').value) || 0;
+      const note = document.getElementById('act-note').value.trim();
 
-      const appTitle = app && app !== 'None' ? app : 'Activation';
-      const label = note ? `${appTitle} (${duration}) - ${note}` : `${appTitle} (${duration})`;
-
-      const record = {
-        id: "ACT-" + Date.now().toString().slice(-6),
-        date: startDate ? new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR'),
-        name,
-        phone,
-        items: [{ name: label, qty: 1, price }],
-        total: price,
-        paid,
-        tech: { mac, app, duration, startDate, note }
+      const itemLabel = `Activation ${app !== 'None' ? app : 'Playlist'} (${duration})${mac ? ' [' + mac + ']' : ''}`;
+      const techInfo = {
+        type: 'ACTIVATION',
+        mac,
+        app,
+        duration,
+        startDate: new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR'),
+        note
       };
 
-      clients.unshift(record);
-      saveClients();
-      renderAll();
+      const clientObj = upsertClientRecord(name, phone, { name: itemLabel, qty: 1, price }, price, paid, techInfo);
       closeModal('activation-modal');
-      openInvoice(record.id);
+      openInvoice(clientObj.id, techInfo);
     }
 
     function submitAbonnement() {
-      const name = (document.getElementById('sub-client-name').value || '').trim();
-      if (!name) return alert('Veuillez saisir le nom du client');
+      autoExtractXtreamFromM3U();
+      const name = document.getElementById('sub-client-name').value.trim() || 'Client Abonnement';
       const app = document.getElementById('sub-app').value;
-      const mac = (document.getElementById('sub-mac').value || '').trim();
-      const host = (document.getElementById('sub-server').value || '').trim();
-      const phone = (document.getElementById('sub-whatsapp').value || '').trim();
-      const username = (document.getElementById('sub-username').value || '').trim();
-      const password = (document.getElementById('sub-password').value || '').trim();
+      const mac = document.getElementById('sub-mac').value.trim();
+      const server = document.getElementById('sub-server').value.trim();
+      const phone = document.getElementById('sub-whatsapp').value.trim();
+      const username = document.getElementById('sub-username').value.trim();
+      const password = document.getElementById('sub-password').value.trim();
       const duration = document.getElementById('sub-duration').value;
-      const startDate = document.getElementById('sub-start-date').value;
+      const startDate = document.getElementById('sub-start-date').value || new Date().toISOString().slice(0, 10);
       const expiry = document.getElementById('sub-expiry-display').value;
-      const price = Math.max(0, Number(document.getElementById('sub-price').value) || 0);
-      const note = (document.getElementById('sub-note').value || '').trim();
+      const price = parseFloat(document.getElementById('sub-price').value) || 0;
+      const note = document.getElementById('sub-note').value.trim();
+      const m3uUrl = document.getElementById('sub-m3u-url').value.trim();
 
-      const subLabel = `Abonnement (${duration}${expiry ? ' • Exp: ' + expiry : ''})`;
-      const record = {
-        id: "SUB-" + Date.now().toString().slice(-6),
-        date: startDate ? new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR'),
-        name,
-        phone,
-        items: [{ name: subLabel, qty: 1, price }],
-        total: price,
-        paid: price,
-        tech: { mac, app, host, username, password, duration, startDate, expiry, note }
+      const itemLabel = `Abonnement ${app !== 'None' ? app : 'Xtream'} (${duration})${username ? ' - ' + username : ''}`;
+      const techInfo = {
+        type: 'ABONNEMENT',
+        mac,
+        app,
+        server,
+        username,
+        password,
+        duration,
+        startDate: new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR'),
+        expiry,
+        note,
+        m3uUrl
       };
 
-      clients.unshift(record);
-      saveClients();
-      renderAll();
+      const clientObj = upsertClientRecord(name, phone, { name: itemLabel, qty: 1, price }, price, 0, techInfo);
       closeModal('abonnement-modal');
-      openInvoice(record.id);
+      openInvoice(clientObj.id, techInfo);
+    }
+
+    function upsertClientRecord(name, phone, newItem, addTotal, addPaid, techInfo) {
+      let existing = clients.find(c =>
+        c.name.toLowerCase() === name.toLowerCase() ||
+        (phone && c.phone && c.phone.trim() === phone.trim())
+      );
+
+      if (existing) {
+        existing.total += addTotal;
+        existing.paid += addPaid;
+        if (phone && !existing.phone) existing.phone = phone;
+        existing.items.push(newItem);
+        existing.tech = { ...(existing.tech || {}), ...techInfo };
+      } else {
+        existing = {
+          id: "CLI-" + Date.now().toString().slice(-6),
+          date: new Date().toLocaleDateString('fr-FR'),
+          name,
+          phone,
+          items: [newItem],
+          total: addTotal,
+          paid: addPaid,
+          tech: techInfo
+        };
+        clients.unshift(existing);
+      }
+
+      saveClients();
+      return existing;
     }
 
     function openFxModal() {
       const fromCur = document.getElementById('fx-from').value;
-      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromCur] || 1;
+      const rateInput = document.getElementById('fx-custom-rate');
+      if (rateInput) {
+        rateInput.value = (fxRatesToMad[fromCur] || 1).toFixed(4);
+      }
       calculateFx();
       document.getElementById('fx-modal').classList.add('open');
     }
@@ -5948,6 +6070,7 @@
       const val = parseFloat(document.getElementById('fx-custom-rate').value);
       if (!isNaN(val) && val > 0) {
         fxRatesToMad[fromCur] = val;
+        if (fromCur === 'MAD') fxRatesToMad.MAD = 1;
         localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
       }
       calculateFx();
@@ -5959,89 +6082,85 @@
       const tmp = fromEl.value;
       fromEl.value = toEl.value;
       toEl.value = tmp;
-      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromEl.value] || 1;
+      const rateInput = document.getElementById('fx-custom-rate');
+      if (rateInput) {
+        rateInput.value = (fxRatesToMad[fromEl.value] || 1).toFixed(4);
+      }
       calculateFx();
-    }
-
-    function formatCurrencySymbol(amount, cur) {
-      if (cur === 'MAD') return `${amount.toFixed(2)} DH`;
-      if (cur === 'EUR') return `${amount.toFixed(2)} €`;
-      if (cur === 'USD') return `$${amount.toFixed(2)}`;
-      if (cur === 'CFA') return `${amount.toFixed(0)} FCFA`;
-      return `${amount.toFixed(2)} ${cur}`;
     }
 
     function calculateFx() {
       const amount = parseFloat(document.getElementById('fx-amount').value) || 0;
       const fromCur = document.getElementById('fx-from').value;
       const toCur = document.getElementById('fx-to').value;
+      const rateInput = document.getElementById('fx-custom-rate');
 
-      const rateInputEl = document.getElementById('fx-custom-rate');
-      if (document.activeElement !== rateInputEl) {
-        rateInputEl.value = fxRatesToMad[fromCur] || 1;
+      const currentFromRate = fxRatesToMad[fromCur] || 1;
+      if (rateInput && document.activeElement !== rateInput) {
+        rateInput.value = currentFromRate.toFixed(4);
       }
 
-      const fromRateInMad = parseFloat(rateInputEl.value) > 0
-        ? parseFloat(rateInputEl.value)
-        : (fxRatesToMad[fromCur] || 1);
-      const toRateInMad = fxRatesToMad[toCur] || 1;
+      const toRate = fxRatesToMad[toCur] || 1;
+      const amountInMad = amount * currentFromRate;
+      const converted = amountInMad / toRate;
 
-      const inMad = amount * fromRateInMad;
-      const converted = inMad / toRateInMad;
+      const meta = CURRENCY_META[toCur] || { symbol: toCur };
+      const decimals = toCur === 'CFA' ? 0 : 2;
+      const formattedVal = converted.toLocaleString('fr-FR', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
 
-      document.getElementById('fx-output').innerText = formatCurrencySymbol(converted, toCur);
-      const crossRate = fromRateInMad / toRateInMad;
-      document.getElementById('fx-rate-info').innerText = `1 ${fromCur} ≈ ${crossRate.toFixed(4)} ${toCur}`;
+      document.getElementById('fx-output').textContent = `${formattedVal} ${meta.symbol}`;
+      const crossRate = currentFromRate / toRate;
+      document.getElementById('fx-rate-info').textContent =
+        `1 ${fromCur} = ${crossRate.toFixed(4)} ${toCur} (Base : 1 ${fromCur} = ${currentFromRate.toFixed(4)} MAD)`;
     }
 
     function switchMode(mode) {
+      closeStoreAppsDropdown();
+      const adminView = document.getElementById('admin-view');
+      const storeView = document.getElementById('store-view');
+      const btnAdmin = document.getElementById('btn-admin-mode');
+      const btnStore = document.getElementById('btn-store-mode');
+
       if (mode === 'store') {
         if (!isClientStoreVisible) {
-          mode = 'admin';
+          isInStoreViewNow = false;
+          adminView.classList.remove('hidden');
+          storeView.classList.add('hidden');
+          btnAdmin.classList.add('active');
+          btnStore.classList.remove('active');
+          enforceClientValidityAndBrand();
+          return;
         }
-      }
-
-      const isStore = (mode === 'store');
-      isInStoreViewNow = isStore;
-
-      document.getElementById('admin-view').classList.toggle('hidden', isStore);
-      document.getElementById('store-view').classList.toggle('hidden', !isStore);
-      document.getElementById('btn-admin-mode').classList.toggle('active', !isStore);
-      const storeBtn = document.getElementById('btn-store-mode');
-      if (storeBtn) storeBtn.classList.toggle('active', isStore);
-
-      if (isStore) {
+        isInStoreViewNow = true;
+        adminView.classList.add('hidden');
+        storeView.classList.remove('hidden');
+        btnAdmin.classList.remove('active');
+        btnStore.classList.add('active');
         updateStoreHeaderWithClientName();
         renderStoreProductsMarquee();
         renderStore();
+        enforceAdminHiddenSections();
       } else {
-        switchTab('ledger');
+        isInStoreViewNow = false;
+        adminView.classList.remove('hidden');
+        storeView.classList.add('hidden');
+        btnAdmin.classList.add('active');
+        btnStore.classList.remove('active');
+        enforceClientValidityAndBrand();
+        renderClients();
+        renderDashboardBoutique();
       }
-
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
     }
 
     function switchTab(tab) {
-      isInStoreViewNow = false;
-      document.getElementById('admin-view').classList.remove('hidden');
-      document.getElementById('store-view').classList.add('hidden');
-      document.getElementById('btn-admin-mode').classList.add('active');
-      const storeBtn = document.getElementById('btn-store-mode');
-      if (storeBtn) storeBtn.classList.remove('active');
-
       document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
       document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
       document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
-
-      if (tab === 'quick-invoice') {
-        renderProductSelectMenu();
-      }
-      if (tab === 'ledger') {
-        updateDirectionWelcomeShowcase();
-      }
-
-      enforceClientValidityAndBrand();
+      if (tab === 'products') renderAdminProducts();
+      if (tab === 'quick-invoice') renderProductDropdownMenu();
       enforceAdminHiddenSections();
     }
 
@@ -6053,26 +6172,13 @@
       document.getElementById(id).classList.remove('open');
     }
 
-    function saveClients() {
-      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-    }
-
-    function saveProducts() {
-      localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
-      renderStoreProductsMarquee();
-      if (Array.isArray(products) && products.length > 0) {
-        rotatingProductIndex = rotatingProductIndex % products.length;
-        applyRotatingProductContent(rotatingProductIndex);
-      }
-    }
-
     function addClient() {
       const name = document.getElementById('new-c-name').value.trim();
-      if (!name) return alert('Veuillez saisir le nom du client');
       const phone = document.getElementById('new-c-phone').value.trim();
-      const note = document.getElementById('new-c-note').value.trim() || 'Article / Service';
-      const total = Math.max(0, Number(document.getElementById('new-c-total').value) || 0);
-      const paid = Math.max(0, Number(document.getElementById('new-c-paid').value) || 0);
+      const note = document.getElementById('new-c-note').value.trim() || 'Compte client';
+      const total = parseFloat(document.getElementById('new-c-total').value) || 0;
+      const paid = parseFloat(document.getElementById('new-c-paid').value) || 0;
+      if (!name) return alert('Veuillez saisir le nom du client');
 
       clients.unshift({
         id: "CLI-" + Date.now().toString().slice(-6),
@@ -6084,170 +6190,253 @@
         paid
       });
 
-      ['new-c-name', 'new-c-phone', 'new-c-note', 'new-c-total', 'new-c-paid'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
-
       saveClients();
-      renderAll();
+      ['new-c-name', 'new-c-phone', 'new-c-note', 'new-c-total', 'new-c-paid'].forEach(id => document.getElementById(id).value = '');
       closeModal('add-client-modal');
     }
 
-    function openFinanceModal(clientId, type) {
-      const cl = clients.find(c => c.id === clientId);
-      if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
-      const isAdd = (type === 'add');
+    function openFinanceModal(clientId, mode) {
+      const c = clients.find(x => x.id === clientId);
+      if (!c) return;
+      const rem = Math.max(0, c.total - c.paid);
 
-      document.getElementById('fin-modal-title').innerHTML = isAdd
-        ? '<i class="fa-solid fa-plus-circle"></i> Ajouter un montant'
+      document.getElementById('fin-modal-title').innerHTML = mode === 'add'
+        ? '<i class="fa-solid fa-plus-circle"></i> Ajouter un montant au compte'
         : '<i class="fa-solid fa-hand-holding-dollar"></i> Enregistrer un paiement';
-      document.getElementById('fin-client-info').innerText = `${cl.name} • Reste actuel : ${rem} DH`;
-      document.getElementById('fin-amount').value = '';
-      document.getElementById('fin-note').value = isAdd ? 'Supplément' : 'Versement';
 
-      const confirmBtn = document.getElementById('fin-confirm-btn');
-      confirmBtn.onclick = () => {
-        const amt = Number(document.getElementById('fin-amount').value);
-        const note = document.getElementById('fin-note').value.trim() || (isAdd ? 'Supplément' : 'Versement');
-        if (!amt || amt <= 0) return alert('Veuillez saisir un montant valide');
+      document.getElementById('fin-client-info').textContent =
+        `${c.name} — Total : ${c.total} DH | Payé : ${c.paid} DH | Reste : ${rem} DH`;
 
-        if (isAdd) {
-          cl.total += amt;
-          cl.items.push({ name: note, qty: 1, price: amt });
+      document.getElementById('fin-amount').value = mode === 'pay' && rem > 0 ? rem : '';
+      document.getElementById('fin-note').value = '';
+
+      document.getElementById('fin-confirm-btn').onclick = () => {
+        const amt = parseFloat(document.getElementById('fin-amount').value) || 0;
+        const note = document.getElementById('fin-note').value.trim();
+        if (amt <= 0) return alert('Veuillez saisir un montant valide');
+
+        if (mode === 'add') {
+          c.total += amt;
+          c.items.push({ name: note || 'Ajout sur compte', qty: 1, price: amt });
         } else {
-          cl.paid = Math.min(cl.total, cl.paid + amt);
+          c.paid += amt;
         }
-
         saveClients();
-        renderAll();
         closeModal('finance-modal');
       };
 
       document.getElementById('finance-modal').classList.add('open');
     }
 
-    function deleteClient(clientId) {
-      if (!confirm('Supprimer ce client et son historique ?')) return;
-      clients = clients.filter(c => c.id !== clientId);
+    function deleteClient(id) {
+      if (!confirm('Supprimer ce client et son compte ?')) return;
+      clients = clients.filter(c => c.id !== id);
       saveClients();
-      renderAll();
-    }
-
-    function renderStats() {
-      const totalDue = clients.reduce((s, c) => s + c.total, 0);
-      const totalPaid = clients.reduce((s, c) => s + c.paid, 0);
-      const totalRem = clients.reduce((s, c) => s + Math.max(0, c.total - c.paid), 0);
-
-      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
-      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
-      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-      const ledgerBadge = document.getElementById('toggle-ledger-count');
-      if (ledgerBadge) ledgerBadge.innerText = clients.length;
     }
 
     function renderClients() {
-      const q = (document.getElementById('client-search').value || '').toLowerCase().trim();
-      const list = document.getElementById('clients-list');
+      const q = (document.getElementById('client-search')?.value || '').toLowerCase().trim();
+      const listEl = document.getElementById('clients-list');
+
+      let totalDue = 0, totalPaid = 0, totalRem = 0;
+      clients.forEach(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        totalDue += c.total;
+        totalPaid += c.paid;
+        totalRem += rem;
+      });
+
+      document.getElementById('stat-total-due').textContent = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').textContent = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').textContent = `${totalRem} DH`;
+      document.getElementById('stat-clients-count').textContent = clients.length;
+      document.getElementById('badge-clients').textContent = clients.length;
+      const toggleBadge = document.getElementById('toggle-ledger-count');
+      if (toggleBadge) toggleBadge.textContent = clients.length;
+
       const filtered = clients.filter(c =>
         c.name.toLowerCase().includes(q) || (c.phone || '').toLowerCase().includes(q)
       );
 
       if (!filtered.length) {
-        list.innerHTML = '<div class="empty-state">Aucun client enregistré pour le moment.</div>';
+        listEl.innerHTML = '<div class="empty-state">Aucun client trouvé.</div>';
         return;
       }
 
-      list.innerHTML = filtered.map(c => {
+      listEl.innerHTML = filtered.map(c => {
         const rem = Math.max(0, c.total - c.paid);
-        const tech = getTechFields(c);
-        const techBadges = [
-          tech.mac ? `<span style="color:var(--gold-primary);font-weight:700;">MAC: ${tech.mac}</span>` : '',
-          tech.app ? `<span>App: ${tech.app}</span>` : '',
-          tech.username ? `<span>User: ${tech.username}</span>` : '',
-          tech.expiry ? `<span style="color:var(--emerald);font-weight:700;">Exp: ${tech.expiry}</span>` : ''
-        ].filter(Boolean).join(' • ');
-
         return `
           <div class="client-card">
             <div class="client-top">
               <div>
-                <div style="font-weight:800;font-size:0.92rem;">${c.name}</div>
+                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
                 <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date} • ${c.id}</div>
-                ${techBadges ? `<div class="client-meta">${techBadges}</div>` : ''}
               </div>
-              <button class="btn btn-gold" onclick="openInvoice('${c.id}')"><i class="fa-solid fa-file-invoice"></i> Reçu</button>
+              <span class="btn ${rem === 0 ? 'btn-pay' : 'btn-danger'}" style="cursor:default;">
+                ${rem === 0 ? 'Soldé' : 'Reste : ' + rem + ' DH'}
+              </span>
             </div>
+
             <div class="finance-strip">
-              <div><div class="fin-box-label">Total</div><div class="fin-box-val gold">${c.total} DH</div></div>
-              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
-              <div><div class="fin-box-label">Reste</div><div class="fin-box-val red">${rem} DH</div></div>
+              <div>
+                <div class="fin-box-label">Total</div>
+                <div class="fin-box-val gold">${c.total} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Payé</div>
+                <div class="fin-box-val green">${c.paid} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Reste</div>
+                <div class="fin-box-val red">${rem} DH</div>
+              </div>
             </div>
+
             <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}','add')"><i class="fa-solid fa-plus"></i> Ajouter montant</button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}','pay')"><i class="fa-solid fa-check"></i> Payer</button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i> Supprimer</button>
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-coins"></i> Paiement</button>
+              <button class="btn btn-gold" onclick="openInvoice('${c.id}')"><i class="fa-solid fa-file-invoice"></i> Facture</button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         `;
       }).join('');
     }
 
-    function handleProductImageFile(event) {
-      const file = event.target.files && event.target.files[0];
-      const nameEl = document.getElementById('prod-img-filename');
-      const prevEl = document.getElementById('prod-img-preview');
-      if (!file) {
-        pendingProductImageData = '';
-        if (nameEl) nameEl.innerText = 'Choisir une photo...';
-        if (prevEl) prevEl.classList.add('hidden');
-        return;
-      }
-      if (nameEl) nameEl.innerText = file.name;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        pendingProductImageData = e.target.result || '';
-        if (prevEl && pendingProductImageData) {
-          prevEl.src = pendingProductImageData;
-          prevEl.classList.remove('hidden');
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-
     function addProduct() {
       const name = document.getElementById('prod-name').value.trim();
-      const price = Number(document.getElementById('prod-price').value);
-      const cat = document.getElementById('prod-cat').value.trim() || 'Général';
-      const img = pendingProductImageData.trim();
+      const price = parseFloat(document.getElementById('prod-price').value) || 0;
+      const cat = document.getElementById('prod-cat').value.trim() || 'Catalogue';
+      const img = pendingProductImageData || '';
+      if (!name) return alert('Veuillez saisir le nom du produit');
 
-      if (!name || price <= 0) return alert('Veuillez saisir un nom et un prix valides');
-
-      products.unshift({ id: Date.now(), name, price, cat, img });
-      document.getElementById('prod-name').value = '';
-      document.getElementById('prod-price').value = '';
-      document.getElementById('prod-cat').value = '';
-      const fileInput = document.getElementById('prod-img-file');
-      if (fileInput) fileInput.value = '';
-      const nameEl = document.getElementById('prod-img-filename');
-      if (nameEl) nameEl.innerText = 'Choisir une photo...';
-      const prevEl = document.getElementById('prod-img-preview');
-      if (prevEl) prevEl.classList.add('hidden');
-      pendingProductImageData = '';
-
+      products.push({ id: Date.now(), name, price, cat, img });
       saveProducts();
-      renderAll();
+      ['prod-name', 'prod-price', 'prod-cat'].forEach(id => document.getElementById(id).value = '');
+      resetProductImageUploader();
+      renderProductDropdownMenu();
     }
 
     function deleteProduct(id) {
       products = products.filter(p => p.id !== id);
       saveProducts();
-      renderAll();
+      renderProductDropdownMenu();
     }
 
-    function renderProductSelectMenu() {
+    function renderAdminProducts() {
+      const grid = document.getElementById('admin-products-list');
+      document.getElementById('badge-products').textContent = products.length;
+      if (!products.length) {
+        grid.innerHTML = '<div class="empty-state">Aucun produit ajouté pour le moment.</div>';
+        return;
+      }
+      grid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <span class="product-badge">${p.cat}</span>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">${p.price} DH</div>
+            <button class="btn btn-danger" style="margin-top:8px; width:100%;" onclick="deleteProduct(${p.id})">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderDashboardBoutique() {
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!grid) return;
+      renderDashboardClientHeading();
+      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase().trim();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+      );
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="empty-state">Aucun produit trouvé.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const clientName = getCurrentClientDisplayName();
+        const waText = encodeURIComponent(
+          `Bonjour ${BRAND_NAME}, je souhaite commander : ${p.name} (${p.price} DH)${clientName ? ' — Client : ' + clientName : ''}`
+        );
+        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, decodeURIComponent(waText));
+        return `
+          <div class="product-card">
+            <div class="product-media-frame">
+              ${p.img
+                ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+                : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+            </div>
+            <div class="product-body">
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Commander
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderStore() {
+      updateStoreHeaderWithClientName();
+      renderStoreProductsMarquee();
+      const q = (document.getElementById('store-search')?.value || '').toLowerCase().trim();
+      const grid = document.getElementById('store-products-grid');
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+      );
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="empty-state">Aucun produit disponible actuellement.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const clientName = getCurrentClientDisplayName();
+        const waText = encodeURIComponent(
+          `Bonjour ${BRAND_NAME}, je souhaite commander : ${p.name} (${p.price} DH)${clientName ? ' — Client : ' + clientName : ''}`
+        );
+        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, decodeURIComponent(waText));
+        return `
+          <div class="product-card">
+            <div class="product-media-frame">
+              ${p.img
+                ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+                : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+            </div>
+            <div class="product-body">
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Commander
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleProductDropdown(e) {
+      e.stopPropagation();
+      isProductDropdownOpen = !isProductDropdownOpen;
+      renderProductDropdownMenu();
+      document.getElementById('lux-product-menu').classList.toggle('hidden', !isProductDropdownOpen);
+    }
+
+    function renderProductDropdownMenu() {
       const menu = document.getElementById('lux-product-menu');
       if (!menu) return;
       if (!products.length) {
@@ -6255,283 +6444,351 @@
         return;
       }
       menu.innerHTML = products.map(p => `
-        <div class="lux-select-option" onclick="selectLuxuryProduct(${p.id}, event)">
+        <div class="lux-select-option" onclick="selectQuickProduct(${p.id}, event)">
           <span>${p.name}</span>
-          <span style="color:var(--gold-primary);">${p.price} DH</span>
+          <span style="color:var(--gold-primary); font-weight:800;">${p.price} DH</span>
         </div>
       `).join('');
     }
 
-    function toggleProductDropdown(e) {
-      e.stopPropagation();
-      renderProductSelectMenu();
-      document.getElementById('lux-product-menu').classList.toggle('hidden');
-    }
-
-    function selectLuxuryProduct(id, e) {
+    function selectQuickProduct(prodId, e) {
       if (e) e.stopPropagation();
-      const p = products.find(x => x.id === id);
+      const prod = products.find(p => p.id === prodId);
+      if (!prod) return;
+      selectedQuickProduct = prod;
+      document.getElementById('lux-selected-label').textContent = `${prod.name} — ${prod.price} DH`;
+      document.getElementById('inv-item').value = prod.name;
+      document.getElementById('inv-price').value = prod.price;
+      if (!document.getElementById('inv-qty').value) {
+        document.getElementById('inv-qty').value = 1;
+      }
+      updateQuickProductPreview(prod);
+      isProductDropdownOpen = false;
       document.getElementById('lux-product-menu').classList.add('hidden');
-      if (!p) return;
-      document.getElementById('lux-selected-label').innerText = `${p.name} (${p.price} DH)`;
-      document.getElementById('inv-item').value = p.name;
-      document.getElementById('inv-price').value = p.price;
-      if (!document.getElementById('inv-qty').value) document.getElementById('inv-qty').value = 1;
-      updateInvoiceProductPreview(p);
     }
 
-    function updateInvoiceProductPreview(prod) {
+    function updateQuickProductPreview(prod) {
       const thumb = document.getElementById('inv-prod-thumb');
       const title = document.getElementById('inv-preview-title');
       const price = document.getElementById('inv-preview-price');
       if (!prod) {
         thumb.innerHTML = '<i class="fa-solid fa-image"></i>';
-        title.innerText = '-';
-        price.innerText = '';
+        title.textContent = '-';
+        price.textContent = '';
         return;
       }
       thumb.innerHTML = prod.img
-        ? `<img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+        ? `<img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" alt="${prod.name}">`
         : '<i class="fa-solid fa-gem"></i>';
-      title.innerText = prod.name;
-      price.innerText = `${prod.price} DH`;
-    }
-
-    function renderProducts() {
-      document.getElementById('badge-products').innerText = products.length;
-      const adminGrid = document.getElementById('admin-products-list');
-
-      if (!products.length) {
-        adminGrid.innerHTML = '<div class="empty-state">Aucun produit ajouté pour le moment.</div>';
-        return;
-      }
-
-      adminGrid.innerHTML = products.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-          </div>
-          <div class="product-body">
-            <span class="product-badge">${p.cat}</span>
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-            <button class="btn btn-danger" style="margin-top:8px;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i></button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderStore() {
-      updateStoreHeaderWithClientName();
-      renderStoreProductsMarquee();
-      const q = (document.getElementById('store-search').value || '').toLowerCase().trim();
-      const grid = document.getElementById('store-products-grid');
-      const list = products.filter(p =>
-        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
-      );
-
-      if (!list.length) {
-        grid.innerHTML = '<div class="empty-state">Aucun produit trouvé.</div>';
-        return;
-      }
-
-      grid.innerHTML = list.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-          </div>
-          <div class="product-body">
-            <span class="product-badge">${p.cat}</span>
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderDashboardBoutique() {
-      renderDashboardClientHeading();
-      const searchEl = document.getElementById('dashboard-boutique-search');
-      const gridEl = document.getElementById('dashboard-boutique-grid');
-      if (!gridEl) return;
-
-      const q = ((searchEl && searchEl.value) || '').toLowerCase().trim();
-      const list = products.filter(p =>
-        p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q)
-      );
-
-      if (!list.length) {
-        gridEl.innerHTML = '<div class="empty-state">Aucun produit trouvé.</div>';
-        return;
-      }
-
-      gridEl.innerHTML = list.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-          </div>
-          <div class="product-body">
-            <span class="product-badge">${p.cat}</span>
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-          </div>
-        </div>
-      `).join('');
+      title.textContent = prod.name;
+      price.textContent = `${prod.price} DH • ${prod.cat}`;
     }
 
     function createQuickInvoice() {
       const clientName = document.getElementById('inv-client').value.trim() || 'Client comptoir';
       const phone = document.getElementById('inv-phone').value.trim();
-      const item = document.getElementById('inv-item').value.trim() || 'Article';
-      const qty = Math.max(1, Number(document.getElementById('inv-qty').value) || 1);
-      const price = Math.max(0, Number(document.getElementById('inv-price').value) || 0);
-      const total = qty * price;
-      const paid = Math.max(0, Number(document.getElementById('inv-paid').value) || 0);
+      const itemName = document.getElementById('inv-item').value.trim() || 'Article';
+      const qty = parseFloat(document.getElementById('inv-qty').value) || 1;
+      const unitPrice = parseFloat(document.getElementById('inv-price').value) || 0;
+      const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
+      const lineTotal = qty * unitPrice;
 
-      const newRecord = {
-        id: "FAC-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name: clientName,
-        phone,
-        items: [{ name: item, qty, price }],
-        total,
-        paid
-      };
-
-      clients.unshift(newRecord);
-      saveClients();
-      renderAll();
-      openInvoice(newRecord.id);
+      const clientObj = upsertClientRecord(clientName, phone, { name: itemName, qty, price: lineTotal }, lineTotal, paid, null);
+      openInvoice(clientObj.id, null);
     }
 
-    function openInvoice(clientId) {
-      const cl = clients.find(c => c.id === clientId);
-      if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
-      const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
-      const tech = getTechFields(cl);
-      const showTech = hasAnyTechField(tech);
+    function buildInvoiceWhatsAppMessage(c, techOverride) {
+      const rem = Math.max(0, c.total - c.paid);
+      const tech = techOverride || c.tech || null;
+      const lines = [
+        `*${BRAND_NAME} — REÇU CLIENT*`,
+        `N° : *${c.id}* | Date : ${c.date}`,
+        `Client : *${c.name}*${c.phone ? ' (' + c.phone + ')' : ''}`
+      ];
 
-      const techRows = [];
-      if (tech.host) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
-      if (tech.username) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
-      if (tech.password) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
-      if (tech.app) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
-      if (tech.duration || tech.expiry) {
-        techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' • ')}</span></div>`);
+      if (tech) {
+        const techParts = [];
+        if (tech.mac) techParts.push(`MAC : *${tech.mac}*`);
+        if (tech.app && tech.app !== 'None') techParts.push(`App : ${tech.app}`);
+        if (tech.server) techParts.push(`Host : ${tech.server}`);
+        if (tech.username) techParts.push(`User : ${tech.username}`);
+        if (tech.password) techParts.push(`Pass : ${tech.password}`);
+        if (tech.duration) techParts.push(`Durée : ${tech.duration}`);
+        if (tech.expiry) techParts.push(`Exp : ${tech.expiry}`);
+        if (techParts.length) {
+          lines.push(`--- Détails Activation / Abonnement ---`);
+          lines.push(techParts.join(' | '));
+        }
       }
 
-      const macHighlightHtml = tech.mac
-        ? `
-          <div class="inv-mac-banner">
-            <span class="inv-mac-badge">MAC ADDRESS</span>
-            <span class="inv-mac-value">${tech.mac}</span>
-          </div>
-        `
-        : '';
+      lines.push(`--- Articles ---`);
+      c.items.forEach(it => {
+        lines.push(`• ${it.name} (x${it.qty}) : ${it.price} DH`);
+      });
 
-      const techSectionHtml = showTech
-        ? `
+      lines.push(`------------------------`);
+      lines.push(`Total : *${c.total} DH*`);
+      lines.push(`Payé : *${c.paid} DH*`);
+      lines.push(`Reste : *${rem} DH*`);
+      return lines.join('\n');
+    }
+
+    function captureInvoicePngDataUrl() {
+      return new Promise((resolve) => {
+        const paperEl = document.getElementById('invoice-content');
+        if (!paperEl) return resolve(null);
+
+        const rect = paperEl.getBoundingClientRect();
+        const width = Math.max(280, Math.round(rect.width || 296));
+        const height = Math.max(220, Math.round(rect.height || 340));
+
+        const cloned = paperEl.cloneNode(true);
+        cloned.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+        cloned.style.width = `${width}px`;
+        cloned.style.margin = '0';
+        cloned.style.boxSizing = 'border-box';
+
+        const styleTags = Array.from(document.querySelectorAll('style'))
+          .map(s => `<style>${s.innerHTML}</style>`)
+          .join('');
+
+        const svgMarkup = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+            <foreignObject width="100%" height="100%">
+              <div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;background:#ffffff;">
+                ${styleTags}
+                ${cloned.outerHTML}
+              </div>
+            </foreignObject>
+          </svg>
+        `;
+
+        const svgBlob = new Blob([svgMarkup], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(svgBlob);
+        const img = new Image();
+        img.onload = function() {
+          try {
+            const scale = 2;
+            const canvas = document.createElement('canvas');
+            canvas.width = width * scale;
+            canvas.height = height * scale;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(scale, scale);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+            URL.revokeObjectURL(url);
+            resolve(canvas.toDataURL('image/png'));
+          } catch (_) {
+            URL.revokeObjectURL(url);
+            resolve(null);
+          }
+        };
+        img.onerror = function() {
+          URL.revokeObjectURL(url);
+          resolve(null);
+        };
+        img.src = url;
+      });
+    }
+
+    async function saveInvoiceAsPng(clientId) {
+      const feedbackEl = document.getElementById('wa-export-feedback');
+      if (feedbackEl) feedbackEl.textContent = 'Génération de l\'image PNG en cours...';
+
+      const pngDataUrl = await captureInvoicePngDataUrl();
+      if (!pngDataUrl) {
+        if (feedbackEl) feedbackEl.textContent = 'Capture PNG impossible sur ce navigateur.';
+        return null;
+      }
+
+      const fileName = `Facture-${clientId}-${Date.now().toString().slice(-4)}.png`;
+      const link = document.createElement('a');
+      link.href = pngDataUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      if (feedbackEl) {
+        feedbackEl.textContent = `Facture enregistrée en PNG (${fileName}).`;
+      }
+      return { pngDataUrl, fileName };
+    }
+
+    function openInvoice(clientId, techOverride = null) {
+      const c = clients.find(x => x.id === clientId);
+      if (!c) return;
+      const rem = Math.max(0, c.total - c.paid);
+      const tech = techOverride || c.tech || null;
+
+      let techHtml = '';
+      if (tech) {
+        const macDisplay = tech.mac && tech.mac.trim() ? tech.mac.trim() : 'Non renseignée';
+        const cells = [];
+        if (tech.app && tech.app !== 'None') cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
+        if (tech.server) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host / Server</span><span class="inv-tech-code">${tech.server}</span></div>`);
+        if (tech.username) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
+        if (tech.password) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
+        if (tech.duration) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée</span><span class="inv-tech-code">${tech.duration}</span></div>`);
+        if (tech.expiry) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Expiration</span><span class="inv-tech-code">${tech.expiry}</span></div>`);
+
+        techHtml = `
           <div class="inv-tech-panel">
             <div class="inv-tech-title">
-              <span><i class="fa-solid fa-key"></i> Identifiants & Accès</span>
-              <span>${tech.app || 'VIP'}</span>
+              <span><i class="fa-solid fa-microchip"></i> ${tech.type || 'DÉTAILS TECHNIQUE'}</span>
+              <span>${tech.startDate || c.date}</span>
             </div>
-            ${macHighlightHtml}
-            ${techRows.length ? `<div class="inv-tech-grid">${techRows.join('')}</div>` : ''}
+            <div class="inv-mac-banner">
+              <span class="inv-mac-badge">MAC ADDRESS</span>
+              <span class="inv-mac-value">${macDisplay}</span>
+            </div>
+            ${cells.length ? `<div class="inv-tech-grid">${cells.join('')}</div>` : ''}
           </div>
-        `
-        : '';
+        `;
+      }
 
       document.getElementById('invoice-content').innerHTML = `
         <div class="inv-top-bar">
-          <div>
-            <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.54rem;color:#64748b;font-weight:600;">Reçu N° ${cl.id}</div>
-          </div>
-          <span class="inv-doc-tag">${statusLabel}</span>
+          <span class="inv-brand-name">${BRAND_NAME}</span>
+          <span class="inv-doc-tag">REÇU OFFICIEL</span>
         </div>
 
         <div class="inv-meta-block">
-          <div class="inv-meta-row"><span class="inv-meta-key">Client:</span><span class="inv-meta-val gold-ink">${cl.name}</span></div>
-          <div class="inv-meta-row"><span class="inv-meta-key">Date:</span><span class="inv-meta-val">${cl.date}</span></div>
-          ${cl.phone ? `<div class="inv-meta-row" style="grid-column:1 / -1;"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone}</span></div>` : ''}
+          <div class="inv-meta-row"><span class="inv-meta-key">N° :</span><span class="inv-meta-val gold-ink">${c.id}</span></div>
+          <div class="inv-meta-row"><span class="inv-meta-key">Date :</span><span class="inv-meta-val">${c.date}</span></div>
+          <div class="inv-meta-row"><span class="inv-meta-key">Client :</span><span class="inv-meta-val">${c.name}</span></div>
+          <div class="inv-meta-row"><span class="inv-meta-key">Tél :</span><span class="inv-meta-val">${c.phone || '-'}</span></div>
         </div>
 
-        ${techSectionHtml}
+        ${techHtml}
 
         <table class="invoice-table">
           <thead>
-            <tr>
-              <th>Désignation</th>
-              <th>Qté</th>
-              <th>Total</th>
-            </tr>
+            <tr><th>Désignation</th><th>Qté</th><th>Total</th></tr>
           </thead>
           <tbody>
-            ${items.map(it => `
+            ${c.items.map(it => `
               <tr>
                 <td>${it.name}</td>
-                <td>${it.qty || 1}</td>
-                <td>${(it.qty || 1) * (it.price || 0)} DH</td>
+                <td>${it.qty}</td>
+                <td>${it.price} DH</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
 
         <div class="inv-totals-box">
-          <div class="inv-total-line"><span>Total à payer :</span><span class="ink-gold">${cl.total} DH</span></div>
-          <div class="inv-total-line"><span>Montant payé :</span><span class="ink-green">${cl.paid} DH</span></div>
+          <div class="inv-total-line"><span>Total général</span><span class="ink-gold">${c.total} DH</span></div>
+          <div class="inv-total-line"><span>Montant payé</span><span class="ink-green">${c.paid} DH</span></div>
           <div class="inv-total-line inv-grand-total">
-            <span>Reste à payer :</span>
-            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span>
+            <span>Reste à payer</span>
+            <span class="${rem === 0 ? 'ink-green' : 'ink-red'}">${rem} DH</span>
           </div>
         </div>
 
         <div class="inv-footer-note">Merci pour votre confiance • ${BRAND_NAME}</div>
       `;
 
-      const fb = document.getElementById('wa-export-feedback');
-      if (fb) {
-        fb.style.color = '#059669';
-        fb.innerText = '';
+      const feedbackEl = document.getElementById('wa-export-feedback');
+      if (feedbackEl) feedbackEl.textContent = '';
+
+      const savePngBtn = document.getElementById('btn-save-invoice-png');
+      if (savePngBtn) {
+        savePngBtn.onclick = () => saveInvoiceAsPng(c.id);
       }
 
-      document.getElementById('btn-save-invoice-png').onclick = () => saveInvoicePngToDevice(cl);
-      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceToWhatsApp(cl);
+      document.getElementById('btn-wa-invoice').onclick = async () => {
+        const waMessage = buildInvoiceWhatsAppMessage(c, tech);
+        const pngDataUrl = await captureInvoicePngDataUrl();
+        const fileName = `Facture-${c.id}.png`;
+
+        if (pngDataUrl) {
+          const dl = document.createElement('a');
+          dl.href = pngDataUrl;
+          dl.download = fileName;
+          document.body.appendChild(dl);
+          dl.click();
+          document.body.removeChild(dl);
+        }
+
+        if (navigator.share && pngDataUrl) {
+          try {
+            const res = await fetch(pngDataUrl);
+            const blob = await res.blob();
+            const file = new File([blob], fileName, { type: 'image/png' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                title: `Facture ${c.id} - ${BRAND_NAME}`,
+                text: waMessage,
+                files: [file]
+              });
+              if (feedbackEl) {
+                feedbackEl.textContent = 'Image PNG partagée et téléchargée.';
+              }
+              return;
+            }
+          } catch (_) {}
+        }
+
+        const waUrl = buildWhatsAppUrl(c.phone || WHATSAPP_ORDER_NUMBER, waMessage);
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+        if (feedbackEl) {
+          feedbackEl.textContent = pngDataUrl
+            ? `PNG téléchargé (${fileName}) — joignez-le dans WhatsApp si besoin.`
+            : 'Ouverture de WhatsApp...';
+        }
+      };
+
       document.getElementById('invoice-modal').classList.add('open');
     }
 
-    function renderAll() {
-      renderStats();
+    function saveClients() {
+      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
       renderClients();
-      renderProducts();
-      renderStore();
-      renderDashboardBoutique();
       populateClientDropdowns();
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
     }
 
-    document.addEventListener('click', () => {
-      const menu = document.getElementById('lux-product-menu');
-      if (menu) menu.classList.add('hidden');
+    function saveProducts() {
+      localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
+      renderAdminProducts();
+      renderDashboardBoutique();
+      renderStore();
+    }
+
+    document.addEventListener('click', (e) => {
+      closeStoreAppsDropdown();
+      if (!e.target.closest('.luxury-product-name-box')) {
+        isProductDropdownOpen = false;
+        const menu = document.getElementById('lux-product-menu');
+        if (menu) menu.classList.add('hidden');
+      }
     });
 
-    syncCopyrightYear();
-    setTodayDefaults();
+    document.querySelectorAll('.modal-backdrop').forEach(bd => {
+      bd.addEventListener('click', (e) => {
+        if (e.target === bd) bd.classList.remove('open');
+      });
+    });
+
+    setAdminLinkGeneratorRole(false);
+    isClientStoreVisible = false;
+    isInStoreViewNow = false;
     checkIncomingClientAccessLink();
-    applyRoleVisibility();
+    syncCopyrightYear();
+    enforceClientValidityAndBrand();
     applyClientVisibilityState();
-    updateDirectionWelcomeShowcase();
-    renderAll();
+    applyRoleVisibility();
+    initDefaultDates();
+    populateClientDropdowns();
+    renderClients();
+    renderAdminProducts();
+    renderDashboardBoutique();
+    renderStore();
+    renderStoreAppsDropdown();
+    prepareActivationInvoice();
+    prepareAbonnementInvoice();
+    calculateFx();
   </script>
 </body>
 </html>
