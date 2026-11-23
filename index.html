@@ -707,6 +707,247 @@
       gap: 10px;
     }
 
+    /* ==================== LUXURY ROTATING GLASS PRODUCT SHOWCASE BELOW CLIENT DASHBOARD ==================== */
+    .client-rotating-product-showcase {
+      position: relative;
+      border-radius: 24px;
+      padding: 15px 16px;
+      margin-top: 10px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(0, 255, 136, 0.14) 0%, transparent 46%),
+        radial-gradient(circle at 86% 82%, rgba(212, 175, 55, 0.26) 0%, transparent 52%),
+        linear-gradient(140deg, rgba(18, 18, 26, 0.84) 0%, rgba(9, 9, 14, 0.94) 100%);
+      backdrop-filter: blur(24px) saturate(165%);
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.82),
+        0 6px 24px rgba(212, 175, 55, 0.2),
+        inset 0 1px 1px rgba(255, 244, 196, 0.36),
+        inset 0 0 30px rgba(212, 175, 55, 0.1);
+    }
+
+    .client-rotating-product-showcase::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -65%;
+      width: 46%;
+      height: 200%;
+      background: linear-gradient(
+        112deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 34%,
+        rgba(255, 242, 185, 0.38) 50%,
+        rgba(255, 255, 255, 0.05) 66%,
+        transparent 100%
+      );
+      transform: skewX(-20deg);
+      animation: directionBannerSweep 5.2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .rotating-showcase-topbar {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .rotating-showcase-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      background: linear-gradient(120deg, #fff6cc 0%, #f3d06b 45%, #d4af37 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .rotating-showcase-counter {
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #04130b;
+      background: linear-gradient(135deg, #6effbc 0%, #00ff88 55%, #00c96b 100%);
+      padding: 2px 10px;
+      border-radius: 999px;
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.45);
+    }
+
+    .rotating-glass-stage {
+      position: relative;
+      z-index: 3;
+      min-height: 116px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rotating-glass-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 13px 16px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(212, 175, 55, 0.22) 0%, transparent 52%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(212, 175, 55, 0.12) 50%, rgba(12, 12, 18, 0.88) 100%);
+      backdrop-filter: blur(22px) saturate(165%);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.74),
+        0 0 22px rgba(212, 175, 55, 0.18),
+        inset 0 1px 1px rgba(255, 245, 204, 0.42),
+        inset 0 0 22px rgba(212, 175, 55, 0.1);
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+      transition:
+        opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .rotating-glass-card.is-exiting {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.965);
+      filter: blur(4px);
+    }
+
+    .rotating-glass-card.is-entering {
+      opacity: 0;
+      transform: translateY(12px) scale(0.965);
+      filter: blur(4px);
+      transition: none;
+    }
+
+    .rotating-glass-media {
+      width: 82px;
+      height: 82px;
+      border-radius: 20px;
+      padding: 5px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 35%, rgba(243, 208, 107, 0.28), rgba(10, 10, 15, 0.88) 78%);
+      box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.78),
+        0 0 18px rgba(212, 175, 55, 0.25),
+        inset 0 1px 1px rgba(255, 246, 204, 0.45);
+    }
+
+    .rotating-glass-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.65);
+    }
+
+    .rotating-glass-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: rgba(212, 175, 55, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 1.45rem;
+    }
+
+    .rotating-glass-details {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .rotating-glass-cat {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      width: fit-content;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--neon-green);
+      background: rgba(0, 255, 136, 0.12);
+      padding: 2px 9px;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(0, 255, 136, 0.26);
+    }
+
+    .rotating-glass-name {
+      font-size: 1.04rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: 0.25px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rotating-glass-price {
+      font-size: 0.98rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #fff6cc 0%, #f3d06b 45%, #d4af37 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+    }
+
+    .rotating-progress-track {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-top: 11px;
+      overflow: hidden;
+    }
+
+    .rotating-progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-green) 0%, #f3d06b 55%, var(--gold-primary) 100%);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
+      transition: width 0.08s linear;
+    }
+
+    @media (max-width: 480px) {
+      .rotating-glass-card {
+        gap: 12px;
+        padding: 11px 12px;
+      }
+      .rotating-glass-media {
+        width: 68px;
+        height: 68px;
+        border-radius: 16px;
+      }
+      .rotating-glass-name {
+        font-size: 0.92rem;
+      }
+      .rotating-glass-price {
+        font-size: 0.88rem;
+      }
+    }
+
     .direction-services-promo-banner {
       position: relative;
       border-radius: 18px;
@@ -2286,7 +2527,7 @@
       flex-direction: column;
       align-items: center;
       flex-grow: 1;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     .product-badge {
@@ -2310,7 +2551,7 @@
       font-size: 0.96rem;
       font-weight: 800;
       color: var(--gold-primary);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       text-shadow: 0 4px 14px rgba(212, 175, 55, 0.28);
     }
 
@@ -2967,6 +3208,32 @@
             </div>
           </div>
         </div>
+
+        <!-- ==================== ROTATING GLASS PRODUCT CARD BELOW CLIENT DASHBOARD ==================== -->
+        <section class="client-rotating-product-showcase hidden" id="client-rotating-product-card" aria-label="Aperçu dynamique des produits">
+          <div class="rotating-showcase-topbar">
+            <span class="rotating-showcase-title">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>SÉLECTION PRODUIT EN DIRECT</span>
+            </span>
+            <span class="rotating-showcase-counter" id="rotating-product-counter">1 / 4</span>
+          </div>
+
+          <div class="rotating-glass-stage">
+            <div class="rotating-glass-card" id="rotating-product-card-inner">
+              <div class="rotating-glass-media" id="rotating-product-media"></div>
+              <div class="rotating-glass-details">
+                <span class="rotating-glass-cat" id="rotating-product-cat">APP/IPTV</span>
+                <div class="rotating-glass-name" id="rotating-product-name">Hot IPTV</div>
+                <div class="rotating-glass-price" id="rotating-product-price">250 DH</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rotating-progress-track">
+            <div class="rotating-progress-bar" id="rotating-product-progress"></div>
+          </div>
+        </section>
 
         <!-- Account Ledger Panel (Toggled by Registre des Clients button) -->
         <div class="glass-panel hidden" id="clients-ledger-panel">
@@ -3931,6 +4198,111 @@
     let isLedgerVisible = false;
     let pendingProductImageData = '';
 
+    /* ==================== LUXURY ROTATING PRODUCT CARD ENGINE ==================== */
+    const ROTATING_DURATION_MS = 3800;
+    const ROTATING_FADE_MS = 480;
+    let rotatingProductIndex = 0;
+    let rotatingCycleTimer = null;
+    let rotatingProgressTimer = null;
+    let rotatingCycleStart = 0;
+
+    function applyRotatingProductContent(idx) {
+      if (!Array.isArray(products) || products.length === 0) return;
+      const safeIdx = ((idx % products.length) + products.length) % products.length;
+      const prod = products[safeIdx];
+
+      const mediaEl = document.getElementById('rotating-product-media');
+      const catEl = document.getElementById('rotating-product-cat');
+      const nameEl = document.getElementById('rotating-product-name');
+      const priceEl = document.getElementById('rotating-product-price');
+      const counterEl = document.getElementById('rotating-product-counter');
+
+      if (mediaEl) {
+        mediaEl.innerHTML = prod.img
+          ? `<img src="${prod.img}" alt="${prod.name}" class="rotating-glass-img">`
+          : `<div class="rotating-glass-placeholder"><i class="fa-solid fa-gem"></i></div>`;
+      }
+      if (catEl) catEl.textContent = prod.cat || 'GALERIE VIP';
+      if (nameEl) nameEl.textContent = prod.name || 'Produit';
+      if (priceEl) priceEl.textContent = `${prod.price || 0} DH`;
+      if (counterEl) counterEl.textContent = `${safeIdx + 1} / ${products.length}`;
+    }
+
+    function resetRotatingProgress() {
+      rotatingCycleStart = performance.now();
+      const barEl = document.getElementById('rotating-product-progress');
+      if (barEl) barEl.style.width = '0%';
+    }
+
+    function stepRotatingProductCard() {
+      if (!Array.isArray(products) || products.length === 0) return;
+      const cardEl = document.getElementById('rotating-product-card-inner');
+      if (!cardEl) {
+        rotatingProductIndex = (rotatingProductIndex + 1) % products.length;
+        applyRotatingProductContent(rotatingProductIndex);
+        resetRotatingProgress();
+        return;
+      }
+
+      // Smooth fade & lift out
+      cardEl.classList.add('is-exiting');
+
+      setTimeout(() => {
+        rotatingProductIndex = (rotatingProductIndex + 1) % products.length;
+        applyRotatingProductContent(rotatingProductIndex);
+
+        // Prepare entrance state without transition, then animate in
+        cardEl.classList.remove('is-exiting');
+        cardEl.classList.add('is-entering');
+        void cardEl.offsetWidth;
+        cardEl.classList.remove('is-entering');
+        resetRotatingProgress();
+      }, ROTATING_FADE_MS);
+    }
+
+    function startRotatingProductLoop() {
+      stopRotatingProductLoop();
+      if (!Array.isArray(products) || products.length === 0) return;
+      applyRotatingProductContent(rotatingProductIndex);
+      resetRotatingProgress();
+
+      rotatingProgressTimer = setInterval(() => {
+        const barEl = document.getElementById('rotating-product-progress');
+        if (!barEl) return;
+        const elapsed = performance.now() - rotatingCycleStart;
+        const pct = Math.min(100, (elapsed / ROTATING_DURATION_MS) * 100);
+        barEl.style.width = `${pct}%`;
+      }, 60);
+
+      rotatingCycleTimer = setInterval(() => {
+        stepRotatingProductCard();
+      }, ROTATING_DURATION_MS);
+    }
+
+    function stopRotatingProductLoop() {
+      if (rotatingCycleTimer) {
+        clearInterval(rotatingCycleTimer);
+        rotatingCycleTimer = null;
+      }
+      if (rotatingProgressTimer) {
+        clearInterval(rotatingProgressTimer);
+        rotatingProgressTimer = null;
+      }
+    }
+
+    function syncRotatingProductCardVisibility() {
+      const showcaseEl = document.getElementById('client-rotating-product-card');
+      if (!showcaseEl) return;
+      const showForClientDashboard = Boolean(isClientStoreVisible && activeClientSession && !isInStoreViewNow);
+
+      showcaseEl.classList.toggle('hidden', !showForClientDashboard);
+      if (showForClientDashboard) {
+        startRotatingProductLoop();
+      } else {
+        stopRotatingProductLoop();
+      }
+    }
+
     function enforceAdminHiddenSections() {
       const statsGrid = document.getElementById('admin-stats-grid');
       if (statsGrid) {
@@ -3966,6 +4338,8 @@
         adminProductsListPanel.classList.add('hidden');
         adminProductsListPanel.setAttribute('aria-hidden', 'true');
       }
+
+      syncRotatingProductCardVisibility();
     }
 
     function toggleClientsLedger() {
@@ -3990,7 +4364,10 @@
 
       const showDashboardForClient = Boolean(isClientStoreVisible && activeClientSession);
 
-      if (!panelEl) return;
+      if (!panelEl) {
+        syncRotatingProductCardVisibility();
+        return;
+      }
 
       if (!showDashboardForClient) {
         panelEl.classList.add('hidden');
@@ -5079,551 +5456,448 @@
 
       ctx.fillStyle = goldGrad;
       ctx.font = '800 10.5px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(BRAND_NAME, cardX + 18, cardY + 28);
+      ctx.fillText(BRAND_NAME, cardX + 18, cardY + 29);
 
       ctx.fillStyle = '#64748b';
-      ctx.font = '600 7px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Facture Verre Blanc', cardX + 18, cardY + 41);
+      ctx.font = '600 8px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`Reçu N° ${cl.id}`, cardX + 18, cardY + 42);
 
-      ctx.font = '800 7px "Plus Jakarta Sans", sans-serif';
-      const badgeW = ctx.measureText(statusLabel).width + 14;
-      drawRoundRect(ctx, cardX + cardW - 18 - badgeW, cardY + 24, badgeW, 16, 6);
-      ctx.fillStyle = 'rgba(212, 175, 55, 0.18)';
-      ctx.fill();
-      ctx.fillStyle = '#856404';
-      ctx.fillText(statusLabel, cardX + cardW - 18 - badgeW + 7, cardY + 34.5);
-
-      let y = cardY + 58;
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 42, 8);
-      ctx.fillStyle = 'rgba(248, 250, 252, 0.92)';
+      drawRoundRect(ctx, cardX + cardW - 76, cardY + 21, 58, 20, 10);
+      ctx.fillStyle = rem === 0 ? 'rgba(5, 150, 105, 0.14)' : 'rgba(212, 175, 55, 0.18)';
       ctx.fill();
 
-      ctx.font = '700 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#64748b';
-      ctx.fillText('N°:', cardX + 18, y + 16);
-      ctx.fillStyle = '#9c7812';
-      ctx.font = '800 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(String(cl.id || ''), cardX + 33, y + 16);
+      ctx.fillStyle = rem === 0 ? '#059669' : '#9c7812';
+      ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(statusLabel, cardX + cardW - 47, cardY + 34);
+      ctx.textAlign = 'left';
 
-      ctx.font = '700 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#64748b';
-      ctx.fillText('Date:', cardX + 174, y + 16);
-      ctx.fillStyle = '#0f172a';
-      ctx.fillText(String(cl.date || ''), cardX + 196, y + 16);
-
-      ctx.fillStyle = '#64748b';
-      ctx.fillText('Client:', cardX + 18, y + 32);
-      ctx.fillStyle = '#0f172a';
-      ctx.font = '800 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(String(cl.name || '-').slice(0, 20), cardX + 45, y + 32);
-
-      ctx.font = '700 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#64748b';
-      ctx.fillText('Tél:', cardX + 174, y + 32);
-      ctx.fillStyle = '#0f172a';
-      ctx.fillText(String(cl.phone || '-').slice(0, 18), cardX + 190, y + 32);
-
-      y += 48;
-
-      if (showTech) {
-        drawRoundRect(ctx, cardX + 12, y, cardW - 24, techBoxHeight - 4, 8);
-        ctx.fillStyle = '#fffdf7';
-        ctx.fill();
-        ctx.lineWidth = 0.8;
-        ctx.strokeStyle = 'rgba(212, 175, 55, 0.3)';
-        ctx.stroke();
-
-        ctx.font = '800 6.5px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = '#9c7812';
-        ctx.fillText("PARAMÈTRES D'ACCÈS & PLAYLIST", cardX + 18, y + 13.5);
-
-        let cy = y + 18.5;
-
-        if (hasMac) {
-          drawRoundRect(ctx, cardX + 18, cy, cardW - 36, 23, 5);
-          ctx.fillStyle = '#fef3c7';
-          ctx.fill();
-          ctx.lineWidth = 0.8;
-          ctx.strokeStyle = 'rgba(212, 175, 55, 0.7)';
-          ctx.stroke();
-
-          drawRoundRect(ctx, cardX + 22, cy + 5.5, 54, 12, 3);
-          ctx.fillStyle = '#9c7812';
-          ctx.fill();
-          ctx.font = '800 5.6px "Plus Jakarta Sans", sans-serif';
-          ctx.fillStyle = '#ffffff';
-          ctx.fillText('MAC ADDRESS', cardX + 26, cy + 13.5);
-
-          ctx.font = '800 7.8px "Plus Jakarta Sans", sans-serif';
-          ctx.fillStyle = '#451a03';
-          ctx.fillText(String(tech.mac), cardX + 82, cy + 14);
-          cy += 29;
-        }
-
-        const colW = (cardW - 40) / 2;
-        for (let i = 0; i < techCells.length; i += 2) {
-          const left = techCells[i];
-          const right = techCells[i + 1];
-
-          drawRoundRect(ctx, cardX + 18, cy, colW, 24, 5);
-          ctx.fillStyle = '#f1f5f9';
-          ctx.fill();
-          ctx.font = '700 5.4px "Plus Jakarta Sans", sans-serif';
-          ctx.fillStyle = '#64748b';
-          ctx.fillText(left[0], cardX + 22, cy + 9);
-          ctx.font = '800 7px "Plus Jakarta Sans", sans-serif';
-          ctx.fillStyle = '#0f172a';
-          ctx.fillText(String(left[1]).slice(0, 22), cardX + 22, cy + 18.5);
-
-          if (right) {
-            drawRoundRect(ctx, cardX + 22 + colW, cy, colW, 24, 5);
-            ctx.fillStyle = '#f1f5f9';
-            ctx.fill();
-            ctx.font = '700 5.4px "Plus Jakarta Sans", sans-serif';
-            ctx.fillStyle = '#64748b';
-            ctx.fillText(right[0], cardX + 26 + colW, cy + 9);
-            ctx.font = '800 7px "Plus Jakarta Sans", sans-serif';
-            ctx.fillStyle = '#0f172a';
-            ctx.fillText(String(right[1]).slice(0, 22), cardX + 26 + colW, cy + 18.5);
-          }
-          cy += 30;
-        }
-        y += techBoxHeight;
-      }
-
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 18, 5);
-      ctx.fillStyle = 'rgba(212, 175, 55, 0.16)';
-      ctx.fill();
-
-      ctx.font = '800 6.8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#785b0a';
-      ctx.fillText('Désignation', cardX + 18, y + 11.5);
-      ctx.fillText('Qté', cardX + 206, y + 11.5);
-      ctx.fillText('P.U', cardX + 238, y + 11.5);
-      ctx.fillText('Total', cardX + 282, y + 11.5);
-
-      y += 22;
-      items.forEach(item => {
-        const lineTotal = (Number(item.qty) || 1) * (Number(item.price) || 0);
-        drawRoundRect(ctx, cardX + 12, y, cardW - 24, itemRowHeight - 3, 5);
-        ctx.fillStyle = '#f8fafc';
-        ctx.fill();
-
-        ctx.font = '700 6.8px "Plus Jakarta Sans", sans-serif';
-        ctx.fillStyle = '#0f172a';
-        const shortLabel = String(item.name || '');
-        ctx.fillText(shortLabel.length > 34 ? shortLabel.slice(0, 34) + '...' : shortLabel, cardX + 18, y + 14);
-
-        ctx.fillStyle = '#334155';
-        ctx.fillText(String(item.qty || 1), cardX + 210, y + 14);
-        ctx.fillText(`${item.price || 0} DH`, cardX + 238, y + 14);
-
-        ctx.fillStyle = '#9c7812';
-        ctx.font = '800 6.8px "Plus Jakarta Sans", sans-serif';
-        ctx.fillText(`${lineTotal} DH`, cardX + 282, y + 14);
-
-        y += itemRowHeight;
-      });
-
-      y += 6;
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 56, 8);
+      let y = cardY + 60;
+      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 34, 8);
       ctx.fillStyle = '#f8fafc';
       ctx.fill();
 
-      ctx.font = '700 7.2px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#475569';
-      ctx.fillText('Sous-total :', cardX + 18, y + 15);
       ctx.fillStyle = '#0f172a';
-      ctx.fillText(`${cl.total} DH`, cardX + cardW - 64, y + 15);
-
+      ctx.font = '700 9px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`Client : ${cl.name}`, cardX + 18, y + 14);
       ctx.fillStyle = '#475569';
-      ctx.fillText('Payé :', cardX + 18, y + 28);
-      ctx.fillStyle = '#059669';
-      ctx.fillText(`${cl.paid} DH`, cardX + cardW - 64, y + 28);
+      ctx.font = '600 8px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(`Date : ${cl.date}`, cardX + cardW - 96, y + 14);
+      if (cl.phone) {
+        ctx.fillText(`Tél : ${cl.phone}`, cardX + 18, y + 27);
+      }
+      y += 42;
 
-      drawRoundRect(ctx, cardX + 16, y + 34, cardW - 32, 17, 4);
+      if (showTech) {
+        drawRoundRect(ctx, cardX + 12, y, cardW - 24, techBoxHeight, 8);
+        ctx.fillStyle = '#f8fafc';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+        ctx.stroke();
+
+        ctx.fillStyle = '#9c7812';
+        ctx.font = '800 8px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('IDENTIFIANTS & ACCÈS', cardX + 18, y + 14);
+
+        let curTy = y + 20;
+        if (hasMac) {
+          drawRoundRect(ctx, cardX + 18, curTy, cardW - 36, 24, 6);
+          ctx.fillStyle = '#fef3c7';
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(212, 175, 55, 0.7)';
+          ctx.stroke();
+
+          ctx.fillStyle = '#9c7812';
+          ctx.font = '800 7.2px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText('MAC ADDRESS', cardX + 24, curTy + 15);
+
+          ctx.fillStyle = '#451a03';
+          ctx.font = '800 9px "Plus Jakarta Sans", sans-serif';
+          ctx.textAlign = 'right';
+          ctx.fillText(tech.mac, cardX + cardW - 24, curTy + 15);
+          ctx.textAlign = 'left';
+          curTy += 30;
+        }
+
+        const halfW = (cardW - 42) / 2;
+        for (let i = 0; i < techCells.length; i++) {
+          const col = i % 2;
+          const row = Math.floor(i / 2);
+          const cx = cardX + 18 + col * (halfW + 6);
+          const cy = curTy + row * 30;
+
+          drawRoundRect(ctx, cx, cy, halfW, 25, 5);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+
+          ctx.fillStyle = '#64748b';
+          ctx.font = '700 6.5px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText(techCells[i][0], cx + 6, cy + 9);
+
+          ctx.fillStyle = '#0f172a';
+          ctx.font = '700 8px "Plus Jakarta Sans", sans-serif';
+          const valStr = String(techCells[i][1]);
+          ctx.fillText(valStr.length > 22 ? valStr.slice(0, 21) + '…' : valStr, cx + 6, cy + 20);
+        }
+        y += techBoxHeight + 8;
+      }
+
+      const tblH = 22 + items.length * itemRowHeight;
+      drawRoundRect(ctx, cardX + 12, y, cardW - 24, tblH, 8);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(212, 175, 55, 0.14)';
+      ctx.fillRect(cardX + 12, y, cardW - 24, 20);
+
+      ctx.fillStyle = '#785b0a';
+      ctx.font = '800 8px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Article', cardX + 18, y + 13);
+      ctx.textAlign = 'center';
+      ctx.fillText('Qté', cardX + 215, y + 13);
+      ctx.textAlign = 'right';
+      ctx.fillText('Total', cardX + cardW - 18, y + 13);
+      ctx.textAlign = 'left';
+
+      let rowY = y + 34;
+      ctx.font = '600 8.5px "Plus Jakarta Sans", sans-serif';
+      items.forEach(it => {
+        ctx.fillStyle = '#0f172a';
+        const label = String(it.name || '');
+        ctx.fillText(label.length > 25 ? label.slice(0, 24) + '…' : label, cardX + 18, rowY);
+        ctx.fillStyle = '#475569';
+        ctx.textAlign = 'center';
+        ctx.fillText(String(it.qty || 1), cardX + 215, rowY);
+        ctx.fillStyle = '#0f172a';
+        ctx.textAlign = 'right';
+        ctx.fillText(`${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH`, cardX + cardW - 18, rowY);
+        ctx.textAlign = 'left';
+        rowY += itemRowHeight;
+      });
+
+      const totY = y + tblH + 8;
+      drawRoundRect(ctx, cardX + 12, totY, cardW - 24, 72, 8);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fill();
+
+      ctx.fillStyle = '#334155';
+      ctx.font = '700 8.5px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Total :', cardX + 18, totY + 16);
+      ctx.textAlign = 'right';
+      ctx.fillText(`${cl.total.toFixed(0)} DH`, cardX + cardW - 18, totY + 16);
+      ctx.textAlign = 'left';
+
+      ctx.fillStyle = '#059669';
+      ctx.fillText('Payé :', cardX + 18, totY + 32);
+      ctx.textAlign = 'right';
+      ctx.fillText(`${cl.paid.toFixed(0)} DH`, cardX + cardW - 18, totY + 32);
+      ctx.textAlign = 'left';
+
+      drawRoundRect(ctx, cardX + 16, totY + 41, cardW - 32, 23, 6);
       ctx.fillStyle = 'rgba(212, 175, 55, 0.14)';
       ctx.fill();
 
-      ctx.font = '800 7.8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#785b0a';
-      ctx.fillText('Reste à payer :', cardX + 21, y + 45.5);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '800 9.5px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Reste à payer :', cardX + 22, totY + 56);
       ctx.fillStyle = rem > 0 ? '#dc2626' : '#059669';
-      ctx.fillText(`${rem} DH`, cardX + cardW - 64, y + 45.5);
+      ctx.textAlign = 'right';
+      ctx.fillText(`${rem.toFixed(0)} DH`, cardX + cardW - 22, totY + 56);
+      ctx.textAlign = 'left';
 
-      y += 64;
-      ctx.font = '600 6.5px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#64748b';
-      wrapCanvasText(ctx, `© ${new Date().getFullYear()} ${BRAND_NAME} - Reçu officiel digital`, cardX + 18, y + 8, cardW - 36, 10);
+      ctx.font = '600 7.5px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Merci pour votre confiance', frameW / 2, cardY + cardH - 12);
 
       return canvas;
     }
 
-    function triggerAnchorDownload(href, filename) {
+    function downloadCanvasAsPng(canvas, filename) {
+      const dataUrl = canvas.toDataURL('image/png');
       const link = document.createElement('a');
-      link.href = href;
       link.download = filename;
-      link.rel = 'noopener noreferrer';
-      link.style.display = 'none';
+      link.href = dataUrl;
       document.body.appendChild(link);
-      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-      setTimeout(() => {
-        if (link.parentNode) link.parentNode.removeChild(link);
-      }, 400);
-    }
-
-    async function saveCanvasImageReliable(canvas, filename) {
-      const dataUrl = canvas.toDataURL('image/png', 1.0);
-      if (canvas.toBlob) {
-        let blobSaved = false;
-        await new Promise(resolve => {
-          canvas.toBlob(blob => {
-            if (blob) {
-              const blobUrl = URL.createObjectURL(blob);
-              triggerAnchorDownload(blobUrl, filename);
-              blobSaved = true;
-              setTimeout(() => URL.revokeObjectURL(blobUrl), 8000);
-            }
-            resolve();
-          }, 'image/png', 1.0);
-        });
-        if (blobSaved) return dataUrl;
-      }
-      triggerAnchorDownload(dataUrl, filename);
+      link.click();
+      document.body.removeChild(link);
       return dataUrl;
     }
 
-    async function copyCanvasToClipboard(canvas) {
-      if (!navigator.clipboard || typeof ClipboardItem === 'undefined') return false;
-      return new Promise(resolve => {
-        canvas.toBlob(async blob => {
-          if (!blob) return resolve(false);
-          try {
-            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-            resolve(true);
-          } catch (_) {
-            resolve(false);
-          }
-        }, 'image/png');
-      });
-    }
-
-    async function saveInvoiceOnly(cl) {
-      const feedbackEl = document.getElementById('wa-export-feedback');
-      const canvas = renderInvoiceToCanvas(cl);
-      const fileName = `Facture-${cl.id || 'DG'}.png`;
-      await saveCanvasImageReliable(canvas, fileName);
-      const copied = await copyCanvasToClipboard(canvas);
-      if (feedbackEl) {
-        feedbackEl.style.color = 'var(--emerald-ink)';
-        feedbackEl.innerText = copied
-          ? `Téléchargement lancé : ${fileName} (copiée aussi)`
-          : `Téléchargement lancé : ${fileName}`;
-      }
-    }
-
-    async function sendInvoiceImageViaWhatsApp(cl) {
-      const feedbackEl = document.getElementById('wa-export-feedback');
+    function buildInvoiceTextMessage(cl) {
       const rem = Math.max(0, cl.total - cl.paid);
+      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
+      const lines = [
+        `*${BRAND_NAME}*`,
+        `Reçu N° *${cl.id}* (${cl.date})`,
+        `Client : *${cl.name}*`
+      ];
+      if (cl.phone) lines.push(`Téléphone : ${cl.phone}`);
+      if (tech.mac) lines.push(`MAC Address : *${tech.mac}*`);
+      if (tech.app) lines.push(`Application : ${tech.app}`);
+      if (tech.host) lines.push(`Host : ${tech.host}`);
+      if (tech.username) lines.push(`Username : ${tech.username}`);
+      if (tech.password) lines.push(`Password : ${tech.password}`);
+      if (tech.duration || tech.expiry) {
+        lines.push(`Validité : ${[tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')}`);
+      }
+      lines.push('---');
+      items.forEach(it => {
+        lines.push(`• ${it.name} x${it.qty || 1} = ${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH`);
+      });
+      lines.push('---');
+      lines.push(`Total : *${cl.total.toFixed(0)} DH*`);
+      lines.push(`Payé : ${cl.paid.toFixed(0)} DH`);
+      lines.push(`Reste : *${rem.toFixed(0)} DH*`);
+      return lines.join('\n');
+    }
+
+    async function sendInvoiceViaWhatsApp(cl) {
+      const feedback = document.getElementById('wa-export-feedback');
       const canvas = renderInvoiceToCanvas(cl);
-      const fileName = `Facture-${cl.id || 'DG'}.png`;
-      await saveCanvasImageReliable(canvas, fileName);
+      const filename = `Facture-${cl.id}-${(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
+      downloadCanvasAsPng(canvas, filename);
 
-      const copied = await copyCanvasToClipboard(canvas);
-      const cleanPhone = normalizeWhatsAppNumber(cl.phone) || WHATSAPP_ORDER_NUMBER;
+      const textMsg = buildInvoiceTextMessage(cl);
+      const waTargetPhone = normalizeWhatsAppNumber(cl.phone) || WHATSAPP_ORDER_NUMBER;
+      const waUrl = buildWhatsAppUrl(waTargetPhone, textMsg);
 
-      const msgLines = [
-        `${BRAND_NAME} - Facture ${cl.id}`,
-        cl.name ? `Client : ${cl.name}` : '',
-        cl.phone ? `Téléphone : ${cl.phone}` : '',
-        tech.mac ? `MAC Address : ${tech.mac}` : '',
-        tech.app ? `App : ${tech.app}` : '',
-        tech.host ? `Host : ${tech.host}` : '',
-        tech.username ? `Username : ${tech.username}` : '',
-        tech.password ? `Password : ${tech.password}` : '',
-        tech.expiry ? `Expiration : ${tech.expiry}` : '',
-        `Total : ${cl.total} DH | Payé : ${cl.paid} DH | Reste : ${rem} DH`
-      ].filter(Boolean);
-
-      if (feedbackEl) {
-        feedbackEl.style.color = 'var(--emerald-ink)';
-        feedbackEl.innerText = copied
-          ? `Image enregistrée (${fileName}) et copiée. Ouverture de WhatsApp...`
-          : `Image enregistrée (${fileName}). Ouverture de WhatsApp...`;
+      if (navigator.clipboard && window.ClipboardItem) {
+        try {
+          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+          if (blob) {
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+            if (feedback) {
+              feedback.innerText = 'Image PNG enregistrée et copiée ! Collez-la (Ctrl+V / Coller) dans WhatsApp.';
+            }
+          }
+        } catch (_) {
+          if (feedback) {
+            feedback.innerText = 'Image PNG enregistrée ! Joignez-la dans WhatsApp.';
+          }
+        }
+      } else if (feedback) {
+        feedback.innerText = 'Image PNG enregistrée ! Joignez-la dans WhatsApp.';
       }
 
-      setTimeout(() => {
-        window.open(buildWhatsAppUrl(cleanPhone, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
-      }, 250);
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     }
 
-    function handleProductImageFile(event) {
-      const file = event.target.files && event.target.files[0];
-      const nameEl = document.getElementById('prod-img-filename');
-      const thumbEl = document.getElementById('prod-img-preview');
-      if (!file) return;
-
-      nameEl.innerText = file.name;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-          const size = 640;
-          const side = Math.min(img.width, img.height);
-          const sx = Math.round((img.width - side) / 2);
-          const sy = Math.round((img.height - side) / 2);
-
-          const canvas = document.createElement('canvas');
-          canvas.width = size;
-          canvas.height = size;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, sx, sy, side, side, 0, 0, size, size);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.78);
-          pendingProductImageData = compressedDataUrl;
-          thumbEl.src = compressedDataUrl;
-          thumbEl.classList.remove('hidden');
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function encodeProductsPayload(list) {
-      const jsonStr = JSON.stringify(list);
+    function encodeVaultPayload(obj) {
+      const jsonStr = JSON.stringify(obj);
       const utf8Bytes = new TextEncoder().encode(jsonStr);
-      let xoredStr = '';
+      let binary = '';
       for (let i = 0; i < utf8Bytes.length; i++) {
         const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
-        xoredStr += String.fromCharCode(utf8Bytes[i] ^ keyByte);
+        binary += String.fromCharCode(utf8Bytes[i] ^ keyByte);
       }
-      return 'FLX1:' + btoa(xoredStr);
+      return 'FLX1:' + btoa(binary);
     }
 
-    function decodeProductsPayload(rawInput) {
-      const trimmed = (rawInput || '').trim();
+    function decodeVaultPayload(cipherStr) {
+      const trimmed = String(cipherStr || '').trim();
       if (!trimmed) throw new Error('Le champ est vide.');
 
-      if (trimmed.startsWith('FLX1:')) {
-        const b64Part = trimmed.slice(5).trim();
-        const xoredStr = atob(b64Part);
-        const bytes = new Uint8Array(xoredStr.length);
-        for (let i = 0; i < xoredStr.length; i++) {
-          const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
-          bytes[i] = xoredStr.charCodeAt(i) ^ keyByte;
-        }
-        const jsonStr = new TextDecoder().decode(bytes);
-        const parsed = JSON.parse(jsonStr);
-        if (!Array.isArray(parsed)) throw new Error('Format décodé invalide.');
-        return parsed;
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        const parsed = JSON.parse(trimmed);
+        return Array.isArray(parsed) ? parsed : (parsed.products || []);
       }
 
-      const parsedJson = JSON.parse(trimmed);
-      if (!Array.isArray(parsedJson)) throw new Error('Le JSON doit être un tableau de produits.');
-      return parsedJson;
+      if (!trimmed.startsWith('FLX1:')) {
+        throw new Error('Format invalide. Utilisez un code FLX1:... ou un JSON.');
+      }
+
+      const b64Part = trimmed.slice(5);
+      const binary = atob(b64Part);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        bytes[i] = binary.charCodeAt(i) ^ keyByte;
+      }
+      const jsonStr = new TextDecoder().decode(bytes);
+      const parsed = JSON.parse(jsonStr);
+      return Array.isArray(parsed) ? parsed : (parsed.products || []);
     }
 
-    function normalizeProductList(rawList) {
-      return rawList
-        .filter(item => item && typeof item === 'object' && item.name)
-        .map((item, idx) => ({
+    function sanitizeProductList(rawList) {
+      if (!Array.isArray(rawList) || rawList.length === 0) {
+        throw new Error('Aucun produit valide trouvé.');
+      }
+      return rawList.map((item, idx) => {
+        const name = String(item.name || item.title || '').trim();
+        const price = parseFloat(item.price);
+        const cat = String(item.cat || item.category || 'Général').trim() || 'Général';
+        let img = String(item.img || item.image || '').trim();
+        if (name.toLowerCase() === 'hot iptv') {
+          img = HOT_IPTV_IMAGE;
+        }
+        if (!name || isNaN(price) || price < 0) {
+          throw new Error(`Produit invalide à la ligne ${idx + 1}.`);
+        }
+        return {
           id: item.id || (Date.now() + idx),
-          name: String(item.name).trim(),
-          price: Number(item.price) || 0,
-          cat: item.cat ? String(item.cat).trim() : 'Général',
-          img: item.img ? String(item.img).trim() : ''
-        }));
+          name,
+          price,
+          cat,
+          img
+        };
+      });
     }
 
     function generateEncryptedProductsCode() {
       const statusEl = document.getElementById('vault-status-msg');
       const inputEl = document.getElementById('encrypted-products-input');
-      try {
-        const code = encodeProductsPayload(products);
-        inputEl.value = code;
-        statusEl.style.color = 'var(--emerald)';
-        statusEl.innerText = `Code crypté généré (${products.length} produit(s)).`;
-      } catch (e) {
-        statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = 'Erreur lors du chiffrement.';
-      }
+      const code = encodeVaultPayload({ v: 1, products });
+      inputEl.value = code;
+      statusEl.style.color = 'var(--emerald)';
+      statusEl.innerText = `Code crypté généré pour ${products.length} produit(s).`;
     }
 
     function applyEncryptedProductsCode() {
       const statusEl = document.getElementById('vault-status-msg');
       const inputEl = document.getElementById('encrypted-products-input');
       try {
-        const decoded = decodeProductsPayload(inputEl.value);
-        const normalized = normalizeProductList(decoded);
-        if (!normalized.length) {
-          throw new Error('Aucun produit valide trouvé.');
-        }
-        products = normalized;
-        localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
-        renderProducts();
-        renderStore();
-        renderDashboardBoutique();
-        populateProductDropdown();
+        const decodedList = decodeVaultPayload(inputEl.value);
+        const validProducts = sanitizeProductList(decodedList);
+        products = validProducts;
+        rotatingProductIndex = 0;
+        saveProducts();
         statusEl.style.color = 'var(--emerald)';
-        statusEl.innerText = `${normalized.length} produit(s) décodé(s) et appliqués.`;
+        statusEl.innerText = `${validProducts.length} produit(s) décodé(s) et ajouté(s) au catalogue !`;
       } catch (err) {
         statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = 'Code invalide : ' + (err.message || 'impossible de décoder.');
+        statusEl.innerText = err.message || 'Échec du décodage.';
       }
     }
 
     function clearVaultInput() {
       document.getElementById('encrypted-products-input').value = '';
-      document.getElementById('vault-status-msg').innerText = '';
+      const statusEl = document.getElementById('vault-status-msg');
+      statusEl.style.color = 'var(--text-muted)';
+      statusEl.innerText = 'Champ effacé.';
     }
 
-    function switchMode(mode) {
-      const isStore = mode === 'store';
-      if (isStore && !isClientStoreVisible) {
-        isInStoreViewNow = false;
-        document.getElementById('store-view').classList.add('hidden');
-        document.getElementById('admin-view').classList.remove('hidden');
-        document.getElementById('btn-admin-mode').classList.add('active');
-        document.getElementById('btn-store-mode').classList.remove('active');
-        enforceClientValidityAndBrand();
-        return;
-      }
-
-      isInStoreViewNow = isStore;
-      document.getElementById('admin-view').classList.toggle('hidden', isStore);
-      document.getElementById('store-view').classList.toggle('hidden', !isStore);
-      document.getElementById('btn-admin-mode').classList.toggle('active', !isStore);
-      document.getElementById('btn-store-mode').classList.toggle('active', isStore);
-
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
-
-      if (isStore) {
-        renderStore();
-      } else {
-        renderClients();
-        renderProducts();
-        renderDashboardBoutique();
-      }
+    function setTodayDateInputs() {
+      const today = new Date().toISOString().slice(0, 10);
+      const actDate = document.getElementById('act-start-date');
+      const subDate = document.getElementById('sub-start-date');
+      if (actDate && !actDate.value) actDate.value = today;
+      if (subDate && !subDate.value) subDate.value = today;
+      updateSubExpiry();
     }
 
-    function switchTab(tab) {
-      document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
-      document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
-      document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
-      enforceAdminHiddenSections();
+    function parseDurationMonths(durStr) {
+      const m = String(durStr || '').match(/(\d+)/);
+      return m ? parseInt(m[1], 10) : 1;
     }
 
-    function openAddClientModal() {
-      document.getElementById('add-client-modal').classList.add('open');
+    function formatDateFr(dateObj) {
+      if (!(dateObj instanceof Date) || isNaN(dateObj.getTime())) return '';
+      const dd = String(dateObj.getDate()).padStart(2, '0');
+      const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const yyyy = dateObj.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
+
+    function updateSubExpiry() {
+      const startStr = document.getElementById('sub-start-date').value;
+      const durStr = document.getElementById('sub-duration').value;
+      const expInput = document.getElementById('sub-expiry-display');
+      if (!startStr || !expInput) return;
+      const base = new Date(startStr + 'T00:00:00');
+      if (isNaN(base.getTime())) return;
+      const months = parseDurationMonths(durStr);
+      const exp = new Date(base.getFullYear(), base.getMonth() + months, base.getDate());
+      expInput.value = formatDateFr(exp);
+    }
+
+    function autoExtractXtreamFromM3U() {
+      const rawUrl = document.getElementById('sub-m3u-url').value.trim();
+      if (!rawUrl) return;
+      try {
+        const normalized = rawUrl.startsWith('http') ? rawUrl : 'http://' + rawUrl;
+        const u = new URL(normalized);
+        const hostWithPort = u.port ? `${u.protocol}//${u.hostname}:${u.port}` : `${u.protocol}//${u.hostname}`;
+        const user = u.searchParams.get('username') || u.searchParams.get('user') || '';
+        const pass = u.searchParams.get('password') || u.searchParams.get('pass') || '';
+        const expParam = u.searchParams.get('exp_date') || u.searchParams.get('expire') || '';
+
+        if (hostWithPort) document.getElementById('sub-server').value = hostWithPort;
+        if (user) document.getElementById('sub-username').value = user;
+        if (pass) document.getElementById('sub-password').value = pass;
+
+        if (expParam) {
+          const ts = /^\d+$/.test(expParam) ? parseInt(expParam, 10) * (expParam.length <= 10 ? 1000 : 1) : Date.parse(expParam);
+          const d = new Date(ts);
+          if (!isNaN(d.getTime())) {
+            document.getElementById('sub-expiry-display').value = formatDateFr(d);
+          }
+        }
+      } catch (_) {}
     }
 
     function populateClientDropdowns() {
-      const actSel = document.getElementById('act-client-select');
-      const subSel = document.getElementById('sub-client-select');
-      const opts = '<option value="">Sélectionner un client</option>' + clients.map(c =>
-        `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`
-      ).join('');
-      if (actSel) actSel.innerHTML = opts;
-      if (subSel) subSel.innerHTML = opts;
+      const selects = [document.getElementById('act-client-select'), document.getElementById('sub-client-select')];
+      selects.forEach(sel => {
+        if (!sel) return;
+        const currentVal = sel.value;
+        sel.innerHTML = '<option value="">Sélectionner un client</option>' +
+          clients.map(c => `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`).join('');
+        if (currentVal) sel.value = currentVal;
+      });
     }
 
-    function fillClientFromSelect(selectId, nameInputId, phoneInputId) {
+    function fillClientFromSelect(selectId, nameInputId, waInputId) {
       const sel = document.getElementById(selectId);
       if (!sel || !sel.value) return;
-      const cl = clients.find(c => c.id === sel.value);
-      if (!cl) return;
-      const nameEl = document.getElementById(nameInputId);
-      const phoneEl = document.getElementById(phoneInputId);
-      if (nameEl) nameEl.value = cl.name || '';
-      if (phoneEl) phoneEl.value = cl.phone || '';
-    }
-
-    function setTodayDateIfEmpty(inputId) {
-      const el = document.getElementById(inputId);
-      if (el && !el.value) {
-        el.value = new Date().toISOString().slice(0, 10);
+      const found = clients.find(c => String(c.id) === String(sel.value));
+      if (found) {
+        document.getElementById(nameInputId).value = found.name || '';
+        if (found.phone) document.getElementById(waInputId).value = found.phone;
       }
     }
 
     function openActivationModal() {
+      setTodayDateInputs();
       populateClientDropdowns();
-      setTodayDateIfEmpty('act-start-date');
       prepareActivationInvoice();
       document.getElementById('activation-modal').classList.add('open');
     }
 
     function openAbonnementModal() {
+      setTodayDateInputs();
       populateClientDropdowns();
-      setTodayDateIfEmpty('sub-start-date');
-      updateSubExpiry();
       prepareAbonnementInvoice();
       document.getElementById('abonnement-modal').classList.add('open');
-    }
-
-    function addMonthsToDateStr(dateStr, months) {
-      const base = dateStr ? new Date(dateStr + 'T00:00:00') : new Date();
-      if (isNaN(base.getTime())) return '';
-      const copy = new Date(base.getTime());
-      copy.setMonth(copy.getMonth() + months);
-      return copy.toLocaleDateString('fr-FR');
-    }
-
-    function updateSubExpiry() {
-      const startVal = document.getElementById('sub-start-date').value;
-      const durVal = document.getElementById('sub-duration').value;
-      const expEl = document.getElementById('sub-expiry-display');
-      if (!expEl) return;
-
-      const monthsMap = { '1 mois': 1, '3 mois': 3, '6 mois': 6, '12 mois': 12 };
-      const months = monthsMap[durVal] || 1;
-      expEl.value = addMonthsToDateStr(startVal, months);
-    }
-
-    function autoExtractXtreamFromM3U() {
-      const rawUrl = (document.getElementById('sub-m3u-url').value || '').trim();
-      if (!rawUrl) return;
-      try {
-        const parsed = new URL(rawUrl);
-        const hostWithPort = `${parsed.protocol}//${parsed.host}`;
-        const user = parsed.searchParams.get('username') || '';
-        const pass = parsed.searchParams.get('password') || '';
-        if (hostWithPort) document.getElementById('sub-server').value = hostWithPort;
-        if (user) document.getElementById('sub-username').value = user;
-        if (pass) document.getElementById('sub-password').value = pass;
-      } catch (_) {
-        const userMatch = rawUrl.match(/[?&]username=([^&]+)/i);
-        const passMatch = rawUrl.match(/[?&]password=([^&]+)/i);
-        const hostMatch = rawUrl.match(/^(https?:\/\/[^/?#]+)/i);
-        if (hostMatch) document.getElementById('sub-server').value = hostMatch[1];
-        if (userMatch) document.getElementById('sub-username').value = decodeURIComponent(userMatch[1]);
-        if (passMatch) document.getElementById('sub-password').value = decodeURIComponent(passMatch[1]);
-      }
     }
 
     function prepareActivationInvoice() {
       const previewEl = document.getElementById('act-live-invoice-preview');
       if (!previewEl) return;
-      const name = (document.getElementById('act-client-name').value || '').trim() || 'Client';
-      const phone = (document.getElementById('act-whatsapp').value || '').trim() || '-';
-      const mac = (document.getElementById('act-mac').value || '').trim();
+      const clientName = document.getElementById('act-client-name').value.trim() || 'Client';
+      const wa = document.getElementById('act-whatsapp').value.trim();
+      const mac = document.getElementById('act-mac').value.trim();
       const app = document.getElementById('act-app').value;
       const duration = document.getElementById('act-duration').value;
       const price = parseFloat(document.getElementById('act-price').value) || 0;
       const paid = parseFloat(document.getElementById('act-paid').value) || 0;
       const rem = Math.max(0, price - paid);
 
-      const chips = [];
-      if (mac) chips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
-      if (app && app !== 'None') chips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
-      chips.push(`<div class="live-prep-cred-chip"><strong>Durée:</strong> ${duration}</div>`);
+      const appLabel = app && app !== 'None' ? app : 'Playlist';
+      const credChips = [];
+      if (mac) credChips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
+      if (app && app !== 'None') credChips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
+      credChips.push(`<div class="live-prep-cred-chip"><strong>Durée:</strong> ${duration}</div>`);
+      if (wa) credChips.push(`<div class="live-prep-cred-chip"><strong>WhatsApp:</strong> ${wa}</div>`);
 
       previewEl.innerHTML = `
-        <div><strong>${name}</strong> • Tél: <strong>${phone}</strong></div>
-        <div class="live-prep-cred-grid">${chips.join('')}</div>
+        <div><strong>Client :</strong> ${clientName} — <strong>${appLabel}</strong> (${duration})</div>
+        <div class="live-prep-cred-grid">${credChips.join('')}</div>
         <div class="live-prep-line">
-          <span>Total: <strong>${price} DH</strong> | Payé: <strong class="ink-green">${paid} DH</strong></span>
-          <span>Reste: <strong class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</strong></span>
+          <span>Total : <strong>${price.toFixed(0)} DH</strong></span>
+          <span style="color:#059669;">Payé : <strong>${paid.toFixed(0)} DH</strong></span>
+          <span style="color:${rem > 0 ? '#dc2626' : '#059669'};">Reste : <strong>${rem.toFixed(0)} DH</strong></span>
         </div>
       `;
     }
@@ -5631,83 +5905,37 @@
     function prepareAbonnementInvoice() {
       const previewEl = document.getElementById('sub-live-invoice-preview');
       if (!previewEl) return;
-      const name = (document.getElementById('sub-client-name').value || '').trim() || 'Client';
-      const phone = (document.getElementById('sub-whatsapp').value || '').trim() || '-';
-      const mac = (document.getElementById('sub-mac').value || '').trim();
+      const clientName = document.getElementById('sub-client-name').value.trim() || 'Client';
       const app = document.getElementById('sub-app').value;
-      const host = (document.getElementById('sub-server').value || '').trim();
-      const user = (document.getElementById('sub-username').value || '').trim();
-      const pass = (document.getElementById('sub-password').value || '').trim();
+      const mac = document.getElementById('sub-mac').value.trim();
+      const host = document.getElementById('sub-server').value.trim();
+      const user = document.getElementById('sub-username').value.trim();
+      const pass = document.getElementById('sub-password').value.trim();
       const duration = document.getElementById('sub-duration').value;
-      const expiry = (document.getElementById('sub-expiry-display').value || '').trim();
+      const expiry = document.getElementById('sub-expiry-display').value.trim();
       const price = parseFloat(document.getElementById('sub-price').value) || 0;
 
-      const chips = [];
-      if (mac) chips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
-      if (host) chips.push(`<div class="live-prep-cred-chip"><strong>Host:</strong> ${host}</div>`);
-      if (user) chips.push(`<div class="live-prep-cred-chip"><strong>User:</strong> ${user}</div>`);
-      if (pass) chips.push(`<div class="live-prep-cred-chip"><strong>Pass:</strong> ${pass}</div>`);
-      if (app && app !== 'None') chips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
-      chips.push(`<div class="live-prep-cred-chip"><strong>Durée:</strong> ${duration}${expiry ? ' • Exp: ' + expiry : ''}</div>`);
+      const credChips = [];
+      if (mac) credChips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
+      if (host) credChips.push(`<div class="live-prep-cred-chip"><strong>Host:</strong> ${host}</div>`);
+      if (user) credChips.push(`<div class="live-prep-cred-chip"><strong>User:</strong> ${user}</div>`);
+      if (pass) credChips.push(`<div class="live-prep-cred-chip"><strong>Pass:</strong> ${pass}</div>`);
+      if (app && app !== 'None') credChips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
+      if (expiry) credChips.push(`<div class="live-prep-cred-chip"><strong>Exp:</strong> ${expiry}</div>`);
 
       previewEl.innerHTML = `
-        <div><strong>${name}</strong> • Tél: <strong>${phone}</strong></div>
-        <div class="live-prep-cred-grid">${chips.join('')}</div>
+        <div><strong>Client :</strong> ${clientName} — <strong>Abonnement</strong> (${duration})</div>
+        ${credChips.length ? `<div class="live-prep-cred-grid">${credChips.join('')}</div>` : ''}
         <div class="live-prep-line">
-          <span>Abonnement: <strong>${duration}</strong></span>
-          <span>Total: <strong class="ink-gold">${price} DH</strong></span>
+          <span>Montant : <strong>${price.toFixed(0)} DH</strong></span>
+          <span style="color:#9c7812;"><strong>Facture prête</strong></span>
         </div>
       `;
     }
 
-    function upsertClientRecord({ name, phone, itemLabel, price, paid, tech }) {
-      const cleanName = String(name || '').trim() || 'Client';
-      const cleanPhone = String(phone || '').trim();
-      const normPhone = normalizeWhatsAppNumber(cleanPhone);
-
-      const existingIdx = clients.findIndex(c => {
-        const cNorm = normalizeWhatsAppNumber(c.phone || '');
-        const matchPhone = normPhone && cNorm && cNorm === normPhone;
-        const matchName = cleanName && c.name.toLowerCase() === cleanName.toLowerCase();
-        return matchPhone || matchName;
-      });
-
-      const newItem = { name: itemLabel, qty: 1, price: Number(price) || 0 };
-
-      if (existingIdx >= 0) {
-        const cl = clients[existingIdx];
-        cl.name = cleanName;
-        if (cleanPhone) cl.phone = cleanPhone;
-        cl.items.push(newItem);
-        cl.total += Number(price) || 0;
-        cl.paid += Number(paid) || 0;
-        cl.tech = { ...(cl.tech || {}), ...tech };
-        localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-        renderClients();
-        populateClientDropdowns();
-        return cl;
-      } else {
-        const created = {
-          id: "CLI-" + Date.now().toString().slice(-6),
-          date: new Date().toLocaleDateString('fr-FR'),
-          name: cleanName,
-          phone: cleanPhone,
-          items: [newItem],
-          total: Number(price) || 0,
-          paid: Number(paid) || 0,
-          tech: tech || {}
-        };
-        clients.unshift(created);
-        localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-        renderClients();
-        populateClientDropdowns();
-        return created;
-      }
-    }
-
     function submitActivation() {
-      const name = document.getElementById('act-client-name').value.trim();
-      const phone = document.getElementById('act-whatsapp').value.trim();
+      const clientName = document.getElementById('act-client-name').value.trim();
+      const wa = document.getElementById('act-whatsapp').value.trim();
       const mac = document.getElementById('act-mac').value.trim();
       const app = document.getElementById('act-app').value;
       const duration = document.getElementById('act-duration').value;
@@ -5716,118 +5944,343 @@
       const paid = parseFloat(document.getElementById('act-paid').value) || 0;
       const note = document.getElementById('act-note').value.trim();
 
-      if (!name) return alert('Veuillez saisir le nom du client.');
+      if (!clientName) return alert('Veuillez saisir le nom du client');
 
-      const appLabel = app && app !== 'None' ? app : 'Playlist';
-      const label = `Activation ${appLabel} (${duration})${mac ? ' - ' + mac : ''}${note ? ' - ' + note : ''}`;
+      const label = `Activation ${app && app !== 'None' ? app : 'Playlist'} (${duration})`;
+      const selectedId = document.getElementById('act-client-select').value;
+      let targetClient = clients.find(c => String(c.id) === String(selectedId)) ||
+                         clients.find(c => c.name.toLowerCase() === clientName.toLowerCase());
 
-      const clientRecord = upsertClientRecord({
-        name,
-        phone,
-        itemLabel: label,
-        price,
-        paid,
-        tech: {
-          mac,
-          app: app !== 'None' ? app : '',
-          duration,
-          startDate,
-          note
-        }
-      });
+      const techData = {
+        mac,
+        app: app && app !== 'None' ? app : '',
+        duration,
+        startDate: startDate ? formatDateFr(new Date(startDate + 'T00:00:00')) : ''
+      };
 
+      if (targetClient) {
+        targetClient.total += price;
+        targetClient.paid += paid;
+        if (wa) targetClient.phone = wa;
+        targetClient.items.push({ name: note ? `${label} - ${note}` : label, qty: 1, price });
+        targetClient.tech = { ...(targetClient.tech || {}), ...techData };
+      } else {
+        targetClient = {
+          id: "ACT-" + Date.now().toString().slice(-6),
+          date: new Date().toLocaleDateString('fr-FR'),
+          name: clientName,
+          phone: wa,
+          items: [{ name: note ? `${label} - ${note}` : label, qty: 1, price }],
+          total: price,
+          paid,
+          tech: techData
+        };
+        clients.unshift(targetClient);
+      }
+
+      saveClients();
       closeModal('activation-modal');
-      openInvoice(clientRecord.id);
+      openInvoice(targetClient.id);
     }
 
     function submitAbonnement() {
-      const name = document.getElementById('sub-client-name').value.trim();
-      const phone = document.getElementById('sub-whatsapp').value.trim();
+      const clientName = document.getElementById('sub-client-name').value.trim();
       const app = document.getElementById('sub-app').value;
       const mac = document.getElementById('sub-mac').value.trim();
       const host = document.getElementById('sub-server').value.trim();
-      const username = document.getElementById('sub-username').value.trim();
-      const password = document.getElementById('sub-password').value.trim();
+      const wa = document.getElementById('sub-whatsapp').value.trim();
+      const user = document.getElementById('sub-username').value.trim();
+      const pass = document.getElementById('sub-password').value.trim();
       const duration = document.getElementById('sub-duration').value;
       const startDate = document.getElementById('sub-start-date').value;
       const expiry = document.getElementById('sub-expiry-display').value.trim();
       const price = parseFloat(document.getElementById('sub-price').value) || 0;
       const note = document.getElementById('sub-note').value.trim();
 
-      if (!name) return alert('Veuillez saisir le nom du client.');
+      if (!clientName) return alert('Veuillez saisir le nom du client');
 
-      const label = `Abonnement ${duration}${app && app !== 'None' ? ' (' + app + ')' : ''}${expiry ? ' - Exp: ' + expiry : ''}`;
+      const appSuffix = app && app !== 'None' ? ` + ${app}` : '';
+      const label = `Abonnement${appSuffix} (${duration})`;
+      const selectedId = document.getElementById('sub-client-select').value;
+      let targetClient = clients.find(c => String(c.id) === String(selectedId)) ||
+                         clients.find(c => c.name.toLowerCase() === clientName.toLowerCase());
 
-      const clientRecord = upsertClientRecord({
-        name,
-        phone,
-        itemLabel: label,
-        price,
-        paid: 0,
-        tech: {
-          host,
-          username,
-          password,
-          mac,
-          app: app !== 'None' ? app : '',
-          duration,
-          startDate,
-          expiry,
-          note
-        }
-      });
+      const techData = {
+        host,
+        username: user,
+        password: pass,
+        mac,
+        app: app && app !== 'None' ? app : '',
+        duration,
+        expiry,
+        startDate: startDate ? formatDateFr(new Date(startDate + 'T00:00:00')) : ''
+      };
 
+      if (targetClient) {
+        targetClient.total += price;
+        if (wa) targetClient.phone = wa;
+        targetClient.items.push({ name: note ? `${label} - ${note}` : label, qty: 1, price });
+        targetClient.tech = { ...(targetClient.tech || {}), ...techData };
+      } else {
+        targetClient = {
+          id: "ABO-" + Date.now().toString().slice(-6),
+          date: new Date().toLocaleDateString('fr-FR'),
+          name: clientName,
+          phone: wa,
+          items: [{ name: note ? `${label} - ${note}` : label, qty: 1, price }],
+          total: price,
+          paid: 0,
+          tech: techData
+        };
+        clients.unshift(targetClient);
+      }
+
+      saveClients();
       closeModal('abonnement-modal');
-      openInvoice(clientRecord.id);
+      openInvoice(targetClient.id);
+    }
+
+    function openFxModal() {
+      calculateFx();
+      document.getElementById('fx-modal').classList.add('open');
+    }
+
+    function saveCustomFxRate() {
+      const fromCurr = document.getElementById('fx-from').value;
+      const customRate = parseFloat(document.getElementById('fx-custom-rate').value);
+      if (!isNaN(customRate) && customRate > 0) {
+        fxRatesToMad[fromCurr] = customRate;
+        fxRatesToMad.MAD = 1;
+        localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
+      }
+      calculateFx(true);
+    }
+
+    function swapFxCurrencies() {
+      const fromEl = document.getElementById('fx-from');
+      const toEl = document.getElementById('fx-to');
+      const tmp = fromEl.value;
+      fromEl.value = toEl.value;
+      toEl.value = tmp;
+      calculateFx();
+    }
+
+    function formatCurrencyValue(val, curr) {
+      if (curr === 'MAD') return `${val.toFixed(2)} DH`;
+      if (curr === 'EUR') return `${val.toFixed(2)} €`;
+      if (curr === 'USD') return `$${val.toFixed(2)}`;
+      if (curr === 'CFA') return `${Math.round(val).toLocaleString('fr-FR')} FCFA`;
+      return val.toFixed(2);
+    }
+
+    function calculateFx(skipRateInputSync = false) {
+      const amount = parseFloat(document.getElementById('fx-amount').value) || 0;
+      const fromCurr = document.getElementById('fx-from').value;
+      const toCurr = document.getElementById('fx-to').value;
+      const rateInput = document.getElementById('fx-custom-rate');
+
+      const fromToMad = fxRatesToMad[fromCurr] || 1;
+      const toToMad = fxRatesToMad[toCurr] || 1;
+
+      if (!skipRateInputSync && rateInput) {
+        rateInput.value = fromToMad;
+      }
+
+      const amountInMad = amount * fromToMad;
+      const converted = amountInMad / toToMad;
+      const crossRate = fromToMad / toToMad;
+
+      document.getElementById('fx-output').innerText = formatCurrencyValue(converted, toCurr);
+      document.getElementById('fx-rate-info').innerText =
+        `1 ${fromCurr} = ${crossRate.toFixed(4)} ${toCurr}  •  Base : 1 ${fromCurr} = ${fromToMad} MAD`;
+    }
+
+    function switchMode(mode) {
+      const adminView = document.getElementById('admin-view');
+      const storeView = document.getElementById('store-view');
+      const btnAdmin = document.getElementById('btn-admin-mode');
+      const btnStore = document.getElementById('btn-store-mode');
+
+      if (mode === 'store') {
+        if (!isClientStoreVisible) {
+          isInStoreViewNow = false;
+          storeView.classList.add('hidden');
+          adminView.classList.remove('hidden');
+          btnAdmin.classList.add('active');
+          btnStore.classList.remove('active');
+          enforceClientValidityAndBrand();
+          return;
+        }
+        isInStoreViewNow = true;
+        adminView.classList.add('hidden');
+        storeView.classList.remove('hidden');
+        btnAdmin.classList.remove('active');
+        btnStore.classList.add('active');
+        updateStoreHeaderWithClientName();
+        renderStoreProductsMarquee();
+        renderStore();
+        enforceAdminHiddenSections();
+      } else {
+        isInStoreViewNow = false;
+        adminView.classList.remove('hidden');
+        storeView.classList.add('hidden');
+        btnAdmin.classList.add('active');
+        btnStore.classList.remove('active');
+        renderClients();
+        enforceClientValidityAndBrand();
+        enforceAdminHiddenSections();
+      }
+    }
+
+    function switchTab(tab) {
+      isInStoreViewNow = false;
+      document.getElementById('admin-view').classList.remove('hidden');
+      document.getElementById('store-view').classList.add('hidden');
+      document.getElementById('btn-admin-mode').classList.add('active');
+      const btnStore = document.getElementById('btn-store-mode');
+      if (btnStore) btnStore.classList.remove('active');
+
+      document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
+      document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
+      document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
+
+      if (tab === 'ledger') renderClients();
+      if (tab === 'products') renderProducts();
+      if (tab === 'quick-invoice') renderProductSelect();
+      enforceClientValidityAndBrand();
+      enforceAdminHiddenSections();
+    }
+
+    function openAddClientModal() {
+      document.getElementById('add-client-modal').classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    function saveClients() {
+      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
+      renderClients();
+      populateClientDropdowns();
+    }
+
+    function saveProducts() {
+      localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
+      renderProducts();
+      renderStore();
+      renderStoreProductsMarquee();
+      renderDashboardBoutique();
+      renderProductSelect();
+      syncRotatingProductCardVisibility();
     }
 
     function addClient() {
       const name = document.getElementById('new-c-name').value.trim();
       const phone = document.getElementById('new-c-phone').value.trim();
-      const note = document.getElementById('new-c-note').value.trim() || 'Article / Service';
+      const note = document.getElementById('new-c-note').value.trim() || 'Service / Produit';
       const total = parseFloat(document.getElementById('new-c-total').value) || 0;
       const paid = parseFloat(document.getElementById('new-c-paid').value) || 0;
-      if (!name) return alert('Veuillez saisir le nom du client.');
+
+      if (!name) return alert('Veuillez saisir le nom du client');
 
       clients.unshift({
         id: "CLI-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name, phone,
+        name,
+        phone,
         items: [{ name: note, qty: 1, price: total }],
-        total, paid
+        total,
+        paid
       });
 
-      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      ['new-c-name', 'new-c-phone', 'new-c-note', 'new-c-total', 'new-c-paid'].forEach(id => document.getElementById(id).value = '');
+      ['new-c-name', 'new-c-phone', 'new-c-note', 'new-c-total', 'new-c-paid'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+
+      saveClients();
       closeModal('add-client-modal');
-      renderClients();
-      populateClientDropdowns();
+    }
+
+    function openFinanceModal(clientId, type) {
+      const cl = clients.find(c => String(c.id) === String(clientId));
+      if (!cl) return;
+      const rem = Math.max(0, cl.total - cl.paid);
+      const modal = document.getElementById('finance-modal');
+      const title = document.getElementById('fin-modal-title');
+      const info = document.getElementById('fin-client-info');
+      const amountInput = document.getElementById('fin-amount');
+      const noteInput = document.getElementById('fin-note');
+      const confirmBtn = document.getElementById('fin-confirm-btn');
+
+      amountInput.value = '';
+      noteInput.value = '';
+
+      if (type === 'add') {
+        title.innerHTML = '<i class="fa-solid fa-plus-circle"></i> Ajouter un montant';
+        info.innerText = `${cl.name} — Reste actuel : ${rem} DH`;
+        confirmBtn.onclick = () => {
+          const addVal = parseFloat(amountInput.value) || 0;
+          if (addVal <= 0) return alert('Veuillez saisir un montant valide');
+          cl.total += addVal;
+          cl.items.push({ name: noteInput.value.trim() || 'Supplément', qty: 1, price: addVal });
+          saveClients();
+          closeModal('finance-modal');
+        };
+      } else {
+        title.innerHTML = '<i class="fa-solid fa-hand-holding-dollar"></i> Enregistrer un paiement';
+        info.innerText = `${cl.name} — Reste actuel : ${rem} DH`;
+        confirmBtn.onclick = () => {
+          const payVal = parseFloat(amountInput.value) || 0;
+          if (payVal <= 0) return alert('Veuillez saisir un montant valide');
+          cl.paid += payVal;
+          saveClients();
+          closeModal('finance-modal');
+        };
+      }
+
+      modal.classList.add('open');
+    }
+
+    function deleteClient(id) {
+      if (!confirm('Supprimer ce client ?')) return;
+      clients = clients.filter(c => String(c.id) !== String(id));
+      saveClients();
     }
 
     function renderClients() {
-      const q = (document.getElementById('client-search')?.value || '').toLowerCase();
       const list = document.getElementById('clients-list');
-      const filtered = clients.filter(c => c.name.toLowerCase().includes(q) || (c.phone && c.phone.includes(q)));
+      const q = (document.getElementById('client-search')?.value || '').toLowerCase();
 
-      let due = 0, paid = 0;
-      clients.forEach(c => { due += c.total; paid += c.paid; });
-      const rem = Math.max(0, due - paid);
+      let totalDue = 0, totalPaid = 0;
+      clients.forEach(c => {
+        totalDue += c.total;
+        totalPaid += c.paid;
+      });
+      const totalRem = Math.max(0, totalDue - totalPaid);
 
-      document.getElementById('stat-total-due').innerText = `${due} DH`;
-      document.getElementById('stat-total-paid').innerText = `${paid} DH`;
-      document.getElementById('stat-total-rem').innerText = `${rem} DH`;
+      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
       document.getElementById('stat-clients-count').innerText = clients.length;
       document.getElementById('badge-clients').innerText = clients.length;
-      const toggleBadge = document.getElementById('toggle-ledger-count');
-      if (toggleBadge) toggleBadge.innerText = clients.length;
+
+      const ledgerCountBadge = document.getElementById('toggle-ledger-count');
+      if (ledgerCountBadge) {
+        ledgerCountBadge.innerText = clients.length;
+      }
+
+      const filtered = clients.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+      );
 
       if (!filtered.length) {
-        list.innerHTML = '<p class="empty-state">Aucun client trouvé.</p>';
+        list.innerHTML = '<div class="empty-state">Aucun client trouvé.</div>';
         return;
       }
 
       list.innerHTML = filtered.map(c => {
-        const cRem = Math.max(0, c.total - c.paid);
+        const rem = Math.max(0, c.total - c.paid);
         const tech = getTechFields(c);
         const techSummary = [
           tech.mac ? `MAC: ${tech.mac}` : '',
@@ -5840,24 +6293,30 @@
           <div class="client-card">
             <div class="client-top">
               <div>
-                <div style="font-weight:800; font-size:0.95rem;">${c.name}</div>
-                <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date} • ${c.id}</div>
+                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date}</div>
                 ${techSummary ? `<div class="client-meta" style="color:var(--gold-primary); font-weight:700;">${techSummary}</div>` : ''}
               </div>
-              <span style="font-size:0.72rem; font-weight:800; padding:4px 9px; border-radius:20px; background:${cRem === 0 ? 'rgba(0,230,118,0.14)' : 'rgba(255,59,92,0.14)'}; color:${cRem === 0 ? 'var(--emerald)' : 'var(--ruby)'};">
-                ${cRem === 0 ? 'Soldé' : 'Reste ' + cRem + ' DH'}
-              </span>
+              <span class="product-badge">${rem === 0 ? 'Payé' : 'Reste ' + rem + ' DH'}</span>
             </div>
             <div class="finance-strip">
-              <div><div class="fin-box-label">À payer</div><div class="fin-box-val gold">${c.total} DH</div></div>
-              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
-              <div><div class="fin-box-label">Reste</div><div class="fin-box-val red">${cRem} DH</div></div>
+              <div>
+                <div class="fin-box-label">Total</div>
+                <div class="fin-box-val gold">${c.total} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Payé</div>
+                <div class="fin-box-val green">${c.paid} DH</div>
+              </div>
+              <div>
+                <div class="fin-box-label">Reste</div>
+                <div class="fin-box-val red">${rem} DH</div>
+              </div>
             </div>
             <div class="client-actions">
               <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-hand-holding-dollar"></i> Payer</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Payer</button>
               <button class="btn btn-gold" onclick="openInvoice('${c.id}')"><i class="fa-solid fa-receipt"></i> Facture</button>
-              ${hasAdminLinkGeneratorAccess ? `<button class="btn btn-dark" onclick="openClientLuxuryLinkModal(${JSON.stringify(c).replace(/"/g, '&quot;')})"><i class="fa-solid fa-link"></i> Lien Client</button>` : ''}
               <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
@@ -5865,232 +6324,217 @@
       }).join('');
     }
 
-    function openFinanceModal(id, type) {
-      const cl = clients.find(c => c.id === id);
-      if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
-      document.getElementById('fin-modal-title').innerHTML = type === 'add'
-        ? '<i class="fa-solid fa-plus-circle"></i> Ajouter au montant à payer'
-        : '<i class="fa-solid fa-hand-holding-dollar"></i> Enregistrer un paiement';
-      document.getElementById('fin-client-info').innerText = `${cl.name} — Reste : ${rem} DH`;
-      document.getElementById('fin-amount').value = '';
-      document.getElementById('fin-note').value = '';
-
-      document.getElementById('fin-confirm-btn').onclick = () => {
-        const amt = parseFloat(document.getElementById('fin-amount').value);
-        const note = document.getElementById('fin-note').value.trim();
-        if (!amt || amt <= 0) return alert('Veuillez saisir un montant valide.');
-
-        if (type === 'add') {
-          cl.total += amt;
-          cl.items.push({ name: note || 'Supplément', qty: 1, price: amt });
-        } else {
-          cl.paid += amt;
-          cl.items.push({ name: note ? `Paiement (${note})` : 'Paiement reçu', qty: 1, price: 0 });
+    function handleProductImageFile(event) {
+      const file = event.target && event.target.files && event.target.files[0];
+      const nameEl = document.getElementById('prod-img-filename');
+      const previewEl = document.getElementById('prod-img-preview');
+      if (!file) {
+        pendingProductImageData = '';
+        if (nameEl) nameEl.innerText = 'Choisir une photo...';
+        if (previewEl) previewEl.classList.add('hidden');
+        return;
+      }
+      if (nameEl) nameEl.innerText = file.name;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        pendingProductImageData = e.target && e.target.result ? String(e.target.result) : '';
+        if (previewEl && pendingProductImageData) {
+          previewEl.src = pendingProductImageData;
+          previewEl.classList.remove('hidden');
         }
-        localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-        closeModal('finance-modal');
-        renderClients();
       };
-
-      document.getElementById('finance-modal').classList.add('open');
-    }
-
-    function deleteClient(id) {
-      if (!confirm('Supprimer ce client ?')) return;
-      clients = clients.filter(c => c.id !== id);
-      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      renderClients();
-      populateClientDropdowns();
+      reader.readAsDataURL(file);
     }
 
     function addProduct() {
       const name = document.getElementById('prod-name').value.trim();
-      const price = parseFloat(document.getElementById('prod-price').value) || 0;
+      const price = parseFloat(document.getElementById('prod-price').value);
       const cat = document.getElementById('prod-cat').value.trim() || 'Général';
-      const img = pendingProductImageData;
-      if (!name) return alert('Veuillez saisir le nom du produit.');
+      let img = pendingProductImageData;
 
-      products.unshift({ id: Date.now(), name, price, cat, img });
-      localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
-      ['prod-name', 'prod-price', 'prod-cat', 'prod-img-file'].forEach(id => document.getElementById(id).value = '');
+      if (name.toLowerCase() === 'hot iptv') {
+        img = HOT_IPTV_IMAGE;
+      }
+
+      if (!name || isNaN(price)) return alert('Veuillez saisir le nom et le prix');
+
+      products.push({ id: Date.now(), name, price, cat, img });
+      document.getElementById('prod-name').value = '';
+      document.getElementById('prod-price').value = '';
+      document.getElementById('prod-cat').value = '';
       pendingProductImageData = '';
-      document.getElementById('prod-img-filename').innerText = 'Choisir une photo...';
-      const thumbEl = document.getElementById('prod-img-preview');
-      thumbEl.src = '';
-      thumbEl.classList.add('hidden');
-      renderProducts();
-      renderStore();
-      renderDashboardBoutique();
-      populateProductDropdown();
+      const fileInput = document.getElementById('prod-img-file');
+      if (fileInput) fileInput.value = '';
+      const fileNameEl = document.getElementById('prod-img-filename');
+      if (fileNameEl) fileNameEl.innerText = 'Choisir une photo...';
+      const previewEl = document.getElementById('prod-img-preview');
+      if (previewEl) {
+        previewEl.src = '';
+        previewEl.classList.add('hidden');
+      }
+      saveProducts();
+    }
+
+    function deleteProduct(id) {
+      products = products.filter(p => String(p.id) !== String(id));
+      if (rotatingProductIndex >= products.length) rotatingProductIndex = 0;
+      saveProducts();
     }
 
     function renderProducts() {
       document.getElementById('badge-products').innerText = products.length;
-      const list = document.getElementById('admin-products-list');
-      if (!list) return;
+      const adminList = document.getElementById('admin-products-list');
+      if (!adminList) return;
+
       if (!products.length) {
-        list.innerHTML = '<p class="empty-state">Aucun produit ajouté.</p>';
+        adminList.innerHTML = '<div class="empty-state">Aucun produit dans le catalogue.</div>';
         return;
       }
-      list.innerHTML = products.map(p => `
+
+      adminList.innerHTML = products.map(p => `
         <div class="product-card">
           <div class="product-media-frame">
             ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
           </div>
           <div class="product-body">
-            <div>
-              <span class="product-badge">${p.cat}</span>
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
+            <span class="product-badge">${p.cat}</span>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">${p.price} DH</div>
+            <button class="btn btn-danger" style="margin-top:8px; width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
           </div>
         </div>
       `).join('');
-    }
-
-    function deleteProduct(id) {
-      products = products.filter(p => p.id !== id);
-      localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
-      renderProducts();
-      renderStore();
-      renderDashboardBoutique();
-      populateProductDropdown();
-    }
-
-    function buildProductCardHtml(p) {
-      const clientName = getCurrentClientDisplayName();
-      const clientPhone = getCurrentClientPhone();
-      const targetPhone = normalizeWhatsAppNumber(clientPhone) || WHATSAPP_ORDER_NUMBER;
-      const waMessage = [
-        `Bonjour ${BRAND_NAME}, je souhaite commander :`,
-        `Produit : ${p.name} (${p.price} DH)`,
-        clientName ? `Client : ${clientName}` : '',
-        clientPhone ? `Téléphone : ${clientPhone}` : ''
-      ].filter(Boolean).join('\n');
-      const waHref = buildWhatsAppUrl(targetPhone, waMessage);
-
-      return `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-          </div>
-          <div class="product-body">
-            <div>
-              <span class="product-badge">${p.cat}</span>
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px; width:100%;">
-              <a class="btn btn-wa-order" style="width:100%; font-size:0.68rem; padding:6px 10px;" href="${waHref}" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
-              <button class="btn btn-gold" style="width:100%; font-size:0.68rem; padding:6px 10px;" onclick="useProductInInvoice(${p.id})">
-                <i class="fa-solid fa-file-invoice"></i> Facture
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderDashboardBoutique() {
-      const grid = document.getElementById('dashboard-boutique-grid');
-      if (!grid) return;
-      renderDashboardClientHeading();
-
-      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase().trim();
-      const filtered = products.filter(p =>
-        !q || p.name.toLowerCase().includes(q) || (p.cat && p.cat.toLowerCase().includes(q))
-      );
-
-      if (!filtered.length) {
-        grid.innerHTML = '<p class="empty-state">Aucun produit trouvé.</p>';
-        return;
-      }
-
-      grid.innerHTML = filtered.map(buildProductCardHtml).join('');
     }
 
     function renderStore() {
-      enforceClientValidityAndBrand();
-      renderStoreProductsMarquee();
-
-      const q = (document.getElementById('store-search')?.value || '').toLowerCase();
       const grid = document.getElementById('store-products-grid');
+      const q = (document.getElementById('store-search')?.value || '').toLowerCase();
       const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
 
       if (!filtered.length) {
-        grid.innerHTML = '<p class="empty-state">Aucun produit disponible actuellement.</p>';
+        grid.innerHTML = '<div class="empty-state">Aucun produit disponible.</div>';
         return;
       }
 
-      grid.innerHTML = filtered.map(buildProductCardHtml).join('');
+      grid.innerHTML = filtered.map(p => {
+        const orderMsg = `Bonjour, je souhaite commander : ${p.name} (${p.price} DH).`;
+        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, orderMsg);
+        return `
+          <div class="product-card">
+            <div class="product-media-frame">
+              ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+            </div>
+            <div class="product-body">
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Commander
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
-    function populateProductDropdown() {
-      const menu = document.getElementById('lux-product-menu');
-      if (!menu) return;
-      if (!products.length) {
-        menu.innerHTML = '<div class="lux-select-option"><span>Aucun produit disponible</span></div>';
+    function renderDashboardBoutique() {
+      renderDashboardClientHeading();
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!grid) return;
+      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="empty-state">Aucun produit disponible.</div>';
         return;
       }
-      menu.innerHTML = products.map(p => `
-        <div class="lux-select-option" onclick="selectLuxuryProduct(${p.id}, event)">
-          <span>${p.name}</span>
-          <span style="color:var(--gold-primary);">${p.price} DH</span>
-        </div>
-      `).join('');
+
+      grid.innerHTML = filtered.map(p => {
+        const orderMsg = `Bonjour, je souhaite commander : ${p.name} (${p.price} DH).`;
+        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, orderMsg);
+        return `
+          <div class="product-card">
+            <div class="product-media-frame">
+              ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+            </div>
+            <div class="product-body">
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Commander
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function toggleProductDropdown(e) {
-      if (e) e.stopPropagation();
+      e.stopPropagation();
       const menu = document.getElementById('lux-product-menu');
-      if (!menu) return;
-      populateProductDropdown();
       menu.classList.toggle('hidden');
     }
 
-    function selectLuxuryProduct(prodId, e) {
-      if (e) e.stopPropagation();
-      const p = products.find(item => item.id === prodId);
+    document.addEventListener('click', () => {
       const menu = document.getElementById('lux-product-menu');
       if (menu) menu.classList.add('hidden');
-      if (!p) return;
+    });
 
-      document.getElementById('lux-selected-label').innerText = `${p.name} (${p.price} DH)`;
+    function renderProductSelect() {
+      const menu = document.getElementById('lux-product-menu');
+      if (!menu) return;
+      if (!products.length) {
+        menu.innerHTML = '<div class="lux-select-option">Aucun produit disponible</div>';
+        return;
+      }
+      menu.innerHTML = products.map((p, idx) =>
+        `<div class="lux-select-option" onclick="selectProductByIndex(${idx})">
+          <span>${p.name}</span>
+          <span style="color:var(--gold-primary);">${p.price} DH</span>
+        </div>`
+      ).join('');
+    }
+
+    function selectProductByIndex(idx) {
+      const p = products[idx];
+      if (!p) return;
+      document.getElementById('lux-selected-label').innerText = `${p.name} — ${p.price} DH`;
       document.getElementById('inv-item').value = p.name;
       document.getElementById('inv-price').value = p.price;
       if (!document.getElementById('inv-qty').value) document.getElementById('inv-qty').value = 1;
-
-      const thumb = document.getElementById('inv-prod-thumb');
-      thumb.innerHTML = p.img
-        ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
-        : '<i class="fa-solid fa-box"></i>';
-      document.getElementById('inv-preview-title').innerText = p.name;
-      document.getElementById('inv-preview-price').innerText = `${p.price} DH`;
+      document.getElementById('lux-product-menu').classList.add('hidden');
+      updateSelectedProductPreview(p);
     }
 
-    function useProductInInvoice(prodId) {
-      const p = products.find(item => item.id === prodId);
-      if (!p) return;
-      switchMode('admin');
-      switchTab('quick-invoice');
-      selectLuxuryProduct(p.id);
+    function updateSelectedProductPreview(prod) {
+      const thumb = document.getElementById('inv-prod-thumb');
+      const title = document.getElementById('inv-preview-title');
+      const price = document.getElementById('inv-preview-price');
+      if (!prod) {
+        title.innerText = '-';
+        price.innerText = '';
+        thumb.innerHTML = '<i class="fa-solid fa-image"></i>';
+        return;
+      }
+      title.innerText = prod.name;
+      price.innerText = `${prod.price} DH`;
+      thumb.innerHTML = prod.img
+        ? `<img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" alt="${prod.name}">`
+        : '<i class="fa-solid fa-box"></i>';
     }
 
     function createQuickInvoice() {
       const clientName = document.getElementById('inv-client').value.trim() || 'Client comptoir';
       const phone = document.getElementById('inv-phone').value.trim();
       const itemName = document.getElementById('inv-item').value.trim() || 'Article';
-      const qty = parseFloat(document.getElementById('inv-qty').value) || 1;
+      const qty = parseInt(document.getElementById('inv-qty').value, 10) || 1;
       const unitPrice = parseFloat(document.getElementById('inv-price').value) || 0;
       const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
       const total = qty * unitPrice;
 
-      const newCl = {
-        id: "INV-" + Date.now().toString().slice(-6),
+      const newClient = {
+        id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
         name: clientName,
         phone,
@@ -6099,49 +6543,42 @@
         paid
       };
 
-      clients.unshift(newCl);
-      localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      ['inv-client', 'inv-phone', 'inv-item', 'inv-qty', 'inv-price', 'inv-paid'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
-      document.getElementById('inv-preview-title').innerText = '-';
-      document.getElementById('inv-preview-price').innerText = '';
-      document.getElementById('inv-prod-thumb').innerHTML = '<i class="fa-solid fa-image"></i>';
-
-      renderClients();
-      populateClientDropdowns();
-      openInvoice(newCl.id);
+      clients.unshift(newClient);
+      saveClients();
+      openInvoice(newClient.id);
     }
 
-    function openInvoice(id) {
-      const cl = clients.find(c => c.id === id);
+    function openInvoice(clientId) {
+      const cl = clients.find(c => String(c.id) === String(clientId));
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
-      const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
+      const statusBadge = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
       const tech = getTechFields(cl);
       const showTech = hasAnyTechField(tech);
+      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
 
-      const techCellsHtml = [];
-      if (tech.host) techCellsHtml.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
-      if (tech.username) techCellsHtml.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
-      if (tech.password) techCellsHtml.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
-      if (tech.app) techCellsHtml.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
+      const techGridItems = [];
+      if (tech.host) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
+      if (tech.username) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
+      if (tech.password) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
+      if (tech.app) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
       if (tech.duration || tech.expiry) {
-        techCellsHtml.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' • ')}</span></div>`);
+        techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Exp</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')}</span></div>`);
       }
 
-      const techBlockHtml = showTech ? `
+      const techSectionHtml = showTech ? `
         <div class="inv-tech-panel">
           <div class="inv-tech-title">
-            <span><i class="fa-solid fa-sliders"></i> Paramètres d'accès & playlist</span>
+            <span>Identifiants & Accès</span>
+            <span>${tech.app || 'Abonnement'}</span>
           </div>
           ${tech.mac ? `
             <div class="inv-mac-banner">
-              <span class="inv-mac-badge">MAC ADDRESS</span>
+              <span class="inv-mac-badge">MAC Address</span>
               <span class="inv-mac-value">${tech.mac}</span>
             </div>
           ` : ''}
-          ${techCellsHtml.length ? `<div class="inv-tech-grid">${techCellsHtml.join('')}</div>` : ''}
+          ${techGridItems.length ? `<div class="inv-tech-grid">${techGridItems.join('')}</div>` : ''}
         </div>
       ` : '';
 
@@ -6149,137 +6586,73 @@
         <div class="inv-top-bar">
           <div>
             <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.5rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
+            <div style="font-size:0.52rem;color:#64748b;font-weight:700;">Reçu N° ${cl.id}</div>
           </div>
-          <span class="inv-doc-tag">${statusLabel}</span>
+          <span class="inv-doc-tag">${statusBadge}</span>
         </div>
 
         <div class="inv-meta-block">
-          <div class="inv-meta-row"><span class="inv-meta-key">N°:</span><span class="inv-meta-val gold-ink">${cl.id}</span></div>
+          <div class="inv-meta-row"><span class="inv-meta-key">Client:</span><span class="inv-meta-val gold-ink">${cl.name}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Date:</span><span class="inv-meta-val">${cl.date}</span></div>
-          <div class="inv-meta-row"><span class="inv-meta-key">Client:</span><span class="inv-meta-val">${cl.name}</span></div>
-          <div class="inv-meta-row"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone || '-'}</span></div>
+          ${cl.phone ? `<div class="inv-meta-row" style="grid-column:1 / -1;"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone}</span></div>` : ''}
         </div>
 
-        ${techBlockHtml}
+        ${techSectionHtml}
 
         <table class="invoice-table">
           <thead>
-            <tr>
-              <th>Désignation</th>
-              <th>Qté</th>
-              <th>P.U</th>
-              <th>Total</th>
-            </tr>
+            <tr><th>Article</th><th>Qté</th><th>Total</th></tr>
           </thead>
           <tbody>
-            ${items.map(i => `
+            ${items.map(it => `
               <tr>
-                <td>${i.name}</td>
-                <td>${i.qty || 1}</td>
-                <td>${i.price || 0} DH</td>
-                <td>${(i.qty || 1) * (i.price || 0)} DH</td>
+                <td>${it.name}</td>
+                <td>${it.qty || 1}</td>
+                <td>${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
 
         <div class="inv-totals-box">
-          <div class="inv-total-line"><span>Sous-total :</span><strong>${cl.total} DH</strong></div>
-          <div class="inv-total-line"><span>Payé :</span><span class="ink-green">${cl.paid} DH</span></div>
+          <div class="inv-total-line"><span>Total</span><strong>${cl.total.toFixed(0)} DH</strong></div>
+          <div class="inv-total-line"><span class="ink-green">Payé</span><strong class="ink-green">${cl.paid.toFixed(0)} DH</strong></div>
           <div class="inv-total-line inv-grand-total">
-            <span>Reste à payer :</span>
-            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span>
+            <span>Reste à payer</span>
+            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem.toFixed(0)} DH</span>
           </div>
         </div>
 
-        <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME} • Reçu officiel</div>
+        <div class="inv-footer-note">Merci pour votre confiance • ${BRAND_NAME}</div>
       `;
 
-      document.getElementById('wa-export-feedback').innerText = '';
-      document.getElementById('btn-save-invoice-png').onclick = () => saveInvoiceOnly(cl);
-      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceImageViaWhatsApp(cl);
+      const feedback = document.getElementById('wa-export-feedback');
+      if (feedback) feedback.innerText = '';
+
+      document.getElementById('btn-save-invoice-png').onclick = () => {
+        const canvas = renderInvoiceToCanvas(cl);
+        const filename = `Facture-${cl.id}-${(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
+        downloadCanvasAsPng(canvas, filename);
+        if (feedback) feedback.innerText = 'Image PNG enregistrée !';
+      };
+
+      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceViaWhatsApp(cl);
+
       document.getElementById('invoice-modal').classList.add('open');
     }
-
-    function openFxModal() {
-      syncRateInput();
-      calculateFx();
-      document.getElementById('fx-modal').classList.add('open');
-    }
-
-    function syncRateInput() {
-      const from = document.getElementById('fx-from').value;
-      const rateInput = document.getElementById('fx-custom-rate');
-      rateInput.value = fxRatesToMad[from] ?? 1;
-    }
-
-    function saveCustomFxRate() {
-      const from = document.getElementById('fx-from').value;
-      const val = parseFloat(document.getElementById('fx-custom-rate').value);
-      if (val > 0) {
-        fxRatesToMad[from] = val;
-        localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
-      }
-      calculateFx();
-    }
-
-    function swapFxCurrencies() {
-      const fromEl = document.getElementById('fx-from');
-      const toEl = document.getElementById('fx-to');
-      const temp = fromEl.value;
-      fromEl.value = toEl.value;
-      toEl.value = temp;
-      syncRateInput();
-      calculateFx();
-    }
-
-    function calculateFx() {
-      const amount = parseFloat(document.getElementById('fx-amount').value) || 0;
-      const from = document.getElementById('fx-from').value;
-      const to = document.getElementById('fx-to').value;
-      const symbols = { MAD: 'DH', EUR: '€', USD: '$', CFA: 'FCFA' };
-
-      const fromToMad = fxRatesToMad[from] || 1;
-      const toToMad = fxRatesToMad[to] || 1;
-      const converted = (amount * fromToMad) / toToMad;
-
-      const decimals = to === 'CFA' ? 0 : 2;
-      document.getElementById('fx-output').innerText = `${converted.toFixed(decimals)} ${symbols[to] || to}`;
-      document.getElementById('fx-rate-info').innerText = `Base : 1 ${from} = ${fromToMad} MAD • 1 ${to} = ${toToMad} MAD`;
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
-    }
-
-    document.addEventListener('click', (e) => {
-      const menu = document.getElementById('lux-product-menu');
-      const box = document.querySelector('.luxury-product-name-box');
-      if (menu && !menu.classList.contains('hidden') && box && !box.contains(e.target)) {
-        menu.classList.add('hidden');
-      }
-    });
-
-    document.querySelectorAll('.modal-backdrop').forEach(bd => {
-      bd.addEventListener('click', (e) => {
-        if (e.target === bd) bd.classList.remove('open');
-      });
-    });
 
     syncCopyrightYear();
     checkIncomingClientAccessLink();
     applyClientVisibilityState();
     applyRoleVisibility();
-    updateDirectionWelcomeShowcase();
+    setTodayDateInputs();
     renderClients();
     renderProducts();
     renderStore();
-    renderDashboardBoutique();
     renderStoreProductsMarquee();
+    renderDashboardBoutique();
+    renderProductSelect();
     populateClientDropdowns();
-    populateProductDropdown();
-    syncRateInput();
     calculateFx();
     enforceAdminHiddenSections();
   </script>
