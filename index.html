@@ -786,7 +786,7 @@
     .rotating-glass-stage {
       position: relative;
       z-index: 3;
-      min-height: 116px;
+      min-height: 112px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -908,26 +908,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
-    }
-
-    .rotating-progress-track {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      height: 3px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      margin-top: 11px;
-      overflow: hidden;
-    }
-
-    .rotating-progress-bar {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--neon-green) 0%, #f3d06b 55%, var(--gold-primary) 100%);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
-      transition: width 0.08s linear;
     }
 
     @media (max-width: 480px) {
@@ -3229,10 +3209,6 @@
               </div>
             </div>
           </div>
-
-          <div class="rotating-progress-track">
-            <div class="rotating-progress-bar" id="rotating-product-progress"></div>
-          </div>
         </section>
 
         <!-- Account Ledger Panel (Toggled by Registre des Clients button) -->
@@ -4203,8 +4179,6 @@
     const ROTATING_FADE_MS = 480;
     let rotatingProductIndex = 0;
     let rotatingCycleTimer = null;
-    let rotatingProgressTimer = null;
-    let rotatingCycleStart = 0;
 
     function applyRotatingProductContent(idx) {
       if (!Array.isArray(products) || products.length === 0) return;
@@ -4228,35 +4202,25 @@
       if (counterEl) counterEl.textContent = `${safeIdx + 1} / ${products.length}`;
     }
 
-    function resetRotatingProgress() {
-      rotatingCycleStart = performance.now();
-      const barEl = document.getElementById('rotating-product-progress');
-      if (barEl) barEl.style.width = '0%';
-    }
-
     function stepRotatingProductCard() {
       if (!Array.isArray(products) || products.length === 0) return;
       const cardEl = document.getElementById('rotating-product-card-inner');
       if (!cardEl) {
         rotatingProductIndex = (rotatingProductIndex + 1) % products.length;
         applyRotatingProductContent(rotatingProductIndex);
-        resetRotatingProgress();
         return;
       }
 
-      // Smooth fade & lift out
       cardEl.classList.add('is-exiting');
 
       setTimeout(() => {
         rotatingProductIndex = (rotatingProductIndex + 1) % products.length;
         applyRotatingProductContent(rotatingProductIndex);
 
-        // Prepare entrance state without transition, then animate in
         cardEl.classList.remove('is-exiting');
         cardEl.classList.add('is-entering');
         void cardEl.offsetWidth;
         cardEl.classList.remove('is-entering');
-        resetRotatingProgress();
       }, ROTATING_FADE_MS);
     }
 
@@ -4264,15 +4228,6 @@
       stopRotatingProductLoop();
       if (!Array.isArray(products) || products.length === 0) return;
       applyRotatingProductContent(rotatingProductIndex);
-      resetRotatingProgress();
-
-      rotatingProgressTimer = setInterval(() => {
-        const barEl = document.getElementById('rotating-product-progress');
-        if (!barEl) return;
-        const elapsed = performance.now() - rotatingCycleStart;
-        const pct = Math.min(100, (elapsed / ROTATING_DURATION_MS) * 100);
-        barEl.style.width = `${pct}%`;
-      }, 60);
 
       rotatingCycleTimer = setInterval(() => {
         stepRotatingProductCard();
@@ -4283,10 +4238,6 @@
       if (rotatingCycleTimer) {
         clearInterval(rotatingCycleTimer);
         rotatingCycleTimer = null;
-      }
-      if (rotatingProgressTimer) {
-        clearInterval(rotatingProgressTimer);
-        rotatingProgressTimer = null;
       }
     }
 
@@ -4325,7 +4276,6 @@
         dgAdminCard.classList.toggle('hidden', hideOnClientPage);
       }
 
-      // Keep products hidden inside the dashboard and inside the Produits tab until navigating to GALLERY
       const dashBoutiqueBox = document.getElementById('dashboard-boutique-container');
       if (dashBoutiqueBox) {
         const showInDashboard = Boolean(isClientStoreVisible && isInStoreViewNow);
@@ -5337,27 +5287,6 @@
       window.open(buildWhatsAppUrl(targetPhone, lines.join('\n')), '_blank', 'noopener,noreferrer');
     }
 
-    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = String(text || '').split(/\s+/);
-      let line = '';
-      let currentY = y;
-      for (let i = 0; i < words.length; i++) {
-        const testLine = line ? line + ' ' + words[i] : words[i];
-        if (ctx.measureText(testLine).width > maxWidth && line) {
-          ctx.fillText(line, x, currentY);
-          line = words[i];
-          currentY += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      if (line) {
-        ctx.fillText(line, x, currentY);
-        currentY += lineHeight;
-      }
-      return currentY;
-    }
-
     function drawRoundRect(ctx, x, y, w, h, r) {
       ctx.beginPath();
       ctx.moveTo(x + r, y);
@@ -5504,137 +5433,123 @@
           drawRoundRect(ctx, cardX + 18, curTy, cardW - 36, 24, 6);
           ctx.fillStyle = '#fef3c7';
           ctx.fill();
-          ctx.strokeStyle = 'rgba(212, 175, 55, 0.7)';
+          ctx.strokeStyle = 'rgba(212, 175, 55, 0.75)';
           ctx.stroke();
 
           ctx.fillStyle = '#9c7812';
-          ctx.font = '800 7.2px "Plus Jakarta Sans", sans-serif';
-          ctx.fillText('MAC ADDRESS', cardX + 24, curTy + 15);
+          ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText('MAC', cardX + 24, curTy + 15);
 
           ctx.fillStyle = '#451a03';
-          ctx.font = '800 9px "Plus Jakarta Sans", sans-serif';
+          ctx.font = '800 8.5px "Plus Jakarta Sans", sans-serif';
           ctx.textAlign = 'right';
           ctx.fillText(tech.mac, cardX + cardW - 24, curTy + 15);
           ctx.textAlign = 'left';
           curTy += 30;
         }
 
-        const halfW = (cardW - 42) / 2;
+        const halfW = Math.floor((cardW - 42) / 2);
         for (let i = 0; i < techCells.length; i++) {
           const col = i % 2;
           const row = Math.floor(i / 2);
           const cx = cardX + 18 + col * (halfW + 6);
           const cy = curTy + row * 30;
-
           drawRoundRect(ctx, cx, cy, halfW, 25, 5);
           ctx.fillStyle = '#ffffff';
           ctx.fill();
+          ctx.strokeStyle = 'rgba(203, 213, 225, 0.6)';
+          ctx.stroke();
 
           ctx.fillStyle = '#64748b';
           ctx.font = '700 6.5px "Plus Jakarta Sans", sans-serif';
           ctx.fillText(techCells[i][0], cx + 6, cy + 9);
 
           ctx.fillStyle = '#0f172a';
-          ctx.font = '700 8px "Plus Jakarta Sans", sans-serif';
+          ctx.font = '800 7.5px "Plus Jakarta Sans", sans-serif';
           const valStr = String(techCells[i][1]);
           ctx.fillText(valStr.length > 22 ? valStr.slice(0, 21) + '…' : valStr, cx + 6, cy + 20);
         }
         y += techBoxHeight + 8;
       }
 
-      const tblH = 22 + items.length * itemRowHeight;
-      drawRoundRect(ctx, cardX + 12, y, cardW - 24, tblH, 8);
-      ctx.fillStyle = '#ffffff';
-      ctx.fill();
-
+      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 22, 6);
       ctx.fillStyle = 'rgba(212, 175, 55, 0.14)';
-      ctx.fillRect(cardX + 12, y, cardW - 24, 20);
-
+      ctx.fill();
       ctx.fillStyle = '#785b0a';
       ctx.font = '800 8px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Article', cardX + 18, y + 13);
+      ctx.fillText('Désignation', cardX + 18, y + 14);
       ctx.textAlign = 'center';
-      ctx.fillText('Qté', cardX + 215, y + 13);
+      ctx.fillText('Qté', cardX + cardW - 102, y + 14);
       ctx.textAlign = 'right';
-      ctx.fillText('Total', cardX + cardW - 18, y + 13);
+      ctx.fillText('Total', cardX + cardW - 18, y + 14);
       ctx.textAlign = 'left';
+      y += 24;
 
-      let rowY = y + 34;
-      ctx.font = '600 8.5px "Plus Jakarta Sans", sans-serif';
-      items.forEach(it => {
-        ctx.fillStyle = '#0f172a';
-        const label = String(it.name || '');
-        ctx.fillText(label.length > 25 ? label.slice(0, 24) + '…' : label, cardX + 18, rowY);
-        ctx.fillStyle = '#475569';
+      items.forEach((it) => {
+        const lineTot = (it.qty || 1) * (it.price || 0);
+        ctx.fillStyle = '#1e293b';
+        ctx.font = '600 8.5px "Plus Jakarta Sans", sans-serif';
+        const titleStr = String(it.name || '');
+        ctx.fillText(titleStr.length > 26 ? titleStr.slice(0, 25) + '…' : titleStr, cardX + 18, y + 16);
         ctx.textAlign = 'center';
-        ctx.fillText(String(it.qty || 1), cardX + 215, rowY);
-        ctx.fillStyle = '#0f172a';
+        ctx.fillText(String(it.qty || 1), cardX + cardW - 102, y + 16);
         ctx.textAlign = 'right';
-        ctx.fillText(`${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH`, cardX + cardW - 18, rowY);
+        ctx.fillText(`${lineTot} DH`, cardX + cardW - 18, y + 16);
         ctx.textAlign = 'left';
-        rowY += itemRowHeight;
+
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fillRect(cardX + 14, y + 23, cardW - 28, 1);
+        y += itemRowHeight;
       });
 
-      const totY = y + tblH + 8;
-      drawRoundRect(ctx, cardX + 12, totY, cardW - 24, 72, 8);
+      y += 8;
+      drawRoundRect(ctx, cardX + 12, y, cardW - 24, 62, 8);
       ctx.fillStyle = '#f8fafc';
       ctx.fill();
 
       ctx.fillStyle = '#334155';
       ctx.font = '700 8.5px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Total :', cardX + 18, totY + 16);
+      ctx.fillText('Total à payer :', cardX + 18, y + 16);
       ctx.textAlign = 'right';
-      ctx.fillText(`${cl.total.toFixed(0)} DH`, cardX + cardW - 18, totY + 16);
+      ctx.fillText(`${cl.total} DH`, cardX + cardW - 18, y + 16);
       ctx.textAlign = 'left';
 
       ctx.fillStyle = '#059669';
-      ctx.fillText('Payé :', cardX + 18, totY + 32);
+      ctx.fillText('Montant payé :', cardX + 18, y + 32);
       ctx.textAlign = 'right';
-      ctx.fillText(`${cl.paid.toFixed(0)} DH`, cardX + cardW - 18, totY + 32);
+      ctx.fillText(`${cl.paid} DH`, cardX + cardW - 18, y + 32);
       ctx.textAlign = 'left';
 
-      drawRoundRect(ctx, cardX + 16, totY + 41, cardW - 32, 23, 6);
-      ctx.fillStyle = 'rgba(212, 175, 55, 0.14)';
-      ctx.fill();
-
-      ctx.fillStyle = '#0f172a';
-      ctx.font = '800 9.5px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Reste à payer :', cardX + 22, totY + 56);
       ctx.fillStyle = rem > 0 ? '#dc2626' : '#059669';
+      ctx.font = '800 9px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Reste à payer :', cardX + 18, y + 50);
       ctx.textAlign = 'right';
-      ctx.fillText(`${rem.toFixed(0)} DH`, cardX + cardW - 22, totY + 56);
+      ctx.fillText(`${rem} DH`, cardX + cardW - 18, y + 50);
       ctx.textAlign = 'left';
 
       ctx.fillStyle = '#64748b';
       ctx.font = '600 7.5px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Merci pour votre confiance', frameW / 2, cardY + cardH - 12);
+      ctx.fillText(`Merci pour votre confiance • ${BRAND_NAME}`, frameW / 2, cardY + cardH - 10);
+      ctx.textAlign = 'left';
 
       return canvas;
     }
 
-    function downloadCanvasAsPng(canvas, filename) {
-      const dataUrl = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      return dataUrl;
-    }
-
-    function buildInvoiceTextMessage(cl) {
+    function buildWhatsAppReceiptText(cl) {
       const rem = Math.max(0, cl.total - cl.paid);
       const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
+
       const lines = [
         `*${BRAND_NAME}*`,
-        `Reçu N° *${cl.id}* (${cl.date})`,
+        `Reçu N° : *${cl.id}*`,
+        `Date : ${cl.date}`,
         `Client : *${cl.name}*`
       ];
       if (cl.phone) lines.push(`Téléphone : ${cl.phone}`);
-      if (tech.mac) lines.push(`MAC Address : *${tech.mac}*`);
+
+      if (tech.mac) lines.push(`MAC : *${tech.mac}*`);
       if (tech.app) lines.push(`Application : ${tech.app}`);
       if (tech.host) lines.push(`Host : ${tech.host}`);
       if (tech.username) lines.push(`Username : ${tech.username}`);
@@ -5642,262 +5557,284 @@
       if (tech.duration || tech.expiry) {
         lines.push(`Validité : ${[tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')}`);
       }
-      lines.push('---');
+
+      lines.push('', '*Détails :*');
       items.forEach(it => {
-        lines.push(`• ${it.name} x${it.qty || 1} = ${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH`);
+        const q = it.qty || 1;
+        const p = it.price || 0;
+        lines.push(`• ${it.name} (x${q}) : ${q * p} DH`);
       });
-      lines.push('---');
-      lines.push(`Total : *${cl.total.toFixed(0)} DH*`);
-      lines.push(`Payé : ${cl.paid.toFixed(0)} DH`);
-      lines.push(`Reste : *${rem.toFixed(0)} DH*`);
+
+      lines.push(
+        '',
+        `Total : *${cl.total} DH*`,
+        `Payé : *${cl.paid} DH*`,
+        `Reste à payer : *${rem} DH*`,
+        '',
+        `Merci pour votre confiance • ${BRAND_NAME}`
+      );
       return lines.join('\n');
     }
 
-    async function sendInvoiceViaWhatsApp(cl) {
-      const feedback = document.getElementById('wa-export-feedback');
-      const canvas = renderInvoiceToCanvas(cl);
-      const filename = `Facture-${cl.id}-${(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
-      downloadCanvasAsPng(canvas, filename);
+    async function saveInvoicePngToDevice(cl) {
+      const fb = document.getElementById('wa-export-feedback');
+      try {
+        const canvas = renderInvoiceToCanvas(cl);
+        const fileName = `Recu-${cl.id}-${String(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
+        const dataUrl = canvas.toDataURL('image/png');
 
-      const textMsg = buildInvoiceTextMessage(cl);
-      const waTargetPhone = normalizeWhatsAppNumber(cl.phone) || WHATSAPP_ORDER_NUMBER;
-      const waUrl = buildWhatsAppUrl(waTargetPhone, textMsg);
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
 
-      if (navigator.clipboard && window.ClipboardItem) {
-        try {
-          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-          if (blob) {
-            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-            if (feedback) {
-              feedback.innerText = 'Image PNG enregistrée et copiée ! Collez-la (Ctrl+V / Coller) dans WhatsApp.';
+        if (fb) {
+          fb.style.color = '#059669';
+          fb.innerText = `Facture enregistrée : ${fileName}`;
+        }
+      } catch (_) {
+        if (fb) {
+          fb.style.color = '#dc2626';
+          fb.innerText = 'Erreur lors de l\'enregistrement de la facture.';
+        }
+      }
+    }
+
+    async function sendInvoiceToWhatsApp(cl) {
+      const fb = document.getElementById('wa-export-feedback');
+      const textMsg = buildWhatsAppReceiptText(cl);
+      const targetPhone = normalizeWhatsAppNumber(cl.phone) || WHATSAPP_ORDER_NUMBER;
+
+      try {
+        const canvas = renderInvoiceToCanvas(cl);
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const fileName = `Recu-${cl.id}.png`;
+
+        if (blob && navigator.canShare) {
+          const file = new File([blob], fileName, { type: 'image/png' });
+          if (navigator.canShare({ files: [file] }) && navigator.share) {
+            await navigator.share({
+              title: `Reçu ${cl.id} - ${BRAND_NAME}`,
+              text: textMsg,
+              files: [file]
+            });
+            if (fb) {
+              fb.style.color = '#059669';
+              fb.innerText = 'Facture partagée avec succès.';
             }
-          }
-        } catch (_) {
-          if (feedback) {
-            feedback.innerText = 'Image PNG enregistrée ! Joignez-la dans WhatsApp.';
+            return;
           }
         }
-      } else if (feedback) {
-        feedback.innerText = 'Image PNG enregistrée ! Joignez-la dans WhatsApp.';
+      } catch (err) {
+        if (err && err.name === 'AbortError') return;
       }
 
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textMsg).catch(() => {});
+      }
+
+      if (fb) {
+        fb.style.color = '#059669';
+        fb.innerText = targetPhone ? `Ouverture de WhatsApp (+${targetPhone})...` : 'Ouverture de WhatsApp...';
+      }
+
+      window.open(buildWhatsAppUrl(targetPhone, textMsg), '_blank', 'noopener,noreferrer');
     }
 
-    function encodeVaultPayload(obj) {
+    function xorCipher(str, key) {
+      let out = '';
+      for (let i = 0; i < str.length; i++) {
+        out += String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      return out;
+    }
+
+    function encodeLuxuryVault(obj) {
       const jsonStr = JSON.stringify(obj);
-      const utf8Bytes = new TextEncoder().encode(jsonStr);
-      let binary = '';
-      for (let i = 0; i < utf8Bytes.length; i++) {
-        const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
-        binary += String.fromCharCode(utf8Bytes[i] ^ keyByte);
-      }
-      return 'FLX1:' + btoa(binary);
+      const utf8Bytes = encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (_, p1) =>
+        String.fromCharCode(parseInt(p1, 16))
+      );
+      const ciphered = xorCipher(utf8Bytes, SECRET_CIPHER_KEY);
+      return 'FLX1:' + btoa(ciphered);
     }
 
-    function decodeVaultPayload(cipherStr) {
-      const trimmed = String(cipherStr || '').trim();
+    function decodeLuxuryVault(rawText) {
+      const trimmed = (rawText || '').trim();
       if (!trimmed) throw new Error('Le champ est vide.');
 
-      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
-        const parsed = JSON.parse(trimmed);
-        return Array.isArray(parsed) ? parsed : (parsed.products || []);
+      if (trimmed.startsWith('FLX1:')) {
+        const b64 = trimmed.slice(5).trim();
+        const ciphered = atob(b64);
+        const utf8Bytes = xorCipher(ciphered, SECRET_CIPHER_KEY);
+        const jsonStr = decodeURIComponent(
+          utf8Bytes.split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+        );
+        return JSON.parse(jsonStr);
       }
-
-      if (!trimmed.startsWith('FLX1:')) {
-        throw new Error('Format invalide. Utilisez un code FLX1:... ou un JSON.');
-      }
-
-      const b64Part = trimmed.slice(5);
-      const binary = atob(b64Part);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
-        bytes[i] = binary.charCodeAt(i) ^ keyByte;
-      }
-      const jsonStr = new TextDecoder().decode(bytes);
-      const parsed = JSON.parse(jsonStr);
-      return Array.isArray(parsed) ? parsed : (parsed.products || []);
-    }
-
-    function sanitizeProductList(rawList) {
-      if (!Array.isArray(rawList) || rawList.length === 0) {
-        throw new Error('Aucun produit valide trouvé.');
-      }
-      return rawList.map((item, idx) => {
-        const name = String(item.name || item.title || '').trim();
-        const price = parseFloat(item.price);
-        const cat = String(item.cat || item.category || 'Général').trim() || 'Général';
-        let img = String(item.img || item.image || '').trim();
-        if (name.toLowerCase() === 'hot iptv') {
-          img = HOT_IPTV_IMAGE;
-        }
-        if (!name || isNaN(price) || price < 0) {
-          throw new Error(`Produit invalide à la ligne ${idx + 1}.`);
-        }
-        return {
-          id: item.id || (Date.now() + idx),
-          name,
-          price,
-          cat,
-          img
-        };
-      });
+      return JSON.parse(trimmed);
     }
 
     function generateEncryptedProductsCode() {
-      const statusEl = document.getElementById('vault-status-msg');
-      const inputEl = document.getElementById('encrypted-products-input');
-      const code = encodeVaultPayload({ v: 1, products });
-      inputEl.value = code;
-      statusEl.style.color = 'var(--emerald)';
-      statusEl.innerText = `Code crypté généré pour ${products.length} produit(s).`;
+      const payload = {
+        v: 1,
+        brand: BRAND_NAME,
+        products: products
+      };
+      const code = encodeLuxuryVault(payload);
+      const textarea = document.getElementById('encrypted-products-input');
+      textarea.value = code;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).catch(() => {});
+      }
+      const status = document.getElementById('vault-status-msg');
+      status.style.color = 'var(--emerald)';
+      status.innerText = 'Code crypté généré et copié !';
     }
 
     function applyEncryptedProductsCode() {
-      const statusEl = document.getElementById('vault-status-msg');
-      const inputEl = document.getElementById('encrypted-products-input');
+      const raw = document.getElementById('encrypted-products-input').value;
+      const status = document.getElementById('vault-status-msg');
       try {
-        const decodedList = decodeVaultPayload(inputEl.value);
-        const validProducts = sanitizeProductList(decodedList);
-        products = validProducts;
-        rotatingProductIndex = 0;
+        const parsed = decodeLuxuryVault(raw);
+        const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
+        if (!list) throw new Error('Format invalide.');
+
+        products = list.map((item, idx) => ({
+          id: item.id || (Date.now() + idx),
+          name: String(item.name || 'Produit').trim(),
+          price: Math.max(0, Number(item.price) || 0),
+          cat: String(item.cat || 'Général').trim(),
+          img: String(item.img || '').trim()
+        }));
+
         saveProducts();
-        statusEl.style.color = 'var(--emerald)';
-        statusEl.innerText = `${validProducts.length} produit(s) décodé(s) et ajouté(s) au catalogue !`;
+        renderAll();
+        status.style.color = 'var(--emerald)';
+        status.innerText = `${products.length} produit(s) décodé(s) et appliqué(s) !`;
       } catch (err) {
-        statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = err.message || 'Échec du décodage.';
+        status.style.color = 'var(--ruby)';
+        status.innerText = 'Code invalide : ' + (err.message || 'Impossible de décoder.');
       }
     }
 
     function clearVaultInput() {
       document.getElementById('encrypted-products-input').value = '';
-      const statusEl = document.getElementById('vault-status-msg');
-      statusEl.style.color = 'var(--text-muted)';
-      statusEl.innerText = 'Champ effacé.';
+      document.getElementById('vault-status-msg').innerText = '';
     }
 
-    function setTodayDateInputs() {
+    function setTodayDefaults() {
       const today = new Date().toISOString().slice(0, 10);
-      const actDate = document.getElementById('act-start-date');
-      const subDate = document.getElementById('sub-start-date');
-      if (actDate && !actDate.value) actDate.value = today;
-      if (subDate && !subDate.value) subDate.value = today;
+      const actStart = document.getElementById('act-start-date');
+      const subStart = document.getElementById('sub-start-date');
+      if (actStart && !actStart.value) actStart.value = today;
+      if (subStart && !subStart.value) subStart.value = today;
       updateSubExpiry();
     }
 
-    function parseDurationMonths(durStr) {
-      const m = String(durStr || '').match(/(\d+)/);
-      return m ? parseInt(m[1], 10) : 1;
-    }
-
-    function formatDateFr(dateObj) {
-      if (!(dateObj instanceof Date) || isNaN(dateObj.getTime())) return '';
-      const dd = String(dateObj.getDate()).padStart(2, '0');
-      const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-      const yyyy = dateObj.getFullYear();
-      return `${dd}/${mm}/${yyyy}`;
-    }
-
-    function updateSubExpiry() {
-      const startStr = document.getElementById('sub-start-date').value;
-      const durStr = document.getElementById('sub-duration').value;
-      const expInput = document.getElementById('sub-expiry-display');
-      if (!startStr || !expInput) return;
-      const base = new Date(startStr + 'T00:00:00');
-      if (isNaN(base.getTime())) return;
-      const months = parseDurationMonths(durStr);
-      const exp = new Date(base.getFullYear(), base.getMonth() + months, base.getDate());
-      expInput.value = formatDateFr(exp);
-    }
-
-    function autoExtractXtreamFromM3U() {
-      const rawUrl = document.getElementById('sub-m3u-url').value.trim();
-      if (!rawUrl) return;
-      try {
-        const normalized = rawUrl.startsWith('http') ? rawUrl : 'http://' + rawUrl;
-        const u = new URL(normalized);
-        const hostWithPort = u.port ? `${u.protocol}//${u.hostname}:${u.port}` : `${u.protocol}//${u.hostname}`;
-        const user = u.searchParams.get('username') || u.searchParams.get('user') || '';
-        const pass = u.searchParams.get('password') || u.searchParams.get('pass') || '';
-        const expParam = u.searchParams.get('exp_date') || u.searchParams.get('expire') || '';
-
-        if (hostWithPort) document.getElementById('sub-server').value = hostWithPort;
-        if (user) document.getElementById('sub-username').value = user;
-        if (pass) document.getElementById('sub-password').value = pass;
-
-        if (expParam) {
-          const ts = /^\d+$/.test(expParam) ? parseInt(expParam, 10) * (expParam.length <= 10 ? 1000 : 1) : Date.parse(expParam);
-          const d = new Date(ts);
-          if (!isNaN(d.getTime())) {
-            document.getElementById('sub-expiry-display').value = formatDateFr(d);
-          }
-        }
-      } catch (_) {}
-    }
-
     function populateClientDropdowns() {
-      const selects = [document.getElementById('act-client-select'), document.getElementById('sub-client-select')];
-      selects.forEach(sel => {
-        if (!sel) return;
-        const currentVal = sel.value;
-        sel.innerHTML = '<option value="">Sélectionner un client</option>' +
-          clients.map(c => `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`).join('');
-        if (currentVal) sel.value = currentVal;
-      });
+      const optionsHtml = '<option value="">Sélectionner un client</option>' +
+        clients.map(c => `<option value="${c.id}">${c.name}${c.phone ? ' (' + c.phone + ')' : ''}</option>`).join('');
+      const actSel = document.getElementById('act-client-select');
+      const subSel = document.getElementById('sub-client-select');
+      if (actSel) actSel.innerHTML = optionsHtml;
+      if (subSel) subSel.innerHTML = optionsHtml;
     }
 
     function fillClientFromSelect(selectId, nameInputId, waInputId) {
       const sel = document.getElementById(selectId);
       if (!sel || !sel.value) return;
-      const found = clients.find(c => String(c.id) === String(sel.value));
-      if (found) {
-        document.getElementById(nameInputId).value = found.name || '';
-        if (found.phone) document.getElementById(waInputId).value = found.phone;
-      }
+      const cl = clients.find(c => String(c.id) === String(sel.value));
+      if (!cl) return;
+      const nameEl = document.getElementById(nameInputId);
+      const waEl = document.getElementById(waInputId);
+      if (nameEl) nameEl.value = cl.name || '';
+      if (waEl && cl.phone) waEl.value = cl.phone;
     }
 
     function openActivationModal() {
-      setTodayDateInputs();
+      setTodayDefaults();
       populateClientDropdowns();
       prepareActivationInvoice();
       document.getElementById('activation-modal').classList.add('open');
     }
 
     function openAbonnementModal() {
-      setTodayDateInputs();
+      setTodayDefaults();
       populateClientDropdowns();
       prepareAbonnementInvoice();
       document.getElementById('abonnement-modal').classList.add('open');
     }
 
+    function durationToMonths(durText) {
+      if (!durText) return 1;
+      if (durText.includes('12')) return 12;
+      if (durText.includes('6')) return 6;
+      if (durText.includes('3')) return 3;
+      return 1;
+    }
+
+    function updateSubExpiry() {
+      const startVal = document.getElementById('sub-start-date').value;
+      const durVal = document.getElementById('sub-duration').value;
+      const outEl = document.getElementById('sub-expiry-display');
+      if (!outEl) return;
+
+      const baseDate = startVal ? new Date(startVal + 'T00:00:00') : new Date();
+      if (isNaN(baseDate.getTime())) return;
+      const months = durationToMonths(durVal);
+      const expDate = new Date(baseDate.getFullYear(), baseDate.getMonth() + months, baseDate.getDate());
+      outEl.value = expDate.toLocaleDateString('fr-FR');
+    }
+
+    function autoExtractXtreamFromM3U() {
+      const m3uRaw = (document.getElementById('sub-m3u-url').value || '').trim();
+      if (!m3uRaw) return;
+      try {
+        const normalized = m3uRaw.startsWith('http') ? m3uRaw : 'http://' + m3uRaw;
+        const urlObj = new URL(normalized);
+        const user = urlObj.searchParams.get('username') || urlObj.searchParams.get('user') || '';
+        const pass = urlObj.searchParams.get('password') || urlObj.searchParams.get('pass') || '';
+        const hostVal = `${urlObj.protocol}//${urlObj.host}`;
+
+        if (hostVal && !document.getElementById('sub-server').value) {
+          document.getElementById('sub-server').value = hostVal;
+        }
+        if (user && !document.getElementById('sub-username').value) {
+          document.getElementById('sub-username').value = user;
+        }
+        if (pass && !document.getElementById('sub-password').value) {
+          document.getElementById('sub-password').value = pass;
+        }
+        updateSubExpiry();
+      } catch (_) {}
+    }
+
     function prepareActivationInvoice() {
       const previewEl = document.getElementById('act-live-invoice-preview');
       if (!previewEl) return;
-      const clientName = document.getElementById('act-client-name').value.trim() || 'Client';
-      const wa = document.getElementById('act-whatsapp').value.trim();
-      const mac = document.getElementById('act-mac').value.trim();
+      const name = (document.getElementById('act-client-name').value || '').trim() || 'Client';
+      const mac = (document.getElementById('act-mac').value || '').trim();
       const app = document.getElementById('act-app').value;
-      const duration = document.getElementById('act-duration').value;
-      const price = parseFloat(document.getElementById('act-price').value) || 0;
-      const paid = parseFloat(document.getElementById('act-paid').value) || 0;
+      const dur = document.getElementById('act-duration').value;
+      const price = Number(document.getElementById('act-price').value) || 0;
+      const paid = Number(document.getElementById('act-paid').value) || 0;
       const rem = Math.max(0, price - paid);
 
       const appLabel = app && app !== 'None' ? app : 'Playlist';
-      const credChips = [];
-      if (mac) credChips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
-      if (app && app !== 'None') credChips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
-      credChips.push(`<div class="live-prep-cred-chip"><strong>Durée:</strong> ${duration}</div>`);
-      if (wa) credChips.push(`<div class="live-prep-cred-chip"><strong>WhatsApp:</strong> ${wa}</div>`);
-
+      const macChip = mac ? `<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>` : '';
       previewEl.innerHTML = `
-        <div><strong>Client :</strong> ${clientName} — <strong>${appLabel}</strong> (${duration})</div>
-        <div class="live-prep-cred-grid">${credChips.join('')}</div>
+        <div><strong>${name}</strong> • ${appLabel} (${dur})</div>
+        <div class="live-prep-cred-grid">
+          ${macChip}
+          <div class="live-prep-cred-chip"><strong>App:</strong> ${appLabel}</div>
+          <div class="live-prep-cred-chip"><strong>Durée:</strong> ${dur}</div>
+        </div>
         <div class="live-prep-line">
-          <span>Total : <strong>${price.toFixed(0)} DH</strong></span>
-          <span style="color:#059669;">Payé : <strong>${paid.toFixed(0)} DH</strong></span>
-          <span style="color:${rem > 0 ? '#dc2626' : '#059669'};">Reste : <strong>${rem.toFixed(0)} DH</strong></span>
+          <span>Total: <strong>${price} DH</strong></span>
+          <span style="color:#059669;">Payé: <strong>${paid} DH</strong></span>
+          <span style="color:#dc2626;">Reste: <strong>${rem} DH</strong></span>
         </div>
       `;
     }
@@ -5905,155 +5842,115 @@
     function prepareAbonnementInvoice() {
       const previewEl = document.getElementById('sub-live-invoice-preview');
       if (!previewEl) return;
-      const clientName = document.getElementById('sub-client-name').value.trim() || 'Client';
+      const name = (document.getElementById('sub-client-name').value || '').trim() || 'Client';
       const app = document.getElementById('sub-app').value;
-      const mac = document.getElementById('sub-mac').value.trim();
-      const host = document.getElementById('sub-server').value.trim();
-      const user = document.getElementById('sub-username').value.trim();
-      const pass = document.getElementById('sub-password').value.trim();
-      const duration = document.getElementById('sub-duration').value;
-      const expiry = document.getElementById('sub-expiry-display').value.trim();
-      const price = parseFloat(document.getElementById('sub-price').value) || 0;
+      const mac = (document.getElementById('sub-mac').value || '').trim();
+      const host = (document.getElementById('sub-server').value || '').trim();
+      const user = (document.getElementById('sub-username').value || '').trim();
+      const pass = (document.getElementById('sub-password').value || '').trim();
+      const dur = document.getElementById('sub-duration').value;
+      const exp = document.getElementById('sub-expiry-display').value;
+      const price = Number(document.getElementById('sub-price').value) || 0;
 
-      const credChips = [];
-      if (mac) credChips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
-      if (host) credChips.push(`<div class="live-prep-cred-chip"><strong>Host:</strong> ${host}</div>`);
-      if (user) credChips.push(`<div class="live-prep-cred-chip"><strong>User:</strong> ${user}</div>`);
-      if (pass) credChips.push(`<div class="live-prep-cred-chip"><strong>Pass:</strong> ${pass}</div>`);
-      if (app && app !== 'None') credChips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
-      if (expiry) credChips.push(`<div class="live-prep-cred-chip"><strong>Exp:</strong> ${expiry}</div>`);
+      const chips = [];
+      if (mac) chips.push(`<div class="live-prep-cred-chip mac-highlight"><strong>MAC:</strong> ${mac}</div>`);
+      if (host) chips.push(`<div class="live-prep-cred-chip"><strong>Host:</strong> ${host}</div>`);
+      if (user) chips.push(`<div class="live-prep-cred-chip"><strong>User:</strong> ${user}</div>`);
+      if (pass) chips.push(`<div class="live-prep-cred-chip"><strong>Pass:</strong> ${pass}</div>`);
+      if (app && app !== 'None') chips.push(`<div class="live-prep-cred-chip"><strong>App:</strong> ${app}</div>`);
 
       previewEl.innerHTML = `
-        <div><strong>Client :</strong> ${clientName} — <strong>Abonnement</strong> (${duration})</div>
-        ${credChips.length ? `<div class="live-prep-cred-grid">${credChips.join('')}</div>` : ''}
+        <div><strong>${name}</strong> • Abonnement (${dur}${exp ? ' • Exp: ' + exp : ''})</div>
+        ${chips.length ? `<div class="live-prep-cred-grid">${chips.join('')}</div>` : ''}
         <div class="live-prep-line">
-          <span>Montant : <strong>${price.toFixed(0)} DH</strong></span>
-          <span style="color:#9c7812;"><strong>Facture prête</strong></span>
+          <span>Total: <strong>${price} DH</strong></span>
+          <span style="color:#9c7812;">Format: <strong>Verre Blanc</strong></span>
         </div>
       `;
     }
 
     function submitActivation() {
-      const clientName = document.getElementById('act-client-name').value.trim();
-      const wa = document.getElementById('act-whatsapp').value.trim();
-      const mac = document.getElementById('act-mac').value.trim();
+      const name = (document.getElementById('act-client-name').value || '').trim();
+      if (!name) return alert('Veuillez saisir le nom du client');
+      const phone = (document.getElementById('act-whatsapp').value || '').trim();
+      const mac = (document.getElementById('act-mac').value || '').trim();
       const app = document.getElementById('act-app').value;
       const duration = document.getElementById('act-duration').value;
       const startDate = document.getElementById('act-start-date').value;
-      const price = parseFloat(document.getElementById('act-price').value) || 0;
-      const paid = parseFloat(document.getElementById('act-paid').value) || 0;
-      const note = document.getElementById('act-note').value.trim();
+      const price = Math.max(0, Number(document.getElementById('act-price').value) || 0);
+      const paid = Math.max(0, Number(document.getElementById('act-paid').value) || 0);
+      const note = (document.getElementById('act-note').value || '').trim();
 
-      if (!clientName) return alert('Veuillez saisir le nom du client');
+      const appTitle = app && app !== 'None' ? app : 'Activation';
+      const label = note ? `${appTitle} (${duration}) - ${note}` : `${appTitle} (${duration})`;
 
-      const label = `Activation ${app && app !== 'None' ? app : 'Playlist'} (${duration})`;
-      const selectedId = document.getElementById('act-client-select').value;
-      let targetClient = clients.find(c => String(c.id) === String(selectedId)) ||
-                         clients.find(c => c.name.toLowerCase() === clientName.toLowerCase());
-
-      const techData = {
-        mac,
-        app: app && app !== 'None' ? app : '',
-        duration,
-        startDate: startDate ? formatDateFr(new Date(startDate + 'T00:00:00')) : ''
+      const record = {
+        id: "ACT-" + Date.now().toString().slice(-6),
+        date: startDate ? new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR'),
+        name,
+        phone,
+        items: [{ name: label, qty: 1, price }],
+        total: price,
+        paid,
+        tech: { mac, app, duration, startDate, note }
       };
 
-      if (targetClient) {
-        targetClient.total += price;
-        targetClient.paid += paid;
-        if (wa) targetClient.phone = wa;
-        targetClient.items.push({ name: note ? `${label} - ${note}` : label, qty: 1, price });
-        targetClient.tech = { ...(targetClient.tech || {}), ...techData };
-      } else {
-        targetClient = {
-          id: "ACT-" + Date.now().toString().slice(-6),
-          date: new Date().toLocaleDateString('fr-FR'),
-          name: clientName,
-          phone: wa,
-          items: [{ name: note ? `${label} - ${note}` : label, qty: 1, price }],
-          total: price,
-          paid,
-          tech: techData
-        };
-        clients.unshift(targetClient);
-      }
-
+      clients.unshift(record);
       saveClients();
+      renderAll();
       closeModal('activation-modal');
-      openInvoice(targetClient.id);
+      openInvoice(record.id);
     }
 
     function submitAbonnement() {
-      const clientName = document.getElementById('sub-client-name').value.trim();
+      const name = (document.getElementById('sub-client-name').value || '').trim();
+      if (!name) return alert('Veuillez saisir le nom du client');
       const app = document.getElementById('sub-app').value;
-      const mac = document.getElementById('sub-mac').value.trim();
-      const host = document.getElementById('sub-server').value.trim();
-      const wa = document.getElementById('sub-whatsapp').value.trim();
-      const user = document.getElementById('sub-username').value.trim();
-      const pass = document.getElementById('sub-password').value.trim();
+      const mac = (document.getElementById('sub-mac').value || '').trim();
+      const host = (document.getElementById('sub-server').value || '').trim();
+      const phone = (document.getElementById('sub-whatsapp').value || '').trim();
+      const username = (document.getElementById('sub-username').value || '').trim();
+      const password = (document.getElementById('sub-password').value || '').trim();
       const duration = document.getElementById('sub-duration').value;
       const startDate = document.getElementById('sub-start-date').value;
-      const expiry = document.getElementById('sub-expiry-display').value.trim();
-      const price = parseFloat(document.getElementById('sub-price').value) || 0;
-      const note = document.getElementById('sub-note').value.trim();
+      const expiry = document.getElementById('sub-expiry-display').value;
+      const price = Math.max(0, Number(document.getElementById('sub-price').value) || 0);
+      const note = (document.getElementById('sub-note').value || '').trim();
 
-      if (!clientName) return alert('Veuillez saisir le nom du client');
-
-      const appSuffix = app && app !== 'None' ? ` + ${app}` : '';
-      const label = `Abonnement${appSuffix} (${duration})`;
-      const selectedId = document.getElementById('sub-client-select').value;
-      let targetClient = clients.find(c => String(c.id) === String(selectedId)) ||
-                         clients.find(c => c.name.toLowerCase() === clientName.toLowerCase());
-
-      const techData = {
-        host,
-        username: user,
-        password: pass,
-        mac,
-        app: app && app !== 'None' ? app : '',
-        duration,
-        expiry,
-        startDate: startDate ? formatDateFr(new Date(startDate + 'T00:00:00')) : ''
+      const subLabel = `Abonnement (${duration}${expiry ? ' • Exp: ' + expiry : ''})`;
+      const record = {
+        id: "SUB-" + Date.now().toString().slice(-6),
+        date: startDate ? new Date(startDate + 'T00:00:00').toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR'),
+        name,
+        phone,
+        items: [{ name: subLabel, qty: 1, price }],
+        total: price,
+        paid: price,
+        tech: { mac, app, host, username, password, duration, startDate, expiry, note }
       };
 
-      if (targetClient) {
-        targetClient.total += price;
-        if (wa) targetClient.phone = wa;
-        targetClient.items.push({ name: note ? `${label} - ${note}` : label, qty: 1, price });
-        targetClient.tech = { ...(targetClient.tech || {}), ...techData };
-      } else {
-        targetClient = {
-          id: "ABO-" + Date.now().toString().slice(-6),
-          date: new Date().toLocaleDateString('fr-FR'),
-          name: clientName,
-          phone: wa,
-          items: [{ name: note ? `${label} - ${note}` : label, qty: 1, price }],
-          total: price,
-          paid: 0,
-          tech: techData
-        };
-        clients.unshift(targetClient);
-      }
-
+      clients.unshift(record);
       saveClients();
+      renderAll();
       closeModal('abonnement-modal');
-      openInvoice(targetClient.id);
+      openInvoice(record.id);
     }
 
     function openFxModal() {
+      const fromCur = document.getElementById('fx-from').value;
+      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromCur] || 1;
       calculateFx();
       document.getElementById('fx-modal').classList.add('open');
     }
 
     function saveCustomFxRate() {
-      const fromCurr = document.getElementById('fx-from').value;
-      const customRate = parseFloat(document.getElementById('fx-custom-rate').value);
-      if (!isNaN(customRate) && customRate > 0) {
-        fxRatesToMad[fromCurr] = customRate;
-        fxRatesToMad.MAD = 1;
+      const fromCur = document.getElementById('fx-from').value;
+      const val = parseFloat(document.getElementById('fx-custom-rate').value);
+      if (!isNaN(val) && val > 0) {
+        fxRatesToMad[fromCur] = val;
         localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
       }
-      calculateFx(true);
+      calculateFx();
     }
 
     function swapFxCurrencies() {
@@ -6062,74 +5959,67 @@
       const tmp = fromEl.value;
       fromEl.value = toEl.value;
       toEl.value = tmp;
+      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromEl.value] || 1;
       calculateFx();
     }
 
-    function formatCurrencyValue(val, curr) {
-      if (curr === 'MAD') return `${val.toFixed(2)} DH`;
-      if (curr === 'EUR') return `${val.toFixed(2)} €`;
-      if (curr === 'USD') return `$${val.toFixed(2)}`;
-      if (curr === 'CFA') return `${Math.round(val).toLocaleString('fr-FR')} FCFA`;
-      return val.toFixed(2);
+    function formatCurrencySymbol(amount, cur) {
+      if (cur === 'MAD') return `${amount.toFixed(2)} DH`;
+      if (cur === 'EUR') return `${amount.toFixed(2)} €`;
+      if (cur === 'USD') return `$${amount.toFixed(2)}`;
+      if (cur === 'CFA') return `${amount.toFixed(0)} FCFA`;
+      return `${amount.toFixed(2)} ${cur}`;
     }
 
-    function calculateFx(skipRateInputSync = false) {
+    function calculateFx() {
       const amount = parseFloat(document.getElementById('fx-amount').value) || 0;
-      const fromCurr = document.getElementById('fx-from').value;
-      const toCurr = document.getElementById('fx-to').value;
-      const rateInput = document.getElementById('fx-custom-rate');
+      const fromCur = document.getElementById('fx-from').value;
+      const toCur = document.getElementById('fx-to').value;
 
-      const fromToMad = fxRatesToMad[fromCurr] || 1;
-      const toToMad = fxRatesToMad[toCurr] || 1;
-
-      if (!skipRateInputSync && rateInput) {
-        rateInput.value = fromToMad;
+      const rateInputEl = document.getElementById('fx-custom-rate');
+      if (document.activeElement !== rateInputEl) {
+        rateInputEl.value = fxRatesToMad[fromCur] || 1;
       }
 
-      const amountInMad = amount * fromToMad;
-      const converted = amountInMad / toToMad;
-      const crossRate = fromToMad / toToMad;
+      const fromRateInMad = parseFloat(rateInputEl.value) > 0
+        ? parseFloat(rateInputEl.value)
+        : (fxRatesToMad[fromCur] || 1);
+      const toRateInMad = fxRatesToMad[toCur] || 1;
 
-      document.getElementById('fx-output').innerText = formatCurrencyValue(converted, toCurr);
-      document.getElementById('fx-rate-info').innerText =
-        `1 ${fromCurr} = ${crossRate.toFixed(4)} ${toCurr}  •  Base : 1 ${fromCurr} = ${fromToMad} MAD`;
+      const inMad = amount * fromRateInMad;
+      const converted = inMad / toRateInMad;
+
+      document.getElementById('fx-output').innerText = formatCurrencySymbol(converted, toCur);
+      const crossRate = fromRateInMad / toRateInMad;
+      document.getElementById('fx-rate-info').innerText = `1 ${fromCur} ≈ ${crossRate.toFixed(4)} ${toCur}`;
     }
 
     function switchMode(mode) {
-      const adminView = document.getElementById('admin-view');
-      const storeView = document.getElementById('store-view');
-      const btnAdmin = document.getElementById('btn-admin-mode');
-      const btnStore = document.getElementById('btn-store-mode');
-
       if (mode === 'store') {
         if (!isClientStoreVisible) {
-          isInStoreViewNow = false;
-          storeView.classList.add('hidden');
-          adminView.classList.remove('hidden');
-          btnAdmin.classList.add('active');
-          btnStore.classList.remove('active');
-          enforceClientValidityAndBrand();
-          return;
+          mode = 'admin';
         }
-        isInStoreViewNow = true;
-        adminView.classList.add('hidden');
-        storeView.classList.remove('hidden');
-        btnAdmin.classList.remove('active');
-        btnStore.classList.add('active');
+      }
+
+      const isStore = (mode === 'store');
+      isInStoreViewNow = isStore;
+
+      document.getElementById('admin-view').classList.toggle('hidden', isStore);
+      document.getElementById('store-view').classList.toggle('hidden', !isStore);
+      document.getElementById('btn-admin-mode').classList.toggle('active', !isStore);
+      const storeBtn = document.getElementById('btn-store-mode');
+      if (storeBtn) storeBtn.classList.toggle('active', isStore);
+
+      if (isStore) {
         updateStoreHeaderWithClientName();
         renderStoreProductsMarquee();
         renderStore();
-        enforceAdminHiddenSections();
       } else {
-        isInStoreViewNow = false;
-        adminView.classList.remove('hidden');
-        storeView.classList.add('hidden');
-        btnAdmin.classList.add('active');
-        btnStore.classList.remove('active');
-        renderClients();
-        enforceClientValidityAndBrand();
-        enforceAdminHiddenSections();
+        switchTab('ledger');
       }
+
+      enforceClientValidityAndBrand();
+      enforceAdminHiddenSections();
     }
 
     function switchTab(tab) {
@@ -6137,16 +6027,20 @@
       document.getElementById('admin-view').classList.remove('hidden');
       document.getElementById('store-view').classList.add('hidden');
       document.getElementById('btn-admin-mode').classList.add('active');
-      const btnStore = document.getElementById('btn-store-mode');
-      if (btnStore) btnStore.classList.remove('active');
+      const storeBtn = document.getElementById('btn-store-mode');
+      if (storeBtn) storeBtn.classList.remove('active');
 
       document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
       document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
       document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
 
-      if (tab === 'ledger') renderClients();
-      if (tab === 'products') renderProducts();
-      if (tab === 'quick-invoice') renderProductSelect();
+      if (tab === 'quick-invoice') {
+        renderProductSelectMenu();
+      }
+      if (tab === 'ledger') {
+        updateDirectionWelcomeShowcase();
+      }
+
       enforceClientValidityAndBrand();
       enforceAdminHiddenSections();
     }
@@ -6161,28 +6055,24 @@
 
     function saveClients() {
       localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      renderClients();
-      populateClientDropdowns();
     }
 
     function saveProducts() {
       localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
-      renderProducts();
-      renderStore();
       renderStoreProductsMarquee();
-      renderDashboardBoutique();
-      renderProductSelect();
-      syncRotatingProductCardVisibility();
+      if (Array.isArray(products) && products.length > 0) {
+        rotatingProductIndex = rotatingProductIndex % products.length;
+        applyRotatingProductContent(rotatingProductIndex);
+      }
     }
 
     function addClient() {
       const name = document.getElementById('new-c-name').value.trim();
-      const phone = document.getElementById('new-c-phone').value.trim();
-      const note = document.getElementById('new-c-note').value.trim() || 'Service / Produit';
-      const total = parseFloat(document.getElementById('new-c-total').value) || 0;
-      const paid = parseFloat(document.getElementById('new-c-paid').value) || 0;
-
       if (!name) return alert('Veuillez saisir le nom du client');
+      const phone = document.getElementById('new-c-phone').value.trim();
+      const note = document.getElementById('new-c-note').value.trim() || 'Article / Service';
+      const total = Math.max(0, Number(document.getElementById('new-c-total').value) || 0);
+      const paid = Math.max(0, Number(document.getElementById('new-c-paid').value) || 0);
 
       clients.unshift({
         id: "CLI-" + Date.now().toString().slice(-6),
@@ -6199,125 +6089,106 @@
       });
 
       saveClients();
+      renderAll();
       closeModal('add-client-modal');
     }
 
     function openFinanceModal(clientId, type) {
-      const cl = clients.find(c => String(c.id) === String(clientId));
+      const cl = clients.find(c => c.id === clientId);
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
-      const modal = document.getElementById('finance-modal');
-      const title = document.getElementById('fin-modal-title');
-      const info = document.getElementById('fin-client-info');
-      const amountInput = document.getElementById('fin-amount');
-      const noteInput = document.getElementById('fin-note');
+      const isAdd = (type === 'add');
+
+      document.getElementById('fin-modal-title').innerHTML = isAdd
+        ? '<i class="fa-solid fa-plus-circle"></i> Ajouter un montant'
+        : '<i class="fa-solid fa-hand-holding-dollar"></i> Enregistrer un paiement';
+      document.getElementById('fin-client-info').innerText = `${cl.name} • Reste actuel : ${rem} DH`;
+      document.getElementById('fin-amount').value = '';
+      document.getElementById('fin-note').value = isAdd ? 'Supplément' : 'Versement';
+
       const confirmBtn = document.getElementById('fin-confirm-btn');
+      confirmBtn.onclick = () => {
+        const amt = Number(document.getElementById('fin-amount').value);
+        const note = document.getElementById('fin-note').value.trim() || (isAdd ? 'Supplément' : 'Versement');
+        if (!amt || amt <= 0) return alert('Veuillez saisir un montant valide');
 
-      amountInput.value = '';
-      noteInput.value = '';
+        if (isAdd) {
+          cl.total += amt;
+          cl.items.push({ name: note, qty: 1, price: amt });
+        } else {
+          cl.paid = Math.min(cl.total, cl.paid + amt);
+        }
 
-      if (type === 'add') {
-        title.innerHTML = '<i class="fa-solid fa-plus-circle"></i> Ajouter un montant';
-        info.innerText = `${cl.name} — Reste actuel : ${rem} DH`;
-        confirmBtn.onclick = () => {
-          const addVal = parseFloat(amountInput.value) || 0;
-          if (addVal <= 0) return alert('Veuillez saisir un montant valide');
-          cl.total += addVal;
-          cl.items.push({ name: noteInput.value.trim() || 'Supplément', qty: 1, price: addVal });
-          saveClients();
-          closeModal('finance-modal');
-        };
-      } else {
-        title.innerHTML = '<i class="fa-solid fa-hand-holding-dollar"></i> Enregistrer un paiement';
-        info.innerText = `${cl.name} — Reste actuel : ${rem} DH`;
-        confirmBtn.onclick = () => {
-          const payVal = parseFloat(amountInput.value) || 0;
-          if (payVal <= 0) return alert('Veuillez saisir un montant valide');
-          cl.paid += payVal;
-          saveClients();
-          closeModal('finance-modal');
-        };
-      }
+        saveClients();
+        renderAll();
+        closeModal('finance-modal');
+      };
 
-      modal.classList.add('open');
+      document.getElementById('finance-modal').classList.add('open');
     }
 
-    function deleteClient(id) {
-      if (!confirm('Supprimer ce client ?')) return;
-      clients = clients.filter(c => String(c.id) !== String(id));
+    function deleteClient(clientId) {
+      if (!confirm('Supprimer ce client et son historique ?')) return;
+      clients = clients.filter(c => c.id !== clientId);
       saveClients();
+      renderAll();
     }
 
-    function renderClients() {
-      const list = document.getElementById('clients-list');
-      const q = (document.getElementById('client-search')?.value || '').toLowerCase();
-
-      let totalDue = 0, totalPaid = 0;
-      clients.forEach(c => {
-        totalDue += c.total;
-        totalPaid += c.paid;
-      });
-      const totalRem = Math.max(0, totalDue - totalPaid);
+    function renderStats() {
+      const totalDue = clients.reduce((s, c) => s + c.total, 0);
+      const totalPaid = clients.reduce((s, c) => s + c.paid, 0);
+      const totalRem = clients.reduce((s, c) => s + Math.max(0, c.total - c.paid), 0);
 
       document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
       document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
       document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
       document.getElementById('stat-clients-count').innerText = clients.length;
       document.getElementById('badge-clients').innerText = clients.length;
+      const ledgerBadge = document.getElementById('toggle-ledger-count');
+      if (ledgerBadge) ledgerBadge.innerText = clients.length;
+    }
 
-      const ledgerCountBadge = document.getElementById('toggle-ledger-count');
-      if (ledgerCountBadge) {
-        ledgerCountBadge.innerText = clients.length;
-      }
-
+    function renderClients() {
+      const q = (document.getElementById('client-search').value || '').toLowerCase().trim();
+      const list = document.getElementById('clients-list');
       const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+        c.name.toLowerCase().includes(q) || (c.phone || '').toLowerCase().includes(q)
       );
 
       if (!filtered.length) {
-        list.innerHTML = '<div class="empty-state">Aucun client trouvé.</div>';
+        list.innerHTML = '<div class="empty-state">Aucun client enregistré pour le moment.</div>';
         return;
       }
 
       list.innerHTML = filtered.map(c => {
         const rem = Math.max(0, c.total - c.paid);
         const tech = getTechFields(c);
-        const techSummary = [
-          tech.mac ? `MAC: ${tech.mac}` : '',
-          tech.app ? `App: ${tech.app}` : '',
-          tech.username ? `User: ${tech.username}` : '',
-          tech.expiry ? `Exp: ${tech.expiry}` : ''
+        const techBadges = [
+          tech.mac ? `<span style="color:var(--gold-primary);font-weight:700;">MAC: ${tech.mac}</span>` : '',
+          tech.app ? `<span>App: ${tech.app}</span>` : '',
+          tech.username ? `<span>User: ${tech.username}</span>` : '',
+          tech.expiry ? `<span style="color:var(--emerald);font-weight:700;">Exp: ${tech.expiry}</span>` : ''
         ].filter(Boolean).join(' • ');
 
         return `
           <div class="client-card">
             <div class="client-top">
               <div>
-                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
-                <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date}</div>
-                ${techSummary ? `<div class="client-meta" style="color:var(--gold-primary); font-weight:700;">${techSummary}</div>` : ''}
+                <div style="font-weight:800;font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date} • ${c.id}</div>
+                ${techBadges ? `<div class="client-meta">${techBadges}</div>` : ''}
               </div>
-              <span class="product-badge">${rem === 0 ? 'Payé' : 'Reste ' + rem + ' DH'}</span>
+              <button class="btn btn-gold" onclick="openInvoice('${c.id}')"><i class="fa-solid fa-file-invoice"></i> Reçu</button>
             </div>
             <div class="finance-strip">
-              <div>
-                <div class="fin-box-label">Total</div>
-                <div class="fin-box-val gold">${c.total} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Payé</div>
-                <div class="fin-box-val green">${c.paid} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Reste</div>
-                <div class="fin-box-val red">${rem} DH</div>
-              </div>
+              <div><div class="fin-box-label">Total</div><div class="fin-box-val gold">${c.total} DH</div></div>
+              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
+              <div><div class="fin-box-label">Reste</div><div class="fin-box-val red">${rem} DH</div></div>
             </div>
             <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Payer</button>
-              <button class="btn btn-gold" onclick="openInvoice('${c.id}')"><i class="fa-solid fa-receipt"></i> Facture</button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}','add')"><i class="fa-solid fa-plus"></i> Ajouter montant</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}','pay')"><i class="fa-solid fa-check"></i> Payer</button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i> Supprimer</button>
             </div>
           </div>
         `;
@@ -6325,22 +6196,22 @@
     }
 
     function handleProductImageFile(event) {
-      const file = event.target && event.target.files && event.target.files[0];
+      const file = event.target.files && event.target.files[0];
       const nameEl = document.getElementById('prod-img-filename');
-      const previewEl = document.getElementById('prod-img-preview');
+      const prevEl = document.getElementById('prod-img-preview');
       if (!file) {
         pendingProductImageData = '';
         if (nameEl) nameEl.innerText = 'Choisir une photo...';
-        if (previewEl) previewEl.classList.add('hidden');
+        if (prevEl) prevEl.classList.add('hidden');
         return;
       }
       if (nameEl) nameEl.innerText = file.name;
       const reader = new FileReader();
       reader.onload = function(e) {
-        pendingProductImageData = e.target && e.target.result ? String(e.target.result) : '';
-        if (previewEl && pendingProductImageData) {
-          previewEl.src = pendingProductImageData;
-          previewEl.classList.remove('hidden');
+        pendingProductImageData = e.target.result || '';
+        if (prevEl && pendingProductImageData) {
+          prevEl.src = pendingProductImageData;
+          prevEl.classList.remove('hidden');
         }
       };
       reader.readAsDataURL(file);
@@ -6348,247 +6219,244 @@
 
     function addProduct() {
       const name = document.getElementById('prod-name').value.trim();
-      const price = parseFloat(document.getElementById('prod-price').value);
+      const price = Number(document.getElementById('prod-price').value);
       const cat = document.getElementById('prod-cat').value.trim() || 'Général';
-      let img = pendingProductImageData;
+      const img = pendingProductImageData.trim();
 
-      if (name.toLowerCase() === 'hot iptv') {
-        img = HOT_IPTV_IMAGE;
-      }
+      if (!name || price <= 0) return alert('Veuillez saisir un nom et un prix valides');
 
-      if (!name || isNaN(price)) return alert('Veuillez saisir le nom et le prix');
-
-      products.push({ id: Date.now(), name, price, cat, img });
+      products.unshift({ id: Date.now(), name, price, cat, img });
       document.getElementById('prod-name').value = '';
       document.getElementById('prod-price').value = '';
       document.getElementById('prod-cat').value = '';
-      pendingProductImageData = '';
       const fileInput = document.getElementById('prod-img-file');
       if (fileInput) fileInput.value = '';
-      const fileNameEl = document.getElementById('prod-img-filename');
-      if (fileNameEl) fileNameEl.innerText = 'Choisir une photo...';
-      const previewEl = document.getElementById('prod-img-preview');
-      if (previewEl) {
-        previewEl.src = '';
-        previewEl.classList.add('hidden');
-      }
+      const nameEl = document.getElementById('prod-img-filename');
+      if (nameEl) nameEl.innerText = 'Choisir une photo...';
+      const prevEl = document.getElementById('prod-img-preview');
+      if (prevEl) prevEl.classList.add('hidden');
+      pendingProductImageData = '';
+
       saveProducts();
+      renderAll();
     }
 
     function deleteProduct(id) {
-      products = products.filter(p => String(p.id) !== String(id));
-      if (rotatingProductIndex >= products.length) rotatingProductIndex = 0;
+      products = products.filter(p => p.id !== id);
       saveProducts();
+      renderAll();
     }
 
-    function renderProducts() {
-      document.getElementById('badge-products').innerText = products.length;
-      const adminList = document.getElementById('admin-products-list');
-      if (!adminList) return;
-
-      if (!products.length) {
-        adminList.innerHTML = '<div class="empty-state">Aucun produit dans le catalogue.</div>';
-        return;
-      }
-
-      adminList.innerHTML = products.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
-          </div>
-          <div class="product-body">
-            <span class="product-badge">${p.cat}</span>
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} DH</div>
-            <button class="btn btn-danger" style="margin-top:8px; width:100%;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderStore() {
-      const grid = document.getElementById('store-products-grid');
-      const q = (document.getElementById('store-search')?.value || '').toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
-
-      if (!filtered.length) {
-        grid.innerHTML = '<div class="empty-state">Aucun produit disponible.</div>';
-        return;
-      }
-
-      grid.innerHTML = filtered.map(p => {
-        const orderMsg = `Bonjour, je souhaite commander : ${p.name} (${p.price} DH).`;
-        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, orderMsg);
-        return `
-          <div class="product-card">
-            <div class="product-media-frame">
-              ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-            </div>
-            <div class="product-body">
-              <span class="product-badge">${p.cat}</span>
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-whatsapp"></i> Commander
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderDashboardBoutique() {
-      renderDashboardClientHeading();
-      const grid = document.getElementById('dashboard-boutique-grid');
-      if (!grid) return;
-      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
-
-      if (!filtered.length) {
-        grid.innerHTML = '<div class="empty-state">Aucun produit disponible.</div>';
-        return;
-      }
-
-      grid.innerHTML = filtered.map(p => {
-        const orderMsg = `Bonjour, je souhaite commander : ${p.name} (${p.price} DH).`;
-        const waHref = buildWhatsAppUrl(WHATSAPP_ORDER_NUMBER, orderMsg);
-        return `
-          <div class="product-card">
-            <div class="product-media-frame">
-              ${p.img ? `<img src="${p.img}" class="product-img" alt="${p.name}">` : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-            </div>
-            <div class="product-body">
-              <span class="product-badge">${p.cat}</span>
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-              <a class="btn btn-wa-order" style="margin-top:8px; width:100%;" href="${waHref}" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-whatsapp"></i> Commander
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function toggleProductDropdown(e) {
-      e.stopPropagation();
-      const menu = document.getElementById('lux-product-menu');
-      menu.classList.toggle('hidden');
-    }
-
-    document.addEventListener('click', () => {
-      const menu = document.getElementById('lux-product-menu');
-      if (menu) menu.classList.add('hidden');
-    });
-
-    function renderProductSelect() {
+    function renderProductSelectMenu() {
       const menu = document.getElementById('lux-product-menu');
       if (!menu) return;
       if (!products.length) {
         menu.innerHTML = '<div class="lux-select-option">Aucun produit disponible</div>';
         return;
       }
-      menu.innerHTML = products.map((p, idx) =>
-        `<div class="lux-select-option" onclick="selectProductByIndex(${idx})">
+      menu.innerHTML = products.map(p => `
+        <div class="lux-select-option" onclick="selectLuxuryProduct(${p.id}, event)">
           <span>${p.name}</span>
           <span style="color:var(--gold-primary);">${p.price} DH</span>
-        </div>`
-      ).join('');
+        </div>
+      `).join('');
     }
 
-    function selectProductByIndex(idx) {
-      const p = products[idx];
+    function toggleProductDropdown(e) {
+      e.stopPropagation();
+      renderProductSelectMenu();
+      document.getElementById('lux-product-menu').classList.toggle('hidden');
+    }
+
+    function selectLuxuryProduct(id, e) {
+      if (e) e.stopPropagation();
+      const p = products.find(x => x.id === id);
+      document.getElementById('lux-product-menu').classList.add('hidden');
       if (!p) return;
-      document.getElementById('lux-selected-label').innerText = `${p.name} — ${p.price} DH`;
+      document.getElementById('lux-selected-label').innerText = `${p.name} (${p.price} DH)`;
       document.getElementById('inv-item').value = p.name;
       document.getElementById('inv-price').value = p.price;
       if (!document.getElementById('inv-qty').value) document.getElementById('inv-qty').value = 1;
-      document.getElementById('lux-product-menu').classList.add('hidden');
-      updateSelectedProductPreview(p);
+      updateInvoiceProductPreview(p);
     }
 
-    function updateSelectedProductPreview(prod) {
+    function updateInvoiceProductPreview(prod) {
       const thumb = document.getElementById('inv-prod-thumb');
       const title = document.getElementById('inv-preview-title');
       const price = document.getElementById('inv-preview-price');
       if (!prod) {
+        thumb.innerHTML = '<i class="fa-solid fa-image"></i>';
         title.innerText = '-';
         price.innerText = '';
-        thumb.innerHTML = '<i class="fa-solid fa-image"></i>';
         return;
       }
+      thumb.innerHTML = prod.img
+        ? `<img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+        : '<i class="fa-solid fa-gem"></i>';
       title.innerText = prod.name;
       price.innerText = `${prod.price} DH`;
-      thumb.innerHTML = prod.img
-        ? `<img src="${prod.img}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" alt="${prod.name}">`
-        : '<i class="fa-solid fa-box"></i>';
+    }
+
+    function renderProducts() {
+      document.getElementById('badge-products').innerText = products.length;
+      const adminGrid = document.getElementById('admin-products-list');
+
+      if (!products.length) {
+        adminGrid.innerHTML = '<div class="empty-state">Aucun produit ajouté pour le moment.</div>';
+        return;
+      }
+
+      adminGrid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <span class="product-badge">${p.cat}</span>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">${p.price} DH</div>
+            <button class="btn btn-danger" style="margin-top:8px;" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderStore() {
+      updateStoreHeaderWithClientName();
+      renderStoreProductsMarquee();
+      const q = (document.getElementById('store-search').value || '').toLowerCase().trim();
+      const grid = document.getElementById('store-products-grid');
+      const list = products.filter(p =>
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+      );
+
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty-state">Aucun produit trouvé.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <span class="product-badge">${p.cat}</span>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">${p.price} DH</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderDashboardBoutique() {
+      renderDashboardClientHeading();
+      const searchEl = document.getElementById('dashboard-boutique-search');
+      const gridEl = document.getElementById('dashboard-boutique-grid');
+      if (!gridEl) return;
+
+      const q = ((searchEl && searchEl.value) || '').toLowerCase().trim();
+      const list = products.filter(p =>
+        p.name.toLowerCase().includes(q) || (p.cat || '').toLowerCase().includes(q)
+      );
+
+      if (!list.length) {
+        gridEl.innerHTML = '<div class="empty-state">Aucun produit trouvé.</div>';
+        return;
+      }
+
+      gridEl.innerHTML = list.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <span class="product-badge">${p.cat}</span>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">${p.price} DH</div>
+          </div>
+        </div>
+      `).join('');
     }
 
     function createQuickInvoice() {
       const clientName = document.getElementById('inv-client').value.trim() || 'Client comptoir';
       const phone = document.getElementById('inv-phone').value.trim();
-      const itemName = document.getElementById('inv-item').value.trim() || 'Article';
-      const qty = parseInt(document.getElementById('inv-qty').value, 10) || 1;
-      const unitPrice = parseFloat(document.getElementById('inv-price').value) || 0;
-      const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
-      const total = qty * unitPrice;
+      const item = document.getElementById('inv-item').value.trim() || 'Article';
+      const qty = Math.max(1, Number(document.getElementById('inv-qty').value) || 1);
+      const price = Math.max(0, Number(document.getElementById('inv-price').value) || 0);
+      const total = qty * price;
+      const paid = Math.max(0, Number(document.getElementById('inv-paid').value) || 0);
 
-      const newClient = {
+      const newRecord = {
         id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
         name: clientName,
         phone,
-        items: [{ name: itemName, qty, price: unitPrice }],
+        items: [{ name: item, qty, price }],
         total,
         paid
       };
 
-      clients.unshift(newClient);
+      clients.unshift(newRecord);
       saveClients();
-      openInvoice(newClient.id);
+      renderAll();
+      openInvoice(newRecord.id);
     }
 
     function openInvoice(clientId) {
-      const cl = clients.find(c => String(c.id) === String(clientId));
+      const cl = clients.find(c => c.id === clientId);
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
-      const statusBadge = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
+      const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
+      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
       const showTech = hasAnyTechField(tech);
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
 
-      const techGridItems = [];
-      if (tech.host) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
-      if (tech.username) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
-      if (tech.password) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
-      if (tech.app) techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
+      const techRows = [];
+      if (tech.host) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
+      if (tech.username) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
+      if (tech.password) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
+      if (tech.app) techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
       if (tech.duration || tech.expiry) {
-        techGridItems.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Exp</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? `Exp: ${tech.expiry}` : ''].filter(Boolean).join(' - ')}</span></div>`);
+        techRows.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' • ')}</span></div>`);
       }
 
-      const techSectionHtml = showTech ? `
-        <div class="inv-tech-panel">
-          <div class="inv-tech-title">
-            <span>Identifiants & Accès</span>
-            <span>${tech.app || 'Abonnement'}</span>
+      const macHighlightHtml = tech.mac
+        ? `
+          <div class="inv-mac-banner">
+            <span class="inv-mac-badge">MAC ADDRESS</span>
+            <span class="inv-mac-value">${tech.mac}</span>
           </div>
-          ${tech.mac ? `
-            <div class="inv-mac-banner">
-              <span class="inv-mac-badge">MAC Address</span>
-              <span class="inv-mac-value">${tech.mac}</span>
+        `
+        : '';
+
+      const techSectionHtml = showTech
+        ? `
+          <div class="inv-tech-panel">
+            <div class="inv-tech-title">
+              <span><i class="fa-solid fa-key"></i> Identifiants & Accès</span>
+              <span>${tech.app || 'VIP'}</span>
             </div>
-          ` : ''}
-          ${techGridItems.length ? `<div class="inv-tech-grid">${techGridItems.join('')}</div>` : ''}
-        </div>
-      ` : '';
+            ${macHighlightHtml}
+            ${techRows.length ? `<div class="inv-tech-grid">${techRows.join('')}</div>` : ''}
+          </div>
+        `
+        : '';
 
       document.getElementById('invoice-content').innerHTML = `
         <div class="inv-top-bar">
           <div>
             <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.52rem;color:#64748b;font-weight:700;">Reçu N° ${cl.id}</div>
+            <div style="font-size:0.54rem;color:#64748b;font-weight:600;">Reçu N° ${cl.id}</div>
           </div>
-          <span class="inv-doc-tag">${statusBadge}</span>
+          <span class="inv-doc-tag">${statusLabel}</span>
         </div>
 
         <div class="inv-meta-block">
@@ -6601,60 +6469,69 @@
 
         <table class="invoice-table">
           <thead>
-            <tr><th>Article</th><th>Qté</th><th>Total</th></tr>
+            <tr>
+              <th>Désignation</th>
+              <th>Qté</th>
+              <th>Total</th>
+            </tr>
           </thead>
           <tbody>
             ${items.map(it => `
               <tr>
                 <td>${it.name}</td>
                 <td>${it.qty || 1}</td>
-                <td>${((it.qty || 1) * (it.price || 0)).toFixed(0)} DH</td>
+                <td>${(it.qty || 1) * (it.price || 0)} DH</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
 
         <div class="inv-totals-box">
-          <div class="inv-total-line"><span>Total</span><strong>${cl.total.toFixed(0)} DH</strong></div>
-          <div class="inv-total-line"><span class="ink-green">Payé</span><strong class="ink-green">${cl.paid.toFixed(0)} DH</strong></div>
+          <div class="inv-total-line"><span>Total à payer :</span><span class="ink-gold">${cl.total} DH</span></div>
+          <div class="inv-total-line"><span>Montant payé :</span><span class="ink-green">${cl.paid} DH</span></div>
           <div class="inv-total-line inv-grand-total">
-            <span>Reste à payer</span>
-            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem.toFixed(0)} DH</span>
+            <span>Reste à payer :</span>
+            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span>
           </div>
         </div>
 
         <div class="inv-footer-note">Merci pour votre confiance • ${BRAND_NAME}</div>
       `;
 
-      const feedback = document.getElementById('wa-export-feedback');
-      if (feedback) feedback.innerText = '';
+      const fb = document.getElementById('wa-export-feedback');
+      if (fb) {
+        fb.style.color = '#059669';
+        fb.innerText = '';
+      }
 
-      document.getElementById('btn-save-invoice-png').onclick = () => {
-        const canvas = renderInvoiceToCanvas(cl);
-        const filename = `Facture-${cl.id}-${(cl.name || 'Client').replace(/\s+/g, '_')}.png`;
-        downloadCanvasAsPng(canvas, filename);
-        if (feedback) feedback.innerText = 'Image PNG enregistrée !';
-      };
-
-      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceViaWhatsApp(cl);
-
+      document.getElementById('btn-save-invoice-png').onclick = () => saveInvoicePngToDevice(cl);
+      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceToWhatsApp(cl);
       document.getElementById('invoice-modal').classList.add('open');
     }
 
+    function renderAll() {
+      renderStats();
+      renderClients();
+      renderProducts();
+      renderStore();
+      renderDashboardBoutique();
+      populateClientDropdowns();
+      enforceClientValidityAndBrand();
+      enforceAdminHiddenSections();
+    }
+
+    document.addEventListener('click', () => {
+      const menu = document.getElementById('lux-product-menu');
+      if (menu) menu.classList.add('hidden');
+    });
+
     syncCopyrightYear();
+    setTodayDefaults();
     checkIncomingClientAccessLink();
-    applyClientVisibilityState();
     applyRoleVisibility();
-    setTodayDateInputs();
-    renderClients();
-    renderProducts();
-    renderStore();
-    renderStoreProductsMarquee();
-    renderDashboardBoutique();
-    renderProductSelect();
-    populateClientDropdowns();
-    calculateFx();
-    enforceAdminHiddenSections();
+    applyClientVisibilityState();
+    updateDirectionWelcomeShowcase();
+    renderAll();
   </script>
 </body>
 </html>
