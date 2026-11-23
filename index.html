@@ -608,7 +608,7 @@
 
     .store-compact-grid .product-price {
       font-size: 0.82rem;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .store-compact-grid .product-card .btn {
@@ -1377,7 +1377,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 9px;
     }
 
     .luxury-action-group {
@@ -1411,6 +1411,64 @@
 
     .luxury-add-client-btn:active {
       transform: scale(0.96);
+    }
+
+    .luxury-ledger-pill-btn {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 240, 178, 0.2) 0%, rgba(212, 175, 55, 0.16) 50%, rgba(14, 14, 20, 0.86) 100%);
+      backdrop-filter: blur(18px) saturate(160%);
+      color: #f9dc7e;
+      padding: 10px 17px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.32px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.65),
+        0 2px 14px rgba(212, 175, 55, 0.24),
+        inset 0 1px 1px rgba(255, 245, 204, 0.48),
+        inset 0 0 16px rgba(212, 175, 55, 0.16);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
+    }
+
+    .luxury-ledger-pill-btn:hover,
+    .luxury-ledger-pill-btn.active-toggle {
+      transform: translateY(-2px);
+      background: var(--gold-gradient);
+      color: #060608;
+      box-shadow: 0 10px 26px var(--gold-glow), inset 0 1px 1px rgba(255, 255, 255, 0.65);
+    }
+
+    .luxury-ledger-pill-btn:active {
+      transform: scale(0.96);
+    }
+
+    .luxury-ledger-count-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 21px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      background: rgba(212, 175, 55, 0.26);
+      color: #fff6cc;
+      box-shadow: inset 0 0 0 1px rgba(255, 240, 178, 0.35);
+      transition: background 0.22s ease, color 0.22s ease;
+    }
+
+    .luxury-ledger-pill-btn:hover .luxury-ledger-count-badge,
+    .luxury-ledger-pill-btn.active-toggle .luxury-ledger-count-badge {
+      background: rgba(6, 6, 8, 0.22);
+      color: #060608;
+      box-shadow: none;
     }
 
     .luxury-vip-pill-btn {
@@ -2092,7 +2150,7 @@
       font-size: 0.96rem;
       font-weight: 800;
       color: var(--gold-primary);
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       text-shadow: 0 4px 14px rgba(212, 175, 55, 0.28);
     }
 
@@ -2522,7 +2580,7 @@
         </button>
         <div class="mode-switch">
           <button class="mode-btn active" id="btn-admin-mode" onclick="switchMode('admin')"><i class="fa-solid fa-house"></i> Home</button>
-          <button class="mode-btn hidden" id="btn-store-mode" onclick="switchMode('store')">🏪 Espace Client</button>
+          <button class="mode-btn hidden" id="btn-store-mode" onclick="switchMode('store')"><i class="fa-solid fa-gem"></i> GALLERY</button>
         </div>
       </div>
     </header>
@@ -2560,7 +2618,7 @@
                 <i class="fa-solid fa-sliders"></i> Dashboard des Actions
               </div>
               <div class="unified-dashboard-sub" id="dashboard-cards-state-label">
-                Espace Client activé — Dashboard des Actions disponible
+                GALLERY activé — Dashboard des Actions disponible
               </div>
             </div>
             <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
@@ -2652,7 +2710,7 @@
                   <i class="fa-solid fa-address-card gold"></i> Gestion des Clients
                 </div>
                 <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 1px;" id="clients-bar-sub-label">
-                  Ajouter un client.
+                  Ajouter un client ou consulter le registre des clients.
                 </div>
               </div>
               <div class="client-card-actions">
@@ -2660,13 +2718,14 @@
                   <i class="fa-solid fa-user-plus"></i>
                   <span>Ajouter un client</span>
                 </button>
+                <button class="luxury-ledger-pill-btn" id="btn-toggle-ledger" onclick="toggleClientsLedger()">
+                  <i class="fa-solid fa-crown"></i>
+                  <span>Registre des Clients</span>
+                  <span class="luxury-ledger-count-badge" id="toggle-ledger-count">0</span>
+                </button>
                 <button class="luxury-vip-pill-btn admin-only-link-gen hidden" id="btn-toggle-hidden-access-field" onclick="toggleHiddenAccessField()">
                   <i class="fa-solid fa-key"></i>
                   <span id="btn-toggle-hidden-access-field-text">مفتاح توليد رابط</span>
-                </button>
-                <button class="luxury-vip-pill-btn hidden" id="btn-toggle-ledger" aria-hidden="true">
-                  <i class="fa-solid fa-table-list"></i>
-                  <span>Registre Clients (<span id="toggle-ledger-count">0</span>)</span>
                 </button>
               </div>
             </div>
@@ -2732,8 +2791,8 @@
               <div class="panel-title" style="margin-bottom:10px; align-items:flex-start;">
                 <div id="dashboard-boutique-heading" style="flex:1; min-width:200px;">
                   <span class="store-glass-chip store-badge">
-                    <span>🏪</span>
-                    <span>STORE</span>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>BOUTIQUE</span>
                   </span>
                 </div>
                 <input type="text" id="dashboard-boutique-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderDashboardBoutique()">
@@ -2743,6 +2802,20 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Account Ledger Panel (Toggled by Registre des Clients button) -->
+        <div class="glass-panel hidden" id="clients-ledger-panel">
+          <div class="panel-title">
+            <span><i class="fa-solid fa-users-gear"></i> Registre des Clients (<span id="badge-clients">0</span>)</span>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <input type="text" id="client-search" placeholder="Rechercher nom ou tél..." style="max-width: 230px;" oninput="renderClients()">
+              <button class="btn btn-dark" onclick="toggleClientsLedger()" title="Fermer le registre">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+          <div id="clients-list"></div>
         </div>
 
         <!-- Pure promotional marquee strip: display only, no click actions -->
@@ -2923,15 +2996,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Account Ledger hidden on Admin interface -->
-        <div class="glass-panel hidden" id="clients-ledger-panel" aria-hidden="true">
-          <div class="panel-title">
-            <span><i class="fa-solid fa-users-gear"></i> Registre Clients (<span id="badge-clients">0</span>)</span>
-            <input type="text" id="client-search" placeholder="Rechercher nom ou tél..." style="max-width: 230px;" oninput="renderClients()">
-          </div>
-          <div id="clients-list"></div>
-        </div>
       </div>
 
       <!-- TAB 2: PRODUCTS -->
@@ -3062,24 +3126,24 @@
       </div>
     </div>
 
-    <!-- ==================== CLIENT VIEW (GLASS IDENTITY CARD + STORE PRODUCTS MARQUEE) ==================== -->
+    <!-- ==================== CLIENT GALLERY VIEW (GLASS IDENTITY CARD + BOUTIQUE PRODUCTS MARQUEE) ==================== -->
     <div id="store-view" class="store-compact-shell hidden">
       <div class="store-top-glass-bar">
         <div class="store-glass-identity-card" id="store-client-header-badge">
           <span class="store-glass-chip store-badge">
-            <span>🏪</span>
-            <span>STORE</span>
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>BOUTIQUE</span>
           </span>
         </div>
         <input type="text" id="store-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderStore()">
       </div>
 
       <!-- Pure promotional products marquee: display only, no click actions -->
-      <div class="store-promo-marquee-banner" id="store-products-marquee-banner" aria-label="Nouveautés et offres Store">
+      <div class="store-promo-marquee-banner" id="store-products-marquee-banner" aria-label="Nouveautés et offres Boutique">
         <div class="store-promo-header">
           <span class="store-promo-title">
             <i class="fa-solid fa-bullhorn"></i>
-            <span>NOUVEAUTÉS & OFFRES STORE</span>
+            <span>NOUVEAUTÉS & OFFRES BOUTIQUE</span>
           </span>
           <span class="store-promo-count" id="store-marquee-count-badge">TOUS LES PRODUITS</span>
         </div>
@@ -3637,16 +3701,25 @@
         statsGrid.setAttribute('aria-hidden', 'true');
       }
 
-      isLedgerVisible = false;
       const ledgerPanel = document.getElementById('clients-ledger-panel');
       if (ledgerPanel) {
-        ledgerPanel.classList.add('hidden');
-        ledgerPanel.setAttribute('aria-hidden', 'true');
+        ledgerPanel.classList.toggle('hidden', !isLedgerVisible);
       }
       const toggleLedgerBtn = document.getElementById('btn-toggle-ledger');
       if (toggleLedgerBtn) {
-        toggleLedgerBtn.classList.remove('active-toggle');
-        toggleLedgerBtn.classList.add('hidden');
+        toggleLedgerBtn.classList.toggle('active-toggle', isLedgerVisible);
+      }
+    }
+
+    function toggleClientsLedger() {
+      isLedgerVisible = !isLedgerVisible;
+      enforceAdminHiddenSections();
+      if (isLedgerVisible) {
+        renderClients();
+        const ledgerPanel = document.getElementById('clients-ledger-panel');
+        if (ledgerPanel) {
+          ledgerPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       }
     }
 
@@ -3665,8 +3738,10 @@
       if (!showDashboardForClient) {
         panelEl.classList.add('hidden');
         isHiddenAccessFieldVisible = false;
+        isLedgerVisible = false;
         const hiddenAccessBox = document.getElementById('hidden-client-access-box');
         if (hiddenAccessBox) hiddenAccessBox.classList.add('hidden');
+        enforceAdminHiddenSections();
         return;
       }
 
@@ -3688,7 +3763,7 @@
           activeClientSession.phone || '',
           expText ? `Fin: ${expText}` : ''
         ].filter(Boolean).join(' • ');
-        stateLabelEl.textContent = `Compte Client actif : ${summary}`;
+        stateLabelEl.textContent = `GALLERY actif : ${summary}`;
       }
     }
 
@@ -3728,8 +3803,8 @@
 
       const storeChip = `
         <span class="store-glass-chip store-badge">
-          <span>🏪</span>
-          <span>STORE</span>
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>BOUTIQUE</span>
         </span>
       `;
 
@@ -3760,8 +3835,8 @@
       const parts = [
         `
           <span class="store-glass-chip store-badge">
-            <span>🏪</span>
-            <span>STORE${cleanName ? ' · ' + cleanName : ''}</span>
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>BOUTIQUE${cleanName ? ' · ' + cleanName : ''}</span>
           </span>
         `
       ];
@@ -3809,7 +3884,7 @@
           <div class="store-marquee-product-card">
             <span class="store-marquee-thumb"><i class="fa-solid fa-box"></i></span>
             <span class="store-marquee-info">
-              <span class="store-marquee-name">Aucun produit dans le store</span>
+              <span class="store-marquee-name">Aucun produit dans la boutique</span>
             </span>
           </div>
         `;
@@ -3822,7 +3897,7 @@
             ? `<img src="${p.img}" alt="${p.name}" class="store-marquee-thumb">`
             : `<span class="store-marquee-thumb"><i class="fa-solid fa-gem"></i></span>`}
           <span class="store-marquee-info">
-            <span class="store-marquee-cat">${p.cat || 'STORE VIP'}</span>
+            <span class="store-marquee-cat">${p.cat || 'BOUTIQUE VIP'}</span>
             <span class="store-marquee-name">${p.name}</span>
             <span class="store-marquee-price">${p.price} DH</span>
           </span>
@@ -3905,8 +3980,8 @@
 
       const clientName = getCurrentClientDisplayName();
       const displayBrand = (isInStoreViewNow && clientName)
-        ? `STORE ${clientName}`
-        : ((isInStoreViewNow) ? 'STORE' : BRAND_NAME);
+        ? `BOUTIQUE ${clientName}`
+        : ((isInStoreViewNow) ? 'BOUTIQUE' : BRAND_NAME);
 
       document.title = displayBrand;
 
@@ -3981,7 +4056,7 @@
       if (headerBtn) {
         headerBtn.classList.toggle('hidden', !isClientStoreVisible);
         if (isClientStoreVisible) {
-          headerBtn.innerHTML = '🏪 Espace Client';
+          headerBtn.innerHTML = '<i class="fa-solid fa-gem"></i> GALLERY';
         }
       }
 
@@ -4037,8 +4112,8 @@
       const subLabel = document.getElementById('clients-bar-sub-label');
       if (subLabel) {
         subLabel.textContent = hasAdminLinkGeneratorAccess
-          ? 'Ajouter un client ou ouvrir مفتاح توليد رابط.'
-          : 'Ajouter un client.';
+          ? 'Ajouter un client, ouvrir le registre ou مفتاح توليد رابط.'
+          : 'Ajouter un client ou consulter le registre des clients.';
       }
     }
 
@@ -5318,7 +5393,6 @@
       clients.unshift(newCl);
       document.getElementById('sub-m3u-url').value = '';
       document.getElementById('sub-client-name').value = '';
-      document.getElementById('sub-whatsapp').value = '';
       document.getElementById('sub-mac').value = '';
       document.getElementById('sub-server').value = '';
       document.getElementById('sub-username').value = '';
@@ -5333,39 +5407,10 @@
 
     function openAddClientModal() {
       document.getElementById('add-client-modal').classList.add('open');
-      document.getElementById('new-c-name').focus();
     }
 
     function openFxModal() {
-      syncFxRateInput();
-      calculateFx();
       document.getElementById('fx-modal').classList.add('open');
-    }
-
-    function syncFxRateInput() {
-      const from = document.getElementById('fx-from').value;
-      const rateInput = document.getElementById('fx-custom-rate');
-      rateInput.value = fxRatesToMad[from] || 1;
-      rateInput.disabled = (from === 'MAD');
-    }
-
-    function saveCustomFxRate() {
-      const from = document.getElementById('fx-from').value;
-      const val = parseFloat(document.getElementById('fx-custom-rate').value);
-      if (from !== 'MAD' && !isNaN(val) && val > 0) {
-        fxRatesToMad[from] = val;
-        localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
-      }
-      calculateFx();
-    }
-
-    function swapFxCurrencies() {
-      const fromEl = document.getElementById('fx-from');
-      const toEl = document.getElementById('fx-to');
-      const temp = fromEl.value;
-      fromEl.value = toEl.value;
-      toEl.value = temp;
-      syncFxRateInput();
       calculateFx();
     }
 
@@ -5376,88 +5421,93 @@
       const rateInput = document.getElementById('fx-custom-rate');
 
       if (document.activeElement !== rateInput) {
-        syncFxRateInput();
+        rateInput.value = fxRatesToMad[from] || 1;
       }
 
-      const fromRate = from === 'MAD' ? 1 : (parseFloat(rateInput.value) || fxRatesToMad[from] || 1);
-      const toRate = fxRatesToMad[to] || 1;
-      const inMad = amount * fromRate;
-      const converted = inMad / toRate;
+      const amountInMad = amount * (fxRatesToMad[from] || 1);
+      const converted = amountInMad / (fxRatesToMad[to] || 1);
+      const symbols = { MAD: 'DH', EUR: '€', USD: '$', CFA: 'FCFA' };
 
-      const symbols = { MAD: ' DH', EUR: ' €', USD: ' $', CFA: ' FCFA' };
-      const decimals = to === 'CFA' ? 0 : 2;
-      document.getElementById('fx-output').innerText = `${converted.toFixed(decimals)}${symbols[to] || ''}`;
-      document.getElementById('fx-rate-info').innerText = `1 ${from} = ${(fromRate / toRate).toFixed(4)} ${to} (${inMad.toFixed(2)} DH)`;
+      document.getElementById('fx-output').innerText = `${converted.toFixed(2)} ${symbols[to] || to}`;
+      const directRate = (fxRatesToMad[from] || 1) / (fxRatesToMad[to] || 1);
+      document.getElementById('fx-rate-info').innerText = `1 ${from} = ${directRate.toFixed(4)} ${to}`;
     }
 
-    function xorCipher(text, key) {
-      let out = '';
-      for (let i = 0; i < text.length; i++) {
-        out += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    function saveCustomFxRate() {
+      const from = document.getElementById('fx-from').value;
+      const val = parseFloat(document.getElementById('fx-custom-rate').value);
+      if (!isNaN(val) && val > 0) {
+        fxRatesToMad[from] = val;
+        localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
+        calculateFx();
       }
-      return out;
     }
 
-    function encodeProductsToLuxuryCode(list) {
-      const jsonStr = JSON.stringify(list);
-      const utf8Bytes = encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-        String.fromCharCode(parseInt(p1, 16))
-      );
-      const ciphered = xorCipher(utf8Bytes, SECRET_CIPHER_KEY);
-      return 'FLX1:' + btoa(ciphered);
+    function swapFxCurrencies() {
+      const fromEl = document.getElementById('fx-from');
+      const toEl = document.getElementById('fx-to');
+      const temp = fromEl.value;
+      fromEl.value = toEl.value;
+      toEl.value = temp;
+      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromEl.value] || 1;
+      calculateFx();
     }
 
-    function decodeLuxuryCodeToProducts(rawCode) {
-      const trimmed = (rawCode || '').trim();
-      if (!trimmed) throw new Error('Le champ est vide.');
-
-      if (trimmed.startsWith('FLX1:')) {
-        const b64 = trimmed.slice(5).trim();
-        const ciphered = atob(b64);
-        const utf8Bytes = xorCipher(ciphered, SECRET_CIPHER_KEY);
-        const jsonStr = decodeURIComponent(
-          utf8Bytes.split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
-        );
-        const parsed = JSON.parse(jsonStr);
-        if (!Array.isArray(parsed)) throw new Error('Format invalide.');
-        return parsed;
-      }
-
-      const parsed = JSON.parse(trimmed);
-      if (!Array.isArray(parsed)) throw new Error('Format JSON invalide.');
-      return parsed;
+    function utf8ToB64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+    function b64ToUtf8(b64) {
+      return decodeURIComponent(escape(atob(b64)));
     }
 
     function generateEncryptedProductsCode() {
-      const code = encodeProductsToLuxuryCode(products);
-      document.getElementById('encrypted-products-input').value = code;
-      const statusEl = document.getElementById('vault-status-msg');
-      statusEl.style.color = 'var(--gold-primary)';
-      statusEl.innerText = `Code crypté généré (${products.length} produits).`;
+      const status = document.getElementById('vault-status-msg');
+      const jsonStr = JSON.stringify(products);
+      const encoded = 'FLX1:' + utf8ToB64(jsonStr);
+      document.getElementById('encrypted-products-input').value = encoded;
+      status.style.color = 'var(--gold-primary)';
+      status.innerText = `Code crypté généré (${products.length} produit(s)).`;
     }
 
     function applyEncryptedProductsCode() {
-      const raw = document.getElementById('encrypted-products-input').value;
-      const statusEl = document.getElementById('vault-status-msg');
+      const raw = document.getElementById('encrypted-products-input').value.trim();
+      const status = document.getElementById('vault-status-msg');
+      if (!raw) {
+        status.style.color = 'var(--ruby)';
+        status.innerText = 'Veuillez coller un code crypté valide.';
+        return;
+      }
+
       try {
-        const decoded = decodeLuxuryCodeToProducts(raw);
-        products = decoded.map((p, idx) => {
-          const cleanName = String(p.name || 'Produit').trim();
-          const isHotIptv = cleanName.toLowerCase() === 'hot iptv';
+        let jsonText = raw;
+        if (raw.startsWith('FLX1:')) {
+          jsonText = b64ToUtf8(raw.slice(5).trim());
+        } else if (!raw.startsWith('[') && !raw.startsWith('{')) {
+          jsonText = b64ToUtf8(raw);
+        }
+
+        const parsed = JSON.parse(jsonText);
+        const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
+        if (!list) throw new Error('Format invalide');
+
+        products = list.map((item, idx) => {
+          const itemName = String(item.name || item.title || `Produit ${idx + 1}`);
+          const isHotIptv = itemName.trim().toLowerCase() === 'hot iptv';
           return {
-            id: p.id || (Date.now() + idx),
-            name: cleanName,
-            price: parseFloat(p.price) || 0,
-            cat: String(p.cat || 'Général').trim(),
-            img: isHotIptv ? HOT_IPTV_IMAGE : String(p.img || '')
+            id: item.id || (Date.now() + idx),
+            name: itemName,
+            price: parseFloat(item.price) || 0,
+            cat: String(item.cat || item.category || 'Général'),
+            img: isHotIptv ? HOT_IPTV_IMAGE : String(item.img || item.image || '')
           };
         });
+
         saveAll();
-        statusEl.style.color = 'var(--emerald)';
-        statusEl.innerText = `Appliqué avec succès (${products.length} produits).`;
-      } catch (err) {
-        statusEl.style.color = 'var(--ruby)';
-        statusEl.innerText = 'Erreur : ' + (err.message || 'Code invalide');
+        status.style.color = 'var(--emerald)';
+        status.innerText = `${products.length} produit(s) décodé(s) et appliqué(s).`;
+      } catch (e) {
+        status.style.color = 'var(--ruby)';
+        status.innerText = 'Code invalide ou corrompu.';
       }
     }
 
@@ -5467,76 +5517,50 @@
     }
 
     function switchMode(mode) {
-      const isStore = mode === 'store';
-      if (isStore && !isClientStoreVisible) {
-        isInStoreViewNow = false;
-        document.getElementById('store-view').classList.add('hidden');
-        document.getElementById('admin-view').classList.remove('hidden');
-        document.getElementById('btn-admin-mode').classList.add('active');
-        document.getElementById('btn-store-mode').classList.remove('active');
-        enforceClientValidityAndBrand();
+      if (mode === 'store' && !isClientStoreVisible) {
         return;
       }
-
-      isInStoreViewNow = isStore;
-      document.getElementById('admin-view').classList.toggle('hidden', isStore);
-      document.getElementById('store-view').classList.toggle('hidden', !isStore);
-      document.getElementById('btn-admin-mode').classList.toggle('active', !isStore);
-      document.getElementById('btn-store-mode').classList.toggle('active', isStore);
+      isInStoreViewNow = (mode === 'store');
+      document.getElementById('admin-view').classList.toggle('hidden', mode !== 'admin');
+      document.getElementById('store-view').classList.toggle('hidden', mode !== 'store');
+      document.getElementById('btn-admin-mode').classList.toggle('active', mode === 'admin');
+      document.getElementById('btn-store-mode').classList.toggle('active', mode === 'store');
       enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
-      if (isStore) {
-        renderStore();
-      } else {
-        applyRoleVisibility();
-        renderClients();
-        if (isClientStoreVisible) renderDashboardBoutique();
-      }
+      if (mode === 'store') renderStore();
     }
 
     function switchTab(tab) {
       document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
       document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
       document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
-      if (tab === 'ledger') {
-        enforceAdminHiddenSections();
-        applyRoleVisibility();
-        renderClients();
-        if (isClientStoreVisible) renderDashboardBoutique();
-      }
-      if (tab === 'products') renderAdminProducts();
       if (tab === 'quick-invoice') {
-        renderQuickInvoiceProductDropdown();
-        syncQuickInvoicePreview();
+        populateQuickInvoiceSelect();
       }
     }
 
     function saveAll() {
-      products = products.map(p => {
-        if (p && String(p.name || '').trim().toLowerCase() === 'hot iptv') {
-          return { ...p, img: HOT_IPTV_IMAGE };
-        }
-        return p;
-      });
       localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
       localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
-      renderStats();
+      updateStats();
       renderClients();
-      populateClientDropdowns();
       renderAdminProducts();
       renderStore();
+      renderStoreProductsMarquee();
       if (isClientStoreVisible) {
         renderDashboardBoutique();
       }
-      renderQuickInvoiceProductDropdown();
-      syncQuickInvoicePreview();
+      populateQuickInvoiceSelect();
+      populateClientDropdowns();
+      enforceClientValidityAndBrand();
+      enforceAdminHiddenSections();
     }
 
-    function renderStats() {
-      const totalDue = clients.reduce((s, c) => s + c.total, 0);
-      const totalPaid = clients.reduce((s, c) => s + c.paid, 0);
+    function updateStats() {
+      let totalDue = 0, totalPaid = 0;
+      clients.forEach(c => {
+        totalDue += c.total;
+        totalPaid += c.paid;
+      });
       const totalRem = Math.max(0, totalDue - totalPaid);
 
       document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
@@ -5555,7 +5579,6 @@
       const note = document.getElementById('new-c-note').value.trim() || 'Compte client';
       const total = parseFloat(document.getElementById('new-c-total').value) || 0;
       const paid = parseFloat(document.getElementById('new-c-paid').value) || 0;
-
       if (!name) return;
 
       clients.unshift({
@@ -5573,38 +5596,45 @@
       document.getElementById('new-c-note').value = '';
       document.getElementById('new-c-total').value = '';
       document.getElementById('new-c-paid').value = '';
-
       closeModal('add-client-modal');
       saveAll();
     }
 
     function renderClients() {
-      const q = (document.getElementById('client-search').value || '').toLowerCase();
+      const q = document.getElementById('client-search').value.toLowerCase();
       const list = document.getElementById('clients-list');
       const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+        c.name.toLowerCase().includes(q) || (c.phone && c.phone.includes(q))
       );
 
-      if (!filtered.length) {
-        list.innerHTML = `<div class="empty-state">Aucun client trouvé.</div>`;
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="empty-state">Aucun client enregistré</div>`;
         return;
       }
 
       list.innerHTML = filtered.map(c => {
         const rem = Math.max(0, c.total - c.paid);
-        const tech = c.tech || {};
-        const macLine = tech.mac ? ` • MAC: <strong style="color:var(--gold-primary);">${tech.mac}</strong>` : '';
-        const hostLine = tech.host ? ` • Host: ${tech.host}` : '';
-        const credLine = (tech.username || tech.password) ? ` • ${tech.username || ''} / ${tech.password || ''}` : '';
+        const tech = getTechFields(c);
+        const techBadges = [
+          tech.mac ? `MAC: ${tech.mac}` : '',
+          tech.app ? `App: ${tech.app}` : '',
+          tech.username ? `User: ${tech.username}` : '',
+          tech.expiry ? `Exp: ${tech.expiry}` : ''
+        ].filter(Boolean).join(' • ');
+
         return `
           <div class="client-card">
             <div class="client-top">
               <div>
-                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
-                <div class="client-meta">${c.phone || 'Sans téléphone'} • ${c.date} • ${c.id}${macLine}${hostLine}${credLine}</div>
+                <div style="font-weight:800; font-size:0.95rem;">${c.name}</div>
+                <div class="client-meta">
+                  ${c.phone ? `<i class="fa-brands fa-whatsapp green"></i> ${c.phone} • ` : ''}
+                  ${c.date} • ${c.items.map(i => i.name).join(', ')}
+                </div>
+                ${techBadges ? `<div class="client-meta" style="color:var(--gold-primary);margin-top:3px;"><i class="fa-solid fa-key"></i> ${techBadges}</div>` : ''}
               </div>
-              <span class="btn ${rem === 0 ? 'btn-pay' : 'btn-danger'}" style="cursor:default;">
-                ${rem === 0 ? 'Soldé' : 'Reste : ' + rem + ' DH'}
+              <span style="font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:20px; background:${rem === 0 ? 'rgba(0,230,118,0.16)' : 'rgba(255,59,92,0.16)'}; color:${rem === 0 ? 'var(--emerald)' : 'var(--ruby)'};">
+                ${rem === 0 ? 'Soldé' : 'Reste dû'}
               </span>
             </div>
 
@@ -5619,7 +5649,7 @@
               </div>
               <div>
                 <div class="fin-box-label">Reste</div>
-                <div class="fin-box-val red">${rem} DH</div>
+                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
               </div>
             </div>
 
@@ -5628,10 +5658,13 @@
                 <i class="fa-solid fa-plus"></i> Ajouter montant
               </button>
               <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')">
-                <i class="fa-solid fa-money-bill-wave"></i> Encaisser paiement
+                <i class="fa-solid fa-hand-holding-dollar"></i> Encaisser
               </button>
               <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)">
-                <i class="fa-solid fa-receipt"></i> Facture
+                <i class="fa-solid fa-file-invoice"></i> Facture
+              </button>
+              <button class="btn btn-wa-order" onclick="openClientInvoice('${c.id}', true)">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
               </button>
               <button class="btn btn-danger" onclick="deleteClient('${c.id}')">
                 <i class="fa-solid fa-trash"></i>
@@ -5642,29 +5675,33 @@
       }).join('');
     }
 
-    function openFinanceModal(clientId, type) {
-      const cl = clients.find(c => c.id === clientId);
+    function openFinanceModal(id, type) {
+      const cl = clients.find(c => c.id === id);
       if (!cl) return;
-      const rem = Math.max(0, cl.total - cl.paid);
+      const modal = document.getElementById('finance-modal');
+      const title = document.getElementById('fin-modal-title');
+      const info = document.getElementById('fin-client-info');
+      const btn = document.getElementById('fin-confirm-btn');
 
-      document.getElementById('fin-modal-title').innerHTML = type === 'add'
-        ? `<i class="fa-solid fa-plus-circle"></i> Ajouter un montant`
-        : `<i class="fa-solid fa-money-bill-wave"></i> Encaisser un paiement`;
-
-      document.getElementById('fin-client-info').innerText =
-        `${cl.name} — Total: ${cl.total} DH | Payé: ${cl.paid} DH | Reste: ${rem} DH`;
-
-      document.getElementById('fin-amount').value = type === 'pay' && rem > 0 ? rem : '';
+      document.getElementById('fin-amount').value = '';
       document.getElementById('fin-note').value = '';
 
-      document.getElementById('fin-confirm-btn').onclick = () => {
+      if (type === 'add') {
+        title.innerHTML = `<i class="fa-solid fa-plus-circle blue"></i> Ajouter un montant`;
+        info.innerText = `Client : ${cl.name} | Total actuel : ${cl.total} DH`;
+      } else {
+        title.innerHTML = `<i class="fa-solid fa-hand-holding-dollar green"></i> Encaisser un paiement`;
+        info.innerText = `Client : ${cl.name} | Reste actuel : ${Math.max(0, cl.total - cl.paid)} DH`;
+      }
+
+      btn.onclick = () => {
         const amt = parseFloat(document.getElementById('fin-amount').value);
         const note = document.getElementById('fin-note').value.trim();
         if (isNaN(amt) || amt <= 0) return;
 
         if (type === 'add') {
           cl.total += amt;
-          cl.items.push({ name: note || 'Ajout montant', qty: 1, price: amt });
+          cl.items.push({ name: note || 'Montant ajouté', qty: 1, price: amt });
         } else {
           cl.paid += amt;
         }
@@ -5672,7 +5709,7 @@
         saveAll();
       };
 
-      document.getElementById('finance-modal').classList.add('open');
+      modal.classList.add('open');
     }
 
     function deleteClient(id) {
@@ -5686,10 +5723,9 @@
       const cat = document.getElementById('prod-cat').value.trim() || 'Général';
       const isHotIptv = name.toLowerCase() === 'hot iptv';
       const img = isHotIptv ? HOT_IPTV_IMAGE : pendingProductImageData;
-
       if (!name || isNaN(price)) return;
 
-      products.push({ id: Date.now(), name, price, cat, img });
+      products.unshift({ id: Date.now(), name, price, cat, img });
       document.getElementById('prod-name').value = '';
       document.getElementById('prod-price').value = '';
       document.getElementById('prod-cat').value = '';
@@ -5703,119 +5739,104 @@
     }
 
     function renderAdminProducts() {
-      const grid = document.getElementById('admin-products-list');
-      if (!products.length) {
-        grid.innerHTML = `<div class="empty-state">Aucun produit ajouté.</div>`;
+      const container = document.getElementById('admin-products-list');
+      if (products.length === 0) {
+        container.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit ajouté</div>`;
         return;
       }
-      grid.innerHTML = products.map(p => {
-        const resolvedImg = String(p.name || '').trim().toLowerCase() === 'hot iptv' ? HOT_IPTV_IMAGE : (p.img || '');
-        return `
-          <div class="product-card">
-            <div class="product-media-frame">
-              ${resolvedImg
-                ? `<img src="${resolvedImg}" class="product-img" alt="${p.name}">`
-                : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-            </div>
-            <div class="product-body">
-              <div>
-                <span class="product-badge">${p.cat}</span>
-                <div class="product-title">${p.name}</div>
-                <div class="product-price">${p.price} DH</div>
-              </div>
-              <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})">
-                <i class="fa-solid fa-trash"></i> Supprimer
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
 
-    function renderQuickInvoiceProductDropdown() {
-      const menu = document.getElementById('lux-product-menu');
-      if (!menu) return;
-      if (!products.length) {
-        menu.innerHTML = `<div class="lux-select-option" style="justify-content:center;color:var(--text-muted);">Aucun produit disponible</div>`;
-        return;
-      }
-      menu.innerHTML = products.map(p => {
-        const resolvedImg = String(p.name || '').trim().toLowerCase() === 'hot iptv' ? HOT_IPTV_IMAGE : (p.img || '');
-        return `
-          <div class="lux-select-option" onclick="selectProductForInvoice(${p.id})">
-            <span style="display:flex;align-items:center;gap:8px;">
-              ${resolvedImg
-                ? `<img src="${resolvedImg}" alt="${p.name}" style="width:26px;height:26px;border-radius:6px;object-fit:cover;">`
-                : `<i class="fa-solid fa-gem" style="color:var(--gold-primary);"></i>`}
-              <span>${p.name}</span>
-            </span>
-            <span style="color:var(--gold-primary);">${p.price} DH</span>
+      container.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-image"></i></div>`}
           </div>
-        `;
-      }).join('');
+          <div class="product-body">
+            <div>
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
+          </div>
+        </div>
+      `).join('');
     }
 
     function toggleProductDropdown(e) {
-      e.stopPropagation();
-      renderQuickInvoiceProductDropdown();
-      document.getElementById('lux-product-menu').classList.toggle('hidden');
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('lux-product-menu');
+      menu.classList.toggle('hidden');
     }
 
-    function selectProductForInvoice(prodId) {
-      const p = products.find(item => item.id === prodId);
-      if (!p) return;
-      document.getElementById('inv-item').value = p.name;
-      document.getElementById('inv-price').value = p.price;
-      if (!document.getElementById('inv-qty').value) {
-        document.getElementById('inv-qty').value = 1;
+    function populateQuickInvoiceSelect() {
+      const menu = document.getElementById('lux-product-menu');
+      if (!menu) return;
+      if (products.length === 0) {
+        menu.innerHTML = `<div class="lux-select-option" style="color:var(--text-muted);justify-content:center;">Aucun produit</div>`;
+        return;
       }
-      document.getElementById('lux-selected-label').innerText = `${p.name} (${p.price} DH)`;
-      document.getElementById('lux-product-menu').classList.add('hidden');
-      syncQuickInvoicePreview();
+      menu.innerHTML = products.map(p => `
+        <div class="lux-select-option" onclick="onSelectQuickProduct('${p.id}')">
+          <span>${p.name}</span>
+          <span class="gold">${p.price} DH</span>
+        </div>
+      `).join('');
     }
 
-    function syncQuickInvoicePreview() {
-      const nameVal = (document.getElementById('inv-item').value || '').trim();
-      const priceVal = document.getElementById('inv-price').value;
-      const matched = products.find(p => p.name.toLowerCase() === nameVal.toLowerCase());
-      const resolvedImg = (matched && matched.name && matched.name.toLowerCase() === 'hot iptv')
-        ? HOT_IPTV_IMAGE
-        : (matched ? matched.img : (nameVal.toLowerCase() === 'hot iptv' ? HOT_IPTV_IMAGE : ''));
-
+    function onSelectQuickProduct(prodId) {
+      const menu = document.getElementById('lux-product-menu');
+      if (menu) menu.classList.add('hidden');
+      const prod = products.find(p => String(p.id) === String(prodId));
       const thumb = document.getElementById('inv-prod-thumb');
       const titleEl = document.getElementById('inv-preview-title');
       const priceEl = document.getElementById('inv-preview-price');
+      const labelEl = document.getElementById('lux-selected-label');
 
-      if (!nameVal && !priceVal) {
+      if (!prod) {
+        if (labelEl) labelEl.innerText = '-- Choisir un produit --';
         thumb.innerHTML = `<i class="fa-solid fa-image"></i>`;
         titleEl.innerText = '-';
         priceEl.innerText = '';
         return;
       }
 
-      thumb.innerHTML = resolvedImg
-        ? `<img src="${resolvedImg}" alt="${nameVal}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
-        : `<i class="fa-solid fa-gem"></i>`;
-      titleEl.innerText = nameVal || 'Produit';
-      priceEl.innerText = priceVal ? `${priceVal} DH` : '';
+      if (labelEl) labelEl.innerText = `${prod.name} (${prod.price} DH)`;
+      document.getElementById('inv-item').value = prod.name;
+      document.getElementById('inv-price').value = prod.price;
+      titleEl.innerText = prod.name;
+      priceEl.innerText = `${prod.price} DH • ${prod.cat}`;
+      thumb.innerHTML = prod.img
+        ? `<img src="${prod.img}" style="width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;" alt="${prod.name}">`
+        : `<i class="fa-solid fa-box"></i>`;
     }
 
-    function createQuickInvoice() {
-      const clientName = document.getElementById('inv-client').value.trim() || 'Client comptoir';
-      const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
-      const itemName = document.getElementById('inv-item').value.trim() || 'Produit';
-      const qty = parseInt(document.getElementById('inv-qty').value, 10) || 1;
-      const price = parseFloat(document.getElementById('inv-price').value) || 0;
-      const total = qty * price;
-      const paidInput = document.getElementById('inv-paid').value;
-      const paid = paidInput === '' ? total : (parseFloat(paidInput) || 0);
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('lux-product-menu');
+      if (menu && !menu.classList.contains('hidden') && !e.target.closest('.luxury-product-name-box')) {
+        menu.classList.add('hidden');
+      }
+    });
 
+    function createQuickInvoice() {
+      const name = document.getElementById('inv-client').value.trim();
+      const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
+      const item = document.getElementById('inv-item').value.trim();
+      const qty = parseInt(document.getElementById('inv-qty').value) || 1;
+      const price = parseFloat(document.getElementById('inv-price').value) || 0;
+      const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
+      if (!name || !item) return;
+
+      const total = qty * price;
       const newCl = {
         id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name: clientName,
+        name,
         phone,
-        items: [{ name: itemName, qty, price }],
+        items: [{ name: item, qty, price }],
         total,
         paid
       };
@@ -5827,147 +5848,27 @@
       document.getElementById('inv-qty').value = '';
       document.getElementById('inv-price').value = '';
       document.getElementById('inv-paid').value = '';
-      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
+      onSelectQuickProduct('');
 
       saveAll();
       openClientInvoice(newCl.id, false);
     }
 
-    function renderStore() {
-      updateStoreHeaderWithClientName();
-      renderStoreProductsMarquee();
-
-      const q = (document.getElementById('store-search').value || '').toLowerCase();
-      const grid = document.getElementById('store-products-grid');
-      const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
-      );
-
-      if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state">Aucun produit disponible.</div>`;
-        return;
-      }
-
-      grid.innerHTML = filtered.map(p => {
-        const resolvedImg = String(p.name || '').trim().toLowerCase() === 'hot iptv' ? HOT_IPTV_IMAGE : (p.img || '');
-        return `
-          <div class="product-card">
-            <div class="product-media-frame">
-              ${resolvedImg
-                ? `<img src="${resolvedImg}" class="product-img" alt="${p.name}">`
-                : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-            </div>
-            <div class="product-body">
-              <div>
-                <span class="product-badge">${p.cat}</span>
-                <div class="product-title">${p.name}</div>
-                <div class="product-price">${p.price} DH</div>
-              </div>
-              <button class="btn btn-wa-order" style="width:100%;" onclick="orderProduct(${p.id})">
-                <i class="fa-brands fa-whatsapp"></i> Commander
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderDashboardBoutique() {
-      if (!isClientStoreVisible) {
-        document.getElementById('dashboard-boutique-container').classList.add('hidden');
-        return;
-      }
-      renderDashboardClientHeading();
-      const q = ((document.getElementById('dashboard-boutique-search') && document.getElementById('dashboard-boutique-search').value) || '').toLowerCase();
-      const grid = document.getElementById('dashboard-boutique-grid');
-      if (!grid) return;
-
-      const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
-      );
-
-      if (!filtered.length) {
-        grid.innerHTML = `<div class="empty-state">Aucun produit disponible.</div>`;
-        return;
-      }
-
-      grid.innerHTML = filtered.map(p => {
-        const resolvedImg = String(p.name || '').trim().toLowerCase() === 'hot iptv' ? HOT_IPTV_IMAGE : (p.img || '');
-        return `
-          <div class="product-card">
-            <div class="product-media-frame">
-              ${resolvedImg
-                ? `<img src="${resolvedImg}" class="product-img" alt="${p.name}">`
-                : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
-            </div>
-            <div class="product-body">
-              <div>
-                <span class="product-badge">${p.cat}</span>
-                <div class="product-title">${p.name}</div>
-                <div class="product-price">${p.price} DH</div>
-              </div>
-              <button class="btn btn-wa-order" style="width:100%;" onclick="orderProduct(${p.id})">
-                <i class="fa-brands fa-whatsapp"></i> Commander
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function orderProduct(prodId) {
-      const p = products.find(item => item.id === prodId);
-      if (!p) return;
-
-      const clientName = getCurrentClientDisplayName();
-      const clientPhone = getCurrentClientPhone();
-
-      const newCl = {
-        id: "CMD-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name: clientName || `Commande - ${p.name}`,
-        phone: clientPhone,
-        items: [{ name: p.name, qty: 1, price: p.price }],
-        total: p.price,
-        paid: 0
-      };
-      clients.unshift(newCl);
-      saveAll();
-
-      const msgLines = [
-        `Bonjour ${BRAND_NAME}, je souhaite commander :`,
-        `• Produit : ${p.name} (${p.cat})`,
-        `• Prix : ${p.price} DH`,
-        `• Réf : ${newCl.id}`,
-        clientName ? `• Client : ${clientName}` : '',
-        clientPhone ? `• Téléphone : ${clientPhone}` : ''
-      ].filter(Boolean);
-
-      window.open(buildWhatsAppUrl(clientPhone || WHATSAPP_ORDER_NUMBER, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
-    }
-
-    function openClientInvoice(clientId, autoSendWhatsApp = false) {
-      const cl = clients.find(c => c.id === clientId);
+    function openClientInvoice(id, autoSendWhatsApp = false) {
+      const cl = clients.find(c => c.id === id);
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
       const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
-      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
       const showTech = hasAnyTechField(tech);
+      const feedbackEl = document.getElementById('wa-export-feedback');
+      if (feedbackEl) feedbackEl.innerText = '';
 
-      const techGridCells = [];
-      if (tech.host) techGridCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
-      if (tech.username) techGridCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
-      if (tech.password) techGridCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
-      if (tech.app) techGridCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
-      if (tech.duration || tech.expiry) {
-        techGridCells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' - ')}</span></div>`);
-      }
-
-      const techBlockHtml = showTech ? `
+      const techHtml = showTech ? `
         <div class="inv-tech-panel">
           <div class="inv-tech-title">
-            <span><i class="fa-solid fa-key"></i> Paramètres d'accès & Playlist</span>
+            <span><i class="fa-solid fa-satellite-dish"></i> Paramètres d'Accès</span>
+            <span>IPTV / APP</span>
           </div>
           ${tech.mac ? `
             <div class="inv-mac-banner">
@@ -5975,7 +5876,13 @@
               <span class="inv-mac-value">${tech.mac}</span>
             </div>
           ` : ''}
-          ${techGridCells.length ? `<div class="inv-tech-grid">${techGridCells.join('')}</div>` : ''}
+          <div class="inv-tech-grid">
+            ${tech.host ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Host / Server</span><span class="inv-tech-code">${tech.host}</span></div>` : ''}
+            ${tech.username ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>` : ''}
+            ${tech.password ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>` : ''}
+            ${tech.app ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>` : ''}
+            ${(tech.duration || tech.expiry) ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' • ')}</span></div>` : ''}
+          </div>
         </div>
       ` : '';
 
@@ -5983,20 +5890,17 @@
         <div class="inv-top-bar">
           <div>
             <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.52rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
+            <div style="font-size:0.54rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
           </div>
           <span class="inv-doc-tag">${statusLabel}</span>
         </div>
-
         <div class="inv-meta-block">
           <div class="inv-meta-row"><span class="inv-meta-key">N°:</span><span class="inv-meta-val gold-ink">${cl.id}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Date:</span><span class="inv-meta-val">${cl.date}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Client:</span><span class="inv-meta-val">${cl.name}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone || '-'}</span></div>
         </div>
-
-        ${techBlockHtml}
-
+        ${techHtml}
         <table class="invoice-table">
           <thead>
             <tr>
@@ -6007,72 +5911,138 @@
             </tr>
           </thead>
           <tbody>
-            ${items.map(i => `
+            ${cl.items.map(i => `
               <tr>
-                <td style="font-weight:700;">${i.name}</td>
+                <td>${i.name}</td>
                 <td>${i.qty}</td>
                 <td>${i.price} DH</td>
-                <td class="ink-gold">${(i.qty || 1) * (i.price || 0)} DH</td>
+                <td class="ink-gold">${i.qty * i.price} DH</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
-
         <div class="inv-totals-box">
-          <div class="inv-total-line"><span>Sous-total</span><strong>${cl.total} DH</strong></div>
-          <div class="inv-total-line"><span>Payé</span><strong class="ink-green">${cl.paid} DH</strong></div>
-          <div class="inv-total-line inv-grand-total">
-            <span>Reste à payer</span>
-            <strong class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</strong>
-          </div>
+          <div class="inv-total-line"><span>Sous-total :</span><strong>${cl.total} DH</strong></div>
+          <div class="inv-total-line"><span>Payé :</span><span class="ink-green">${cl.paid} DH</span></div>
+          <div class="inv-total-line inv-grand-total"><span>Reste à payer :</span><span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span></div>
         </div>
-
         <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME}</div>
       `;
 
-      document.getElementById('wa-export-feedback').innerText = '';
-      document.getElementById('btn-save-invoice-png').onclick = () => saveInvoiceOnly(cl);
-      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceImageViaWhatsApp(cl);
+      const saveBtn = document.getElementById('btn-save-invoice-png');
+      saveBtn.onclick = () => saveInvoiceOnly(cl);
+
+      const waBtn = document.getElementById('btn-wa-invoice');
+      waBtn.onclick = () => sendInvoiceImageViaWhatsApp(cl);
 
       document.getElementById('invoice-modal').classList.add('open');
+
       if (autoSendWhatsApp) {
-        setTimeout(() => sendInvoiceImageViaWhatsApp(cl), 200);
+        sendInvoiceImageViaWhatsApp(cl);
       }
+    }
+
+    function orderProductWhatsApp(prodId) {
+      const prod = products.find(p => String(p.id) === String(prodId));
+      if (!prod) return;
+
+      const clientName = (activeClientSession && activeClientSession.name)
+        ? activeClientSession.name
+        : (clientLinkConfig.subscriberName || 'Client');
+      const clientPhone = (activeClientSession && activeClientSession.phone)
+        ? activeClientSession.phone
+        : (clientLinkConfig.phone || '');
+      const storeLabel = (activeClientSession && activeClientSession.storeName)
+        ? activeClientSession.storeName
+        : (clientLinkConfig.storeName || BRAND_NAME);
+
+      const newOrder = {
+        id: "CMD-" + Date.now().toString().slice(-6),
+        date: new Date().toLocaleDateString('fr-FR'),
+        name: clientName,
+        phone: clientPhone,
+        items: [{ name: `Commande Boutique : ${prod.name}`, qty: 1, price: prod.price }],
+        total: prod.price,
+        paid: 0,
+        tech: {
+          store: storeLabel,
+          status: 'Commande WhatsApp'
+        }
+      };
+
+      clients.unshift(newOrder);
+      saveAll();
+
+      const msgLines = [
+        `${BRAND_NAME} - Commande Boutique`,
+        `Produit : ${prod.name} (${prod.cat})`,
+        `Prix : ${prod.price} DH`,
+        `Client : ${clientName}`,
+        clientPhone ? `Téléphone : ${clientPhone}` : '',
+        `Réf : ${newOrder.id}`
+      ].filter(Boolean);
+
+      const targetPhone = normalizeWhatsAppNumber(clientPhone) || SUPPORT_WHATSAPP_NUMBER;
+      window.open(buildWhatsAppUrl(targetPhone, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
+    }
+
+    function buildProductGridHtml(filtered) {
+      if (filtered.length === 0) {
+        return `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible</div>`;
+      }
+
+      return filtered.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
+          </div>
+          <div class="product-body">
+            <div>
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderDashboardBoutique() {
+      if (!isClientStoreVisible) return;
+      renderDashboardClientHeading();
+
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!grid) return;
+      const searchEl = document.getElementById('dashboard-boutique-search');
+      const q = (searchEl ? searchEl.value : '').toLowerCase();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+      );
+      grid.innerHTML = buildProductGridHtml(filtered);
+    }
+
+    function renderStore() {
+      updateStoreHeaderWithClientName();
+      renderStoreProductsMarquee();
+      const q = document.getElementById('store-search').value.toLowerCase();
+      const grid = document.getElementById('store-products-grid');
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+      );
+      grid.innerHTML = buildProductGridHtml(filtered);
     }
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
     }
 
-    document.addEventListener('click', (e) => {
-      const menu = document.getElementById('lux-product-menu');
-      if (menu && !menu.classList.contains('hidden') && !e.target.closest('.luxury-product-name-box')) {
-        menu.classList.add('hidden');
-      }
-    });
-
-    document.getElementById('inv-item').addEventListener('input', syncQuickInvoicePreview);
-    document.getElementById('inv-price').addEventListener('input', syncQuickInvoicePreview);
-
-    document.querySelectorAll('.modal-backdrop').forEach(bd => {
-      bd.addEventListener('click', (e) => {
-        if (e.target === bd) bd.classList.remove('open');
-      });
-    });
-
-    function initApp() {
-      syncCopyrightYear();
-      checkIncomingClientAccessLink();
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
-      applyRoleVisibility();
-      applyClientVisibilityState();
-      saveAll();
-      updateDirectionWelcomeShowcase();
-      syncDashboardActionsVisibility();
-    }
-
-    initApp();
+    syncCopyrightYear();
+    checkIncomingClientAccessLink();
+    applyRoleVisibility();
+    applyClientVisibilityState();
+    saveAll();
   </script>
 </body>
 </html>
