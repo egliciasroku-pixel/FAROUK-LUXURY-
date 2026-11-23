@@ -447,7 +447,7 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 800;
       letter-spacing: 0.4px;
       color: var(--gold-primary);
@@ -2683,31 +2683,11 @@
           </div>
 
           <div class="unified-dashboard-body" id="dashboard-button-cards-container">
-            <div class="luxury-action-bar">
-              <div>
-                <div style="font-size: 0.92rem; font-weight: 800; color: var(--gold-primary);">
-                  <i class="fa-solid fa-gem"></i> Activation & Abonnement
-                </div>
-                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">
-                  Activez une playlist ou créez un abonnement Xtream / M3U.
-                </div>
-              </div>
-              <div class="luxury-action-group">
-                <button class="luxury-vip-pill-btn" onclick="openActivationModal()">
-                  <i class="fa-solid fa-bolt"></i>
-                  <span>Activation</span>
-                </button>
-                <button class="luxury-vip-pill-btn" onclick="openAbonnementModal()">
-                  <i class="fa-solid fa-crown"></i>
-                  <span>Abonnement</span>
-                </button>
-              </div>
-            </div>
-
+            <!-- 1. Gestion des clients FIRST -->
             <div class="luxury-add-client-bar">
               <div>
                 <div style="font-size: 0.86rem; font-weight: 800; color: var(--text-main);">
-                  <i class="fa-solid fa-address-card gold"></i> Gestion des Clients
+                  <i class="fa-solid fa-address-card gold"></i> Gestion des clients
                 </div>
                 <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 1px;" id="clients-bar-sub-label">
                   Ajouter un client ou consulter le registre des clients.
@@ -2766,6 +2746,29 @@
               <div class="lux-neon-feedback" id="inline-access-feedback"></div>
             </div>
 
+            <!-- 2. Activation & Abonnement SECOND -->
+            <div class="luxury-action-bar">
+              <div>
+                <div style="font-size: 0.92rem; font-weight: 800; color: var(--gold-primary);">
+                  <i class="fa-solid fa-gem"></i> Activation & Abonnement
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">
+                  Activez une playlist ou créez un abonnement Xtream / M3U.
+                </div>
+              </div>
+              <div class="luxury-action-group">
+                <button class="luxury-vip-pill-btn" onclick="openActivationModal()">
+                  <i class="fa-solid fa-bolt"></i>
+                  <span>ACTIVATION</span>
+                </button>
+                <button class="luxury-vip-pill-btn" onclick="openAbonnementModal()">
+                  <i class="fa-solid fa-crown"></i>
+                  <span>Abonnement</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Produits & Facture Rapide THIRD -->
             <div class="luxury-action-bar">
               <div>
                 <div style="font-size: 0.86rem; font-weight: 800; color: var(--text-main);">
@@ -2792,7 +2795,7 @@
                 <div id="dashboard-boutique-heading" style="flex:1; min-width:200px;">
                   <span class="store-glass-chip store-badge">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span>BOUTIQUE</span>
+                    <span>GALERIE des produits</span>
                   </span>
                 </div>
                 <input type="text" id="dashboard-boutique-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderDashboardBoutique()">
@@ -3126,24 +3129,24 @@
       </div>
     </div>
 
-    <!-- ==================== CLIENT GALLERY VIEW (GLASS IDENTITY CARD + BOUTIQUE PRODUCTS MARQUEE) ==================== -->
+    <!-- ==================== CLIENT GALLERY VIEW (GLASS IDENTITY CARD + GALERIE DES PRODUITS MARQUEE) ==================== -->
     <div id="store-view" class="store-compact-shell hidden">
       <div class="store-top-glass-bar">
         <div class="store-glass-identity-card" id="store-client-header-badge">
           <span class="store-glass-chip store-badge">
             <i class="fa-solid fa-bag-shopping"></i>
-            <span>BOUTIQUE</span>
+            <span>GALERIE des produits</span>
           </span>
         </div>
         <input type="text" id="store-search" class="store-compact-search" placeholder="Rechercher..." oninput="renderStore()">
       </div>
 
       <!-- Pure promotional products marquee: display only, no click actions -->
-      <div class="store-promo-marquee-banner" id="store-products-marquee-banner" aria-label="Nouveautés et offres Boutique">
+      <div class="store-promo-marquee-banner" id="store-products-marquee-banner" aria-label="GALERIE des produits">
         <div class="store-promo-header">
           <span class="store-promo-title">
-            <i class="fa-solid fa-bullhorn"></i>
-            <span>NOUVEAUTÉS & OFFRES BOUTIQUE</span>
+            <i class="fa-solid fa-images"></i>
+            <span>GALERIE des produits</span>
           </span>
           <span class="store-promo-count" id="store-marquee-count-badge">TOUS LES PRODUITS</span>
         </div>
@@ -3763,7 +3766,7 @@
           activeClientSession.phone || '',
           expText ? `Fin: ${expText}` : ''
         ].filter(Boolean).join(' • ');
-        stateLabelEl.textContent = `GALLERY actif : ${summary}`;
+        stateLabelEl.textContent = `GALERIE des produits active : ${summary}`;
       }
     }
 
@@ -3804,7 +3807,7 @@
       const storeChip = `
         <span class="store-glass-chip store-badge">
           <i class="fa-solid fa-bag-shopping"></i>
-          <span>BOUTIQUE</span>
+          <span>GALERIE des produits</span>
         </span>
       `;
 
@@ -3836,7 +3839,7 @@
         `
           <span class="store-glass-chip store-badge">
             <i class="fa-solid fa-bag-shopping"></i>
-            <span>BOUTIQUE${cleanName ? ' · ' + cleanName : ''}</span>
+            <span>GALERIE des produits${cleanName ? ' · ' + cleanName : ''}</span>
           </span>
         `
       ];
@@ -3884,7 +3887,7 @@
           <div class="store-marquee-product-card">
             <span class="store-marquee-thumb"><i class="fa-solid fa-box"></i></span>
             <span class="store-marquee-info">
-              <span class="store-marquee-name">Aucun produit dans la boutique</span>
+              <span class="store-marquee-name">Aucun produit dans la galerie</span>
             </span>
           </div>
         `;
@@ -3897,7 +3900,7 @@
             ? `<img src="${p.img}" alt="${p.name}" class="store-marquee-thumb">`
             : `<span class="store-marquee-thumb"><i class="fa-solid fa-gem"></i></span>`}
           <span class="store-marquee-info">
-            <span class="store-marquee-cat">${p.cat || 'BOUTIQUE VIP'}</span>
+            <span class="store-marquee-cat">${p.cat || 'GALERIE VIP'}</span>
             <span class="store-marquee-name">${p.name}</span>
             <span class="store-marquee-price">${p.price} DH</span>
           </span>
@@ -3979,9 +3982,8 @@
       }
 
       const clientName = getCurrentClientDisplayName();
-      const displayBrand = (isInStoreViewNow && clientName)
-        ? `BOUTIQUE ${clientName}`
-        : ((isInStoreViewNow) ? 'BOUTIQUE' : BRAND_NAME);
+      const hasClientIdentity = Boolean(isClientStoreVisible && activeClientSession && clientName);
+      const displayBrand = hasClientIdentity ? clientName : BRAND_NAME;
 
       document.title = displayBrand;
 
@@ -5361,21 +5363,20 @@
       const price = parseFloat(document.getElementById('sub-price').value) || 0;
       const note = document.getElementById('sub-note').value.trim();
 
-      if (!name && !username && !server && !mac) return;
+      if (!name && !username && !mac) return;
 
-      const hasAppOrMac = (app !== 'None') || Boolean(mac);
-      const itemTitle = hasAppOrMac
-        ? `Abonnement + ${[app !== 'None' ? app : 'Playlist', mac ? 'MAC: ' + mac : ''].filter(Boolean).join(' - ')} (${duration})`
-        : `Abonnement Xtream / M3U (${duration})`;
-
-      const fullDesc = note ? `${itemTitle} - ${note}` : itemTitle;
+      const labelParts = [`Abonnement ${duration}`];
+      if (username) labelParts.push(`User: ${username}`);
+      if (mac) labelParts.push(`MAC: ${mac}`);
+      if (expiry) labelParts.push(`Exp: ${expiry}`);
+      if (note) labelParts.push(note);
 
       const newCl = {
         id: "SUB-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name: name || username || mac || 'Client Abonnement',
+        name: name || username || mac,
         phone,
-        items: [{ name: fullDesc, qty: 1, price }],
+        items: [{ name: labelParts.join(' - '), qty: 1, price }],
         total: price,
         paid: price,
         tech: {
@@ -5395,6 +5396,7 @@
       document.getElementById('sub-client-name').value = '';
       document.getElementById('sub-mac').value = '';
       document.getElementById('sub-server').value = '';
+      document.getElementById('sub-whatsapp').value = '';
       document.getElementById('sub-username').value = '';
       document.getElementById('sub-password').value = '';
       document.getElementById('sub-price').value = '';
@@ -5405,32 +5407,37 @@
       openClientInvoice(newCl.id, false);
     }
 
-    function openAddClientModal() {
-      document.getElementById('add-client-modal').classList.add('open');
+    function openFxModal() {
+      calculateFx();
+      document.getElementById('fx-modal').classList.add('open');
     }
 
-    function openFxModal() {
-      document.getElementById('fx-modal').classList.add('open');
-      calculateFx();
+    function getCurrencySymbol(code) {
+      if (code === 'EUR') return '€';
+      if (code === 'USD') return '$';
+      if (code === 'CFA') return 'FCFA';
+      return 'DH';
     }
 
     function calculateFx() {
       const amount = parseFloat(document.getElementById('fx-amount').value) || 0;
       const from = document.getElementById('fx-from').value;
       const to = document.getElementById('fx-to').value;
-      const rateInput = document.getElementById('fx-custom-rate');
+      const customRateInput = document.getElementById('fx-custom-rate');
 
-      if (document.activeElement !== rateInput) {
-        rateInput.value = fxRatesToMad[from] || 1;
+      const fromRate = fxRatesToMad[from] || 1;
+      const toRate = fxRatesToMad[to] || 1;
+      const directRate = fromRate / toRate;
+
+      if (document.activeElement !== customRateInput) {
+        customRateInput.value = Number(fromRate.toFixed(6));
       }
 
-      const amountInMad = amount * (fxRatesToMad[from] || 1);
-      const converted = amountInMad / (fxRatesToMad[to] || 1);
-      const symbols = { MAD: 'DH', EUR: '€', USD: '$', CFA: 'FCFA' };
-
-      document.getElementById('fx-output').innerText = `${converted.toFixed(2)} ${symbols[to] || to}`;
-      const directRate = (fxRatesToMad[from] || 1) / (fxRatesToMad[to] || 1);
-      document.getElementById('fx-rate-info').innerText = `1 ${from} = ${directRate.toFixed(4)} ${to}`;
+      const converted = amount * directRate;
+      const decimals = (to === 'CFA' || from === 'CFA') ? 0 : 2;
+      document.getElementById('fx-output').innerText = `${converted.toFixed(decimals)} ${getCurrencySymbol(to)}`;
+      document.getElementById('fx-rate-info').innerText =
+        `1 ${from} = ${directRate.toFixed(decimals === 0 ? 2 : 4)} ${to} (1 ${from} = ${fromRate} DH)`;
     }
 
     function saveCustomFxRate() {
@@ -5439,75 +5446,96 @@
       if (!isNaN(val) && val > 0) {
         fxRatesToMad[from] = val;
         localStorage.setItem('fl_fr_v6_fx_mad', JSON.stringify(fxRatesToMad));
-        calculateFx();
       }
+      calculateFx();
     }
 
     function swapFxCurrencies() {
       const fromEl = document.getElementById('fx-from');
       const toEl = document.getElementById('fx-to');
-      const temp = fromEl.value;
+      const tmp = fromEl.value;
       fromEl.value = toEl.value;
-      toEl.value = temp;
-      document.getElementById('fx-custom-rate').value = fxRatesToMad[fromEl.value] || 1;
+      toEl.value = tmp;
       calculateFx();
     }
 
-    function utf8ToB64(str) {
-      return btoa(unescape(encodeURIComponent(str)));
+    function encodeLuxuryPayload(obj) {
+      const jsonStr = JSON.stringify(obj);
+      const utf8Bytes = new TextEncoder().encode(jsonStr);
+      let binary = '';
+      for (let i = 0; i < utf8Bytes.length; i++) {
+        const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        binary += String.fromCharCode(utf8Bytes[i] ^ keyByte);
+      }
+      return 'FLX1:' + btoa(binary);
     }
-    function b64ToUtf8(b64) {
-      return decodeURIComponent(escape(atob(b64)));
+
+    function decodeLuxuryPayload(codeStr) {
+      const trimmed = String(codeStr || '').trim();
+      if (!trimmed) throw new Error('Code vide');
+
+      if (trimmed.startsWith('FLX1:')) {
+        const b64 = trimmed.slice(5).trim();
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+          const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+          bytes[i] = binary.charCodeAt(i) ^ keyByte;
+        }
+        const jsonStr = new TextDecoder().decode(bytes);
+        return JSON.parse(jsonStr);
+      }
+
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        return JSON.parse(trimmed);
+      }
+
+      const binary = atob(trimmed);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        const keyByte = SECRET_CIPHER_KEY.charCodeAt(i % SECRET_CIPHER_KEY.length);
+        bytes[i] = binary.charCodeAt(i) ^ keyByte;
+      }
+      const jsonStr = new TextDecoder().decode(bytes);
+      return JSON.parse(jsonStr);
     }
 
     function generateEncryptedProductsCode() {
-      const status = document.getElementById('vault-status-msg');
-      const jsonStr = JSON.stringify(products);
-      const encoded = 'FLX1:' + utf8ToB64(jsonStr);
-      document.getElementById('encrypted-products-input').value = encoded;
-      status.style.color = 'var(--gold-primary)';
-      status.innerText = `Code crypté généré (${products.length} produit(s)).`;
+      const statusEl = document.getElementById('vault-status-msg');
+      const textarea = document.getElementById('encrypted-products-input');
+      const payload = {
+        brand: BRAND_NAME,
+        exportedAt: new Date().toISOString(),
+        products
+      };
+      const code = encodeLuxuryPayload(payload);
+      textarea.value = code;
+      statusEl.style.color = 'var(--emerald)';
+      statusEl.innerText = `Code crypté généré pour ${products.length} produit(s).`;
     }
 
     function applyEncryptedProductsCode() {
-      const raw = document.getElementById('encrypted-products-input').value.trim();
-      const status = document.getElementById('vault-status-msg');
-      if (!raw) {
-        status.style.color = 'var(--ruby)';
-        status.innerText = 'Veuillez coller un code crypté valide.';
-        return;
-      }
-
+      const statusEl = document.getElementById('vault-status-msg');
+      const raw = document.getElementById('encrypted-products-input').value;
       try {
-        let jsonText = raw;
-        if (raw.startsWith('FLX1:')) {
-          jsonText = b64ToUtf8(raw.slice(5).trim());
-        } else if (!raw.startsWith('[') && !raw.startsWith('{')) {
-          jsonText = b64ToUtf8(raw);
-        }
-
-        const parsed = JSON.parse(jsonText);
+        const parsed = decodeLuxuryPayload(raw);
         const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.products) ? parsed.products : null);
-        if (!list) throw new Error('Format invalide');
-
-        products = list.map((item, idx) => {
-          const itemName = String(item.name || item.title || `Produit ${idx + 1}`);
-          const isHotIptv = itemName.trim().toLowerCase() === 'hot iptv';
-          return {
-            id: item.id || (Date.now() + idx),
-            name: itemName,
-            price: parseFloat(item.price) || 0,
-            cat: String(item.cat || item.category || 'Général'),
-            img: isHotIptv ? HOT_IPTV_IMAGE : String(item.img || item.image || '')
-          };
-        });
-
+        if (!list) {
+          throw new Error('Format invalide');
+        }
+        products = list.map((item, idx) => ({
+          id: item.id || (Date.now() + idx),
+          name: String(item.name || 'Produit').trim(),
+          price: Number(item.price) || 0,
+          cat: String(item.cat || 'Général').trim(),
+          img: item.img ? String(item.img).trim() : ''
+        }));
         saveAll();
-        status.style.color = 'var(--emerald)';
-        status.innerText = `${products.length} produit(s) décodé(s) et appliqué(s).`;
-      } catch (e) {
-        status.style.color = 'var(--ruby)';
-        status.innerText = 'Code invalide ou corrompu.';
+        statusEl.style.color = 'var(--emerald)';
+        statusEl.innerText = `${products.length} produit(s) décodé(s) et appliqué(s) avec succès !`;
+      } catch (err) {
+        statusEl.style.color = 'var(--ruby)';
+        statusEl.innerText = 'Code invalide ou corrompu. Vérifiez le code crypté.';
       }
     }
 
@@ -5516,61 +5544,57 @@
       document.getElementById('vault-status-msg').innerText = '';
     }
 
-    function switchMode(mode) {
-      if (mode === 'store' && !isClientStoreVisible) {
-        return;
-      }
-      isInStoreViewNow = (mode === 'store');
-      document.getElementById('admin-view').classList.toggle('hidden', mode !== 'admin');
-      document.getElementById('store-view').classList.toggle('hidden', mode !== 'store');
-      document.getElementById('btn-admin-mode').classList.toggle('active', mode === 'admin');
-      document.getElementById('btn-store-mode').classList.toggle('active', mode === 'store');
-      enforceClientValidityAndBrand();
-      if (mode === 'store') renderStore();
-    }
-
-    function switchTab(tab) {
-      document.getElementById('tab-ledger').classList.toggle('hidden', tab !== 'ledger');
-      document.getElementById('tab-products').classList.toggle('hidden', tab !== 'products');
-      document.getElementById('tab-quick-invoice').classList.toggle('hidden', tab !== 'quick-invoice');
-      if (tab === 'quick-invoice') {
-        populateQuickInvoiceSelect();
-      }
-    }
-
     function saveAll() {
       localStorage.setItem('fl_fr_v9_products', JSON.stringify(products));
       localStorage.setItem('fl_fr_v6_clients', JSON.stringify(clients));
-      updateStats();
-      renderClients();
-      renderAdminProducts();
-      renderStore();
-      renderStoreProductsMarquee();
-      if (isClientStoreVisible) {
-        renderDashboardBoutique();
-      }
-      populateQuickInvoiceSelect();
-      populateClientDropdowns();
-      enforceClientValidityAndBrand();
-      enforceAdminHiddenSections();
+      renderAll();
     }
 
-    function updateStats() {
-      let totalDue = 0, totalPaid = 0;
-      clients.forEach(c => {
-        totalDue += c.total;
-        totalPaid += c.paid;
-      });
-      const totalRem = Math.max(0, totalDue - totalPaid);
+    function switchMode(mode) {
+      if (mode === 'store') {
+        if (!isClientStoreVisible) return;
+        isInStoreViewNow = true;
+        document.getElementById('admin-view').classList.add('hidden');
+        document.getElementById('store-view').classList.remove('hidden');
+        document.getElementById('btn-store-mode').classList.add('active');
+        document.getElementById('btn-admin-mode').classList.remove('active');
+        enforceClientValidityAndBrand();
+        renderStore();
+      } else {
+        isInStoreViewNow = false;
+        document.getElementById('store-view').classList.add('hidden');
+        document.getElementById('admin-view').classList.remove('hidden');
+        document.getElementById('btn-admin-mode').classList.add('active');
+        document.getElementById('btn-store-mode').classList.remove('active');
+        enforceClientValidityAndBrand();
+        renderAll();
+      }
+    }
 
-      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
-      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
-      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
-      document.getElementById('stat-clients-count').innerText = clients.length;
-      document.getElementById('badge-clients').innerText = clients.length;
-      document.getElementById('badge-products').innerText = products.length;
-      const toggleCountEl = document.getElementById('toggle-ledger-count');
-      if (toggleCountEl) toggleCountEl.innerText = clients.length;
+    function switchTab(tab) {
+      isInStoreViewNow = false;
+      document.getElementById('store-view').classList.add('hidden');
+      document.getElementById('admin-view').classList.remove('hidden');
+      document.getElementById('btn-admin-mode').classList.add('active');
+      document.getElementById('btn-store-mode').classList.remove('active');
+      enforceClientValidityAndBrand();
+
+      ['ledger', 'products', 'quick-invoice'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
+      });
+      if (tab === 'quick-invoice') {
+        renderProductSelectOptions();
+        updateSelectedProductPreview();
+      }
+      renderAll();
+    }
+
+    function openAddClientModal() {
+      document.getElementById('add-client-modal').classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
     }
 
     function addClient() {
@@ -5582,7 +5606,7 @@
       if (!name) return;
 
       clients.unshift({
-        id: "CLI-" + Date.now().toString().slice(-6),
+        id: "DG-" + Date.now().toString().slice(-5),
         date: new Date().toLocaleDateString('fr-FR'),
         name,
         phone,
@@ -5591,125 +5615,41 @@
         paid
       });
 
-      document.getElementById('new-c-name').value = '';
-      document.getElementById('new-c-phone').value = '';
-      document.getElementById('new-c-note').value = '';
-      document.getElementById('new-c-total').value = '';
-      document.getElementById('new-c-paid').value = '';
+      ['new-c-name', 'new-c-phone', 'new-c-note', 'new-c-total', 'new-c-paid'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
       closeModal('add-client-modal');
       saveAll();
     }
 
-    function renderClients() {
-      const q = document.getElementById('client-search').value.toLowerCase();
-      const list = document.getElementById('clients-list');
-      const filtered = clients.filter(c =>
-        c.name.toLowerCase().includes(q) || (c.phone && c.phone.includes(q))
-      );
-
-      if (filtered.length === 0) {
-        list.innerHTML = `<div class="empty-state">Aucun client enregistré</div>`;
-        return;
-      }
-
-      list.innerHTML = filtered.map(c => {
-        const rem = Math.max(0, c.total - c.paid);
-        const tech = getTechFields(c);
-        const techBadges = [
-          tech.mac ? `MAC: ${tech.mac}` : '',
-          tech.app ? `App: ${tech.app}` : '',
-          tech.username ? `User: ${tech.username}` : '',
-          tech.expiry ? `Exp: ${tech.expiry}` : ''
-        ].filter(Boolean).join(' • ');
-
-        return `
-          <div class="client-card">
-            <div class="client-top">
-              <div>
-                <div style="font-weight:800; font-size:0.95rem;">${c.name}</div>
-                <div class="client-meta">
-                  ${c.phone ? `<i class="fa-brands fa-whatsapp green"></i> ${c.phone} • ` : ''}
-                  ${c.date} • ${c.items.map(i => i.name).join(', ')}
-                </div>
-                ${techBadges ? `<div class="client-meta" style="color:var(--gold-primary);margin-top:3px;"><i class="fa-solid fa-key"></i> ${techBadges}</div>` : ''}
-              </div>
-              <span style="font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:20px; background:${rem === 0 ? 'rgba(0,230,118,0.16)' : 'rgba(255,59,92,0.16)'}; color:${rem === 0 ? 'var(--emerald)' : 'var(--ruby)'};">
-                ${rem === 0 ? 'Soldé' : 'Reste dû'}
-              </span>
-            </div>
-
-            <div class="finance-strip">
-              <div>
-                <div class="fin-box-label">Total</div>
-                <div class="fin-box-val gold">${c.total} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Payé</div>
-                <div class="fin-box-val green">${c.paid} DH</div>
-              </div>
-              <div>
-                <div class="fin-box-label">Reste</div>
-                <div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div>
-              </div>
-            </div>
-
-            <div class="client-actions">
-              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')">
-                <i class="fa-solid fa-plus"></i> Ajouter montant
-              </button>
-              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')">
-                <i class="fa-solid fa-hand-holding-dollar"></i> Encaisser
-              </button>
-              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)">
-                <i class="fa-solid fa-file-invoice"></i> Facture
-              </button>
-              <button class="btn btn-wa-order" onclick="openClientInvoice('${c.id}', true)">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </button>
-              <button class="btn btn-danger" onclick="deleteClient('${c.id}')">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function openFinanceModal(id, type) {
-      const cl = clients.find(c => c.id === id);
+    function openFinanceModal(clientId, type) {
+      const cl = clients.find(c => c.id === clientId);
       if (!cl) return;
-      const modal = document.getElementById('finance-modal');
-      const title = document.getElementById('fin-modal-title');
-      const info = document.getElementById('fin-client-info');
-      const btn = document.getElementById('fin-confirm-btn');
-
-      document.getElementById('fin-amount').value = '';
+      const rem = Math.max(0, cl.total - cl.paid);
+      document.getElementById('fin-client-info').innerText =
+        `${cl.name} | Total: ${cl.total} DH | Payé: ${cl.paid} DH | Reste: ${rem} DH`;
+      document.getElementById('fin-amount').value = type === 'pay' ? (rem > 0 ? rem : '') : '';
       document.getElementById('fin-note').value = '';
+      document.getElementById('fin-modal-title').innerHTML = type === 'pay'
+        ? '<i class="fa-solid fa-hand-holding-dollar green"></i> Encaisser un paiement'
+        : '<i class="fa-solid fa-plus-circle blue"></i> Ajouter un montant';
 
-      if (type === 'add') {
-        title.innerHTML = `<i class="fa-solid fa-plus-circle blue"></i> Ajouter un montant`;
-        info.innerText = `Client : ${cl.name} | Total actuel : ${cl.total} DH`;
-      } else {
-        title.innerHTML = `<i class="fa-solid fa-hand-holding-dollar green"></i> Encaisser un paiement`;
-        info.innerText = `Client : ${cl.name} | Reste actuel : ${Math.max(0, cl.total - cl.paid)} DH`;
-      }
-
-      btn.onclick = () => {
-        const amt = parseFloat(document.getElementById('fin-amount').value);
+      document.getElementById('fin-confirm-btn').onclick = () => {
+        const amt = parseFloat(document.getElementById('fin-amount').value) || 0;
         const note = document.getElementById('fin-note').value.trim();
-        if (isNaN(amt) || amt <= 0) return;
+        if (amt <= 0) return;
 
-        if (type === 'add') {
-          cl.total += amt;
-          cl.items.push({ name: note || 'Montant ajouté', qty: 1, price: amt });
-        } else {
+        if (type === 'pay') {
           cl.paid += amt;
+          if (note) cl.items.push({ name: `Paiement (${note})`, qty: 1, price: 0 });
+        } else {
+          cl.total += amt;
+          cl.items.push({ name: note || 'Ajout montant', qty: 1, price: amt });
         }
         closeModal('finance-modal');
         saveAll();
       };
-
-      modal.classList.add('open');
+      document.getElementById('finance-modal').classList.add('open');
     }
 
     function deleteClient(id) {
@@ -5719,11 +5659,10 @@
 
     function addProduct() {
       const name = document.getElementById('prod-name').value.trim();
-      const price = parseFloat(document.getElementById('prod-price').value);
+      const price = parseFloat(document.getElementById('prod-price').value) || 0;
       const cat = document.getElementById('prod-cat').value.trim() || 'Général';
-      const isHotIptv = name.toLowerCase() === 'hot iptv';
-      const img = isHotIptv ? HOT_IPTV_IMAGE : pendingProductImageData;
-      if (!name || isNaN(price)) return;
+      const img = pendingProductImageData;
+      if (!name || price <= 0) return;
 
       products.unshift({ id: Date.now(), name, price, cat, img });
       document.getElementById('prod-name').value = '';
@@ -5738,169 +5677,186 @@
       saveAll();
     }
 
-    function renderAdminProducts() {
-      const container = document.getElementById('admin-products-list');
-      if (products.length === 0) {
-        container.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Aucun produit ajouté</div>`;
-        return;
-      }
-
-      container.innerHTML = products.map(p => `
-        <div class="product-card">
-          <div class="product-media-frame">
-            ${p.img
-              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-image"></i></div>`}
-          </div>
-          <div class="product-body">
-            <div>
-              <span class="product-badge">${p.cat}</span>
-              <div class="product-title">${p.name}</div>
-              <div class="product-price">${p.price} DH</div>
-            </div>
-            <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct(${p.id})">
-              <i class="fa-solid fa-trash"></i> Supprimer
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
     function toggleProductDropdown(e) {
-      if (e) e.stopPropagation();
-      const menu = document.getElementById('lux-product-menu');
-      menu.classList.toggle('hidden');
+      e.stopPropagation();
+      renderProductSelectOptions();
+      document.getElementById('lux-product-menu').classList.toggle('hidden');
     }
 
-    function populateQuickInvoiceSelect() {
+    function renderProductSelectOptions() {
       const menu = document.getElementById('lux-product-menu');
-      if (!menu) return;
-      if (products.length === 0) {
-        menu.innerHTML = `<div class="lux-select-option" style="color:var(--text-muted);justify-content:center;">Aucun produit</div>`;
+      if (!products.length) {
+        menu.innerHTML = `<div class="lux-select-option">Aucun produit disponible</div>`;
         return;
       }
-      menu.innerHTML = products.map(p => `
-        <div class="lux-select-option" onclick="onSelectQuickProduct('${p.id}')">
+      menu.innerHTML = products.map((p, idx) => `
+        <div class="lux-select-option" onclick="selectLuxuryProduct(${idx}, event)">
           <span>${p.name}</span>
           <span class="gold">${p.price} DH</span>
         </div>
       `).join('');
     }
 
-    function onSelectQuickProduct(prodId) {
-      const menu = document.getElementById('lux-product-menu');
-      if (menu) menu.classList.add('hidden');
-      const prod = products.find(p => String(p.id) === String(prodId));
+    function selectLuxuryProduct(idx, e) {
+      if (e) e.stopPropagation();
+      const p = products[idx];
+      if (!p) return;
+      document.getElementById('lux-selected-label').innerText = `${p.name} (${p.price} DH)`;
+      document.getElementById('inv-item').value = p.name;
+      document.getElementById('inv-price').value = p.price;
+      if (!document.getElementById('inv-qty').value) document.getElementById('inv-qty').value = 1;
+      document.getElementById('lux-product-menu').classList.add('hidden');
+      updateSelectedProductPreview(p);
+    }
+
+    function updateSelectedProductPreview(matchedProd = null) {
+      const nameVal = document.getElementById('inv-item').value.trim();
+      const priceVal = document.getElementById('inv-price').value;
+      const p = matchedProd || products.find(item => item.name.toLowerCase() === nameVal.toLowerCase());
       const thumb = document.getElementById('inv-prod-thumb');
-      const titleEl = document.getElementById('inv-preview-title');
+      const title = document.getElementById('inv-preview-title');
       const priceEl = document.getElementById('inv-preview-price');
-      const labelEl = document.getElementById('lux-selected-label');
 
-      if (!prod) {
-        if (labelEl) labelEl.innerText = '-- Choisir un produit --';
+      if (p) {
+        thumb.innerHTML = p.img
+          ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:cover;border-radius:9px;">`
+          : `<i class="fa-solid fa-gem"></i>`;
+        title.innerText = p.name;
+        priceEl.innerText = `${priceVal || p.price} DH`;
+      } else {
         thumb.innerHTML = `<i class="fa-solid fa-image"></i>`;
-        titleEl.innerText = '-';
-        priceEl.innerText = '';
-        return;
+        title.innerText = nameVal || 'Aucun produit sélectionné';
+        priceEl.innerText = priceVal ? `${priceVal} DH` : '';
       }
-
-      if (labelEl) labelEl.innerText = `${prod.name} (${prod.price} DH)`;
-      document.getElementById('inv-item').value = prod.name;
-      document.getElementById('inv-price').value = prod.price;
-      titleEl.innerText = prod.name;
-      priceEl.innerText = `${prod.price} DH • ${prod.cat}`;
-      thumb.innerHTML = prod.img
-        ? `<img src="${prod.img}" style="width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;" alt="${prod.name}">`
-        : `<i class="fa-solid fa-box"></i>`;
     }
 
     document.addEventListener('click', (e) => {
       const menu = document.getElementById('lux-product-menu');
-      if (menu && !menu.classList.contains('hidden') && !e.target.closest('.luxury-product-name-box')) {
+      if (menu && !e.target.closest('.luxury-product-name-box')) {
         menu.classList.add('hidden');
       }
     });
 
     function createQuickInvoice() {
-      const name = document.getElementById('inv-client').value.trim();
+      const clientName = document.getElementById('inv-client').value.trim() || 'Client comptoir';
       const phone = formatDisplayPhone(document.getElementById('inv-phone').value.trim());
-      const item = document.getElementById('inv-item').value.trim();
-      const qty = parseInt(document.getElementById('inv-qty').value) || 1;
-      const price = parseFloat(document.getElementById('inv-price').value) || 0;
-      const paid = parseFloat(document.getElementById('inv-paid').value) || 0;
-      if (!name || !item) return;
+      const itemName = document.getElementById('inv-item').value.trim() || 'Article';
+      const qty = Math.max(1, parseInt(document.getElementById('inv-qty').value, 10) || 1);
+      const unitPrice = parseFloat(document.getElementById('inv-price').value) || 0;
+      const total = qty * unitPrice;
+      const paidRaw = document.getElementById('inv-paid').value;
+      const paid = paidRaw === '' ? total : (parseFloat(paidRaw) || 0);
 
-      const total = qty * price;
       const newCl = {
         id: "FAC-" + Date.now().toString().slice(-6),
         date: new Date().toLocaleDateString('fr-FR'),
-        name,
+        name: clientName,
         phone,
-        items: [{ name: item, qty, price }],
+        items: [{ name: itemName, qty, price: unitPrice }],
         total,
         paid
       };
-
       clients.unshift(newCl);
-      document.getElementById('inv-client').value = '';
-      document.getElementById('inv-phone').value = '';
-      document.getElementById('inv-item').value = '';
-      document.getElementById('inv-qty').value = '';
-      document.getElementById('inv-price').value = '';
-      document.getElementById('inv-paid').value = '';
-      onSelectQuickProduct('');
-
+      ['inv-client', 'inv-phone', 'inv-item', 'inv-qty', 'inv-price', 'inv-paid'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('lux-selected-label').innerText = '-- Choisir un produit --';
+      updateSelectedProductPreview();
       saveAll();
       openClientInvoice(newCl.id, false);
     }
 
-    function openClientInvoice(id, autoSendWhatsApp = false) {
-      const cl = clients.find(c => c.id === id);
+    function orderProduct(prodId, isStoreOrder = false) {
+      const p = products.find(item => item.id === prodId);
+      if (!p) return;
+
+      const sessionName = (activeClientSession && activeClientSession.name) ? activeClientSession.name : '';
+      const sessionPhone = (activeClientSession && activeClientSession.phone) ? activeClientSession.phone : '';
+
+      const orderId = "CMD-" + Date.now().toString().slice(-6);
+      const orderClient = {
+        id: orderId,
+        date: new Date().toLocaleDateString('fr-FR'),
+        name: sessionName || 'Commande Client',
+        phone: sessionPhone,
+        items: [{ name: p.name, qty: 1, price: p.price }],
+        total: p.price,
+        paid: p.price
+      };
+      clients.unshift(orderClient);
+      saveAll();
+
+      if (isStoreOrder) {
+        const msgLines = [
+          `${BRAND_NAME} - Commande Directe`,
+          sessionName ? `Client : ${sessionName}` : '',
+          sessionPhone ? `Téléphone : ${sessionPhone}` : '',
+          `Produit : ${p.name}`,
+          `Prix : ${p.price} DH`,
+          `Réf : ${orderId}`
+        ].filter(Boolean);
+        window.open(buildWhatsAppUrl(sessionPhone || WHATSAPP_ORDER_NUMBER, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
+      } else {
+        openClientInvoice(orderId, false);
+      }
+    }
+
+    function openClientInvoice(clientId, autoExportWa = false) {
+      const cl = clients.find(c => c.id === clientId);
       if (!cl) return;
       const rem = Math.max(0, cl.total - cl.paid);
       const statusLabel = rem === 0 ? 'PAYÉE' : (cl.paid > 0 ? 'ACOMPTE' : 'EN ATTENTE');
+      const items = Array.isArray(cl.items) && cl.items.length ? cl.items : [{ name: cl.name, qty: 1, price: cl.total }];
       const tech = getTechFields(cl);
       const showTech = hasAnyTechField(tech);
-      const feedbackEl = document.getElementById('wa-export-feedback');
-      if (feedbackEl) feedbackEl.innerText = '';
 
-      const techHtml = showTech ? `
-        <div class="inv-tech-panel">
-          <div class="inv-tech-title">
-            <span><i class="fa-solid fa-satellite-dish"></i> Paramètres d'Accès</span>
-            <span>IPTV / APP</span>
+      let techHtml = '';
+      if (showTech) {
+        const macBannerHtml = tech.mac ? `
+          <div class="inv-mac-banner">
+            <span class="inv-mac-badge">MAC ADDRESS</span>
+            <span class="inv-mac-value">${tech.mac}</span>
           </div>
-          ${tech.mac ? `
-            <div class="inv-mac-banner">
-              <span class="inv-mac-badge">MAC ADDRESS</span>
-              <span class="inv-mac-value">${tech.mac}</span>
+        ` : '';
+
+        const cells = [];
+        if (tech.host) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Host</span><span class="inv-tech-code">${tech.host}</span></div>`);
+        if (tech.username) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>`);
+        if (tech.password) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>`);
+        if (tech.app) cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>`);
+        if (tech.duration || tech.expiry) {
+          cells.push(`<div class="inv-tech-cell"><span class="inv-tech-lbl">Durée / Exp</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' - ')}</span></div>`);
+        }
+
+        techHtml = `
+          <div class="inv-tech-panel">
+            <div class="inv-tech-title">
+              <span><i class="fa-solid fa-key"></i> Accès & Playlist</span>
             </div>
-          ` : ''}
-          <div class="inv-tech-grid">
-            ${tech.host ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Host / Server</span><span class="inv-tech-code">${tech.host}</span></div>` : ''}
-            ${tech.username ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Username</span><span class="inv-tech-code">${tech.username}</span></div>` : ''}
-            ${tech.password ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Password</span><span class="inv-tech-code">${tech.password}</span></div>` : ''}
-            ${tech.app ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Application</span><span class="inv-tech-code">${tech.app}</span></div>` : ''}
-            ${(tech.duration || tech.expiry) ? `<div class="inv-tech-cell"><span class="inv-tech-lbl">Validité</span><span class="inv-tech-code">${[tech.duration, tech.expiry ? 'Exp: ' + tech.expiry : ''].filter(Boolean).join(' • ')}</span></div>` : ''}
+            ${macBannerHtml}
+            ${cells.length ? `<div class="inv-tech-grid">${cells.join('')}</div>` : ''}
           </div>
-        </div>
-      ` : '';
+        `;
+      }
 
       document.getElementById('invoice-content').innerHTML = `
         <div class="inv-top-bar">
           <div>
             <div class="inv-brand-name">${BRAND_NAME}</div>
-            <div style="font-size:0.54rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
+            <div style="font-size:0.52rem;color:#64748b;font-weight:600;">Facture Verre Blanc</div>
           </div>
           <span class="inv-doc-tag">${statusLabel}</span>
         </div>
+
         <div class="inv-meta-block">
           <div class="inv-meta-row"><span class="inv-meta-key">N°:</span><span class="inv-meta-val gold-ink">${cl.id}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Date:</span><span class="inv-meta-val">${cl.date}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Client:</span><span class="inv-meta-val">${cl.name}</span></div>
           <div class="inv-meta-row"><span class="inv-meta-key">Tél:</span><span class="inv-meta-val">${cl.phone || '-'}</span></div>
         </div>
+
         ${techHtml}
+
         <table class="invoice-table">
           <thead>
             <tr>
@@ -5911,92 +5867,109 @@
             </tr>
           </thead>
           <tbody>
-            ${cl.items.map(i => `
+            ${items.map(it => `
               <tr>
-                <td>${i.name}</td>
-                <td>${i.qty}</td>
-                <td>${i.price} DH</td>
-                <td class="ink-gold">${i.qty * i.price} DH</td>
+                <td>${it.name}</td>
+                <td>${it.qty || 1}</td>
+                <td>${it.price || 0} DH</td>
+                <td class="ink-gold">${(it.qty || 1) * (it.price || 0)} DH</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
+
         <div class="inv-totals-box">
           <div class="inv-total-line"><span>Sous-total :</span><strong>${cl.total} DH</strong></div>
           <div class="inv-total-line"><span>Payé :</span><span class="ink-green">${cl.paid} DH</span></div>
-          <div class="inv-total-line inv-grand-total"><span>Reste à payer :</span><span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span></div>
+          <div class="inv-total-line inv-grand-total">
+            <span>Reste à payer :</span>
+            <span class="${rem > 0 ? 'ink-red' : 'ink-green'}">${rem} DH</span>
+          </div>
         </div>
+
         <div class="inv-footer-note">© ${new Date().getFullYear()} ${BRAND_NAME}</div>
       `;
 
-      const saveBtn = document.getElementById('btn-save-invoice-png');
-      saveBtn.onclick = () => saveInvoiceOnly(cl);
+      const feedbackEl = document.getElementById('wa-export-feedback');
+      if (feedbackEl) feedbackEl.innerText = '';
 
-      const waBtn = document.getElementById('btn-wa-invoice');
-      waBtn.onclick = () => sendInvoiceImageViaWhatsApp(cl);
-
+      document.getElementById('btn-save-invoice-png').onclick = () => saveInvoiceOnly(cl);
+      document.getElementById('btn-wa-invoice').onclick = () => sendInvoiceImageViaWhatsApp(cl);
       document.getElementById('invoice-modal').classList.add('open');
 
-      if (autoSendWhatsApp) {
+      if (autoExportWa) {
         sendInvoiceImageViaWhatsApp(cl);
       }
     }
 
-    function orderProductWhatsApp(prodId) {
-      const prod = products.find(p => String(p.id) === String(prodId));
-      if (!prod) return;
-
-      const clientName = (activeClientSession && activeClientSession.name)
-        ? activeClientSession.name
-        : (clientLinkConfig.subscriberName || 'Client');
-      const clientPhone = (activeClientSession && activeClientSession.phone)
-        ? activeClientSession.phone
-        : (clientLinkConfig.phone || '');
-      const storeLabel = (activeClientSession && activeClientSession.storeName)
-        ? activeClientSession.storeName
-        : (clientLinkConfig.storeName || BRAND_NAME);
-
-      const newOrder = {
-        id: "CMD-" + Date.now().toString().slice(-6),
-        date: new Date().toLocaleDateString('fr-FR'),
-        name: clientName,
-        phone: clientPhone,
-        items: [{ name: `Commande Boutique : ${prod.name}`, qty: 1, price: prod.price }],
-        total: prod.price,
-        paid: 0,
-        tech: {
-          store: storeLabel,
-          status: 'Commande WhatsApp'
-        }
-      };
-
-      clients.unshift(newOrder);
-      saveAll();
-
-      const msgLines = [
-        `${BRAND_NAME} - Commande Boutique`,
-        `Produit : ${prod.name} (${prod.cat})`,
-        `Prix : ${prod.price} DH`,
-        `Client : ${clientName}`,
-        clientPhone ? `Téléphone : ${clientPhone}` : '',
-        `Réf : ${newOrder.id}`
-      ].filter(Boolean);
-
-      const targetPhone = normalizeWhatsAppNumber(clientPhone) || SUPPORT_WHATSAPP_NUMBER;
-      window.open(buildWhatsAppUrl(targetPhone, msgLines.join('\n')), '_blank', 'noopener,noreferrer');
+    function renderStats() {
+      let totalDue = 0, totalPaid = 0, totalRem = 0;
+      clients.forEach(c => {
+        totalDue += c.total;
+        totalPaid += c.paid;
+        totalRem += Math.max(0, c.total - c.paid);
+      });
+      document.getElementById('stat-total-due').innerText = `${totalDue} DH`;
+      document.getElementById('stat-total-paid').innerText = `${totalPaid} DH`;
+      document.getElementById('stat-total-rem').innerText = `${totalRem} DH`;
+      document.getElementById('stat-clients-count').innerText = clients.length;
+      document.getElementById('badge-clients').innerText = clients.length;
+      const toggleBadge = document.getElementById('toggle-ledger-count');
+      if (toggleBadge) toggleBadge.innerText = clients.length;
+      document.getElementById('badge-products').innerText = products.length;
+      enforceAdminHiddenSections();
     }
 
-    function buildProductGridHtml(filtered) {
-      if (filtered.length === 0) {
-        return `<div class="empty-state" style="grid-column:1/-1;">Aucun produit disponible</div>`;
+    function renderClients() {
+      const q = (document.getElementById('client-search')?.value || '').toLowerCase().trim();
+      const list = document.getElementById('clients-list');
+      const filtered = clients.filter(c =>
+        c.name.toLowerCase().includes(q) || (c.phone && c.phone.toLowerCase().includes(q))
+      );
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty-state">Aucun client enregistré pour le moment.</div>`;
+        return;
       }
+      list.innerHTML = filtered.map(c => {
+        const rem = Math.max(0, c.total - c.paid);
+        const lastItem = c.items && c.items.length ? c.items[c.items.length - 1].name : '';
+        return `
+          <div class="client-card">
+            <div class="client-top">
+              <div>
+                <div style="font-weight:800; font-size:0.92rem;">${c.name}</div>
+                <div class="client-meta">${c.phone || 'Sans numéro'} • ${c.date}${lastItem ? ' • ' + lastItem : ''}</div>
+              </div>
+              <span style="font-size:0.7rem; color:var(--gold-primary); font-weight:700;">${c.id}</span>
+            </div>
+            <div class="finance-strip">
+              <div><div class="fin-box-label">Total</div><div class="fin-box-val gold">${c.total} DH</div></div>
+              <div><div class="fin-box-label">Payé</div><div class="fin-box-val green">${c.paid} DH</div></div>
+              <div><div class="fin-box-label">Reste</div><div class="fin-box-val ${rem > 0 ? 'red' : 'green'}">${rem} DH</div></div>
+            </div>
+            <div class="client-actions">
+              <button class="btn btn-add-fin" onclick="openFinanceModal('${c.id}', 'add')"><i class="fa-solid fa-plus"></i> Ajouter</button>
+              <button class="btn btn-pay" onclick="openFinanceModal('${c.id}', 'pay')"><i class="fa-solid fa-check"></i> Payer</button>
+              <button class="btn btn-gold" onclick="openClientInvoice('${c.id}', false)"><i class="fa-solid fa-file-invoice"></i> Facture</button>
+              <button class="btn btn-danger" onclick="deleteClient('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
 
-      return filtered.map(p => `
+    function renderAdminProducts() {
+      const grid = document.getElementById('admin-products-list');
+      if (!products.length) {
+        grid.innerHTML = `<div class="empty-state">Aucun produit ajouté.</div>`;
+        return;
+      }
+      grid.innerHTML = products.map(p => `
         <div class="product-card">
           <div class="product-media-frame">
             ${p.img
               ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
-              : `<div class="product-img-placeholder"><i class="fa-solid fa-box"></i></div>`}
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
           </div>
           <div class="product-body">
             <div>
@@ -6004,45 +5977,115 @@
               <div class="product-title">${p.name}</div>
               <div class="product-price">${p.price} DH</div>
             </div>
+            <button class="btn btn-danger" style="width:100%; margin-top:6px;" onclick="deleteProduct(${p.id})">
+              <i class="fa-solid fa-trash"></i> Supprimer
+            </button>
           </div>
         </div>
       `).join('');
     }
 
     function renderDashboardBoutique() {
-      if (!isClientStoreVisible) return;
+      const container = document.getElementById('dashboard-boutique-container');
+      const grid = document.getElementById('dashboard-boutique-grid');
+      if (!container || !grid) return;
+
+      if (!isClientStoreVisible) {
+        container.classList.add('hidden');
+        return;
+      }
+
+      container.classList.remove('hidden');
       renderDashboardClientHeading();
 
-      const grid = document.getElementById('dashboard-boutique-grid');
-      if (!grid) return;
-      const searchEl = document.getElementById('dashboard-boutique-search');
-      const q = (searchEl ? searchEl.value : '').toLowerCase();
+      const q = (document.getElementById('dashboard-boutique-search')?.value || '').toLowerCase().trim();
       const filtered = products.filter(p =>
         p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
       );
-      grid.innerHTML = buildProductGridHtml(filtered);
+
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state">Aucun produit disponible dans la galerie.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <div>
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-wa-order" style="width:100%; margin-top:6px;" onclick="orderProduct(${p.id}, true)">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </button>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderStore() {
       updateStoreHeaderWithClientName();
       renderStoreProductsMarquee();
-      const q = document.getElementById('store-search').value.toLowerCase();
+
+      const q = (document.getElementById('store-search')?.value || '').toLowerCase().trim();
       const grid = document.getElementById('store-products-grid');
       const filtered = products.filter(p =>
         p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
       );
-      grid.innerHTML = buildProductGridHtml(filtered);
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state">Aucun produit disponible.</div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <div class="product-media-frame">
+            ${p.img
+              ? `<img src="${p.img}" class="product-img" alt="${p.name}">`
+              : `<div class="product-img-placeholder"><i class="fa-solid fa-gem"></i></div>`}
+          </div>
+          <div class="product-body">
+            <div>
+              <span class="product-badge">${p.cat}</span>
+              <div class="product-title">${p.name}</div>
+              <div class="product-price">${p.price} DH</div>
+            </div>
+            <button class="btn btn-wa-order" style="width:100%; margin-top:6px;" onclick="orderProduct(${p.id}, true)">
+              <i class="fa-brands fa-whatsapp"></i> Commander
+            </button>
+          </div>
+        </div>
+      `).join('');
     }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
+    function renderAll() {
+      syncCopyrightYear();
+      renderStats();
+      renderClients();
+      renderAdminProducts();
+      renderStoreProductsMarquee();
+      if (isClientStoreVisible) {
+        renderDashboardBoutique();
+      }
+      if (!document.getElementById('store-view').classList.contains('hidden')) {
+        renderStore();
+      }
+      populateClientDropdowns();
+      updateDirectionWelcomeShowcase();
+      applyRoleVisibility();
+      enforceClientValidityAndBrand();
+      syncPromoAndReceptionVisibility();
     }
 
-    syncCopyrightYear();
     checkIncomingClientAccessLink();
     applyRoleVisibility();
     applyClientVisibilityState();
-    saveAll();
+    renderAll();
   </script>
 </body>
 </html>
