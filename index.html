@@ -2127,6 +2127,7 @@
                 clientStoreTitle: (clientName, catLabel) => clientName
                     ? `STORE — ${clientName}`
                     : `STORE — ${catLabel}`,
+                clientStoreCategoryOnly: (catLabel) => `STORE — ${catLabel}`,
                 clientOrderIntro: (clientName, catLabel) => clientName
                     ? `Bonjour ${clientName} — STORE (${catLabel}) :`
                     : `STORE (${catLabel}) :`,
@@ -2290,6 +2291,7 @@
                 clientStoreTitle: (clientName, catLabel) => clientName
                     ? `STORE — ${clientName}`
                     : `STORE — ${catLabel}`,
+                clientStoreCategoryOnly: (catLabel) => `STORE — ${catLabel}`,
                 clientOrderIntro: (clientName, catLabel) => clientName
                     ? `مرحباً ${clientName} — STORE (${catLabel}):`
                     : `STORE (${catLabel}):`,
@@ -2359,6 +2361,7 @@
             clientPhone: "",
             clientFocus: false,
             isClientLinkMode: false,
+            linkRole: "",
             clientPayloadSetting: ""
         };
 
@@ -2442,16 +2445,17 @@
 
         function applyClientUrlParams() {
             const params = new URLSearchParams(window.location.search);
-            const roleParam = params.get("role");
+            const roleParam = (params.get("role") || "").trim();
             const catParam = params.get("cat");
-            const clientParam = params.get("client") || params.get("name");
+            const clientParam = params.get("client") || params.get("name") || params.get("seller");
             const phoneParam = params.get("phone") || params.get("contact");
             const focusParam = params.get("focus");
             const syncParam = params.get("sync");
             const payloadParam = params.get("payload");
 
-            if (roleParam === "client") {
+            if (roleParam === "client" || roleParam === "seller") {
                 state.isClientLinkMode = true;
+                state.linkRole = roleParam;
                 state.clientFocus = true;
             }
 
@@ -2679,7 +2683,7 @@
 
             if (brandTitleEl) {
                 brandTitleEl.textContent = state.isClientLinkMode
-                    ? t().clientStoreTitle(state.clientName, catLabel)
+                    ? (state.clientName ? t().clientStoreTitle(state.clientName, catLabel) : t().clientStoreCategoryOnly(catLabel))
                     : "STORE";
             }
 
@@ -2688,7 +2692,10 @@
                 if (heroSection) heroSection.classList.add("hidden");
                 if (filterTabs) filterTabs.classList.add("hidden");
                 if (unlockBtn) unlockBtn.classList.add("hidden");
-                setText("client-welcome-title", t().clientStoreTitle(state.clientName, catLabel));
+                setText(
+                    "client-welcome-title",
+                    state.clientName ? t().clientStoreTitle(state.clientName, catLabel) : t().clientStoreCategoryOnly(catLabel)
+                );
                 setText("client-welcome-subtitle", state.clientPayloadSetting || t().clientWelcomeSub);
                 banner.classList.remove("hidden");
                 updateClientFloatingWhatsApp();
