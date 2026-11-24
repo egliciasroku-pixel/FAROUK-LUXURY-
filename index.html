@@ -243,7 +243,7 @@
                         <i class="fa-solid fa-gem text-white text-lg sm:text-xl"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-lg sm:text-2xl font-black tracking-tight radiant-text leading-none">STORE</span>
+                        <span id="brand-title-text" class="text-lg sm:text-2xl font-black tracking-tight radiant-text leading-none">STORE</span>
                         <span id="brand-sub-label" class="text-[10px] sm:text-xs font-bold tracking-[0.16em] text-luminous-800 uppercase mt-0.5">BOUTIQUE OFFICIELLE</span>
                     </div>
                 </a>
@@ -504,29 +504,29 @@
                 <h5 id="footer-contact-title" class="text-luminous-950 font-bold mb-2">Gestion & Commandes</h5>
                 <p id="footer-order-note" class="text-xs sm:text-sm text-luminous-800">
                     Les commandes sont transmises directement avec les coordonnées saisies par le client.
-                </p>
-                <button type="button" onclick="openMerchantLoginModal()" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-luminous-950 hover:underline cursor-pointer">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <span id="footer-merchant-link">Accéder à l'Espace Marchand</span>
-                </button>
-            </div>
-        </div>
+    <!-- Quick Cart / Client WhatsApp Action Button -->
+    <div id="floating-action-group" class="fixed bottom-5 end-5 z-30 flex flex-col items-center gap-2.5">
+        <a
+            id="floating-whatsapp-btn"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            class="hidden w-14 h-14 rounded-full bg-accent-emerald text-white flex items-center justify-center text-2xl shadow-[0_8px_24px_rgba(5,150,105,0.35)] hover:scale-110 transition-transform"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
 
-        <div class="max-w-7xl mx-auto px-4 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-luminous-800">
-            <p id="footer-copyright">STORE</p>
-            <p id="footer-theme-note">Luminous White Frosted Glass</p>
-        </div>
-    </footer>
-
-    <!-- Quick Cart / Merchant Action Button -->
-    <button
-        type="button"
-        onclick="toggleCartDrawer(true)"
-        aria-label="Panier"
-        class="fixed bottom-5 end-5 z-30 w-14 h-14 rounded-full bg-luminous-950 text-white flex items-center justify-center text-xl shadow-[0_8px_24px_rgba(15,23,42,0.28)] hover:scale-110 transition-transform cursor-pointer"
-    >
-        <i class="fa-solid fa-bag-shopping"></i>
-    </button>
+        <button
+            type="button"
+            id="floating-cart-btn"
+            onclick="toggleCartDrawer(true)"
+            aria-label="Panier"
+            class="w-14 h-14 rounded-full bg-luminous-950 text-white flex items-center justify-center text-xl shadow-[0_8px_24px_rgba(15,23,42,0.28)] hover:scale-110 transition-transform cursor-pointer"
+        >
+            <i class="fa-solid fa-bag-shopping"></i>
+        </button>
+    </div>
 
     <!-- ===================================================================== -->
     <!-- MODALS & DRAWERS -->
@@ -2124,6 +2124,13 @@
                 toastCopiedLink: "Lien copié.",
                 toastPinUpdated: "Code PIN enregistré.",
                 toastFillFields: "Veuillez remplir tous les champs obligatoires.",
+                clientStoreTitle: (clientName, catLabel) => clientName
+                    ? `STORE — ${clientName}`
+                    : `STORE — ${catLabel}`,
+                clientOrderIntro: (clientName, catLabel) => clientName
+                    ? `Bonjour ${clientName} — STORE (${catLabel}) :`
+                    : `STORE (${catLabel}) :`,
+                clientWhatsappOrderBtn: "Commander sur WhatsApp",
                 slides: [
                     {
                         badge: "ÉLECTRONIQUE",
@@ -2280,6 +2287,13 @@
                 toastCopiedLink: "تم نسخ الرابط.",
                 toastPinUpdated: "تم حفظ رمز PIN.",
                 toastFillFields: "يرجى ملء جميع الحقول المطلوبة.",
+                clientStoreTitle: (clientName, catLabel) => clientName
+                    ? `STORE — ${clientName}`
+                    : `STORE — ${catLabel}`,
+                clientOrderIntro: (clientName, catLabel) => clientName
+                    ? `مرحباً ${clientName} — STORE (${catLabel}):`
+                    : `STORE (${catLabel}):`,
+                clientWhatsappOrderBtn: "الطلب عبر واتساب",
                 slides: [
                     {
                         badge: "الأجهزة الإلكترونية",
@@ -2342,7 +2356,10 @@
             cart: JSON.parse(localStorage.getItem(STORAGE_KEYS.cart) || "[]"),
             wishlist: JSON.parse(localStorage.getItem(STORAGE_KEYS.wishlist) || "[]"),
             clientName: "",
-            clientFocus: false
+            clientPhone: "",
+            clientFocus: false,
+            isClientLinkMode: false,
+            clientPayloadSetting: ""
         };
 
         function loadProducts() {
@@ -2425,16 +2442,72 @@
 
         function applyClientUrlParams() {
             const params = new URLSearchParams(window.location.search);
+            const roleParam = params.get("role");
             const catParam = params.get("cat");
-            const clientParam = params.get("client");
+            const clientParam = params.get("client") || params.get("name");
+            const phoneParam = params.get("phone") || params.get("contact");
             const focusParam = params.get("focus");
             const syncParam = params.get("sync");
+            const payloadParam = params.get("payload");
 
-            if (syncParam) {
+            if (roleParam === "client") {
+                state.isClientLinkMode = true;
+                state.clientFocus = true;
+            }
+
+            if (clientParam) {
+                state.clientName = clientParam.trim();
+            }
+
+            if (phoneParam) {
+                state.clientPhone = phoneParam.trim();
+            }
+
+            if (catParam && ["all", "electronics", "appliances", "cosmetics"].includes(catParam)) {
+                state.currentCategory = catParam;
+            } else if (state.isClientLinkMode && !catParam) {
+                state.currentCategory = "all";
+            }
+
+            if (focusParam === "1" || focusParam === "true") {
+                state.clientFocus = true;
+            }
+
+            const decodeAndMergeItems = (rawB64) => {
+                if (!rawB64) return;
                 try {
-                    const syncedItems = JSON.parse(fromBase64Utf8(syncParam));
-                    if (Array.isArray(syncedItems) && syncedItems.length > 0) {
-                        syncedItems.forEach((item) => {
+                    const decoded = JSON.parse(fromBase64Utf8(rawB64));
+                    if (decoded && !Array.isArray(decoded) && typeof decoded === "object") {
+                        if (typeof decoded.setting === "string" && decoded.setting.trim()) {
+                            state.clientPayloadSetting = decoded.setting.trim();
+                        }
+                        if (Array.isArray(decoded.products)) {
+                            decoded.products.forEach((item, i) => {
+                                if (!item) return;
+                                const cat = ["electronics", "appliances", "cosmetics"].includes(item.category)
+                                    ? item.category
+                                    : (state.currentCategory !== "all" ? state.currentCategory : "electronics");
+                                const id = item.id || `payload-${Date.now()}-${i}`;
+                                const idx = products.findIndex((p) => String(p.id) === String(id));
+                                const normalized = {
+                                    id,
+                                    category: cat,
+                                    nameFr: item.nameFr || item.name || "",
+                                    nameAr: item.nameAr || item.name || "",
+                                    descFr: item.descFr || item.desc || "",
+                                    descAr: item.descAr || item.desc || "",
+                                    badgeFr: item.badgeFr || item.badge || "",
+                                    badgeAr: item.badgeAr || item.badge || "",
+                                    price: Number(item.price) || 0,
+                                    oldPrice: Number(item.oldPrice) || 0,
+                                    image: item.image || getFallbackForCategory(cat)
+                                };
+                                if (idx >= 0) products[idx] = { ...products[idx], ...normalized };
+                                else products.unshift(normalized);
+                            });
+                        }
+                    } else if (Array.isArray(decoded)) {
+                        decoded.forEach((item) => {
                             if (!item || !item.category) return;
                             const idx = products.findIndex((p) => String(p.id) === String(item.id));
                             const normalized = {
@@ -2450,28 +2523,16 @@
                                 oldPrice: Number(item.oldPrice) || 0,
                                 image: item.image || getFallbackForCategory(item.category)
                             };
-                            if (idx >= 0) {
-                                products[idx] = { ...products[idx], ...normalized };
-                            } else {
-                                products.unshift(normalized);
-                            }
+                            if (idx >= 0) products[idx] = { ...products[idx], ...normalized };
+                            else products.unshift(normalized);
                         });
-                        persistProducts();
                     }
+                    persistProducts();
                 } catch (_) {}
-            }
+            };
 
-            if (catParam && ["all", "electronics", "appliances", "cosmetics"].includes(catParam)) {
-                state.currentCategory = catParam;
-            }
-
-            if (clientParam) {
-                state.clientName = clientParam.trim();
-            }
-
-            if (focusParam === "1" || focusParam === "true") {
-                state.clientFocus = true;
-            }
+            decodeAndMergeItems(syncParam);
+            decodeAndMergeItems(payloadParam);
         }
 
         function toggleLanguage() {
@@ -2610,9 +2671,34 @@
             const banner = document.getElementById("client-welcome-banner");
             const heroSection = document.getElementById("hero-section");
             const filterTabs = document.getElementById("catalog-filter-tabs");
+            const mainNav = document.getElementById("main-category-nav");
+            const brandTitleEl = document.getElementById("brand-title-text");
+            const unlockBtn = document.getElementById("unlock-all-categories-btn");
+
+            const catLabel = getCategoryLabel(state.currentCategory);
+
+            if (brandTitleEl) {
+                brandTitleEl.textContent = state.isClientLinkMode
+                    ? t().clientStoreTitle(state.clientName, catLabel)
+                    : "STORE";
+            }
+
+            if (state.isClientLinkMode) {
+                if (mainNav) mainNav.classList.add("hidden");
+                if (heroSection) heroSection.classList.add("hidden");
+                if (filterTabs) filterTabs.classList.add("hidden");
+                if (unlockBtn) unlockBtn.classList.add("hidden");
+                setText("client-welcome-title", t().clientStoreTitle(state.clientName, catLabel));
+                setText("client-welcome-subtitle", state.clientPayloadSetting || t().clientWelcomeSub);
+                banner.classList.remove("hidden");
+                updateClientFloatingWhatsApp();
+                return;
+            }
+
+            if (mainNav) mainNav.classList.remove("hidden");
+            if (unlockBtn) unlockBtn.classList.remove("hidden");
 
             if (state.clientName || state.clientFocus || state.currentCategory !== "all") {
-                const catLabel = getCategoryLabel(state.currentCategory);
                 setText("client-welcome-title", t().clientWelcomeGreeting(state.clientName, catLabel));
                 if (state.clientName || state.clientFocus) {
                     banner.classList.remove("hidden");
@@ -2625,6 +2711,44 @@
             } else {
                 heroSection.classList.remove("hidden");
                 filterTabs.classList.remove("hidden");
+            }
+
+            updateClientFloatingWhatsApp();
+        }
+
+        function getClientWhatsAppUrl() {
+            const digits = (state.clientPhone || "").replace(/\D/g, "");
+            if (digits.length < 6) return "";
+            const catLabel = getCategoryLabel(state.currentCategory);
+            const intro = t().clientOrderIntro(state.clientName, catLabel);
+            let lines = [intro];
+
+            if (state.cart.length > 0) {
+                state.cart.forEach((item) => {
+                    const p = products.find((prod) => String(prod.id) === String(item.id));
+                    if (p) {
+                        lines.push(`- ${getProductDisplayName(p)} (x${item.qty}) : ${formatPrice(Number(p.price) * item.qty)}`);
+                    }
+                });
+                const { total } = computeCartTotals();
+                lines.push(`${t().cartTotal} ${formatPrice(total)}`);
+            }
+
+            return `https://wa.me/${digits}?text=${encodeURIComponent(lines.join("\n"))}`;
+        }
+
+        function updateClientFloatingWhatsApp() {
+            const waBtn = document.getElementById("floating-whatsapp-btn");
+            if (!waBtn) return;
+            const waUrl = getClientWhatsAppUrl();
+            if (state.isClientLinkMode && waUrl) {
+                waBtn.href = waUrl;
+                waBtn.classList.remove("hidden");
+                waBtn.classList.add("flex");
+            } else {
+                waBtn.href = "#";
+                waBtn.classList.add("hidden");
+                waBtn.classList.remove("flex");
             }
         }
 
@@ -2949,6 +3073,7 @@
             document.getElementById("cart-subtotal-val").textContent = formatPrice(subtotal);
             document.getElementById("cart-shipping-val").textContent = count > 0 ? dict.cartFree : "-";
             document.getElementById("cart-total-val").textContent = formatPrice(total);
+            updateClientFloatingWhatsApp();
 
             const box = document.getElementById("cart-items-box");
             const checkoutBtn = document.getElementById("open-checkout-btn");
@@ -3121,7 +3246,10 @@
                 <p>${escapeHtml(city)} — ${escapeHtml(address)}</p>
                 <p class="font-black text-luminous-950 pt-1">${escapeHtml(formatPrice(total))}</p>
             `;
-            document.getElementById("success-wa-link").href = `https://wa.me/?text=${encodeURIComponent(buildOrderMessage())}`;
+            const clientWaUrl = getClientWhatsAppUrl();
+            document.getElementById("success-wa-link").href = clientWaUrl
+                ? `${clientWaUrl}%0A${encodeURIComponent(buildOrderMessage())}`
+                : `https://wa.me/?text=${encodeURIComponent(buildOrderMessage())}`;
             document.getElementById("checkout-form-container").classList.add("hidden");
             document.getElementById("checkout-success-container").classList.remove("hidden");
         }
@@ -3133,7 +3261,11 @@
                 showToast(t().toastFillFields, "error");
                 return;
             }
-            window.open(`https://wa.me/?text=${encodeURIComponent(buildOrderMessage())}`, "_blank", "noopener,noreferrer");
+            const digits = (state.clientPhone || "").replace(/\D/g, "");
+            const target = digits.length >= 6
+                ? `https://wa.me/${digits}?text=${encodeURIComponent(buildOrderMessage())}`
+                : `https://wa.me/?text=${encodeURIComponent(buildOrderMessage())}`;
+            window.open(target, "_blank", "noopener,noreferrer");
         }
 
         function completeCheckoutFlow() {
