@@ -1,161 +1,111 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" class="dark">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOUNES PANELS & CREDITS | Luxury Store</title>
+    <title>YOUNES PANELS & CREDITS | Panels & Crédits • Abonnements • Applications</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        gold: {
-                            300: '#FDE68A',
-                            400: '#FACC15',
-                            500: '#D4AF37',
-                            600: '#A67C1E',
-                        },
-                        luxbg: '#07070A',
-                        luxcard: '#101015',
-                        luxelev: '#16161D',
-                        luxsurf: '#1C1C24'
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        *, *::before, *::after {
-            border: none !important;
-            border-width: 0 !important;
-            border-color: transparent !important;
-            outline: none !important;
-        }
-
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
+        :root {
+            --bg-obsidian: #070709;
+            --bg-elevated: #0e0e12;
+            --bg-well: #14141a;
+            --gold-primary: #d4af37;
+            --gold-bright: #f3d06b;
+            --gold-dim: rgba(212, 175, 55, 0.22);
         }
 
         body {
-            background-color: #07070A;
-            color: #F4F4F6;
-            background-image:
-                radial-gradient(ellipse 75% 40% at 50% -8%, rgba(212, 175, 55, 0.16), transparent 65%),
-                radial-gradient(circle at 88% 18%, rgba(212, 175, 55, 0.06), transparent 40%);
+            background-color: var(--bg-obsidian);
+            color: #f4f4f5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
         }
 
-        html[lang="ar"] body {
-            font-family: 'Cairo', sans-serif;
-        }
+        .text-gold-400 { color: var(--gold-bright); }
+        .accent-gold-500 { accent-color: var(--gold-primary); }
 
         .lux-panel {
-            background: linear-gradient(155deg, #17171F 0%, #0E0E13 100%);
-            box-shadow:
-                0 10px 24px -12px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+            background: linear-gradient(145deg, rgba(20, 20, 27, 0.92), rgba(11, 11, 15, 0.96));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.85);
         }
 
         .lux-well {
-            background: linear-gradient(180deg, #0B0B0F 0%, #131319 100%);
-            box-shadow:
-                inset 0 2px 6px rgba(0, 0, 0, 0.65),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+            background: rgba(16, 16, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .lux-btn {
-            position: relative;
-            transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, filter 0.18s ease;
-            box-shadow:
-                0 4px 12px -4px rgba(0, 0, 0, 0.65),
-                inset 0 1px 0.5px rgba(255, 255, 255, 0.16);
-        }
-
-        .lux-btn:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.06);
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .lux-btn:active {
-            transform: translateY(0.5px) scale(0.99);
+            transform: scale(0.98);
         }
 
         .lux-gold {
-            background: linear-gradient(135deg, #F3D36B 0%, #D4AF37 52%, #9E761B 100%);
-            color: #09090B;
-            box-shadow:
-                0 6px 18px -5px rgba(212, 175, 55, 0.35),
-                inset 0 1px 1px rgba(255, 255, 255, 0.45);
+            background: linear-gradient(135deg, #e5c158, #b88b1d);
+            color: #09090b;
+            box-shadow: 0 6px 18px -6px rgba(212, 175, 55, 0.55);
+        }
+
+        .lux-gold:hover {
+            filter: brightness(1.06);
         }
 
         .lux-emerald {
-            background: linear-gradient(135deg, #34D399 0%, #10B981 55%, #047857 100%);
-            color: #04130C;
-            box-shadow:
-                0 6px 18px -5px rgba(16, 185, 129, 0.3),
-                inset 0 1px 1px rgba(255, 255, 255, 0.38);
+            background: linear-gradient(135deg, #10b981, #047857);
+            color: #ffffff;
+            box-shadow: 0 6px 18px -6px rgba(16, 185, 129, 0.45);
+        }
+
+        .lux-emerald:hover {
+            filter: brightness(1.06);
         }
 
         .lux-sky {
-            background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 55%, #0369A1 100%);
-            color: #04101A;
-            box-shadow:
-                0 6px 18px -5px rgba(14, 165, 233, 0.3),
-                inset 0 1px 1px rgba(255, 255, 255, 0.38);
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #09090b;
+            box-shadow: 0 6px 18px -6px rgba(56, 189, 248, 0.45);
+        }
+
+        .lux-sky:hover {
+            filter: brightness(1.06);
         }
 
         .lux-ghost {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
-            box-shadow:
-                0 3px 10px -4px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0.5px rgba(255, 255, 255, 0.09);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .lux-ribbon {
-            background: linear-gradient(90deg, #8F6714 0%, #D4AF37 35%, #F5DC82 50%, #D4AF37 65%, #8F6714 100%);
-            color: #09090B;
+        .lux-ghost:hover {
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        #cartDrawer.cart-closed {
+        .cart-closed {
             transform: translateX(100%);
-            visibility: hidden;
-            pointer-events: none;
         }
 
-        html[dir="rtl"] #cartDrawer.cart-closed {
+        [dir="rtl"] .cart-closed {
             transform: translateX(-100%);
         }
 
-        #cartDrawer.cart-open {
+        .cart-open {
             transform: translateX(0);
-            visibility: visible;
-            pointer-events: auto;
         }
 
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
+        @keyframes luxFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        ::-webkit-scrollbar-track {
-            background: #07070A;
+
+        .lux-fade {
+            animation: luxFadeIn 0.25s ease forwards;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #23232E;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D4AF37;
-        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -163,841 +113,888 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        @keyframes luxFade {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .lux-fade {
-            animation: luxFade 0.2s ease-out forwards;
-        }
     </style>
 </head>
-<body class="bg-luxbg text-zinc-100 font-sans antialiased selection:bg-gold-500 selection:text-black min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
 
-    <!-- شريط علوي فاخر مصغر -->
-    <div id="topAnnouncementBar" class="lux-ribbon text-[10px] sm:text-[11px] font-extrabold py-1 px-3 text-center tracking-wide truncate">
-        <span id="announcementText">Panels & Crédits (dès 10 Crédits) • Abonnements (12 / 6 / 3 / 1 mois) • Applications</span>
+    <!-- ========================================== -->
+    <!-- شاشة الترحيب والحماية قبل ظهور أي شيء     -->
+    <!-- ========================================== -->
+    <div id="luxuryWelcomeGate" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#070709] lux-fade">
+        <div class="w-full max-w-sm lux-panel rounded-2xl p-5 sm:p-6 space-y-4 border border-amber-500/20 shadow-[0_20px_50px_-12px_rgba(212,175,55,0.2)]">
+            <div class="flex items-center justify-between gap-2">
+                <span id="welcomeCardBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500/15 text-gold-400 border border-amber-500/25">
+                    Luxury Security
+                </span>
+                <div class="flex items-center gap-1">
+                    <button type="button" onclick="applyLanguage('fr')" class="lux-btn lux-ghost px-2 py-0.5 rounded text-[10px] font-extrabold text-zinc-200">FR</button>
+                    <button type="button" onclick="applyLanguage('ar')" class="lux-btn lux-ghost px-2 py-0.5 rounded text-[10px] font-extrabold text-zinc-200">AR</button>
+                </div>
+            </div>
+
+            <div class="text-center space-y-1">
+                <div class="w-12 h-12 rounded-2xl lux-gold mx-auto flex items-center justify-center text-lg shadow-lg mb-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h1 id="welcomeBrandName" class="text-sm sm:text-base font-extrabold text-white tracking-wide">YOUNES PANELS & CREDITS</h1>
+                <h2 id="welcomeGateTitle" class="text-xs font-bold text-gold-400">Bienvenue • Luxury Access</h2>
+                <p id="welcomeGateSub" class="text-[11px] text-zinc-400">Veuillez saisir vos identifiants pour entrer</p>
+            </div>
+
+            <form onsubmit="verifyWelcomeCredentials(event)" class="space-y-3">
+                <div>
+                    <label class="block text-[10px] font-bold text-zinc-400 mb-1">Username</label>
+                    <div class="relative">
+                        <input type="text" id="adminUsernameInput" required autocomplete="username" placeholder="Younes" class="lux-well w-full rounded-xl px-3 py-2 ps-9 text-xs text-white focus:outline-none focus:border-amber-500/50">
+                        <i class="fa-solid fa-user absolute top-1/2 -translate-y-1/2 start-3 text-zinc-500 text-xs"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-zinc-400 mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="adminPasswordInput" required autocomplete="current-password" placeholder="••••••••••••" class="lux-well w-full rounded-xl px-3 py-2 ps-9 pe-9 text-xs text-white focus:outline-none focus:border-amber-500/50">
+                        <i class="fa-solid fa-key absolute top-1/2 -translate-y-1/2 start-3 text-zinc-500 text-xs"></i>
+                        <button type="button" onclick="toggleAdminPasswordVisibility()" class="absolute top-1/2 -translate-y-1/2 end-2.5 text-zinc-400 hover:text-white text-xs p-1">
+                            <i id="adminPassEyeIcon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 pt-0.5">
+                    <button type="button" onclick="fillLuxuryCredentials()" class="lux-btn lux-ghost px-2.5 py-1.5 rounded-lg text-[10px] font-bold text-zinc-300 hover:text-gold-400 flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Auto-fill</span>
+                    </button>
+
+                    <button type="submit" id="loginSubmitBtnLabel" class="lux-btn lux-gold flex-1 py-2 px-4 rounded-xl font-extrabold text-xs flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Entrer</span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- رأس الصفحة الفاخر المصغر (زر الإدارة فقط في الأعلى) -->
-    <header class="sticky top-0 z-40 bg-luxbg/85 backdrop-blur-xl shadow-[0_8px_24px_-10px_rgba(0,0,0,0.9)]">
-        <div class="max-w-5xl mx-auto px-3 sm:px-5 h-12 sm:h-14 flex items-center justify-between gap-2">
-            <div class="flex items-center gap-2 cursor-pointer min-w-0 flex-1 group" onclick="switchView('store')">
-                <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg lux-gold flex items-center justify-center text-xs sm:text-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
-                <div class="min-w-0">
-                    <h1 id="headerPanelName" class="text-[11px] sm:text-sm font-extrabold tracking-tight text-white leading-tight truncate">YOUNES PANELS & CREDITS</h1>
-                    <p id="headerSubtitle" class="text-[9px] sm:text-[10px] text-gold-400 font-semibold hidden sm:block leading-none mt-0.5">Panels & Crédits • Abonnements • Applications</p>
-                </div>
-            </div>
-
-            <div class="flex items-center shrink-0">
-                <button type="button" onclick="handleAdminAccess()" id="adminNavBtn" class="lux-btn lux-ghost flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] sm:text-[11px] text-zinc-200 font-bold">
-                    <i class="fa-solid fa-shield-halved text-gold-400"></i>
-                    <span id="adminNavLabel">Admin</span>
-                </button>
-            </div>
+    <!-- ========================================== -->
+    <!-- الهيكل الرئيسي للتطبيق (مخفي حتى التحقق)   -->
+    <!-- ========================================== -->
+    <div id="mainAppShell" class="hidden flex-1 flex flex-col">
+        <div id="topAnnouncementBar" class="bg-gradient-to-r from-amber-500/15 via-amber-400/20 to-amber-500/15 border-b border-amber-500/20 py-1.5 px-3 text-center">
+            <p id="announcementText" class="text-[10px] sm:text-[11px] font-bold text-gold-400 truncate">
+                Panels & Crédits (dès 10 Crédits) • Abonnements (12 / 6 / 3 / 1 mois) • Applications
+            </p>
         </div>
-    </header>
 
-    <!-- ========================================== -->
-    <!-- المتجر الرئيسي الفاخر والمصغر              -->
-    <!-- ========================================== -->
-    <main id="storefrontView" class="flex-1">
-        <section id="heroWelcomeSection" class="py-2.5 sm:py-3.5">
-            <div class="max-w-5xl mx-auto px-3 sm:px-5 flex flex-col md:flex-row items-center justify-between gap-2.5">
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5">
-                    <button type="button" onclick="switchStoreSection('panels')" id="heroBtnPanels" class="lux-btn lux-gold px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
-                        <i class="fa-solid fa-server"></i> <span>Panels & Crédits</span>
+        <header class="sticky top-0 z-40 lux-panel border-b border-white/10 backdrop-blur-md">
+            <div class="max-w-5xl mx-auto px-3 sm:px-5 py-2.5 flex items-center justify-between gap-2">
+                <div onclick="switchView('store')" class="flex items-center gap-2.5 cursor-pointer min-w-0">
+                    <div class="w-8 h-8 rounded-xl lux-gold flex items-center justify-center text-xs font-black shrink-0">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <h1 id="headerPanelName" class="text-xs sm:text-sm font-extrabold text-white truncate">YOUNES PANELS & CREDITS</h1>
+                        <p id="headerSubtitle" class="text-[9.5px] text-zinc-400 truncate">Panels & Crédits • Abonnements • Applications</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0">
+                    <button type="button" onclick="applyLanguage(currentLang === 'fr' ? 'ar' : 'fr')" class="lux-btn lux-ghost px-2 py-1.5 rounded-lg text-[10px] font-extrabold text-gold-400">
+                        <i class="fa-solid fa-language"></i>
+                        <span>${currentLang === 'fr' ? 'AR' : 'FR'}</span>
                     </button>
-                    <button type="button" onclick="switchStoreSection('subscriptions')" id="heroBtnSubs" class="lux-btn lux-emerald px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
-                        <i class="fa-solid fa-tv"></i> <span>Abonnements (12/6/3/1m)</span>
+
+                    <button type="button" onclick="toggleCart(true)" class="lux-btn lux-emerald px-2.5 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-extrabold flex items-center gap-1.5">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="headerCartCount">0</span>
                     </button>
-                    <button type="button" onclick="switchStoreSection('apps')" id="heroBtnApps" class="lux-btn lux-sky px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
-                        <i class="fa-solid fa-mobile-screen-button"></i> <span>Applications</span>
+
+                    <button type="button" onclick="handleAdminAccess()" id="adminNavBtn" class="lux-btn lux-gold px-2.5 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-extrabold flex items-center gap-1">
+                        <i class="fa-solid fa-lock"></i>
+                        <span id="adminNavLabel">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main id="storefrontView" class="flex-1">
+            <section id="heroWelcomeSection" class="max-w-5xl mx-auto px-3 sm:px-5 pt-3">
+                <div class="lux-panel rounded-2xl p-3 sm:p-4 flex flex-col md:flex-row items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5">
+                        <button type="button" onclick="switchStoreSection('panels')" id="heroBtnPanels" class="lux-btn lux-gold px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
+                            <i class="fa-solid fa-server"></i> <span>Panels & Crédits</span>
+                        </button>
+                        <button type="button" onclick="switchStoreSection('subscriptions')" id="heroBtnSubs" class="lux-btn lux-emerald px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
+                            <i class="fa-solid fa-tv"></i> <span>Abonnements (12/6/3/1m)</span>
+                        </button>
+                        <button type="button" onclick="switchStoreSection('apps')" id="heroBtnApps" class="lux-btn lux-sky px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px] flex items-center gap-1.5">
+                            <i class="fa-solid fa-mobile-screen-button"></i> <span>Applications</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-1.5 w-full md:w-auto shrink-0">
+                        <div onclick="switchStoreSection('panels')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
+                            <i class="fa-solid fa-server text-xs text-gold-400 mb-0.5"></i>
+                            <h3 id="quickCardPanelsTitle" class="font-extrabold text-[10px] text-white leading-tight">PANELS</h3>
+                            <p id="quickCardPanelsSub" class="text-[8.5px] text-zinc-400">Dès 10 crédits</p>
+                        </div>
+                        <div onclick="switchStoreSection('subscriptions')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
+                            <i class="fa-solid fa-calendar-check text-xs text-emerald-400 mb-0.5"></i>
+                            <h3 id="quickCardSubsTitle" class="font-extrabold text-[10px] text-white leading-tight">12/6/3/1m</h3>
+                            <p id="quickCardSubsSub" class="text-[8.5px] text-zinc-400">Abonnements</p>
+                        </div>
+                        <div onclick="switchStoreSection('apps')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
+                            <i class="fa-solid fa-mobile-screen-button text-xs text-sky-400 mb-0.5"></i>
+                            <h3 id="quickCardAppsTitle" class="font-extrabold text-[10px] text-white leading-tight">Applications</h3>
+                            <p id="quickCardAppsSub" class="text-[8.5px] text-zinc-400">Commande directe</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="panelsSection" class="max-w-5xl mx-auto px-3 sm:px-5 py-3 sm:py-4">
+                <div class="grid grid-cols-3 gap-1.5 mb-3 lux-panel p-1 rounded-xl">
+                    <button type="button" onclick="switchStoreSection('panels')" id="storeTabPanels" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-gold flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-server"></i>
+                        <span id="storeTabPanelsText">Panels (dès 10 Cr)</span>
+                    </button>
+                    <button type="button" onclick="switchStoreSection('subscriptions')" id="storeTabSubscriptions" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-ghost text-zinc-300 hover:text-white flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-tv"></i>
+                        <span id="storeTabSubsText">Abonnements</span>
+                    </button>
+                    <button type="button" onclick="switchStoreSection('apps')" id="storeTabApps" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-ghost text-zinc-300 hover:text-white flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <span id="storeTabAppsText">Applications</span>
                     </button>
                 </div>
 
-                <div class="grid grid-cols-3 gap-1.5 w-full md:w-auto shrink-0">
-                    <div onclick="switchStoreSection('panels')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
-                        <i class="fa-solid fa-server text-xs text-gold-400 mb-0.5"></i>
-                        <h3 id="quickCardPanelsTitle" class="font-extrabold text-[10px] text-white leading-tight">PANELS</h3>
-                        <p id="quickCardPanelsSub" class="text-[8.5px] text-zinc-400">Dès 10 crédits</p>
+                <div id="pricingModeBanner" class="lux-panel rounded-xl px-3 py-2.5 mb-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-center sm:text-start">
+                        <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <div>
+                            <h3 id="pricingModeTitle" class="text-[11px] sm:text-xs font-extrabold text-white">Tarification Panels : Grossiste (Revendeur)</h3>
+                            <p id="pricingModeDesc" class="text-[10px] text-zinc-400">Le prix du crédit est calculé selon le tarif revendeur en vigueur.</p>
+                        </div>
                     </div>
-                    <div onclick="switchStoreSection('subscriptions')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
-                        <i class="fa-solid fa-calendar-check text-xs text-emerald-400 mb-0.5"></i>
-                        <h3 id="quickCardSubsTitle" class="font-extrabold text-[10px] text-white leading-tight">12/6/3/1m</h3>
-                        <p id="quickCardSubsSub" class="text-[8.5px] text-zinc-400">Abonnements</p>
+                    <span id="wholesaleBadgeText" class="px-2.5 py-1 rounded-md text-[10px] font-extrabold lux-emerald shrink-0">
+                        Grossiste (Revendeur)
+                    </span>
+                </div>
+
+                <div id="subscriptionDurationsBar" class="hidden lux-panel rounded-xl px-3 py-2.5 mb-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-center sm:text-start">
+                        <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <div>
+                            <h3 id="subSectionHeading" class="text-[11px] sm:text-xs font-extrabold text-white">Section Abonnements</h3>
+                            <p id="subSectionSubheading" class="text-[10px] text-zinc-400">Choisissez la durée : <strong>12 mois, 6 mois, 3 mois, 1 mois</strong></p>
+                        </div>
                     </div>
-                    <div onclick="switchStoreSection('apps')" class="lux-btn lux-panel cursor-pointer px-2.5 py-1.5 rounded-lg text-center">
-                        <i class="fa-solid fa-mobile-screen-button text-xs text-sky-400 mb-0.5"></i>
-                        <h3 id="quickCardAppsTitle" class="font-extrabold text-[10px] text-white leading-tight">Applications</h3>
-                        <p id="quickCardAppsSub" class="text-[8.5px] text-zinc-400">Commande directe</p>
+                    <div class="flex flex-wrap items-center gap-1">
+                        <button type="button" onclick="setSubscriptionDuration(12)" data-dur="12" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
+                        <button type="button" onclick="setSubscriptionDuration(6)" data-dur="6" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
+                        <button type="button" onclick="setSubscriptionDuration(3)" data-dur="3" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
+                        <button type="button" onclick="setSubscriptionDuration(1)" data-dur="1" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="panelsSection" class="max-w-5xl mx-auto px-3 sm:px-5 py-3 sm:py-4">
-            <div class="grid grid-cols-3 gap-1.5 mb-3 lux-panel p-1 rounded-xl">
-                <button type="button" onclick="switchStoreSection('panels')" id="storeTabPanels" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-gold flex items-center justify-center gap-1">
-                    <i class="fa-solid fa-server"></i>
-                    <span id="storeTabPanelsText">Panels (dès 10 Cr)</span>
-                </button>
-                <button type="button" onclick="switchStoreSection('subscriptions')" id="storeTabSubscriptions" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-ghost text-zinc-300 hover:text-white flex items-center justify-center gap-1">
-                    <i class="fa-solid fa-tv"></i>
-                    <span id="storeTabSubsText">Abonnements</span>
-                </button>
-                <button type="button" onclick="switchStoreSection('apps')" id="storeTabApps" class="lux-btn py-1.5 px-2 rounded-lg font-extrabold text-[10px] sm:text-[11px] lux-ghost text-zinc-300 hover:text-white flex items-center justify-center gap-1">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <span id="storeTabAppsText">Applications</span>
-                </button>
+                <div id="appsSectionBox" class="hidden space-y-3 mb-4">
+                    <div class="lux-panel rounded-xl p-3 sm:p-3.5">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 mb-2.5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg lux-well text-sky-400 flex items-center justify-center text-xs shrink-0">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </div>
+                                <div>
+                                    <h3 id="appQuickTitle" class="text-[11px] sm:text-xs font-extrabold text-white">Commander une application</h3>
+                                    <p id="appQuickDesc" class="text-[10px] text-zinc-400">Nom, téléphone et application souhaitée</p>
+                                </div>
+                            </div>
+                            <button type="button" onclick="handleAdminAccess()" id="manageAppsBtnEl" class="lux-btn lux-ghost self-start sm:self-auto px-2.5 py-1 rounded-lg text-sky-400 font-bold text-[10px] flex items-center gap-1 shrink-0">
+                                <i class="fa-solid fa-plus"></i>
+                                <span id="manageAppsBtnLabel">Gérer / Ajouter une app</span>
+                            </button>
+                        </div>
+
+                        <form id="appQuickOrderForm" onsubmit="submitAppQuickOrder(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 items-end">
+                            <div>
+                                <label id="appOrderNameLabel" class="block text-[10px] font-bold text-zinc-300 mb-1">Nom du client *</label>
+                                <input type="text" id="appOrderCustomerName" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                            </div>
+
+                            <div>
+                                <label id="appOrderPhoneLabel" class="block text-[10px] font-bold text-zinc-300 mb-1">Numéro de téléphone *</label>
+                                <input type="tel" id="appOrderCustomerPhone" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                            </div>
+
+                            <div>
+                                <label id="appOrderWantedLabel" class="block text-[10px] font-bold text-sky-400 mb-1">Nom de l'application souhaitée *</label>
+                                <input type="text" id="appOrderWantedName" required list="wantedAppsDatalist" oninput="syncWantedAppPrice()" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                                <datalist id="wantedAppsDatalist"></datalist>
+                            </div>
+
+                            <button type="submit" class="lux-btn lux-sky w-full py-1.5 px-3 rounded-lg font-extrabold text-[11px] flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                                <span id="appQuickSubmitLabel">Envoyer la demande</span>
+                            </button>
+                        </form>
+
+                        <div id="appQuickOrderPriceHint" class="mt-2 text-[10px] text-zinc-400 hidden">
+                            <span id="appQuickPricePrefix">Prix de l'application : </span>
+                            <strong id="appQuickOrderPriceText" class="text-gold-400">0 MAD</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5">
+                    <div id="categoryFilters" class="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5 sm:pb-0"></div>
+
+                    <div class="relative w-full sm:w-52">
+                        <input type="text" id="searchInput" oninput="renderActiveStoreGrid()" autocomplete="off" class="lux-well w-full rounded-lg py-1.5 px-7 text-[11px] text-white">
+                        <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 text-zinc-500 text-[10px] start-2.5"></i>
+                    </div>
+                </div>
+
+                <div id="panelsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5"></div>
+
+                <div id="emptyPanelsState" class="hidden text-center py-9 lux-panel rounded-xl">
+                    <i class="fa-solid fa-box-open text-2xl text-zinc-600 mb-1.5"></i>
+                    <h3 id="emptyStateTitle" class="text-xs sm:text-sm font-bold text-zinc-300">Aucun élément trouvé</h3>
+                    <p id="emptyStateDesc" class="text-[11px] text-zinc-500 mt-0.5">Essayez une autre catégorie ou effacez votre recherche.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========================================== -->
+        <!-- لوحة الإدارة الفاخرة والمصغرة              -->
+        <!-- ========================================== -->
+        <section id="adminDashboardView" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-5 py-4 lux-fade">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div>
+                    <h2 id="adminHeadingTitle" class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-gold-400"></i>
+                        <span>Administration Panels, Abonnements & Applications</span>
+                    </h2>
+                    <p id="adminHeadingSub" class="text-[10px] text-zinc-400 mt-0.5">Gérez les panels crédits, abonnements, applications et commandes</p>
+                </div>
+                <div class="flex items-center gap-1.5 self-start sm:self-auto">
+                    <button type="button" onclick="switchView('store')" id="backToStoreBtn" class="lux-btn lux-gold flex items-center gap-1 px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px]">
+                        <i class="fa-solid fa-store"></i>
+                        <span id="backToStoreLabel">Boutique</span>
+                    </button>
+                    <button type="button" onclick="logoutAdmin()" class="lux-btn lux-ghost px-3 py-1.5 rounded-lg text-red-400 text-[11px] font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span id="logoutBtnLabel">Déconnexion</span>
+                    </button>
+                </div>
             </div>
 
-            <div id="pricingModeBanner" class="lux-panel rounded-xl px-3 py-2.5 mb-3 flex flex-col sm:flex-row items-center justify-between gap-2">
-                <div class="flex items-center gap-2 text-center sm:text-start">
-                    <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs shrink-0">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-2 mb-4">
+                <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p id="statLabelPanels" class="text-[10px] text-zinc-400 font-semibold">Panels</p>
+                        <h3 id="statTotalPanels" class="text-base font-extrabold text-white mt-0.5">0</h3>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg lux-well text-gold-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                </div>
+                <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p id="statLabelSubs" class="text-[10px] text-zinc-400 font-semibold">Abonnements</p>
+                        <h3 id="statTotalSubscriptions" class="text-base font-extrabold text-emerald-400 mt-0.5">0</h3>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-tv"></i>
+                    </div>
+                </div>
+                <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p id="statLabelApps" class="text-[10px] text-zinc-400 font-semibold">Applications</p>
+                        <h3 id="statTotalApps" class="text-base font-extrabold text-sky-400 mt-0.5">0</h3>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg lux-well text-sky-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                </div>
+                <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p id="statLabelOrders" class="text-[10px] text-zinc-400 font-semibold">Commandes</p>
+                        <h3 id="statTotalOrders" class="text-base font-extrabold text-white mt-0.5">0</h3>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg lux-well text-amber-400 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                </div>
+                <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between col-span-2 lg:col-span-1">
+                    <div>
+                        <p id="statLabelRevenue" class="text-[10px] text-zinc-400 font-semibold">Ventes</p>
+                        <h3 id="statTotalRevenue" class="text-sm font-extrabold text-gold-400 mt-0.5">0 MAD</h3>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg lux-well text-gold-400 flex items-center justify-center text-xs">
                         <i class="fa-solid fa-coins"></i>
                     </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-1 mb-4 overflow-x-auto no-scrollbar">
+                <button type="button" onclick="switchAdminTab('apps')" id="tabBtnApps" class="lux-btn lux-sky admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap">
+                    <i class="fa-solid fa-mobile-screen-button"></i> <span id="tabLabelApps">Applications</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('subscriptions')" id="tabBtnSubscriptions" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-tv"></i> <span id="tabLabelSubs">Abonnements</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('panels')" id="tabBtnPanels" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-server"></i> <span id="tabLabelPanels">Panels & Crédits</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('orders')" id="tabBtnOrders" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-clipboard-list"></i> <span id="tabLabelOrders">Commandes</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('settings')" id="tabBtnSettings" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-sliders"></i> <span id="tabLabelSettings">Paramètres & Sauvegarde</span>
+                </button>
+            </div>
+
+            <div id="adminTabApps" class="space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                        <h3 id="pricingModeTitle" class="text-[11px] sm:text-xs font-extrabold text-white">Tarification Panels : Grossiste (Revendeur)</h3>
-                        <p id="pricingModeDesc" class="text-[10px] text-zinc-400">Le prix du crédit est calculé selon le tarif revendeur en vigueur.</p>
+                        <h3 id="adminAppsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des applications</h3>
+                        <p id="adminAppsSub" class="text-[10px] text-zinc-400">Nom, prix et image</p>
                     </div>
-                </div>
-                <span id="wholesaleBadgeText" class="px-2.5 py-1 rounded-md text-[10px] font-extrabold lux-emerald shrink-0">
-                    Grossiste (Revendeur)
-                </span>
-            </div>
-
-            <div id="subscriptionDurationsBar" class="hidden lux-panel rounded-xl px-3 py-2.5 mb-3 flex flex-col sm:flex-row items-center justify-between gap-2">
-                <div class="flex items-center gap-2 text-center sm:text-start">
-                    <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs shrink-0">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </div>
-                    <div>
-                        <h3 id="subSectionHeading" class="text-[11px] sm:text-xs font-extrabold text-white">Section Abonnements</h3>
-                        <p id="subSectionSubheading" class="text-[10px] text-zinc-400">Choisissez la durée : <strong>12 mois, 6 mois, 3 mois, 1 mois</strong></p>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-1">
-                    <button type="button" onclick="setSubscriptionDuration(12)" data-dur="12" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
-                    <button type="button" onclick="setSubscriptionDuration(6)" data-dur="6" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
-                    <button type="button" onclick="setSubscriptionDuration(3)" data-dur="3" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
-                    <button type="button" onclick="setSubscriptionDuration(1)" data-dur="1" class="dur-btn lux-btn px-2 py-1 rounded-md text-[10px] font-extrabold"></button>
-                </div>
-            </div>
-
-            <div id="appsSectionBox" class="hidden space-y-3 mb-4">
-                <div class="lux-panel rounded-xl p-3 sm:p-3.5">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 mb-2.5">
-                        <div class="flex items-center gap-2">
-                            <div class="w-7 h-7 rounded-lg lux-well text-sky-400 flex items-center justify-center text-xs shrink-0">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                            </div>
-                            <div>
-                                <h3 id="appQuickTitle" class="text-[11px] sm:text-xs font-extrabold text-white">Commander une application</h3>
-                                <p id="appQuickDesc" class="text-[10px] text-zinc-400">Nom, téléphone et application souhaitée</p>
-                            </div>
-                        </div>
-                        <button type="button" onclick="handleAdminAccess()" id="manageAppsBtnEl" class="lux-btn lux-ghost self-start sm:self-auto px-2.5 py-1 rounded-lg text-sky-400 font-bold text-[10px] flex items-center gap-1 shrink-0">
-                            <i class="fa-solid fa-plus"></i>
-                            <span id="manageAppsBtnLabel">Gérer / Ajouter une app</span>
-                        </button>
-                    </div>
-
-                    <form id="appQuickOrderForm" onsubmit="submitAppQuickOrder(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 items-end">
-                        <div>
-                            <label id="appOrderNameLabel" class="block text-[10px] font-bold text-zinc-300 mb-1">Nom du client *</label>
-                            <input type="text" id="appOrderCustomerName" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                        </div>
-
-                        <div>
-                            <label id="appOrderPhoneLabel" class="block text-[10px] font-bold text-zinc-300 mb-1">Numéro de téléphone *</label>
-                            <input type="tel" id="appOrderCustomerPhone" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                        </div>
-
-                        <div>
-                            <label id="appOrderWantedLabel" class="block text-[10px] font-bold text-sky-400 mb-1">Nom de l'application souhaitée *</label>
-                            <input type="text" id="appOrderWantedName" required list="wantedAppsDatalist" oninput="syncWantedAppPrice()" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                            <datalist id="wantedAppsDatalist"></datalist>
-                        </div>
-
-                        <button type="submit" class="lux-btn lux-sky w-full py-1.5 px-3 rounded-lg font-extrabold text-[11px] flex items-center justify-center gap-1.5">
-                            <i class="fa-brands fa-whatsapp text-xs"></i>
-                            <span id="appQuickSubmitLabel">Envoyer la demande</span>
-                        </button>
-                    </form>
-
-                    <div id="appQuickOrderPriceHint" class="mt-2 text-[10px] text-zinc-400 hidden">
-                        <span id="appQuickPricePrefix">Prix de l'application : </span>
-                        <strong id="appQuickOrderPriceText" class="text-gold-400">0 MAD</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5">
-                <div id="categoryFilters" class="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5 sm:pb-0"></div>
-
-                <div class="relative w-full sm:w-52">
-                    <input type="text" id="searchInput" oninput="renderActiveStoreGrid()" autocomplete="off" class="lux-well w-full rounded-lg py-1.5 px-7 text-[11px] text-white">
-                    <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 text-zinc-500 text-[10px] start-2.5"></i>
-                </div>
-            </div>
-
-            <div id="panelsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5"></div>
-
-            <div id="emptyPanelsState" class="hidden text-center py-9 lux-panel rounded-xl">
-                <i class="fa-solid fa-box-open text-2xl text-zinc-600 mb-1.5"></i>
-                <h3 id="emptyStateTitle" class="text-xs sm:text-sm font-bold text-zinc-300">Aucun élément trouvé</h3>
-                <p id="emptyStateDesc" class="text-[11px] text-zinc-500 mt-0.5">Essayez une autre catégorie ou effacez votre recherche.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- ========================================== -->
-    <!-- لوحة الإدارة الفاخرة والمصغرة              -->
-    <!-- ========================================== -->
-    <section id="adminDashboardView" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-5 py-4 lux-fade">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <div>
-                <h2 id="adminHeadingTitle" class="text-sm sm:text-base font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-gauge-high text-gold-400"></i>
-                    <span>Administration Panels, Abonnements & Applications</span>
-                </h2>
-                <p id="adminHeadingSub" class="text-[10px] text-zinc-400 mt-0.5">Gérez les panels crédits, abonnements, applications et commandes</p>
-            </div>
-            <div class="flex items-center gap-1.5 self-start sm:self-auto">
-                <button type="button" onclick="switchView('store')" id="backToStoreBtn" class="lux-btn lux-gold flex items-center gap-1 px-2.5 py-1.5 rounded-lg font-extrabold text-[10px] sm:text-[11px]">
-                    <i class="fa-solid fa-store"></i>
-                    <span id="backToStoreLabel">Boutique</span>
-                </button>
-                <button type="button" onclick="logoutAdmin()" class="lux-btn lux-ghost px-3 py-1.5 rounded-lg text-red-400 text-[11px] font-bold flex items-center gap-1.5">
-                    <i class="fa-solid fa-right-from-bracket"></i> <span id="logoutBtnLabel">Déconnexion</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-2 mb-4">
-            <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
-                <div>
-                    <p id="statLabelPanels" class="text-[10px] text-zinc-400 font-semibold">Panels</p>
-                    <h3 id="statTotalPanels" class="text-base font-extrabold text-white mt-0.5">0</h3>
-                </div>
-                <div class="w-7 h-7 rounded-lg lux-well text-gold-400 flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-server"></i>
-                </div>
-            </div>
-            <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
-                <div>
-                    <p id="statLabelSubs" class="text-[10px] text-zinc-400 font-semibold">Abonnements</p>
-                    <h3 id="statTotalSubscriptions" class="text-base font-extrabold text-emerald-400 mt-0.5">0</h3>
-                </div>
-                <div class="w-7 h-7 rounded-lg lux-well text-emerald-400 flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-tv"></i>
-                </div>
-            </div>
-            <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
-                <div>
-                    <p id="statLabelApps" class="text-[10px] text-zinc-400 font-semibold">Applications</p>
-                    <h3 id="statTotalApps" class="text-base font-extrabold text-sky-400 mt-0.5">0</h3>
-                </div>
-                <div class="w-7 h-7 rounded-lg lux-well text-sky-400 flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </div>
-            </div>
-            <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between">
-                <div>
-                    <p id="statLabelOrders" class="text-[10px] text-zinc-400 font-semibold">Commandes</p>
-                    <h3 id="statTotalOrders" class="text-base font-extrabold text-white mt-0.5">0</h3>
-                </div>
-                <div class="w-7 h-7 rounded-lg lux-well text-amber-400 flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-clipboard-check"></i>
-                </div>
-            </div>
-            <div class="lux-panel p-2.5 rounded-xl flex items-center justify-between col-span-2 lg:col-span-1">
-                <div>
-                    <p id="statLabelRevenue" class="text-[10px] text-zinc-400 font-semibold">Ventes</p>
-                    <h3 id="statTotalRevenue" class="text-sm font-extrabold text-gold-400 mt-0.5">0 MAD</h3>
-                </div>
-                <div class="w-7 h-7 rounded-lg lux-well text-gold-400 flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-coins"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-1 mb-4 overflow-x-auto no-scrollbar">
-            <button type="button" onclick="switchAdminTab('apps')" id="tabBtnApps" class="lux-btn lux-sky admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap">
-                <i class="fa-solid fa-mobile-screen-button"></i> <span id="tabLabelApps">Applications</span>
-            </button>
-            <button type="button" onclick="switchAdminTab('subscriptions')" id="tabBtnSubscriptions" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
-                <i class="fa-solid fa-tv"></i> <span id="tabLabelSubs">Abonnements</span>
-            </button>
-            <button type="button" onclick="switchAdminTab('panels')" id="tabBtnPanels" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
-                <i class="fa-solid fa-server"></i> <span id="tabLabelPanels">Panels & Crédits</span>
-            </button>
-            <button type="button" onclick="switchAdminTab('orders')" id="tabBtnOrders" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
-                <i class="fa-solid fa-clipboard-list"></i> <span id="tabLabelOrders">Commandes</span>
-            </button>
-            <button type="button" onclick="switchAdminTab('settings')" id="tabBtnSettings" class="lux-btn lux-ghost admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold text-zinc-400 hover:text-white whitespace-nowrap">
-                <i class="fa-solid fa-sliders"></i> <span id="tabLabelSettings">Paramètres & Sauvegarde</span>
-            </button>
-        </div>
-
-        <div id="adminTabApps" class="space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                    <h3 id="adminAppsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des applications</h3>
-                    <p id="adminAppsSub" class="text-[10px] text-zinc-400">Nom, prix et image</p>
-                </div>
-                <button type="button" onclick="openAppFormModal()" class="lux-btn lux-sky px-3 py-1.5 rounded-lg font-extrabold text-[11px] flex items-center gap-1.5">
-                    <i class="fa-solid fa-plus"></i> <span id="addAppBtnLabel">Ajouter une application</span>
-                </button>
-            </div>
-
-            <div class="lux-panel rounded-xl overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-start text-[11px]">
-                        <thead class="lux-well text-zinc-400 text-[10px]">
-                            <tr>
-                                <th id="thAppName" class="py-2 px-3 text-start">Image & Application</th>
-                                <th id="thAppCat" class="py-2 px-3 text-start">Catégorie</th>
-                                <th id="thAppDesc" class="py-2 px-3 text-start">Description</th>
-                                <th id="thAppPrice" class="py-2 px-3 text-start">Prix</th>
-                                <th id="thAppActions" class="py-2 px-3 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminAppsTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="adminTabSubscriptions" class="hidden space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                    <h3 id="adminSubsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des abonnements</h3>
-                    <p id="adminSubsSub" class="text-[10px] text-zinc-400">Tarifs 12 / 6 / 3 / 1 mois</p>
-                </div>
-                <button type="button" onclick="openSubscriptionFormModal()" class="lux-btn lux-emerald px-3 py-1.5 rounded-lg font-extrabold text-[11px] flex items-center gap-1.5">
-                    <i class="fa-solid fa-plus"></i> <span id="addSubBtnLabel">Ajouter un abonnement</span>
-                </button>
-            </div>
-
-            <div class="lux-panel rounded-xl overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-start text-[11px]">
-                        <thead class="lux-well text-zinc-400 text-[10px]">
-                            <tr>
-                                <th id="thSubName" class="py-2 px-3 text-start">Abonnement</th>
-                                <th id="thSubCat" class="py-2 px-3 text-start">Catégorie</th>
-                                <th id="thSub12" class="py-2 px-3 text-start">12 mois</th>
-                                <th id="thSub6" class="py-2 px-3 text-start">6 mois</th>
-                                <th id="thSub3" class="py-2 px-3 text-start">3 mois</th>
-                                <th id="thSub1" class="py-2 px-3 text-start">1 mois</th>
-                                <th id="thSubActions" class="py-2 px-3 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminSubscriptionsTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="adminTabPanels" class="hidden space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <h3 id="adminPanelsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des panels et crédits</h3>
-                <button type="button" onclick="openPanelFormModal()" class="lux-btn lux-gold px-3 py-1.5 rounded-lg font-bold text-[11px] flex items-center gap-1.5">
-                    <i class="fa-solid fa-plus"></i> <span id="addPanelBtnLabel">Ajouter un panel / crédit</span>
-                </button>
-            </div>
-
-            <div class="lux-panel rounded-xl overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-start text-[11px]">
-                        <thead class="lux-well text-zinc-400 text-[10px]">
-                            <tr>
-                                <th id="thPanelOffer" class="py-2 px-3 text-start">Offre / Panel</th>
-                                <th id="thPanelSys" class="py-2 px-3 text-start">Système</th>
-                                <th id="thPanelBase" class="py-2 px-3 text-start">Base (Crédit)</th>
-                                <th id="thPanelPrice" class="py-2 px-3 text-start">Prix 1 Crédit (Grossiste)</th>
-                                <th id="thPanelMin" class="py-2 px-3 text-start">Seuil Grossiste</th>
-                                <th id="thPanelActions" class="py-2 px-3 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminPanelsTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="adminTabOrders" class="hidden space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <h3 id="adminOrdersTitle" class="text-xs sm:text-sm font-bold text-white">Historique des commandes</h3>
-                <div class="flex flex-wrap items-center gap-1.5">
-                    <input type="text" id="orderSearchInput" oninput="renderAdminOrdersList()" autocomplete="off" class="lux-well rounded-lg px-2.5 py-1 text-[11px] text-white">
-                    <select id="orderStatusFilter" onchange="renderAdminOrdersList()" class="lux-well rounded-lg px-2 py-1 text-[11px] text-white">
-                        <option value="Tous" id="filterStatusAll">Tous les statuts</option>
-                        <option value="En attente" id="filterStatusPending">En attente</option>
-                        <option value="Livré" id="filterStatusDelivered">Livré / Activé</option>
-                        <option value="Annulé" id="filterStatusCancelled">Annulé</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="adminOrdersList" class="space-y-2.5"></div>
-        </div>
-
-        <div id="adminTabSettings" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-3.5">
-            <form onsubmit="savePanelSettings(event)" class="lux-panel p-4 rounded-xl space-y-3">
-                <h3 id="settingsFormTitle" class="text-xs sm:text-sm font-bold text-white">Paramètres du panneau</h3>
-                <div>
-                    <label id="lblSettingPanelName" class="block text-[10px] font-semibold text-zinc-400 mb-1">Nom du panneau / marque</label>
-                    <input type="text" id="settingPanelName" required autocomplete="off" class="lux-well w-full rounded-lg px-3 py-1.5 text-xs text-white">
-                </div>
-                <div>
-                    <label id="lblSettingWhatsapp" class="block text-[10px] font-semibold text-zinc-400 mb-1">Numéro WhatsApp</label>
-                    <input type="text" id="settingWhatsapp" required autocomplete="off" class="lux-well w-full rounded-lg px-3 py-1.5 text-xs text-white">
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label id="lblSettingCurrency" class="block text-[10px] font-semibold text-zinc-400 mb-1">Devise</label>
-                        <input type="text" id="settingCurrency" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-xs text-white">
-                    </div>
-                    <div>
-                        <label id="lblSettingPassword" class="block text-[10px] font-semibold text-zinc-400 mb-1">Mot de passe Admin</label>
-                        <input type="password" id="settingPassword" required autocomplete="new-password" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-xs text-white">
-                    </div>
-                </div>
-                <div class="space-y-1.5">
-                    <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
-                        <input type="checkbox" id="settingWholesaleEnabled" class="accent-gold-500 w-3.5 h-3.5">
-                        <span id="lblSettingWholesale" class="text-[11px] font-bold text-zinc-200">Activer le mode grossiste revendeur sur les panels</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
-                        <input type="checkbox" id="settingShowAnnouncement" class="accent-gold-500 w-3.5 h-3.5">
-                        <span id="lblSettingAnnouncement" class="text-[11px] font-bold text-zinc-200">Afficher le bandeau d'annonce supérieur</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
-                        <input type="checkbox" id="settingShowHero" class="accent-gold-500 w-3.5 h-3.5">
-                        <span id="lblSettingHero" class="text-[11px] font-bold text-zinc-200">Afficher la barre d'accès rapide</span>
-                    </label>
-                </div>
-                <button type="submit" id="saveSettingsBtnLabel" class="lux-btn lux-gold w-full py-2 rounded-lg font-extrabold text-xs">
-                    Enregistrer les paramètres
-                </button>
-            </form>
-
-            <div class="lux-panel p-4 rounded-xl space-y-3.5 flex flex-col justify-between">
-                <div class="space-y-3.5">
-                    <div class="lux-well p-3 rounded-xl space-y-2">
-                        <div class="flex items-center justify-between gap-2">
-                            <h3 id="storeLinkGenTitle" class="text-xs font-extrabold text-gold-400 flex items-center gap-1.5">
-                                <i class="fa-solid fa-link"></i>
-                                <span>توليد رابط STORE للزبناء (بدون الإدارة)</span>
-                            </h3>
-                            <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-bold">STORE</span>
-                        </div>
-                        <p id="storeLinkGenDesc" class="text-[10px] text-zinc-400 leading-relaxed">
-                            عند فتح الزبون لهذا الرابط، يظهر المتجر والطلب فقط وتختفي الإدارة بالكامل.
-                        </p>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                            <div>
-                                <label id="lblStoreLinkSection" class="block text-[9.5px] font-bold text-zinc-400 mb-1">القسم الافتراضي للزبون</label>
-                                <select id="storeLinkSectionSelect" onchange="generateClientStoreLink()" class="lux-panel w-full rounded-lg px-2 py-1 text-[11px] text-white">
-                                    <option value="all">STORE (الكل)</option>
-                                    <option value="panels">Panels & Crédits</option>
-                                    <option value="subscriptions">Abonnements</option>
-                                    <option value="apps">Applications</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label id="lblStoreLinkLang" class="block text-[9.5px] font-bold text-zinc-400 mb-1">لغة رابط الزبون</label>
-                                <select id="storeLinkLangSelect" onchange="generateClientStoreLink()" class="lux-panel w-full rounded-lg px-2 py-1 text-[11px] text-white">
-                                    <option value="current">الحالية / Actuelle</option>
-                                    <option value="ar">العربية (AR)</option>
-                                    <option value="fr">Français (FR)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-1">
-                            <input type="text" id="generatedClientStoreUrl" readonly class="lux-panel flex-1 rounded-lg px-2.5 py-1.5 text-[10px] text-gold-400 font-bold">
-                            <button type="button" onclick="generateClientStoreLink()" class="lux-btn lux-gold px-2 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0">
-                                <i class="fa-solid fa-rotate"></i>
-                            </button>
-                            <button type="button" onclick="copyClientStoreLink()" class="lux-btn lux-emerald px-2.5 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0 flex items-center gap-1">
-                                <i class="fa-solid fa-copy"></i>
-                                <span id="copyStoreLinkLabel">نسخ</span>
-                            </button>
-                            <button type="button" onclick="openClientStoreLink()" class="lux-btn lux-sky px-2 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0">
-                                <i class="fa-solid fa-up-right-from-square"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <h3 id="backupCardTitle" class="text-xs sm:text-sm font-bold text-white">Sauvegarde des données (JSON)</h3>
-                        <p id="backupCardDesc" class="text-[11px] text-zinc-400 leading-relaxed">
-                            Sauvegarde locale dans LocalStorage.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
-                            <button type="button" onclick="exportBackupJSON()" class="lux-btn lux-emerald px-3 py-2 rounded-lg font-bold text-[11px] flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-download"></i> <span id="exportJsonBtnLabel">Exporter JSON</span>
-                            </button>
-                            <label class="lux-btn lux-ghost cursor-pointer px-3 py-2 rounded-lg text-zinc-200 font-bold text-[11px] flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-upload text-gold-400"></i> <span id="importJsonBtnLabel">Importer JSON</span>
-                                <input type="file" accept=".json" onchange="importBackupJSON(event)" class="hidden">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-2">
-                    <button type="button" onclick="resetToDefaultData()" id="resetDefaultBtnLabel" class="lux-btn lux-ghost w-full py-1.5 rounded-lg text-red-400 text-[11px] font-bold">
-                        Réinitialiser aux données par défaut
+                    <button type="button" onclick="openAppFormModal()" class="lux-btn lux-sky px-3 py-1.5 rounded-lg font-extrabold text-[11px] flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> <span id="addAppBtnLabel">Ajouter une application</span>
                     </button>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- سلة الطلبات الجانبية الفاخرة والمصغرة       -->
-    <!-- ========================================== -->
-    <div id="cartDrawerOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-    <aside id="cartDrawer" class="cart-closed fixed top-0 end-0 h-full w-full max-w-xs sm:max-w-sm lux-panel z-50 transition-transform duration-300 flex flex-col shadow-2xl">
-        <div class="p-3 sm:p-3.5 flex items-center justify-between lux-well">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-bag-shopping text-gold-400 text-sm"></i>
-                <h3 id="cartDrawerTitle" class="font-extrabold text-xs sm:text-sm text-white">Panier de commande</h3>
-            </div>
-            <button type="button" onclick="toggleCart(false)" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <div class="flex-1 overflow-y-auto p-3 sm:p-3.5 space-y-3">
-            <div id="cartItemsContainer" class="space-y-2"></div>
-
-            <form id="checkoutForm" onsubmit="submitOrderViaWhatsApp(event)" class="hidden lux-well p-3 rounded-xl space-y-2.5">
-                <div class="flex items-center justify-between text-gold-400 text-[11px] font-bold pb-1">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-check"></i> <span id="checkoutInfoTitle">Informations de commande</span></span>
-                    <span id="cartOrderTypeBadge" class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">Grossiste</span>
-                </div>
-
-                <div>
-                    <label id="lblCustName" class="block text-[10px] text-zinc-400 mb-0.5">Nom revendeur / client *</label>
-                    <input type="text" id="custName" required autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
-
-                <div>
-                    <label id="lblCustPhone" class="block text-[10px] text-zinc-400 mb-0.5">Numéro WhatsApp / téléphone *</label>
-                    <input type="tel" id="custPhone" required autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
-
-                <div>
-                    <label id="lblCustNotes" class="block text-[10px] text-zinc-400 mb-0.5">Notes supplémentaires</label>
-                    <input type="text" id="custNotes" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
-
-                <div class="pt-1 space-y-1 text-[11px]">
-                    <div id="cartSummaryBreakdown" class="text-[10px] text-zinc-400 space-y-0.5"></div>
-                    <div class="flex justify-between text-xs sm:text-sm font-extrabold text-white">
-                        <span id="lblCartTotal">Total général :</span>
-                        <span id="cartTotalAmount" class="text-gold-400">0 MAD</span>
-                    </div>
-                    <div class="lux-panel rounded-lg p-2 space-y-1">
-                        <div class="flex items-center justify-between text-[9.5px] text-zinc-400">
-                            <span id="lblCurrencyConvert">Conversion instantanée :</span>
-                            <select id="cartCurrencyConverter" onchange="updateCartCurrencyConversion()" class="lux-well rounded px-1.5 py-0.5 text-white font-bold">
-                                <option value="USD">USD ($)</option>
-                                <option value="EUR">EUR (€)</option>
-                                <option value="XOF">Franc CFA (XOF)</option>
-                            </select>
-                        </div>
-                        <div id="cartConvertedValue" class="text-[10px] font-extrabold text-emerald-400 text-end">≈ $0.00</div>
+                <div class="lux-panel rounded-xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-start text-[11px]">
+                            <thead class="lux-well text-zinc-400 text-[10px]">
+                                <tr>
+                                    <th id="thAppName" class="py-2 px-3 text-start">Image & Application</th>
+                                    <th id="thAppCat" class="py-2 px-3 text-start">Catégorie</th>
+                                    <th id="thAppDesc" class="py-2 px-3 text-start">Description</th>
+                                    <th id="thAppPrice" class="py-2 px-3 text-start">Prix</th>
+                                    <th id="thAppActions" class="py-2 px-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminAppsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
-
-                <button type="submit" class="lux-btn lux-emerald w-full py-2 rounded-xl font-extrabold text-[11px] flex items-center justify-center gap-1.5">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span id="sendWhatsappBtnLabel">Envoyer sur WhatsApp</span>
-                </button>
-            </form>
-        </div>
-    </aside>
-
-    <!-- ========================================== -->
-    <!-- النوافذ المنبثقة النظيفة                  -->
-    <!-- ========================================== -->
-
-    <div id="appFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
-        <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-md max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
-            <div class="flex items-center justify-between pb-2 mb-3">
-                <h3 class="text-xs sm:text-sm font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-mobile-screen-button text-sky-400"></i>
-                    <span id="appModalTitleText">Ajouter une application</span>
-                </h3>
-                <button type="button" onclick="closeModal('appFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
             </div>
 
-            <form onsubmit="saveAppForm(event)" class="space-y-2.5">
-                <input type="hidden" id="editAppId">
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div id="adminTabSubscriptions" class="hidden space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                        <label id="lblAppTitle" class="block text-[10px] text-zinc-400 mb-0.5">Nom de l'application *</label>
-                        <input type="text" id="appTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                        <h3 id="adminSubsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des abonnements</h3>
+                        <p id="adminSubsSub" class="text-[10px] text-zinc-400">Tarifs 12 / 6 / 3 / 1 mois</p>
                     </div>
-                    <div>
-                        <label id="lblAppCategory" class="block text-[10px] text-zinc-400 mb-0.5">Catégorie / Système *</label>
-                        <input type="text" id="appCategory" required list="appCategorySuggestions" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                        <datalist id="appCategorySuggestions">
-                            <option value="Smart TV">
-                            <option value="Android / TV Box">
-                            <option value="Lecteurs IPTV">
-                            <option value="Outils & Apps">
-                        </datalist>
-                    </div>
+                    <button type="button" onclick="openSubscriptionFormModal()" class="lux-btn lux-emerald px-3 py-1.5 rounded-lg font-extrabold text-[11px] flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> <span id="addSubBtnLabel">Ajouter un abonnement</span>
+                    </button>
                 </div>
 
-                <div>
-                    <label id="lblAppPrice" class="block text-[10px] font-bold text-gold-400 mb-0.5">Prix de l'application *</label>
-                    <input type="number" id="appPrice" required min="0" step="0.5" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold text-gold-400">
-                </div>
-
-                <div class="lux-well rounded-lg p-2.5 space-y-1.5">
-                    <label id="lblAppImage" class="block text-[10px] font-bold text-sky-400">Image de l'application</label>
-                    <input type="text" id="appImage" oninput="updateAppImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
-                                <i class="fa-solid fa-image text-sky-400"></i>
-                                <span id="chooseAppImgLabel">Choisir une image</span>
-                                <input type="file" accept="image/*" onchange="handleAppImageUpload(event)" class="hidden">
-                            </label>
-                            <button type="button" onclick="clearAppImage()" id="clearAppImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
-                                Supprimer
-                            </button>
-                        </div>
-                        <img id="appImagePreview" src="https://placehold.co/160x100/18181b/38BDF8?text=APP" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/38BDF8?text=APP'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                <div class="lux-panel rounded-xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-start text-[11px]">
+                            <thead class="lux-well text-zinc-400 text-[10px]">
+                                <tr>
+                                    <th id="thSubName" class="py-2 px-3 text-start">Abonnement</th>
+                                    <th id="thSubCat" class="py-2 px-3 text-start">Catégorie</th>
+                                    <th id="thSub12" class="py-2 px-3 text-start">12 mois</th>
+                                    <th id="thSub6" class="py-2 px-3 text-start">6 mois</th>
+                                    <th id="thSub3" class="py-2 px-3 text-start">3 mois</th>
+                                    <th id="thSub1" class="py-2 px-3 text-start">1 mois</th>
+                                    <th id="thSubActions" class="py-2 px-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminSubscriptionsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div>
-                    <label id="lblAppDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
-                    <input type="text" id="appDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
-
-                <div class="flex gap-2 pt-1">
-                    <button type="button" onclick="closeModal('appFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
-                    <button type="submit" class="lux-btn lux-sky save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- نافذة تسجيل الدخول النظيفة بدون إظهار كلمة السر -->
-    <div id="adminLoginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
-        <div class="lux-panel rounded-xl w-full max-w-[92vw] sm:max-w-xs max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
-            <div class="text-center mb-3">
-                <div class="w-9 h-9 rounded-xl lux-well text-gold-400 flex items-center justify-center text-sm mx-auto mb-1.5">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 id="loginModalTitle" class="text-sm font-extrabold text-white">Connexion Admin</h3>
-            </div>
-            <form onsubmit="verifyAdminPassword(event)" class="space-y-2.5">
-                <input type="password" id="adminPasswordInput" required autocomplete="current-password" placeholder="••••••••" class="lux-well w-full rounded-lg px-3 py-2 text-center text-sm tracking-widest text-white">
-                <div class="flex gap-2">
-                    <button type="button" onclick="closeModal('adminLoginModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
-                    <button type="submit" id="loginSubmitBtnLabel" class="lux-btn lux-gold flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Connexion</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="subscriptionFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
-        <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-lg max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
-            <div class="flex items-center justify-between pb-2 mb-3">
-                <h3 id="subModalTitle" class="text-xs sm:text-sm font-extrabold text-white">Ajouter un abonnement</h3>
-                <button type="button" onclick="closeModal('subscriptionFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
             </div>
 
-            <form onsubmit="saveSubscriptionForm(event)" class="space-y-2.5">
-                <input type="hidden" id="editSubId">
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div>
-                        <label id="lblSubTitle" class="block text-[10px] text-zinc-400 mb-0.5">Nom de l'abonnement *</label>
-                        <input type="text" id="subTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                    </div>
-                    <div>
-                        <label id="lblSubCategory" class="block text-[10px] text-zinc-400 mb-0.5">Catégorie *</label>
-                        <input type="text" id="subCategory" required list="subCategorySuggestions" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                        <datalist id="subCategorySuggestions">
-                            <option value="Abonnement EAGLE 4K">
-                            <option value="Abonnement EAGLE IPTV">
-                            <option value="Activation IBOPRO">
-                            <option value="Activation HOT PLAYER">
-                            <option value="Activation IBOSOL">
-                        </datalist>
-                    </div>
+            <div id="adminTabPanels" class="hidden space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h3 id="adminPanelsTitle" class="text-xs sm:text-sm font-bold text-white">Liste des panels et crédits</h3>
+                    <button type="button" onclick="openPanelFormModal()" class="lux-btn lux-gold px-3 py-1.5 rounded-lg font-bold text-[11px] flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> <span id="addPanelBtnLabel">Ajouter un panel / crédit</span>
+                    </button>
                 </div>
 
-                <div class="lux-well rounded-lg p-2.5 space-y-1.5">
-                    <label id="lblSubImage" class="block text-[10px] font-bold text-gold-400">Image de l'abonnement</label>
-                    <input type="text" id="subImage" oninput="updateSubImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
-                                <i class="fa-solid fa-image text-emerald-400"></i>
-                                <span id="chooseSubImgLabel">Choisir une image</span>
-                                <input type="file" accept="image/*" onchange="handleSubImageUpload(event)" class="hidden">
-                            </label>
-                            <button type="button" onclick="clearSubImage()" id="clearSubImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
-                                Supprimer
-                            </button>
-                        </div>
-                        <img id="subImagePreview" src="https://placehold.co/160x100/18181b/10B981?text=SUB" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/10B981?text=SUB'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                <div class="lux-panel rounded-xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-start text-[11px]">
+                            <thead class="lux-well text-zinc-400 text-[10px]">
+                                <tr>
+                                    <th id="thPanelOffer" class="py-2 px-3 text-start">Offre / Panel</th>
+                                    <th id="thPanelSys" class="py-2 px-3 text-start">Système</th>
+                                    <th id="thPanelBase" class="py-2 px-3 text-start">Base (Crédit)</th>
+                                    <th id="thPanelPrice" class="py-2 px-3 text-start">Prix 1 Crédit (Grossiste)</th>
+                                    <th id="thPanelMin" class="py-2 px-3 text-start">Seuil Grossiste</th>
+                                    <th id="thPanelActions" class="py-2 px-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminPanelsTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div class="lux-well rounded-lg p-2.5 space-y-2">
-                    <div class="flex items-center justify-between">
-                        <span id="lblSubPricesBox" class="text-[10px] font-extrabold text-white">Tarifs par durée</span>
-                        <span class="text-[9px] text-gold-400 font-bold dur-summary-tag"></span>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-                        <div class="lux-panel rounded-lg p-2 space-y-1">
-                            <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-12"></label>
-                            <input type="number" id="subInst12" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
-                        </div>
-                        <div class="lux-panel rounded-lg p-2 space-y-1">
-                            <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-6"></label>
-                            <input type="number" id="subInst6" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
-                        </div>
-                        <div class="lux-panel rounded-lg p-2 space-y-1">
-                            <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-3"></label>
-                            <input type="number" id="subInst3" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
-                        </div>
-                        <div class="lux-panel rounded-lg p-2 space-y-1">
-                            <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-1"></label>
-                            <input type="number" id="subInst1" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label id="lblSubDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
-                    <input type="text" id="subDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
-
-                <div class="flex gap-2 pt-1">
-                    <button type="button" onclick="closeModal('subscriptionFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
-                    <button type="submit" class="lux-btn lux-emerald save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="panelFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
-        <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-md max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
-            <div class="flex items-center justify-between pb-2 mb-3">
-                <h3 id="panelModalTitle" class="text-xs sm:text-sm font-extrabold text-white">Ajouter un panel / crédit</h3>
-                <button type="button" onclick="closeModal('panelFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
             </div>
 
-            <form onsubmit="savePanelForm(event)" class="space-y-2.5">
-                <input type="hidden" id="editPanelId">
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div>
-                        <label id="lblPanelTitle" class="block text-[10px] text-zinc-400 mb-0.5">Titre de l'offre / panel *</label>
-                        <input type="text" id="panelTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                    </div>
-                    <div>
-                        <label id="lblPanelCategory" class="block text-[10px] text-zinc-400 mb-0.5">Nom du panel *</label>
-                        <select id="panelCategory" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                            <option value="PANEL EAGLE 4K">PANEL EAGLE 4K</option>
-                            <option value="PANEL EAGLE IPTV">PANEL EAGLE IPTV</option>
-                            <option value="PANEL IBOPRO">PANEL IBOPRO</option>
-                            <option value="PANEL HOT PLAYER">PANEL HOT PLAYER</option>
-                            <option value="PANEL IBOSOL">PANEL IBOSOL</option>
+            <div id="adminTabOrders" class="hidden space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 id="adminOrdersTitle" class="text-xs sm:text-sm font-bold text-white">Historique des commandes</h3>
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <input type="text" id="orderSearchInput" oninput="renderAdminOrdersList()" autocomplete="off" class="lux-well rounded-lg px-2.5 py-1 text-[11px] text-white">
+                        <select id="orderStatusFilter" onchange="renderAdminOrdersList()" class="lux-well rounded-lg px-2 py-1 text-[11px] text-white">
+                            <option value="Tous" id="filterStatusAll">Tous les statuts</option>
+                            <option value="En attente" id="filterStatusPending">En attente</option>
+                            <option value="Livré" id="filterStatusDelivered">Livré / Activé</option>
+                            <option value="Annulé" id="filterStatusCancelled">Annulé</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="lux-well rounded-lg p-2.5 space-y-1.5">
-                    <label id="lblPanelImage" class="block text-[10px] font-bold text-gold-400">Image du panel</label>
-                    <input type="text" id="panelImage" oninput="updatePanelImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
-                                <i class="fa-solid fa-image text-gold-400"></i>
-                                <span id="choosePanelImgLabel">Choisir une image</span>
-                                <input type="file" accept="image/*" onchange="handlePanelImageUpload(event)" class="hidden">
-                            </label>
-                            <button type="button" onclick="clearPanelImage()" id="clearPanelImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
-                                Supprimer
-                            </button>
+                <div id="adminOrdersList" class="space-y-2.5"></div>
+            </div>
+
+            <div id="adminTabSettings" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-3.5">
+                <form onsubmit="savePanelSettings(event)" class="lux-panel p-4 rounded-xl space-y-3">
+                    <h3 id="settingsFormTitle" class="text-xs sm:text-sm font-bold text-white">Paramètres du panneau</h3>
+                    <div>
+                        <label id="lblSettingPanelName" class="block text-[10px] font-semibold text-zinc-400 mb-1">Nom du panneau / marque</label>
+                        <input type="text" id="settingPanelName" required autocomplete="off" class="lux-well w-full rounded-lg px-3 py-1.5 text-xs text-white">
+                    </div>
+                    <div>
+                        <label id="lblSettingWhatsapp" class="block text-[10px] font-semibold text-zinc-400 mb-1">Numéro WhatsApp</label>
+                        <input type="text" id="settingWhatsapp" required autocomplete="off" class="lux-well w-full rounded-lg px-3 py-1.5 text-xs text-white">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label id="lblSettingCurrency" class="block text-[10px] font-semibold text-zinc-400 mb-1">Devise</label>
+                            <input type="text" id="settingCurrency" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-xs text-white">
                         </div>
-                        <img id="panelImagePreview" src="https://placehold.co/160x100/18181b/D4AF37?text=PANEL" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/D4AF37?text=PANEL'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                        <div>
+                            <label id="lblSettingPassword" class="block text-[10px] font-semibold text-zinc-400 mb-1">Mot de passe Admin</label>
+                            <input type="password" id="settingPassword" required autocomplete="new-password" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-xs text-white">
+                        </div>
                     </div>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
+                            <input type="checkbox" id="settingWholesaleEnabled" class="accent-gold-500 w-3.5 h-3.5">
+                            <span id="lblSettingWholesale" class="text-[11px] font-bold text-zinc-200">Activer le mode grossiste revendeur sur les panels</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
+                            <input type="checkbox" id="settingShowAnnouncement" class="accent-gold-500 w-3.5 h-3.5">
+                            <span id="lblSettingAnnouncement" class="text-[11px] font-bold text-zinc-200">Afficher le bandeau d'annonce supérieur</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer lux-well p-2 rounded-lg">
+                            <input type="checkbox" id="settingShowHero" class="accent-gold-500 w-3.5 h-3.5">
+                            <span id="lblSettingHero" class="text-[11px] font-bold text-zinc-200">Afficher la barre d'accès rapide</span>
+                        </label>
+                    </div>
+                    <button type="submit" id="saveSettingsBtnLabel" class="lux-btn lux-gold w-full py-2 rounded-lg font-extrabold text-xs">
+                        Enregistrer les paramètres
+                    </button>
+                </form>
+
+                <div class="lux-panel p-4 rounded-xl space-y-3.5 flex flex-col justify-between">
+                    <div class="space-y-3.5">
+                        <div class="lux-well p-3 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 id="storeLinkGenTitle" class="text-xs font-extrabold text-gold-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-link"></i>
+                                    <span>توليد رابط STORE للزبناء (بدون الإدارة)</span>
+                                </h3>
+                                <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-bold">STORE</span>
+                            </div>
+                            <p id="storeLinkGenDesc" class="text-[10px] text-zinc-400 leading-relaxed">
+                                عند فتح الزبون لهذا الرابط، يظهر المتجر والطلب فقط وتختفي الإدارة بالكامل.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                                <div>
+                                    <label id="lblStoreLinkSection" class="block text-[9.5px] font-bold text-zinc-400 mb-1">القسم الافتراضي للزبون</label>
+                                    <select id="storeLinkSectionSelect" onchange="generateClientStoreLink()" class="lux-panel w-full rounded-lg px-2 py-1 text-[11px] text-white">
+                                        <option value="all">STORE (الكل)</option>
+                                        <option value="panels">Panels & Crédits</option>
+                                        <option value="subscriptions">Abonnements</option>
+                                        <option value="apps">Applications</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label id="lblStoreLinkLang" class="block text-[9.5px] font-bold text-zinc-400 mb-1">لغة رابط الزبون</label>
+                                    <select id="storeLinkLangSelect" onchange="generateClientStoreLink()" class="lux-panel w-full rounded-lg px-2 py-1 text-[11px] text-white">
+                                        <option value="current">الحالية / Actuelle</option>
+                                        <option value="ar">العربية (AR)</option>
+                                        <option value="fr">Français (FR)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-1">
+                                <input type="text" id="generatedClientStoreUrl" readonly class="lux-panel flex-1 rounded-lg px-2.5 py-1.5 text-[10px] text-gold-400 font-bold">
+                                <button type="button" onclick="generateClientStoreLink()" class="lux-btn lux-gold px-2 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0">
+                                    <i class="fa-solid fa-rotate"></i>
+                                </button>
+                                <button type="button" onclick="copyClientStoreLink()" class="lux-btn lux-emerald px-2.5 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0 flex items-center gap-1">
+                                    <i class="fa-solid fa-copy"></i>
+                                    <span id="copyStoreLinkLabel">نسخ</span>
+                                </button>
+                                <button type="button" onclick="openClientStoreLink()" class="lux-btn lux-sky px-2 py-1.5 rounded-lg text-[10px] font-extrabold shrink-0">
+                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 id="backupCardTitle" class="text-xs sm:text-sm font-bold text-white">Sauvegarde des données (JSON)</h3>
+                            <p id="backupCardDesc" class="text-[11px] text-zinc-400 leading-relaxed">
+                                Sauvegarde locale dans LocalStorage.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+                                <button type="button" onclick="exportBackupJSON()" class="lux-btn lux-emerald px-3 py-2 rounded-lg font-bold text-[11px] flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-download"></i> <span id="exportJsonBtnLabel">Exporter JSON</span>
+                                </button>
+                                <label class="lux-btn lux-ghost cursor-pointer px-3 py-2 rounded-lg text-zinc-200 font-bold text-[11px] flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-upload text-gold-400"></i> <span id="importJsonBtnLabel">Importer JSON</span>
+                                    <input type="file" accept=".json" onchange="importBackupJSON(event)" class="hidden">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="button" onclick="resetToDefaultData()" id="resetDefaultBtnLabel" class="lux-btn lux-ghost w-full py-1.5 rounded-lg text-red-400 text-[11px] font-bold">
+                            Réinitialiser aux données par défaut
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- سلة الطلبات الجانبية الفاخرة والمصغرة       -->
+        <!-- ========================================== -->
+        <div id="cartDrawerOverlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+        <aside id="cartDrawer" class="cart-closed fixed top-0 end-0 h-full w-full max-w-xs sm:max-w-sm lux-panel z-50 transition-transform duration-300 flex flex-col shadow-2xl">
+            <div class="p-3 sm:p-3.5 flex items-center justify-between lux-well">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-gold-400 text-sm"></i>
+                    <h3 id="cartDrawerTitle" class="font-extrabold text-xs sm:text-sm text-white">Panier de commande</h3>
+                </div>
+                <button type="button" onclick="toggleCart(false)" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-3 sm:p-3.5 space-y-3">
+                <div id="cartItemsContainer" class="space-y-2"></div>
+
+                <form id="checkoutForm" onsubmit="submitOrderViaWhatsApp(event)" class="hidden lux-well p-3 rounded-xl space-y-2.5">
+                    <div class="flex items-center justify-between text-gold-400 text-[11px] font-bold pb-1">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-check"></i> <span id="checkoutInfoTitle">Informations de commande</span></span>
+                        <span id="cartOrderTypeBadge" class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">Grossiste</span>
+                    </div>
+
+                    <div>
+                        <label id="lblCustName" class="block text-[10px] text-zinc-400 mb-0.5">Nom revendeur / client *</label>
+                        <input type="text" id="custName" required autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div>
+                        <label id="lblCustPhone" class="block text-[10px] text-zinc-400 mb-0.5">Numéro WhatsApp / téléphone *</label>
+                        <input type="tel" id="custPhone" required autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div>
+                        <label id="lblCustNotes" class="block text-[10px] text-zinc-400 mb-0.5">Notes supplémentaires</label>
+                        <input type="text" id="custNotes" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div class="pt-1 space-y-1 text-[11px]">
+                        <div id="cartSummaryBreakdown" class="text-[10px] text-zinc-400 space-y-0.5"></div>
+                        <div class="flex justify-between text-xs sm:text-sm font-extrabold text-white">
+                            <span id="lblCartTotal">Total général :</span>
+                            <span id="cartTotalAmount" class="text-gold-400">0 MAD</span>
+                        </div>
+                        <div class="lux-panel rounded-lg p-2 space-y-1">
+                            <div class="flex items-center justify-between text-[9.5px] text-zinc-400">
+                                <span id="lblCurrencyConvert">Conversion instantanée :</span>
+                                <select id="cartCurrencyConverter" onchange="updateCartCurrencyConversion()" class="lux-well rounded px-1.5 py-0.5 text-white font-bold">
+                                    <option value="USD">USD ($)</option>
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="XOF">Franc CFA (XOF)</option>
+                                </select>
+                            </div>
+                            <div id="cartConvertedValue" class="text-[10px] font-extrabold text-emerald-400 text-end">≈ $0.00</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="lux-btn lux-emerald w-full py-2 rounded-xl font-extrabold text-[11px] flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span id="sendWhatsappBtnLabel">Envoyer sur WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- ========================================== -->
+        <!-- النوافذ المنبثقة النظيفة                  -->
+        <!-- ========================================== -->
+
+        <div id="appFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
+            <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-md max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
+                <div class="flex items-center justify-between pb-2 mb-3">
+                    <h3 class="text-xs sm:text-sm font-extrabold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-mobile-screen-button text-sky-400"></i>
+                        <span id="appModalTitleText">Ajouter une application</span>
+                    </h3>
+                    <button type="button" onclick="closeModal('appFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    <div>
-                        <label id="lblPanelBase" class="block text-[10px] text-zinc-400 mb-0.5">Minimum (Crédit) *</label>
-                        <input type="number" id="panelBaseCredits" required min="10" step="10" value="10" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
-                    </div>
-                    <div>
-                        <label id="lblPanelWholesale" class="block text-[10px] text-emerald-400 font-bold mb-0.5">Prix 1 Crédit (Grossiste) *</label>
-                        <input type="number" id="panelWholesalePrice" required min="0.1" step="0.1" autocomplete="off" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
-                    </div>
-                    <div>
-                        <label id="lblPanelMin" class="block text-[10px] text-emerald-400 font-bold mb-0.5">Seuil Grossiste *</label>
-                        <input type="number" id="panelMinWholesaleCredits" required min="10" step="10" value="50" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
-                    </div>
-                </div>
+                <form onsubmit="saveAppForm(event)" class="space-y-2.5">
+                    <input type="hidden" id="editAppId">
 
-                <div>
-                    <label id="lblPanelDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
-                    <input type="text" id="panelDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
-                </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div>
+                            <label id="lblAppTitle" class="block text-[10px] text-zinc-400 mb-0.5">Nom de l'application *</label>
+                            <input type="text" id="appTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                        </div>
+                        <div>
+                            <label id="lblAppCategory" class="block text-[10px] text-zinc-400 mb-0.5">Catégorie / Système *</label>
+                            <input type="text" id="appCategory" required list="appCategorySuggestions" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                            <datalist id="appCategorySuggestions">
+                                <option value="Smart TV">
+                                <option value="Android / TV Box">
+                                <option value="Lecteurs IPTV">
+                                <option value="Outils & Apps">
+                            </datalist>
+                        </div>
+                    </div>
 
-                <div class="flex gap-2 pt-1">
-                    <button type="button" onclick="closeModal('panelFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
-                    <button type="submit" class="lux-btn lux-gold save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
-                </div>
-            </form>
+                    <div>
+                        <label id="lblAppPrice" class="block text-[10px] font-bold text-gold-400 mb-0.5">Prix de l'application *</label>
+                        <input type="number" id="appPrice" required min="0" step="0.5" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold text-gold-400">
+                    </div>
+
+                    <div class="lux-well rounded-lg p-2.5 space-y-1.5">
+                        <label id="lblAppImage" class="block text-[10px] font-bold text-sky-400">Image de l'application</label>
+                        <input type="text" id="appImage" oninput="updateAppImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
+                                    <i class="fa-solid fa-image text-sky-400"></i>
+                                    <span id="chooseAppImgLabel">Choisir une image</span>
+                                    <input type="file" accept="image/*" onchange="handleAppImageUpload(event)" class="hidden">
+                                </label>
+                                <button type="button" onclick="clearAppImage()" id="clearAppImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
+                                    Supprimer
+                                </button>
+                            </div>
+                            <img id="appImagePreview" src="https://placehold.co/160x100/18181b/38BDF8?text=APP" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/38BDF8?text=APP'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="lblAppDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
+                        <input type="text" id="appDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button type="button" onclick="closeModal('appFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
+                        <button type="submit" class="lux-btn lux-sky save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <div id="subscriptionFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
+            <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-lg max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
+                <div class="flex items-center justify-between pb-2 mb-3">
+                    <h3 id="subModalTitle" class="text-xs sm:text-sm font-extrabold text-white">Ajouter un abonnement</h3>
+                    <button type="button" onclick="closeModal('subscriptionFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <form onsubmit="saveSubscriptionForm(event)" class="space-y-2.5">
+                    <input type="hidden" id="editSubId">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div>
+                            <label id="lblSubTitle" class="block text-[10px] text-zinc-400 mb-0.5">Nom de l'abonnement *</label>
+                            <input type="text" id="subTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                        </div>
+                        <div>
+                            <label id="lblSubCategory" class="block text-[10px] text-zinc-400 mb-0.5">Catégorie *</label>
+                            <input type="text" id="subCategory" required list="subCategorySuggestions" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                            <datalist id="subCategorySuggestions">
+                                <option value="Abonnement EAGLE 4K">
+                                <option value="Abonnement EAGLE IPTV">
+                                <option value="Activation IBOPRO">
+                                <option value="Activation HOT PLAYER">
+                                <option value="Activation IBOSOL">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="lux-well rounded-lg p-2.5 space-y-1.5">
+                        <label id="lblSubImage" class="block text-[10px] font-bold text-gold-400">Image de l'abonnement</label>
+                        <input type="text" id="subImage" oninput="updateSubImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
+                                    <i class="fa-solid fa-image text-emerald-400"></i>
+                                    <span id="chooseSubImgLabel">Choisir une image</span>
+                                    <input type="file" accept="image/*" onchange="handleSubImageUpload(event)" class="hidden">
+                                </label>
+                                <button type="button" onclick="clearSubImage()" id="clearSubImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
+                                    Supprimer
+                                </button>
+                            </div>
+                            <img id="subImagePreview" src="https://placehold.co/160x100/18181b/10B981?text=SUB" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/10B981?text=SUB'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                        </div>
+                    </div>
+
+                    <div class="lux-well rounded-lg p-2.5 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span id="lblSubPricesBox" class="text-[10px] font-extrabold text-white">Tarifs par durée</span>
+                            <span class="text-[9px] text-gold-400 font-bold dur-summary-tag"></span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                            <div class="lux-panel rounded-lg p-2 space-y-1">
+                                <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-12"></label>
+                                <input type="number" id="subInst12" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
+                            </div>
+                            <div class="lux-panel rounded-lg p-2 space-y-1">
+                                <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-6"></label>
+                                <input type="number" id="subInst6" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
+                            </div>
+                            <div class="lux-panel rounded-lg p-2 space-y-1">
+                                <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-3"></label>
+                                <input type="number" id="subInst3" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
+                            </div>
+                            <div class="lux-panel rounded-lg p-2 space-y-1">
+                                <label class="block text-[10px] font-extrabold text-gold-400 modal-dur-1"></label>
+                                <input type="number" id="subInst1" required min="1" step="0.5" autocomplete="off" class="lux-well w-full rounded-md px-2 py-1 text-[11px] text-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="lblSubDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
+                        <input type="text" id="subDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button type="button" onclick="closeModal('subscriptionFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
+                        <button type="submit" class="lux-btn lux-emerald save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="panelFormModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 overflow-y-auto">
+            <div class="lux-panel rounded-xl w-full max-w-[94vw] sm:max-w-md max-h-[88vh] overflow-y-auto p-4 my-auto lux-fade">
+                <div class="flex items-center justify-between pb-2 mb-3">
+                    <h3 id="panelModalTitle" class="text-xs sm:text-sm font-extrabold text-white">Ajouter un panel / crédit</h3>
+                    <button type="button" onclick="closeModal('panelFormModal')" class="lux-btn lux-ghost w-6 h-6 rounded-lg text-zinc-400 hover:text-white flex items-center justify-center text-xs shrink-0">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <form onsubmit="savePanelForm(event)" class="space-y-2.5">
+                    <input type="hidden" id="editPanelId">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div>
+                            <label id="lblPanelTitle" class="block text-[10px] text-zinc-400 mb-0.5">Titre de l'offre / panel *</label>
+                            <input type="text" id="panelTitle" required autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                        </div>
+                        <div>
+                            <label id="lblPanelCategory" class="block text-[10px] text-zinc-400 mb-0.5">Nom du panel *</label>
+                            <select id="panelCategory" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                                <option value="PANEL EAGLE 4K">PANEL EAGLE 4K</option>
+                                <option value="PANEL EAGLE IPTV">PANEL EAGLE IPTV</option>
+                                <option value="PANEL IBOPRO">PANEL IBOPRO</option>
+                                <option value="PANEL HOT PLAYER">PANEL HOT PLAYER</option>
+                                <option value="PANEL IBOSOL">PANEL IBOSOL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="lux-well rounded-lg p-2.5 space-y-1.5">
+                        <label id="lblPanelImage" class="block text-[10px] font-bold text-gold-400">Image du panel</label>
+                        <input type="text" id="panelImage" oninput="updatePanelImagePreview()" autocomplete="off" class="lux-panel w-full rounded-lg px-2.5 py-1 text-[11px] text-white">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <label class="lux-btn lux-ghost cursor-pointer px-2 py-1 rounded-lg text-[10px] font-bold text-zinc-200 flex items-center gap-1">
+                                    <i class="fa-solid fa-image text-gold-400"></i>
+                                    <span id="choosePanelImgLabel">Choisir une image</span>
+                                    <input type="file" accept="image/*" onchange="handlePanelImageUpload(event)" class="hidden">
+                                </label>
+                                <button type="button" onclick="clearPanelImage()" id="clearPanelImgLabel" class="lux-btn lux-ghost px-2 py-1 rounded-lg text-red-400 text-[10px] font-bold">
+                                    Supprimer
+                                </button>
+                            </div>
+                            <img id="panelImagePreview" src="https://placehold.co/160x100/18181b/D4AF37?text=PANEL" alt="Aperçu" onerror="this.src='https://placehold.co/160x100/18181b/D4AF37?text=PANEL'" class="w-14 h-10 rounded-lg object-cover shrink-0">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div>
+                            <label id="lblPanelBase" class="block text-[10px] text-zinc-400 mb-0.5">Minimum (Crédit) *</label>
+                            <input type="number" id="panelBaseCredits" required min="10" step="10" value="10" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
+                        </div>
+                        <div>
+                            <label id="lblPanelWholesale" class="block text-[10px] text-emerald-400 font-bold mb-0.5">Prix 1 Crédit (Grossiste) *</label>
+                            <input type="number" id="panelWholesalePrice" required min="0.1" step="0.1" autocomplete="off" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
+                        </div>
+                        <div>
+                            <label id="lblPanelMin" class="block text-[10px] text-emerald-400 font-bold mb-0.5">Seuil Grossiste *</label>
+                            <input type="number" id="panelMinWholesaleCredits" required min="10" step="10" value="50" class="lux-well w-full rounded-lg px-2 py-1.5 text-[11px] text-white">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="lblPanelDesc" class="block text-[10px] text-zinc-400 mb-0.5">Description</label>
+                        <input type="text" id="panelDesc" autocomplete="off" class="lux-well w-full rounded-lg px-2.5 py-1.5 text-[11px] text-white">
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button type="button" onclick="closeModal('panelFormModal')" class="lux-btn lux-ghost cancel-modal-btn flex-1 py-1.5 rounded-lg text-zinc-300 text-[11px] font-semibold">Annuler</button>
+                        <button type="submit" class="lux-btn lux-gold save-modal-btn flex-1 py-1.5 rounded-lg text-[11px] font-extrabold">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer class="lux-panel py-3 mt-6">
+            <div class="max-w-5xl mx-auto px-3 sm:px-5 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[10px] text-zinc-400">
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
+                    <span class="font-extrabold text-white text-[11px]" id="footerPanelName">YOUNES PANELS & CREDITS</span>
+                    <span id="footerCopyrightText">© 2026 Tous droits réservés</span>
+                </div>
+                <div class="flex items-center gap-2 text-[10px]">
+                    <span id="footerSummaryText">Panels + Abonnements + Applications</span>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <div id="toastContainer" class="fixed bottom-3 end-3 z-50 flex flex-col gap-1.5 pointer-events-none"></div>
-
-    <footer class="lux-panel py-3 mt-6">
-        <div class="max-w-5xl mx-auto px-3 sm:px-5 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[10px] text-zinc-400">
-            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
-                <span class="font-extrabold text-white text-[11px]" id="footerPanelName">YOUNES PANELS & CREDITS</span>
-                <span id="footerCopyrightText">© 2026 Tous droits réservés</span>
-            </div>
-            <div class="flex items-center gap-2 text-[10px]">
-                <span id="footerSummaryText">Panels + Abonnements + Applications</span>
-            </div>
-        </div>
-    </footer>
+    <div id="toastContainer" class="fixed bottom-3 end-3 z-[110] flex flex-col gap-1.5 pointer-events-none"></div>
 
     <script>
         const CURRENT_YEAR = new Date().getFullYear();
+        const ADMIN_USERNAME = 'Younes';
+        const ADMIN_DEFAULT_PASSWORD = 'younesislam@';
 
         const STORAGE_KEYS = {
             PANELS: 'younes_panels_credits_fr_v1',
@@ -1155,8 +1152,10 @@
                 lblAppDesc: 'Description',
                 cancelBtn: 'Annuler',
                 saveBtn: 'Enregistrer',
-                loginModalTitle: 'Connexion Admin',
-                loginBtn: 'Connexion',
+                welcomeGateTitle: 'Bienvenue • Luxury Access',
+                welcomeGateSub: 'Veuillez saisir vos identifiants pour entrer',
+                welcomeCardBadge: 'Luxury Security',
+                loginBtn: 'Entrer',
                 subModalAdd: 'Ajouter un abonnement',
                 subModalEdit: 'Modifier l\'abonnement',
                 lblSubTitle: 'Nom de l\'abonnement *',
@@ -1180,8 +1179,8 @@
                 toastCreditsAddedToCart: (c, cat) => `${c} Crédits de "${cat}" ajoutés au panier`,
                 toastSubAddedToCart: (title, d) => `"${title}" (${d} mois) ajouté au panier`,
                 toastOrderSent: 'Commande enregistrée ! Redirection vers WhatsApp...',
-                toastWelcomeAdmin: 'Bienvenue dans l’espace Administration',
-                toastWrongPass: 'Mot de passe incorrect !',
+                toastWelcomeAdmin: 'Bienvenue dans l’espace Luxury',
+                toastWrongPass: 'Username ou mot de passe incorrect !',
                 toastLoggedOut: 'Déconnexion effectuée',
                 toastAppUpdated: 'Application mise à jour',
                 toastAppAdded: 'Application ajoutée avec succès',
@@ -1346,7 +1345,9 @@
                 lblAppDesc: 'الوصف',
                 cancelBtn: 'إلغاء',
                 saveBtn: 'حفظ',
-                loginModalTitle: 'دخول الإدارة',
+                welcomeGateTitle: 'مرحباً • Luxury Access',
+                welcomeGateSub: 'أدخل بيانات الدخول للمتابعة',
+                welcomeCardBadge: 'Luxury Security',
                 loginBtn: 'دخول',
                 subModalAdd: 'إضافة اشتراك',
                 subModalEdit: 'تعديل الاشتراك',
@@ -1371,8 +1372,8 @@
                 toastCreditsAddedToCart: (c, cat) => `تمت إضافة ${c} كريديت من "${cat}" إلى السلة`,
                 toastSubAddedToCart: (title, d) => `تمت إضافة "${title}" (${d === 1 ? 'شهر' : d + ' أشهر'}) إلى السلة`,
                 toastOrderSent: 'تم تسجيل الطلب! جارٍ التحويل إلى واتساب...',
-                toastWelcomeAdmin: 'مرحباً بك في لوحة الإدارة',
-                toastWrongPass: 'كلمة المرور غير صحيحة!',
+                toastWelcomeAdmin: 'مرحباً بك في Luxury',
+                toastWrongPass: 'اسم المستخدم أو كلمة المرور غير صحيحة!',
                 toastLoggedOut: 'تم تسجيل الخروج',
                 toastAppUpdated: 'تم تحديث التطبيق',
                 toastAppAdded: 'تمت إضافة التطبيق بنجاح',
@@ -1420,7 +1421,8 @@
             panelName: 'YOUNES PANELS & CREDITS',
             whatsapp: '0650443149',
             currency: 'MAD',
-            adminPassword: 'younesislam@',
+            adminUsername: ADMIN_USERNAME,
+            adminPassword: ADMIN_DEFAULT_PASSWORD,
             wholesaleEnabled: true,
             showAnnouncement: true,
             showHero: true
@@ -1537,6 +1539,7 @@
         let selectedSubDuration = 12;
         let currentCategory = 'Tous';
         let currentLang = 'fr';
+        let isWelcomeUnlocked = false;
         let isAdminAuthenticated = false;
         let isClientStoreLink = false;
         let selectedCreditsMap = {};
@@ -1563,20 +1566,35 @@
             }
         }
 
+        function syncWelcomeGateVisibility() {
+            const gate = document.getElementById('luxuryWelcomeGate');
+            const shell = document.getElementById('mainAppShell');
+            const shouldShowGate = !isWelcomeUnlocked && !isClientStoreLink;
+
+            if (gate) {
+                gate.classList.toggle('hidden', !shouldShowGate);
+                gate.classList.toggle('flex', shouldShowGate);
+            }
+            if (shell) {
+                shell.classList.toggle('hidden', shouldShowGate);
+            }
+        }
+
         function applyClientStoreModeUI() {
             const adminNavBtn = document.getElementById('adminNavBtn');
             const manageAppsBtnEl = document.getElementById('manageAppsBtnEl');
 
             if (isClientStoreLink) {
+                isWelcomeUnlocked = true;
                 isAdminAuthenticated = false;
                 if (adminNavBtn) adminNavBtn.classList.add('hidden');
                 if (manageAppsBtnEl) manageAppsBtnEl.classList.add('hidden');
-                closeModal('adminLoginModal');
                 switchView('store');
             } else {
                 if (adminNavBtn) adminNavBtn.classList.remove('hidden');
                 if (manageAppsBtnEl) manageAppsBtnEl.classList.remove('hidden');
             }
+            syncWelcomeGateVisibility();
         }
 
         function generateClientStoreLink() {
@@ -1638,6 +1656,12 @@
             renderActiveStoreGrid();
             updateCartUI();
             generateClientStoreLink();
+
+            if (!isWelcomeUnlocked && !isClientStoreLink) {
+                setTimeout(() => {
+                    document.getElementById('adminUsernameInput')?.focus();
+                }, 80);
+            }
         });
 
         function applyLanguage(lang) {
@@ -1778,8 +1802,10 @@
             document.getElementById('clearAppImgLabel').textContent = dict.clearImg;
             document.getElementById('lblAppDesc').textContent = dict.lblAppDesc;
 
-            document.getElementById('loginModalTitle').textContent = dict.loginModalTitle;
-            document.getElementById('loginSubmitBtnLabel').textContent = dict.loginBtn;
+            document.getElementById('welcomeGateTitle').textContent = dict.welcomeGateTitle;
+            document.getElementById('welcomeGateSub').textContent = dict.welcomeGateSub;
+            document.getElementById('welcomeCardBadge').textContent = dict.welcomeCardBadge;
+            document.getElementById('loginSubmitBtnLabel').querySelector('span').textContent = dict.loginBtn;
 
             document.getElementById('lblSubTitle').textContent = dict.lblSubTitle;
             document.getElementById('lblSubCategory').textContent = dict.lblSubCategory;
@@ -1980,6 +2006,7 @@
         function applySettingsToUI() {
             document.title = `${settings.panelName} | ${t().subtitle}`;
             document.getElementById('headerPanelName').textContent = settings.panelName;
+            document.getElementById('welcomeBrandName').textContent = settings.panelName;
             document.getElementById('footerPanelName').textContent = settings.panelName;
 
             document.getElementById('topAnnouncementBar').classList.toggle('hidden', settings.showAnnouncement === false);
@@ -2594,6 +2621,7 @@
             const breakdownEl = document.getElementById('cartSummaryBreakdown');
             const totalAmountEl = document.getElementById('cartTotalAmount');
             const typeBadge = document.getElementById('cartOrderTypeBadge');
+            const headerCountEl = document.getElementById('headerCartCount');
             const dict = t();
 
             const totalCredits = cart
@@ -2605,6 +2633,10 @@
             const totalApps = cart
                 .filter(i => i.kind === 'app')
                 .reduce((sum, item) => sum + Number(item.qty), 0);
+
+            if (headerCountEl) {
+                headerCountEl.textContent = String(cart.length);
+            }
 
             const totalAmount = formatMoney(
                 cart.reduce((sum, item) => sum + getCartLinePricing(item).lineTotal, 0)
@@ -2824,6 +2856,47 @@
             window.open(waUrl, '_blank');
         }
 
+        function fillLuxuryCredentials() {
+            const uInput = document.getElementById('adminUsernameInput');
+            const pInput = document.getElementById('adminPasswordInput');
+            if (uInput) uInput.value = settings.adminUsername || ADMIN_USERNAME;
+            if (pInput) pInput.value = settings.adminPassword || ADMIN_DEFAULT_PASSWORD;
+        }
+
+        function toggleAdminPasswordVisibility() {
+            const pInput = document.getElementById('adminPasswordInput');
+            const eyeIcon = document.getElementById('adminPassEyeIcon');
+            if (!pInput || !eyeIcon) return;
+            if (pInput.type === 'password') {
+                pInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                pInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        function verifyWelcomeCredentials(e) {
+            e.preventDefault();
+            if (isClientStoreLink) return;
+            const enteredUser = (document.getElementById('adminUsernameInput')?.value || '').trim();
+            const enteredPass = document.getElementById('adminPasswordInput')?.value || '';
+            const expectedUser = settings.adminUsername || ADMIN_USERNAME;
+            const expectedPass = settings.adminPassword || ADMIN_DEFAULT_PASSWORD;
+
+            if (enteredUser === expectedUser && enteredPass === expectedPass) {
+                isWelcomeUnlocked = true;
+                isAdminAuthenticated = true;
+                syncWelcomeGateVisibility();
+                switchView('store');
+                showToast(t().toastWelcomeAdmin);
+            } else {
+                showToast(t().toastWrongPass, 'error');
+            }
+        }
+
         function handleAdminAccess() {
             if (isClientStoreLink) {
                 showToast(t().toastAdminHiddenInStore, 'error');
@@ -2832,29 +2905,33 @@
             if (isAdminAuthenticated) {
                 switchView('admin');
             } else {
-                document.getElementById('adminPasswordInput').value = '';
-                openModal('adminLoginModal');
-                setTimeout(() => document.getElementById('adminPasswordInput').focus(), 100);
-            }
-        }
-
-        function verifyAdminPassword(e) {
-            e.preventDefault();
-            if (isClientStoreLink) return;
-            const entered = document.getElementById('adminPasswordInput').value;
-            if (entered === settings.adminPassword) {
-                isAdminAuthenticated = true;
-                closeModal('adminLoginModal');
-                switchView('admin');
-                showToast(t().toastWelcomeAdmin);
-            } else {
-                showToast(t().toastWrongPass, 'error');
+                isWelcomeUnlocked = false;
+                const pInput = document.getElementById('adminPasswordInput');
+                if (pInput) {
+                    pInput.type = 'password';
+                    pInput.value = '';
+                }
+                const eyeIcon = document.getElementById('adminPassEyeIcon');
+                if (eyeIcon) {
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
+                syncWelcomeGateVisibility();
+                setTimeout(() => {
+                    document.getElementById('adminUsernameInput')?.focus();
+                }, 80);
             }
         }
 
         function logoutAdmin() {
             isAdminAuthenticated = false;
-            switchView('store');
+            isWelcomeUnlocked = false;
+            const pInput = document.getElementById('adminPasswordInput');
+            if (pInput) {
+                pInput.type = 'password';
+                pInput.value = '';
+            }
+            syncWelcomeGateVisibility();
             showToast(t().toastLoggedOut);
         }
 
@@ -2885,11 +2962,11 @@
 
         function switchAdminTab(tabName) {
             const tabs = ['Apps', 'Subscriptions', 'Panels', 'Orders', 'Settings'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tabBtn${t}`);
-                const panel = document.getElementById(`adminTab${t}`);
-                if (t.toLowerCase() === tabName) {
-                    const activeLux = t === 'Apps' ? 'lux-sky' : 'lux-gold';
+            tabs.forEach(tabKey => {
+                const btn = document.getElementById(`tabBtn${tabKey}`);
+                const panel = document.getElementById(`adminTab${tabKey}`);
+                if (tabKey.toLowerCase() === tabName) {
+                    const activeLux = tabKey === 'Apps' ? 'lux-sky' : 'lux-gold';
                     btn.className = `lux-btn ${activeLux} admin-tab-btn px-3 py-1.5 rounded-lg text-[11px] font-bold whitespace-nowrap`;
                     panel.classList.remove('hidden');
                 } else {
@@ -3608,12 +3685,14 @@
         function openModal(id) {
             if (isClientStoreLink && id === 'adminLoginModal') return;
             const el = document.getElementById(id);
+            if (!el) return;
             el.classList.remove('hidden');
             el.classList.add('flex');
         }
 
         function closeModal(id) {
             const el = document.getElementById(id);
+            if (!el) return;
             el.classList.add('hidden');
             el.classList.remove('flex');
         }
